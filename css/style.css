@@ -15,12 +15,12 @@ html {
 }
 #title {
 position: absolute;
+font-family:'Conv_Tangerine_Regular',Sans-Serif;
 width: 100%;
-top: 20%;
-font-size: 48px;
+top: 15%;
+font-size: 128px;
 color: #ffffff;
 margin-left: auto;
 margin-right: auto;
 text-align: center;
-
 }
