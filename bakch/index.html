@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<title>Bhai, Aaj Kaunsi Class Hai?</title>
+	<script src="jquery.min.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<script charset='utf-8' src='konami.js' type='text/javascript'></script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="main">
+<table id="tt">
+	<tr class="head">
+	<td></td>
+	<td class="head">9:30</td>
+    <td class="head">11:15</td>
+    <td class="head">2:00</td>
+    <td class="head">3:30</td>
+</tr>
+<tr>
+<td class="head">MONDAY</td>
+<td id="a00"></td>
+<td id="a01"></td>
+<td id="a02"></td>
+<td class="se" id="a03"></td>
+</tr>
+<tr>
+<td class="head">TUESDAY</td>
+<td id="a10"></td>
+<td id="a11"></td>
+<td id="a12"></td>
+<td id="a13"></td>
+</tr>
+<tr>
+<td class="head">WEDNESDAY</td>
+<td id="a20"></td>
+<td id="a21"></td>
+<td class="faculty"id="a22"></td>
+<td id="a23"></td>
+</tr>
+<tr>
+<td class="head">THURSDAY</td>
+<td id="a30"></td>
+<td id="a31"></td>
+<td id="a32"></td>
+<td id="a33"></td>
+</tr>
+<tr>
+<td class="head">FRIDAY</td>
+<td id="a40"></td>
+<td id="a41"></td>
+<td id="a42"></td>
+<td id="a43"></td>
+</tr>
+<tr>
+<td class="head">SATURDAY</td>
+<td id="a50"></td>
+<td class="se" id="a51"></td>
+<td id="a52"></td>
+<td id="a53"></td>
+</tr>
+</table>
+<div id="options">
+<label>
+<select id="subject">
+    <option value="CSDS601">CS/DS 601 -Theory Of Computation</option>
+    <option value="CSDS602">CS/DS 602 -Advanced Algorithms</option>
+    <option value="CS603">CS603 -Cryptography</option>
+    <option value="CS604">CS604 -Artificial Intelligence</option>
+    <option value="CSDS605">CS/DS 605 -Information Networks</option>
+    <option value="CS606">CS 606 -Computer Graphics</option>
+    <option value="CSSE801">CS/SE 801 -Special- Prog Lanuages</option>
+    <option value="DSSE603">DS/SE 603 -Data Modelling</option>
+    <option value="DS604">DS 604 - Web Info Retrieval</option>
+    <option value="SE601">SE 601 -OOAD and Web 2.0</option>
+    <option value="SE602">SE 602 -Software Testing</option>
+    <option value="NCE601">NCE 601 -Wireless Access N/W</option>
+    <option value="NCE602">NCE 602 -Wireless Communication</option>
+    <option value="NCE603">NCE 603 -Digital Signal Proc.</option>
+    <option value="NCE604">NCE 604 -Digital IC Fabrication</option>
+    <option value="NCE801">NCE 801 -Special- Inter Device Comm.</option>
+    <option value="NCE802">NCE 802 -Special- Principles Of Embedded</option>
+    <option value="NCE803">NCE 803 -Special- Deep Submicron Design</option>
+    <option value="NCE804">NCE 804 -Special- Analog/CMOS Design</option>
+    <option value="NCE805">NCE 805 -ICT in Healthcare</option>
+    <option value="NCE806">NCE 806 -High Level Synthesis of Digial Ckts</option>
+   <option value="ITS601">ITS 601 -Dynamics of IT Industry</option>
+   <option value="GEN601">GEN 601 -Intro to Scientific Computing</option>
+</select> 
+</label>
+<button class="but" id="addbutton">ADD</button>
+<button class="but" id="removebutton">REMOVE</button>
+<button class="but" id="clearbutton">CLEAR</button>
+</div>
+</div>
+<div id="footer">crafted with <span id="heart">♥</span> by <a href="http://lifeofnav.in">@navinpai</a></div>
+<script type="text/javascript" charset="utf-8">
+	
+	var fullnames = {
+"CSDS601":"Theory Of Computation",
+"CSDS602":"Advanced Algorithms",
+"CS603":"Cryptography",
+"CS604":"Artificial Intelligence",
+"CSDS605":"Information Networks",
+"CS606":"Computer Graphics",
+"CSSE801":"Special- Prog Lanuages",
+"DSSE603":"Data Modelling",
+"DS604":"Web Info Retrieval",
+"SE510":"Software Engg",
+"SE601":"OOAD and Web 2.0",
+"SE602":"Software Testing",
+"NCE601":"Wireless Access N/W",
+"NCE602":"Wireless Communication",
+"NCE603":"Digital Signal Proc.",
+"NCE604":"Digital IC Fabrication",
+"NCE801":"Special- Inter Device Comm.",
+"NCE802":"Special- Principles Of Embedded",
+"NCE803":"Special- Deep Submicron Design",
+"NCE804":"Special- Analog/CMOS Design",
+"NCE805":"ICT in Healthcare",
+"NCE806":"High Level Synthesis of Digial Ckts",
+"ITS601":"Dynamics of IT Industry",
+"GEN601":"Intro to Sci. Computing"
+
+};
+
+	$( document ).ready(function(){
+	var resultJSON = '{    "00": [         "CS603",         "DSSE603",         "NCE601"     ],     "01": [         "CSSE801",         "NCE804"     ],     "02": [         "GEN601",         "NCE805"     ],     "03": [         "SE510"     ],     "10": [         "NCE602",         "CSDS602","NCE804"     ],     "11": [         "CS604",         "SE602",         "NCE604",         "NCE603"     ],     "12": [         "CS606",         "NCE806"     ],     "13": [         "NCE801",         "DS604"     ],     "20": [         "CS603",         "DSSE603",         "NCE601"     ],     "21": [         "NCE802",         "CSDS601"     ],     "30": [         "NCE602",         "CSDS602",         "SE601"     ],     "31": [         "CS604",         "SE602",         "NCE604",         "NCE603"     ],     "32": [         "CS606",         "ITS601",         "NCE806"     ],     "33": [         "NCE801",         "ITS601",         "DS604"     ],     "40": [         "CSSE801",         "NCE804"     ],     "41": [         "NCE802",         "CSDS601"     ],     "42": [         "GEN601",         "NCE805",         "CSDS605"     ],     "43": [         "CSDS605"     ],     "50": [         "SE601"     ],     "51": [         "SE510"     ],     "52": [         "NCE803"     ],     "53": [         "NCE803"     ] }	';
+var result = $.parseJSON(resultJSON);
+
+
+$("#addbutton").click(function(){
+	var notifications=true;
+	var conflict=false;
+	$.each(result, function(k, v) {
+		for(i=0;i<v.length;i++)
+			{	    
+				/*$.each(v[i],function(y,x){
+					console.log(y)
+					})	*/
+				if(v[i]==$("#subject").val()){
+				if(!$("#a"+k).is(':empty')){
+					conflict=true;
+					if($("#a"+k).text()==getsubjname($("#subject").val()) && notifications==true)
+						{
+							alert("Elective Already Added")
+							console.log(notifications)
+							notifications=false
+							console.log(notifications)
+							}
+					else if(notifications==true)
+						{
+							alert("Conflict with "+$("#a"+k).text());
+							notifications=false
+						}
+					}
+			}}
+			if(conflict==false){
+		for(i=0;i<v.length;i++)
+			if(v[i]==$("#subject").val()){
+				var subjname=$("#subject").val();
+				$("#a"+k).hide().text(getsubjname(subjname)).fadeIn();
+			}
+		}
+});	
+	});
+	
+var getsubjname=function(subjname){
+	var a;
+	$.each(fullnames, function(k, v) {
+	if(k==subjname)
+	{	a= v;
+}
+});
+return a;
+}
+	
+$("#removebutton").click(function(){
+	$.each(result, function(k, v) {
+		var subject="";
+		for(i=0;i<v.length;i++)
+			if(v[i]==$("#subject").val() && $("#a"+k).text()==getsubjname($("#subject").val())){
+				$("#a"+k).hide().text("").fadeIn()
+			}
+});	
+	});
+	
+	function automate(){
+		$( "#clearbutton" ).trigger( "click" );
+		$('#subject>option:eq(1)').prop('selected', true);
+		$( "#addbutton" ).trigger( "click" );
+		$('#subject>option:eq(2)').prop('selected', true);
+		$( "#addbutton" ).trigger( "click" );
+		$('#subject>option:eq(3)').prop('selected', true);
+		$( "#addbutton" ).trigger( "click" );
+		$('#subject>option:eq(8)').prop('selected', true);
+		$( "#addbutton" ).trigger( "click" );
+		};
+	
+	//Up Up Down Down Left Right Left Right B A
+	var kkeys = [];
+	var konamiString = "38,38,40,40,37,39,37,39,66,65";
+	setupStuff();
+	
+	function setupStuff() {
+		if (window.addEventListener) {
+		window.addEventListener('keydown', function(e) {
+		kkeys.push(e.keyCode );
+		if (kkeys.toString().indexOf(konamiString) >= 0 )
+			{automate()
+			kkeys=[]}
+		}, true)
+		}
+		else if(document.body.attachEvent) {
+			document.body.attachEvent('onkeydown', function(e){
+			if (kkeys.toString().indexOf(konamiString) >= 0)	
+			{automate()
+			kkeys=[]
+			}
+}, true)
+}
+}
+
+	
+	$("#clearbutton").click(function(){
+		$("td").not(".head").text("");
+		$(".faculty").text("Faculty Meeting @ Board Room");
+		$(".se").text("Software Engineering");
+	});
+	
+	$(".faculty").text("Faculty Meeting @ Board Room");
+	$(".se").text("Software Engineering");
+});
+	</script>
+</body>
+</html>
