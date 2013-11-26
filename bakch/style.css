@@ -8,6 +8,11 @@ max-width: 150px;
 font-size: 12px;
 }
 
+table{
+text-align: left; 
+width: 60%;
+margin: auto;
+}
 .head{
 font-weight:bold;
 }
@@ -75,13 +80,14 @@ label:before {
 }
 #main{
 position: relative;
-margin-left: 20%;
-margin-right: auto;
+width: 100%;
+text-align: center;
+ margin: 0 auto;
 }
 
 #options{
-width: 70%;
-margin-left: 20%;
+    display: table;
+    margin: 0 auto;
 	}
 
 .but{
