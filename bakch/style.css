@@ -22,11 +22,17 @@ background-image:url("fabric_of_squares_gray.png");
 font-family: 'Roboto', sans-serif;
 }
 
+#wrapper{
+position: relative;
+width: 100%;
+margin-left: auto;
+margin-right: auto;
+}
 #header{
 position: relative;
-top: 0px;
-margin-left: 30%;
 width: 600px;
+margin-left: auto;
+margin-right: auto;
 height: 114px;
 padding-bottom: 10px;
 background-image:url("header.png");
