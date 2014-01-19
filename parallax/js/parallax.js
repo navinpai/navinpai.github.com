@@ -57,6 +57,8 @@ $(document).ready(function() {
 
 /* Scroll the background layers */
 function parallaxScroll(){
+	$('#parallax-bg2').hide();
+	$('#parallax-bg3').hide();
 	var scrolled = $(window).scrollTop();
 	$('#parallax-bg1').css('top',(0-(scrolled*.25))+'px');
 	$('#parallax-bg2').css('top',(0-(scrolled*.5))+'px');
