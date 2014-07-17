@@ -24,7 +24,7 @@
                <td id="a00"></td>
                <td id="a01"></td>
                <td id="a02"></td>
-               <td class="se" id="a03"></td>
+               <td id="a03"></td>
             </tr>
             <tr>
                <td class="head">TUESDAY</td>
@@ -50,14 +50,14 @@
             <tr>
                <td class="head">FRIDAY</td>
                <td id="a40"></td>
-               <td id="a41"></td>
+               <td class="lm" id="a41"></td>
                <td id="a42"></td>
                <td id="a43"></td>
             </tr>
             <tr>
                <td class="head">SATURDAY</td>
                <td id="a50"></td>
-               <td class="se" id="a51"></td>
+               <td id="a51"></td>
                <td id="a52"></td>
                <td id="a53"></td>
             </tr>
@@ -65,29 +65,27 @@
          <div id="options">
             <label>
                <select id="subject">
-                  <option value="CSDS601">CS/DS 601 -Theory Of Computation</option>
-                  <option value="CSDS602">CS/DS 602 -Advanced Algorithms</option>
-                  <option value="CS603">CS603 -Cryptography</option>
-                  <option value="CS604">CS604 -Artificial Intelligence</option>
-                  <option value="CSDS605">CS/DS 605 -Information Networks</option>
-                  <option value="CS606">CS 606 -Computer Graphics</option>
-                  <option value="CSSE801">CS/SE 801 -Special- Prog Lanuages</option>
-                  <option value="DSSE603">DS/SE 603 -Data Modelling</option>
-                  <option value="DS604">DS 604 - Web Info Retrieval</option>
-                  <option value="SE601">SE 601 -OOAD and Web 2.0</option>
-                  <option value="SE602">SE 602 -Software Testing</option>
-                  <option value="NCE601">NCE 601 -Wireless Access N/W</option>
-                  <option value="NCE602">NCE 602 -Wireless Communication</option>
-                  <option value="NCE603">NCE 603 -Digital Signal Proc.</option>
-                  <option value="NCE604">NCE 604 -Digital IC Fabrication</option>
-                  <option value="NCE801">NCE 801 -Special- Inter Device Comm.</option>
-                  <option value="NCE802">NCE 802 -Special- Principles Of Embedded</option>
-                  <option value="NCE803">NCE 803 -Special- Deep Submicron Design</option>
-                  <option value="NCE804">NCE 804 -Special- Analog/CMOS Design</option>
-                  <option value="NCE805">NCE 805 -ICT in Healthcare</option>
-                  <option value="NCE806">NCE 806 -High Level Synthesis of Digial Ckts</option>
-                  <option value="ITS601">ITS 601 -Dynamics of IT Industry</option>
-                  <option value="GEN601">GEN 601 -Intro to Scientific Computing</option>
+                  <option value="CSDS702">CS/DS 702 -Distributed Computing</option>
+                  <option value="CSSE703">CS/SE 703 -Automated Formal Verification</option>
+                  <option value="CSDS704">CS/DS 704 -Multi-Agent Systems</option>
+                  <option value="CSDS706">CS/DS 706 -Machine Learning</option>
+                  <option value="CSSE851">CS/SE 851 -Compiler Design</option>
+                  <option value="CSNCE852">CS/NCE 852 -Network Security</option>
+                  <option value="CS853">CS 853 -Approximation Algorithms</option>
+                  <option value="CSNCE854">CS/NCE 854 -Digital Image Processing</option>
+                  <option value="CS855">CS 855 -Data Visualization</option>
+                  <option value="CS856">CS 856 -Advanced CG</option>
+                  <option value="DS701">DS 701 -Advanced DBMS</option>
+                  <option value="DS703">DS 703 -Geographic Information Systems</option>
+                  <option value="DS707">DS 707 -Data Analytics</option>
+                  <option value="DSNCE855">DS/NCE 855 -Designing Gaming Simulations</option>
+                  <option value="SE701">SE 701 -Design Patterns and Enterprise System Development</option>
+                  <option value="SE852">SE 852 -Usability Engineering</option>
+                  <option value="SE853">SE 853 -Requirement Engineering</option>
+                  <option value="NCE701">NCE 701 -Mobile Computing with IMS Architecture</option>
+                  <option value="NCE851">NCE 851 -Mathematical Analysis of Networks</option>
+                  <option value="NCE854">NCE 854 -Functional Verification of SOC Designs</option>
+                  <option value="ITS701">ITS 701 -Economic and Social Impacts of Information Technology</option>
                </select>
             </label>
             <button class="but" id="addbutton">ADD</button>
@@ -97,36 +95,31 @@
       </div>
       <div id="footer">crafted with <span id="heart">♥</span> by <a href="http://lifeofnav.in">@navinpai</a></div>
       <script type="text/javascript" charset="utf-8">
-         var fullnames = {
-         "CSDS601":"Theory Of Computation",
-         "CSDS602":"Advanced Algorithms",
-         "CS603":"Cryptography",
-         "CS604":"Artificial Intelligence",
-         "CSDS605":"Information Networks",
-         "CS606":"Computer Graphics",
-         "CSSE801":"Special- Prog Lanuages",
-         "DSSE603":"Data Modelling",
-         "DS604":"Web Info Retrieval",
-         "SE510":"Software Engg",
-         "SE601":"OOAD and Web 2.0",
-         "SE602":"Software Testing",
-         "NCE601":"Wireless Access N/W",
-         "NCE602":"Wireless Communication",
-         "NCE603":"Digital Signal Proc.",
-         "NCE604":"Digital IC Fabrication",
-         "NCE801":"Special- Inter Device Comm.",
-         "NCE802":"Special- Principles Of Embedded",
-         "NCE803":"Special- Deep Submicron Design",
-         "NCE804":"Special- Analog/CMOS Design",
-         "NCE805":"ICT in Healthcare",
-         "NCE806":"High Level Synthesis of Digial Ckts",
-         "ITS601":"Dynamics of IT Industry",
-         "GEN601":"Intro to Sci. Computing"
-         
+         var fullnames = {"CSDS702":"Distributed Computing",
+         "CSSE703":"Automated Formal Verification",
+         "CSDS704":"Multi-Agent Systems",
+         "CSDS706":"Machine Learning",
+         "CSSE851":"Compiler Design",
+         "CSNCE852":"Network Security",
+         "CS853":"Approximation Algorithms",
+         "CSNCE854":"Digital Image Processing",
+         "CS855":"Data Visualization",
+         "CS856":"Advanced CG",
+         "DS701":"Advanced DBMS",
+         "DS703":"Geographic Information Systems",
+         "DS707":"Data Analytics",
+         "DSNCE855":"Designing Gaming Simulations",
+         "SE701":"Design Patterns and Enterprise SysDev",
+         "SE852":"Usability Engineering",
+         "SE853":"Requirement Engineering",
+         "NCE701":"Mobile Computing with IMS Architecture",
+         "NCE851":"Mathematical Analysis of Networks",
+         "NCE854":"Functional Verification of SOC Designs",
+         "ITS701":"Economic and Social Impacts of IT"         
          };
          
          $( document ).ready(function(){
-         var resultJSON = '{    "00": [         "CS603",         "DSSE603",         "NCE601"     ],     "01": [         "CSSE801",         "NCE804"     ],     "02": [         "GEN601",         "NCE805"     ],     "03": [         "SE510"     ],     "10": [         "NCE602",         "CSDS602","NCE804"     ],     "11": [         "CS604",         "SE602",         "NCE604",         "NCE603"     ],     "12": [         "CS606",         "NCE806"     ],     "13": [         "NCE801",         "DS604"     ],     "20": [         "CS603",         "DSSE603",         "NCE601"     ],     "21": [         "NCE802",         "CSDS601"     ],     "30": [         "NCE602",         "CSDS602",         "SE601"     ],     "31": [         "CS604",         "SE602",         "NCE604",         "NCE603"     ],     "32": [         "CS606",         "ITS601",         "NCE806"     ],     "33": [         "NCE801",         "ITS601",         "DS604"     ],     "40": [         "CSSE801",         "NCE804"     ],     "41": [         "NCE802",         "CSDS601"     ],     "42": [         "GEN601",         "NCE805",         "CSDS605"     ],     "43": [         "CSDS605"     ],     "50": [         "SE601"     ],     "51": [         "SE510"     ],     "52": [         "NCE803"     ],     "53": [         "NCE803"     ] }	';
+         var resultJSON = '{    "00": [         "CS853",         "DS703",         "CSSE851"     ],   "01": [         "CSDS706",         "CS856", "NCE851"     ],  "02": [         "DSNCE855",         "ITS701" ,"CSSE703"    ],   "03": [         "DSNCE855" ,"ITS701"    ],   "10": [         "DS707",         "CSNCE852" ],   "11": [         "CSDS702",         "CSNCE854"],  "12": [         "NCE854",         "CSSE703",         "CS855"], "13": [         "SE853"     ],     "20": [         "CS853",         "DS703",         "CSSE851", "NCE701"     ],  "21": [         "CSDS706",         "CS856" , "NCE851"   ], "30": [         "DS707",         "DS701",         "NCE701"     ],  "31": [         "CSDS702",         "CSNCE854" ],   "32": [         "NCE854",         "CS855" ],     "33": [         "SE701" ],  "40": [         "CSNCE852" ], "42": [         "CSDS704" ], "43": [         "CSDS704"     ],  "50": [         "SE701"     ],  "51": [         "SE853"     ],  "52": [         "SE852"     ], "53": [         "SE852"     ] }	';
          var result = $.parseJSON(resultJSON);
          
          
@@ -188,13 +181,11 @@
          
          function automate(){
          	$( "#clearbutton" ).trigger( "click" );
-         	$('#subject>option:eq(1)').prop('selected', true);
-         	$( "#addbutton" ).trigger( "click" );
-         	$('#subject>option:eq(2)').prop('selected', true);
-         	$( "#addbutton" ).trigger( "click" );
          	$('#subject>option:eq(3)').prop('selected', true);
          	$( "#addbutton" ).trigger( "click" );
-         	$('#subject>option:eq(8)').prop('selected', true);
+         	$('#subject>option:eq(11)').prop('selected', true);
+         	$( "#addbutton" ).trigger( "click" );
+         	$('#subject>option:eq(13)').prop('selected', true);
          	$( "#addbutton" ).trigger( "click" );
          	};
          
@@ -226,11 +217,11 @@
          $("#clearbutton")	.click(function(){
          	$("td").not(".head").text("");
          	$(".meeting").text("Faculty Meeting @ Board Room");
-         	$(".se").text("Software Engineering");
+         	$(".lm").text("Lab Meetings");
          });
          
          $(".meeting").text("Faculty Meeting @ Board Room");
-         $(".se").text("Software Engineering");
+         $(".lm").text("Lab Meetings");
          });
       </script>
    </body>
