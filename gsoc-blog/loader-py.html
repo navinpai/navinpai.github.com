@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Navin Pai">
+  <meta name="description" content="Posts and writings by Navin Pai">
+
+  <link href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The GSoC Diaries Atom" />
+
+<meta name="keywords" content="gsoc, dbpedia">
+
+  <title>
+    The GSoC Diaries
+&ndash; Loader.py  </title>
+
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://navinpai.github.io/gsoc-blog">
+        <img id="logo" src="http://navinpai.github.com/gsoc-blog/theme/images/logo.jpg" alt="logo">
+      </a>
+      <h2><a href="http://navinpai.github.io/gsoc-blog">Navin Pai</a></h2>
+      <p>GSoC 2015 | DBpedia</p>
+      <ul>
+        <li><a href="https://www.google-melange.com/gsoc/homepage/google/gsoc2015" target="_blank">GSoC</a></li>
+        <li><a href="http://wiki.dbpedia.org" target="_blank">DBpedia</a></li>
+        <li><a href="http://jsonpedia.org" target="_blank">JSONpedia</a></li>
+        <li><a href="http://twitter.com/navinpai" target="_blank">@navinpai</a></li>
+        <li><a href="http://lifeofnav.in" target="_blank">Personal Blog</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <p>
+      <a href="http://navinpai.github.io/gsoc-blog">Index</a> &brvbar; <a href="http://navinpai.github.io/gsoc-blog/archives.html">Archives</a>
+      &brvbar; <a href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml">Atom</a>
+      </p>
+    </header>
+
+<article>
+  <div class="article_title">
+    <h3><a href="http://navinpai.github.io/gsoc-blog/loader-py.html">Loader.py</a></h3>
+  </div>
+  <div class="article_text">
+    <p>I've started going through <a href="https://bitbucket.org/hardest/jsonpedia">the codebase</a> in a more structured manner, and thought that following workflows would be a good way to start. I plan to understand all the flows over the next few days. For a start, here's what happens when you run loader.py</p>
+<h4>How to run</h4>
+<div class="highlight"><pre><span class="c"># bin/loader.py config-file [start-index:]end-index</span>
+<span class="nb">bin</span><span class="o">/</span><span class="n">loader</span><span class="o">.</span><span class="n">py</span> <span class="n">conf</span><span class="o">/</span><span class="n">default</span><span class="o">.</span><span class="n">properties</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p><strong>loader.py</strong> is a Python script which basically does the following:</p>
+<ol>
+<li>Download the URLs for Wikipedia Dumps from the <a href="http://dumps.wikimedia.org/enwiki/latest/">wikimedia dumps page</a> using <code>get_latest_articles_list()</code></li>
+<li>Download the required dumps using the end-index <em>(and start-index, if provided)</em> into the work directory using <code>download_file(url, directory, filename)</code></li>
+<li>Ingest the file using <code>ingest_file(config, filename)</code> which basically spawns a subprocess that runs <code>gradle runLoader -Pconfig=config -Pdump=filename 2&gt;&amp;1 &gt; filename.log</code><ol>
+<li>runLoader is a gradle task which calls <code>com.machinelinking.cli.loader</code><ol>
+<li><code>flags</code> is a list of <code>Flag</code>, each of which enables or disables Extractors, Linkers, Splitters, Validators etc. Default config file has <code>Extractors, Structure</code>.</li>
+<li><code>jsonStorageFactory</code> is an instance of the JSONStorageFactory. we use to store. Default config file has <code>com.machinelinking.storage.MultiJSONStorageFactory</code>.</li>
+<li><code>jsonStorageConfig</code> is of form <code>&lt;store-factory 1&gt;|&lt;loader.storage.config 1&gt;;&lt;store-factory 2&gt;|&lt;loader.storage.config 2&gt;</code>.</li>
+<li><code>prefixURL</code> is simply a prefix URL.</li>
+<li>Finally, we call <code>loader[0].load(prefixURL, inputstream)</code> which internally calls <code>process(prefixURL, inputstream)</code> of    <code>WikiDumpMultiThreadProcessor</code> which uses a SAX parser (in <code>WikiDumpParser</code>) to parse the data.</li>
+<li><code>WikiDumpRunnable</code> calls the <code>processPage(pagePrefix, threadid,page)</code> function which uses the over-riden <code>processPage()</code> method of the nested <code>EnrichmentProcessor</code>, which adds the document into the Mongostorage using the <code>MongoDBDataEncoder dataEncoder</code> and <code>JSONStorageConnection connection</code> after it is enriched using <code>enrichEntity(DocumentSource source, Serializer serializer)</code> method of <code>WikiPipeline</code>.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4>So this means...</h4>
+<p>That's a of stuff happening under the hood i.e at step 3. :-)</p>
+<p>However, at the end of this simple command, we have achieved quite a bit.</p>
+<p>That's all for now... Next up, I'll be looking at <code>facet_loader.py</code> and the CSV Export workflows.</p>
+<h4>Random Code-fu</h4>
+<p>I learnt about the <a href="http://java.dzone.com/articles/java-7-new-try-resources">try-with-resources</a> statement while going through the codebase today. With this type of <em>try</em>, we can actually provide closeable resources to the block, which are automatically closed after the try. Pretty nifty indeed. An example in <code>loader.java</code></p>
+<div class="highlight"><pre><span class="k">try</span> <span class="o">(</span><span class="kd">final</span> <span class="n">JSONStorage</span> <span class="n">storage</span> <span class="o">=</span> <span class="n">jsonStorageFactory</span><span class="o">.</span><span class="na">createStorage</span><span class="o">(</span><span class="n">storageConfig</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">loader</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultJSONStorageLoader</span><span class="o">(</span>
+                <span class="n">WikiPipelineFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(),</span> <span class="n">flags</span><span class="o">,</span> <span class="n">storage</span>
+                <span class="o">);</span>
+
+    <span class="kd">final</span> <span class="n">StorageLoaderReport</span> <span class="n">report</span> <span class="o">=</span> <span class="n">loader</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">load</span><span class="o">(</span><span class="n">prefixURL</span><span class="o">,</span> <span class="n">FileUtil</span><span class="o">.</span><span class="na">openDecompressedInputStream</span><span class="o">(</span><span class="n">dumpFile</span><span class="o">));</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Loading report: &quot;</span> <span class="o">+</span> <span class="n">report</span><span class="o">);</span>
+
+    <span class="n">finalReportProduced</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Wed 06 May 2015</p>
+    <p>Category: <a href="http://navinpai.github.io/gsoc-blog/category/gsoc.html">gsoc</a>
+ &ndash; Tags:
+      <a href="http://navinpai.github.io/gsoc-blog/tag/gsoc.html">gsoc</a>,      <a href="http://navinpai.github.io/gsoc-blog/tag/dbpedia.html">dbpedia</a>    </p>
+  </div>
+
+
+</article>
+
+
+    <div id="ending_message">
+      <p>&copy; Navin Pai. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
+    </div>
+  </main>
+</body>
+</html>
