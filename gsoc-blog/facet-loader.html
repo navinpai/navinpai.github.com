@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Navin Pai">
+  <meta name="description" content="Posts and writings by Navin Pai">
+
+  <link href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The GSoC Diaries Atom" />
+
+<meta name="keywords" content="gsoc, dbpedia">
+
+  <title>
+    The GSoC Diaries
+&ndash; facet_loader.py  </title>
+
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://navinpai.github.io/gsoc-blog">
+        <img id="logo" src="http://navinpai.github.com/gsoc-blog/theme/images/logo.jpg" alt="logo">
+      </a>
+      <h2><a href="http://navinpai.github.io/gsoc-blog">Navin Pai</a></h2>
+      <p>GSoC 2015 | DBpedia</p>
+      <ul>
+        <li><a href="https://www.google-melange.com/gsoc/homepage/google/gsoc2015" target="_blank">GSoC</a></li>
+        <li><a href="http://wiki.dbpedia.org" target="_blank">DBpedia</a></li>
+        <li><a href="http://jsonpedia.org" target="_blank">JSONpedia</a></li>
+        <li><a href="http://twitter.com/navinpai" target="_blank">@navinpai</a></li>
+        <li><a href="http://lifeofnav.in" target="_blank">Personal Blog</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <p>
+      <a href="http://navinpai.github.io/gsoc-blog">Index</a> &brvbar; <a href="http://navinpai.github.io/gsoc-blog/archives.html">Archives</a>
+      &brvbar; <a href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml">Atom</a>
+      </p>
+    </header>
+
+<article>
+  <div class="article_title">
+    <h3><a href="http://navinpai.github.io/gsoc-blog/facet-loader.html">facet_loader.py</a></h3>
+  </div>
+  <div class="article_text">
+    <p>Next up, I'm looking at <strong>facet_loader.py</strong>, which runs the Elasticsearch facet manager</p>
+<h4>How to run</h4>
+<div class="highlight"><pre><span class="c"># bin/facet_loader.py -s &lt;source-URI&gt; -d &lt;destination-URI&gt; -l &lt;limit-num&gt; -c &lt;config-file&gt; </span>
+<span class="nb">bin</span><span class="o">/</span><span class="n">facet_loader</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">s</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">9300</span><span class="p">:</span><span class="n">jsonpedia_test_load</span><span class="p">:</span><span class="n">en</span> <span class="o">-</span><span class="n">d</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">9300</span><span class="p">:</span><span class="n">jsonpedia_test_facet</span><span class="p">:</span><span class="n">en</span> <span class="o">-</span><span class="n">l</span> <span class="mi">100</span> <span class="o">-</span><span class="n">c</span> <span class="n">conf</span><span class="o">/</span><span class="n">faceting</span><span class="o">.</span><span class="n">properties</span>
+</pre></div>
+
+
+<p><strong>facet_loader.py</strong> is a strightforward script which calls:</p>
+<div class="highlight"><pre><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s1">&#39;-Xms8g -Xmx8g -Dlog4j.configuration=file:conf/log4j.properties&#39;</span> mvn <span class="nb">exec</span>:java -Dexec.mainClass<span class="o">=</span>com.machinelinking.cli.facetloader -Dexec.args<span class="o">=</span><span class="s1">&#39;-s localhost:9300:jsonpedia_test_load:en -d localhost:9300:jsonpedia_test_facet:en -l 100 -c conf/faceting.properties&#39;</span>
+</pre></div>
+
+
+<p>The facetloader class does the following:</p>
+<ol>
+<li>Create <code>fromStorage</code> and <code>facetStorage</code> instance of <code>ElasticJSONStorage</code> using the <code>ElasticJSONStorageFactory</code></li>
+<li>Create an instance of <code>DefaultElasticFacetConfiguration</code> and <code>DefaultElasticFacetManager</code> using this configuration.</li>
+<li>The <code>loadFacets</code> method of the <code>ElasticFacetManager</code> is called, which converts each document from the <code>fromStorage</code> using the provided <code>EnrichedEntityFacetConverter</code> and puts it into the <code>destinationStorage</code>. The converter is simply going through each document, and creating documents out of each section of the original document</li>
+</ol>
+<h4>So this means...</h4>
+<p>Now, we have elasticsearch documents for each section available with details such as <code>page</code>,<code>section</code>,<code>links</code>, <code>content_stem</code> etc.</p>
+<p>Next up, I'll be looking at the  CSV Export workflow and deep-diving into the code.</p>
+<p>Also, I need to start work on a couple of issues in the issue tracker <em>(which has been long delayed at this point)</em></p>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Fri 08 May 2015</p>
+    <p>Category: <a href="http://navinpai.github.io/gsoc-blog/category/gsoc.html">gsoc</a>
+ &ndash; Tags:
+      <a href="http://navinpai.github.io/gsoc-blog/tag/gsoc.html">gsoc</a>,      <a href="http://navinpai.github.io/gsoc-blog/tag/dbpedia.html">dbpedia</a>    </p>
+  </div>
+
+
+</article>
+
+
+    <div id="ending_message">
+      <p>&copy; Navin Pai. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
+    </div>
+  </main>
+</body>
+</html>
