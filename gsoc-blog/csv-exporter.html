@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Navin Pai">
+  <meta name="description" content="Posts and writings by Navin Pai">
+
+  <link href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The GSoC Diaries Atom" />
+
+<meta name="keywords" content="gsoc, dbpedia">
+
+  <title>
+    The GSoC Diaries
+&ndash; CSV exporter  </title>
+
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://navinpai.github.io/gsoc-blog">
+        <img id="logo" src="http://navinpai.github.com/gsoc-blog/theme/images/logo.jpg" alt="logo">
+      </a>
+      <h2><a href="http://navinpai.github.io/gsoc-blog">Navin Pai</a></h2>
+      <p>GSoC 2015 | DBpedia</p>
+      <ul>
+        <li><a href="https://www.google-melange.com/gsoc/homepage/google/gsoc2015" target="_blank">GSoC</a></li>
+        <li><a href="http://wiki.dbpedia.org" target="_blank">DBpedia</a></li>
+        <li><a href="http://jsonpedia.org" target="_blank">JSONpedia</a></li>
+        <li><a href="http://twitter.com/navinpai" target="_blank">@navinpai</a></li>
+        <li><a href="http://lifeofnav.in" target="_blank">Personal Blog</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <p>
+      <a href="http://navinpai.github.io/gsoc-blog">Index</a> &brvbar; <a href="http://navinpai.github.io/gsoc-blog/archives.html">Archives</a>
+      &brvbar; <a href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml">Atom</a>
+      </p>
+    </header>
+
+<article>
+  <div class="article_title">
+    <h3><a href="http://navinpai.github.io/gsoc-blog/csv-exporter.html">CSV exporter</a></h3>
+  </div>
+  <div class="article_text">
+    <p>The CSV exporter is a command line tool which allows you  to convert Wikipedia dumps to tabular data generated from page parsing.</p>
+<h4>How to run</h4>
+<div class="highlight"><pre><span class="c"># java -cp build/libs/jsonpedia-{VERSION}.jar com.machinelinking.cli.exporter  --prefix page-prefix --in input-dump-file  --out output-csv-file --threads number-of-threads</span>
+java -cp build/libs/jsonpedia-<span class="o">{</span>VERSION<span class="o">}</span>.jar com.machinelinking.cli.exporter  --prefix http://en.wikipedia.org --in src/test/resources/dumps/enwiki-latest-pages-articles-p1.xml.gz  --out out.csv --threads 1
+</pre></div>
+
+
+<p>What goes on behind the scenes when you run this command is:</p>
+<ol>
+<li>The exporter class parses all the command line options passed to it and then creates an exporter of the class <code>CSVExporter</code> which is a child class of <code>WikiDumpMultiThreadProcessor</code></li>
+<li>The export function of <code>CSVExporter</code> is called, which creates a <code>BufferedInputStream</code> object of the input stream <em>(assuming it isn't already of the type)</em> and then calls the <code>process</code> method of <code>WikiDumpMultiThreadProcessor</code>. Here we do:<ol>
+<li>Create <code>n</code> processor objects, where processor is of the required class (eg.TemplatePropertyProcessor()) and <code>n</code> is number of threads</li>
+<li>In each processor, get individual pages and run <code>processPage</code> which works on the <code>WikiPage</code> to extract data. If also uses the <code>WikiTextParser</code> to parse the text. </li>
+<li>Finally, a report is created (eg. <code>CSVExporterReport</code>) and returned</li>
+</ol>
+</li>
+</ol>
+<h4>So this means...</h4>
+<p>This now gives us a CSV output that we need from the Wikipedia dump we provided. </p>
+<h4>Random Code-fu</h4>
+<p>Came across an interesting way to get the best number of threads to use for threading. We make use of the <code>Runtime</code> to get the number of available processors. Didn't know you could do this! In the codebase, you will find the following code: </p>
+<div class="highlight"><pre><span class="kd">protected</span> <span class="kt">int</span> <span class="nf">getBestNumberOfThreads</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">candidate</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">availableProcessors</span><span class="o">();</span>
+    <span class="k">return</span> <span class="n">candidate</span> <span class="o">&lt;</span> <span class="n">MIN_NUM_OF_THREADS</span> <span class="o">?</span> <span class="n">MIN_NUM_OF_THREADS</span> <span class="o">:</span> <span class="n">candidate</span><span class="o">;</span>
+  <span class="o">}</span>
+</pre></div>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Wed 13 May 2015</p>
+    <p>Category: <a href="http://navinpai.github.io/gsoc-blog/category/gsoc.html">gsoc</a>
+ &ndash; Tags:
+      <a href="http://navinpai.github.io/gsoc-blog/tag/gsoc.html">gsoc</a>,      <a href="http://navinpai.github.io/gsoc-blog/tag/dbpedia.html">dbpedia</a>    </p>
+  </div>
+
+
+</article>
+
+
+    <div id="ending_message">
+      <p>&copy; Navin Pai. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
+    </div>
+  </main>
+</body>
+</html>
