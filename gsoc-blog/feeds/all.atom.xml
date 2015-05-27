@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The GSoC Diaries</title><link href="http://navinpai.github.io/gsoc-blog/" rel="alternate"></link><link href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml" rel="self"></link><id>http://navinpai.github.io/gsoc-blog/</id><updated>2015-05-17T19:27:00+02:00</updated><entry><title>REST API (Part-I)</title><link href="http://navinpai.github.io/gsoc-blog/rest-api-part-i.html" rel="alternate"></link><updated>2015-05-17T19:27:00+02:00</updated><author><name>Navin Pai</name></author><id>tag:navinpai.github.io,2015-05-17:gsoc-blog/rest-api-part-i.html</id><summary type="html">&lt;p&gt;JSONpedia exposes a set of REST APIs which makes it very convenient to access the data that is stored. An easy place to see the APIs available &lt;em&gt;(along with their respective options)&lt;/em&gt; is on the frontend web interface &lt;em&gt;(a live version of this is available &lt;a href="https://jsonpedia.org"&gt;here&lt;/a&gt;)&lt;/em&gt;. For this post, I will focus on the &lt;code&gt;/annotate/resource&lt;/code&gt; API. This API is used to convert MediaWiki documents to JSON format.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The GSoC Diaries</title><link href="http://navinpai.github.io/gsoc-blog/" rel="alternate"></link><link href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml" rel="self"></link><id>http://navinpai.github.io/gsoc-blog/</id><updated>2015-05-27T11:30:00+02:00</updated><entry><title>Elasticsearch Basics</title><link href="http://navinpai.github.io/gsoc-blog/elasticsearch-basics.html" rel="alternate"></link><updated>2015-05-27T11:30:00+02:00</updated><author><name>Navin Pai</name></author><id>tag:navinpai.github.io,2015-05-27:gsoc-blog/elasticsearch-basics.html</id><summary type="html">&lt;p&gt;Elasticsearch is an amazing fulltext search engine which is used for searching JSONpedia. It is written in Java and &lt;a href="https://github.com/elastic/elasticsearch"&gt;is opensource&lt;/a&gt; and also provides a pretty neat REST interface as well. Also, it supports faceting out of the box, which makes it an ideal search engine candidate for JSONpedia. It has been in development for about half a decade, and it uses the amazing &lt;a href="http://lucene.apache.org/"&gt;Lucene&lt;/a&gt; library behind the scenes.&lt;/p&gt;
+&lt;h4&gt;Installation&lt;/h4&gt;
+&lt;p&gt;Installing Elasticsearch is as easy as pie. You can either download the zip file from the site and use it like &lt;a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-service.html"&gt;a normal executable&lt;/a&gt; or, as I prefer, download the precompiled package and use it &lt;a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html"&gt;as a service&lt;/a&gt;. Using it as a service is as simple as running &lt;code&gt;sudo service elasticsearch start&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Ports&lt;/h4&gt;
+&lt;p&gt;The 2 main ports elasticsearch uses are 9200 and 9300. The 9300 port is used by the Java API to communicate with with cluster whereas the 9200 port is used to communicate with the cluster using a REST API.&lt;/p&gt;
+&lt;h4&gt;Basic Querying&lt;/h4&gt;
+&lt;p&gt;Since the REST API is accessed over port 9200, we can query the service running using CURL on the endpoint. Queries using CURL to Elasticsearch cluster are of the form:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;curl -X&amp;lt;VERB&amp;gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;PROTOCOL&amp;gt;://&amp;lt;HOST&amp;gt;/&amp;lt;PATH&amp;gt;?&amp;lt;QUERY_STRING&amp;gt;&amp;#39;&lt;/span&gt; -d &lt;span class="s1"&gt;&amp;#39;&amp;lt;BODY&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first query we almost always run is simply to check the health of the cluster. You can do this by querying:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;curl -X GET &lt;span class="s1"&gt;&amp;#39;http://localhost:9200&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;### sample output&lt;/span&gt;
+
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;status&amp;quot;&lt;/span&gt; : 200,
+  &lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;Jean DeWolff&amp;quot;&lt;/span&gt;,
+  &lt;span class="s2"&gt;&amp;quot;version&amp;quot;&lt;/span&gt; : &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;number&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1.0.1&amp;quot;&lt;/span&gt;,
+    &lt;span class="s2"&gt;&amp;quot;build_hash&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;5c03844e1978e5cc924dab2a423dc63ce881c42b&amp;quot;&lt;/span&gt;,
+    &lt;span class="s2"&gt;&amp;quot;build_timestamp&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;2014-02-25T15:52:53Z&amp;quot;&lt;/span&gt;,
+    &lt;span class="s2"&gt;&amp;quot;build_snapshot&amp;quot;&lt;/span&gt; : &lt;span class="nb"&gt;false&lt;/span&gt;,
+    &lt;span class="s2"&gt;&amp;quot;lucene_version&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;4.6&amp;quot;&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="s2"&gt;&amp;quot;tagline&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;You Know, for Search&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next up, we want to count the number of documents in the cluster. For this we use:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;curl -XGET &lt;span class="s1"&gt;&amp;#39;http://localhost:9200/_count?pretty&amp;#39;&lt;/span&gt; -d &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="s1"&gt;{&lt;/span&gt;
+&lt;span class="s1"&gt;    &amp;quot;query&amp;quot;: {&lt;/span&gt;
+&lt;span class="s1"&gt;        &amp;quot;match_all&amp;quot;: {}&lt;/span&gt;
+&lt;span class="s1"&gt;    }&lt;/span&gt;
+&lt;span class="s1"&gt;}&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;### sample output&lt;/span&gt;
+
+
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;count&amp;quot;&lt;/span&gt; : 12485,
+  &lt;span class="s2"&gt;&amp;quot;_shards&amp;quot;&lt;/span&gt; : &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;total&amp;quot;&lt;/span&gt; : 5,
+    &lt;span class="s2"&gt;&amp;quot;successful&amp;quot;&lt;/span&gt; : 5,
+    &lt;span class="s2"&gt;&amp;quot;failed&amp;quot;&lt;/span&gt; : 0
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Similarly, we can run different CRUD queries as well &lt;a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html"&gt;as shown here&lt;/a&gt;. &lt;/p&gt;
+&lt;h3&gt;Troubleshooting&lt;/h3&gt;
+&lt;p&gt;Usually, errors with elasticsearch are either port related or process related. Remember your ports correctly. If CURL returns &lt;code&gt;empty reply from server&lt;/code&gt;, then the issue is most likely this. I broke my head on this for setup. Besides this, you should remember that data is stored in the &lt;code&gt;{path.home}/data&lt;/code&gt; location. So if you are adding bulk data to elasticsearch, you can also observe the size of the data files to know whether or not you are adding data correctly.&lt;/p&gt;</summary><category term="gsoc"></category><category term="dbpedia"></category></entry><entry><title>REST API (Part-I)</title><link href="http://navinpai.github.io/gsoc-blog/rest-api-part-i.html" rel="alternate"></link><updated>2015-05-17T19:27:00+02:00</updated><author><name>Navin Pai</name></author><id>tag:navinpai.github.io,2015-05-17:gsoc-blog/rest-api-part-i.html</id><summary type="html">&lt;p&gt;JSONpedia exposes a set of REST APIs which makes it very convenient to access the data that is stored. An easy place to see the APIs available &lt;em&gt;(along with their respective options)&lt;/em&gt; is on the frontend web interface &lt;em&gt;(a live version of this is available &lt;a href="https://jsonpedia.org"&gt;here&lt;/a&gt;)&lt;/em&gt;. For this post, I will focus on the &lt;code&gt;/annotate/resource&lt;/code&gt; API. This API is used to convert MediaWiki documents to JSON format.&lt;/p&gt;
 &lt;h4&gt;How to run&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# GET/POST /annotate/&amp;lt;format&amp;gt;/&amp;lt;uri&amp;gt; &lt;/span&gt;
 

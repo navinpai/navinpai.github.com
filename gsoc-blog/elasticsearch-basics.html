@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ## for client-side less
+  <link rel="stylesheet/less" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.less">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js" type="text/javascript"></script>
+  -->
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/style.css">
+  <link rel="stylesheet" type="text/css" href="http://navinpai.github.io/gsoc-blog/theme/css/pygments.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans|PT+Serif|PT+Mono">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Navin Pai">
+  <meta name="description" content="Posts and writings by Navin Pai">
+
+  <link href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="The GSoC Diaries Atom" />
+
+<meta name="keywords" content="gsoc, dbpedia">
+
+  <title>
+    The GSoC Diaries
+&ndash; Elasticsearch Basics  </title>
+
+</head>
+
+<body>
+  <aside>
+    <div id="user_meta">
+      <a href="http://navinpai.github.io/gsoc-blog">
+        <img id="logo" src="http://navinpai.github.com/gsoc-blog/theme/images/logo.jpg" alt="logo">
+      </a>
+      <h2><a href="http://navinpai.github.io/gsoc-blog">Navin Pai</a></h2>
+      <p>GSoC 2015 | DBpedia</p>
+      <ul>
+        <li><a href="https://www.google-melange.com/gsoc/homepage/google/gsoc2015" target="_blank">GSoC</a></li>
+        <li><a href="http://wiki.dbpedia.org" target="_blank">DBpedia</a></li>
+        <li><a href="http://jsonpedia.org" target="_blank">JSONpedia</a></li>
+        <li><a href="http://twitter.com/navinpai" target="_blank">@navinpai</a></li>
+        <li><a href="http://lifeofnav.in" target="_blank">Personal Blog</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <header>
+      <p>
+      <a href="http://navinpai.github.io/gsoc-blog">Index</a> &brvbar; <a href="http://navinpai.github.io/gsoc-blog/archives.html">Archives</a>
+      &brvbar; <a href="http://navinpai.github.io/gsoc-blog/feeds/all.atom.xml">Atom</a>
+      </p>
+    </header>
+
+<article>
+  <div class="article_title">
+    <h3><a href="http://navinpai.github.io/gsoc-blog/elasticsearch-basics.html">Elasticsearch Basics</a></h3>
+  </div>
+  <div class="article_text">
+    <p>Elasticsearch is an amazing fulltext search engine which is used for searching JSONpedia. It is written in Java and <a href="https://github.com/elastic/elasticsearch">is opensource</a> and also provides a pretty neat REST interface as well. Also, it supports faceting out of the box, which makes it an ideal search engine candidate for JSONpedia. It has been in development for about half a decade, and it uses the amazing <a href="http://lucene.apache.org/">Lucene</a> library behind the scenes.</p>
+<h4>Installation</h4>
+<p>Installing Elasticsearch is as easy as pie. You can either download the zip file from the site and use it like <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-service.html">a normal executable</a> or, as I prefer, download the precompiled package and use it <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html">as a service</a>. Using it as a service is as simple as running <code>sudo service elasticsearch start</code>.</p>
+<h4>Ports</h4>
+<p>The 2 main ports elasticsearch uses are 9200 and 9300. The 9300 port is used by the Java API to communicate with with cluster whereas the 9200 port is used to communicate with the cluster using a REST API.</p>
+<h4>Basic Querying</h4>
+<p>Since the REST API is accessed over port 9200, we can query the service running using CURL on the endpoint. Queries using CURL to Elasticsearch cluster are of the form:</p>
+<div class="highlight"><pre>curl -X&lt;VERB&gt; <span class="s1">&#39;&lt;PROTOCOL&gt;://&lt;HOST&gt;/&lt;PATH&gt;?&lt;QUERY_STRING&gt;&#39;</span> -d <span class="s1">&#39;&lt;BODY&gt;&#39;</span>
+</pre></div>
+
+
+<p>The first query we almost always run is simply to check the health of the cluster. You can do this by querying:</p>
+<div class="highlight"><pre>curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
+
+<span class="c">### sample output</span>
+
+<span class="o">{</span>
+  <span class="s2">&quot;status&quot;</span> : 200,
+  <span class="s2">&quot;name&quot;</span> : <span class="s2">&quot;Jean DeWolff&quot;</span>,
+  <span class="s2">&quot;version&quot;</span> : <span class="o">{</span>
+    <span class="s2">&quot;number&quot;</span> : <span class="s2">&quot;1.0.1&quot;</span>,
+    <span class="s2">&quot;build_hash&quot;</span> : <span class="s2">&quot;5c03844e1978e5cc924dab2a423dc63ce881c42b&quot;</span>,
+    <span class="s2">&quot;build_timestamp&quot;</span> : <span class="s2">&quot;2014-02-25T15:52:53Z&quot;</span>,
+    <span class="s2">&quot;build_snapshot&quot;</span> : <span class="nb">false</span>,
+    <span class="s2">&quot;lucene_version&quot;</span> : <span class="s2">&quot;4.6&quot;</span>
+  <span class="o">}</span>,
+  <span class="s2">&quot;tagline&quot;</span> : <span class="s2">&quot;You Know, for Search&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>Next up, we want to count the number of documents in the cluster. For this we use:</p>
+<div class="highlight"><pre>curl -XGET <span class="s1">&#39;http://localhost:9200/_count?pretty&#39;</span> -d <span class="s1">&#39;</span>
+<span class="s1">{</span>
+<span class="s1">    &quot;query&quot;: {</span>
+<span class="s1">        &quot;match_all&quot;: {}</span>
+<span class="s1">    }</span>
+<span class="s1">}</span>
+<span class="s1">&#39;</span>
+
+<span class="c">### sample output</span>
+
+
+<span class="o">{</span>
+  <span class="s2">&quot;count&quot;</span> : 12485,
+  <span class="s2">&quot;_shards&quot;</span> : <span class="o">{</span>
+    <span class="s2">&quot;total&quot;</span> : 5,
+    <span class="s2">&quot;successful&quot;</span> : 5,
+    <span class="s2">&quot;failed&quot;</span> : 0
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>Similarly, we can run different CRUD queries as well <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html">as shown here</a>. </p>
+<h3>Troubleshooting</h3>
+<p>Usually, errors with elasticsearch are either port related or process related. Remember your ports correctly. If CURL returns <code>empty reply from server</code>, then the issue is most likely this. I broke my head on this for setup. Besides this, you should remember that data is stored in the <code>{path.home}/data</code> location. So if you are adding bulk data to elasticsearch, you can also observe the size of the data files to know whether or not you are adding data correctly.</p>
+  </div>
+  <div class="article_meta">
+    <p>Posted on: Wed 27 May 2015</p>
+    <p>Category: <a href="http://navinpai.github.io/gsoc-blog/category/gsoc.html">gsoc</a>
+ &ndash; Tags:
+      <a href="http://navinpai.github.io/gsoc-blog/tag/gsoc.html">gsoc</a>,      <a href="http://navinpai.github.io/gsoc-blog/tag/dbpedia.html">dbpedia</a>    </p>
+  </div>
+
+
+</article>
+
+
+    <div id="ending_message">
+      <p>&copy; Navin Pai. Built using <a href="http://getpelican.com" target="_blank">Pelican</a>. Theme by Giulio Fidente on <a href="https://github.com/gfidente/pelican-svbhack" target="_blank">github</a>. </p>
+    </div>
+  </main>
+</body>
+</html>
