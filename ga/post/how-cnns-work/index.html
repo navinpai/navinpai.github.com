@@ -1,0 +1,223 @@
+	
+	<!doctype html>
+<html lang="en">
+  <head>    
+    <title>Gradient Descent - How Convolutional Neural Networks Work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+    
+    <link href="../../css/milk.min.css" rel="stylesheet">
+    <link href="../../css/milk-responsive.min.css" rel="stylesheet">     
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="shortcut icon" href="../../images/gradient-ascent.ico">
+    <link rel="apple-touch-icon" href="">
+    <link rel="canonical" href="http://localhost:1313/ga/post/how-cnns-work/">
+    <link rel="stylesheet" href="http://localhost:1313/ga/css/monosocialiconsfont.css">
+
+    
+    <link href="../../rss.xml" type="application/atom+xml" rel="alternate" title="Gradient Ascent">    
+
+  </head>
+  <body>    
+    <div class="navbar navbar-fixed-top">        
+  <div id="navbar-inner">
+          <div id="logo">
+            <a href=""><img class= "logo" src="../../images/logo-3.png" width="100px"></img></a>
+          </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="content">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="posts">
+      
+
+	    
+	  <div class="post">
+	    <header class="post-header">
+	        <h1><a href="../../post/how-cnns-work/">How Convolutional Neural Networks Work</a></h1>
+	        <div class="post-time">September 28 2016</div>
+	    </header>
+	    <div class="post-after">
+	        <div class="tags">
+	            
+	                <a href="http://localhost:1313/ga//tags/talk">talk</a>              
+	            
+	        </div>
+	    </div>
+	    <hr>
+	    <div class="post content">
+	        
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/FmpDIaiMIeA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0"></iframe>
+ </div>
+
+
+<p>Understanding convolutions is the basic foundation to understand how CNNs work. Unfortunately, a lot of literature that exists jumps directly into the math without first trying to explain intuitively what convolutions are, and how they can be used for Deep Learning applications.</p>
+
+<p><a href="https://twitter.com/_brohrer_">Brandon Rohrer</a> from Microsoft put out an amazing video (<em>and an associated blog post</em>) trying to provide an intuitive explanation of the same.</p>
+
+<p>Some quick notes:
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+  When presented with a new image, the CNN doesnWhen presented with a new image, the CNN doesn’t know exactly where these features will match so it tries them everywhere, in every possible position. In calculating the match to a feature across the whole image, we make it a filter. The math we use to do this is called convolution, from which Convolutional Neural Networks take their name.âWhen presented with a new image, the CNN doesn’t know exactly where these features will match so it tries them everywhere, in every possible position. In calculating the match to a feature across the whole image, we make it a filter. The math we use to do this is called convolution, from which Convolutional Neural Networks take their name.t know exactly where these features will match so it tries them everywhere, in every possible position. In calculating the match to a feature across the whole image, we make it a filter. The math we use to do this is called convolution, from which Convolutional Neural Networks take their name.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote></p>
+
+<p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+Pooling is a way to take large images and shrink them down while preserving the most important information in them. [...]. It consists of stepping a small window across an image and taking the maximum value from the window at each step. In practice, a window 2 or 3 pixels on a side and steps of 2 pixels work well.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote></p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+[on Backpropogation:] Each image the CNN processes results in a vote. The amount of wrongness in the vote, the error, tells us how good our features and weights are. The features and weights can then be adjusted to make the error less. Each value is adjusted a little higher and a little lower, and the new error computed each time. Whichever adjustment makes the error less is kept. After doing this for every feature pixel in every convolutional layer and every weight in every fully connected layer, the new weights give an answer that works slightly better for that image.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>And finally, something that really shows how we&rsquo;re just at the beginning of the deep learning revolution, especially when have hundreds of hidden layers in the network:</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+With so many combinations and permutations, only a small fraction of the possible CNN configurations have been tested. CNN designs tend to be driven by accumulated community knowledge, with occasional deviations showing surprising jumps in performance.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>I&rsquo;d highly recommend you take the time out to read the blog post and/or watch the accompanying video.</p>
+
+<p><a href="https://brohrer.github.io/how_convolutional_neural_networks_work.html">Brandon Rohrer&rsquo;s blog</a></p>
+
+	    </div>
+	    
+	<div class="about">
+	<p> 
+     
+    </p>
+</div>
+		<nav id="pagination">
+			
+			<a class="next" href="http://localhost:1313/ga/post/welcome/">Older</a>
+		</nav>
+	
+		        <footer>
+                    Built with <a href="https://github.com/spf13/hugo">Hugo</a> | Original theme: <a href="https://github.com/AlexFinn/simple-a">simple-a</a>
+                    <p>&copy; Navin Pai 2016</p>
+		        </footer>
+		    </div>
+		  </div>    
+		</div>
+      </div>
+    </div>
+<script data-no-instant>document.write('<script src="/livereload.js?mindelay=10"></' + 'script>')</script></body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create',"UA-84823975-1", 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+</html>

@@ -358,5 +358,9 @@ a.symbol:hover {
 }
 
 .logo:hover {
-  background-color: #BCD4DA;
+    background-color: #BCD4DA;
+}
+
+blockquote {
+    margin-left: 30px;
 }

@@ -8,6 +8,147 @@
     <updated>2016-09-28 00:00:00 &#43;0000 UTC</updated>
     
     <item>
+      <title>How Convolutional Neural Networks Work</title>
+      <link>http://localhost:1313/ga/post/how-cnns-work/</link>
+      <pubDate>Wed, 28 Sep 2016 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://localhost:1313/ga/post/how-cnns-work/</guid>
+      <description>
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/FmpDIaiMIeA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
+
+&lt;p&gt;Understanding convolutions is the basic foundation to understand how CNNs work. Unfortunately, a lot of literature that exists jumps directly into the math without first trying to explain intuitively what convolutions are, and how they can be used for Deep Learning applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/_brohrer_&#34;&gt;Brandon Rohrer&lt;/a&gt; from Microsoft put out an amazing video (&lt;em&gt;and an associated blog post&lt;/em&gt;) trying to provide an intuitive explanation of the same.&lt;/p&gt;
+
+&lt;p&gt;Some quick notes:
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+  When presented with a new image, the CNN doesnWhen presented with a new image, the CNN doesn’t know exactly where these features will match so it tries them everywhere, in every possible position. In calculating the match to a feature across the whole image, we make it a filter. The math we use to do this is called convolution, from which Convolutional Neural Networks take their name.âWhen presented with a new image, the CNN doesn’t know exactly where these features will match so it tries them everywhere, in every possible position. In calculating the match to a feature across the whole image, we make it a filter. The math we use to do this is called convolution, from which Convolutional Neural Networks take their name.t know exactly where these features will match so it tries them everywhere, in every possible position. In calculating the match to a feature across the whole image, we make it a filter. The math we use to do this is called convolution, from which Convolutional Neural Networks take their name.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;&lt;/p&gt;
+
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+Pooling is a way to take large images and shrink them down while preserving the most important information in them. [...]. It consists of stepping a small window across an image and taking the maximum value from the window at each step. In practice, a window 2 or 3 pixels on a side and steps of 2 pixels work well.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+[on Backpropogation:] Each image the CNN processes results in a vote. The amount of wrongness in the vote, the error, tells us how good our features and weights are. The features and weights can then be adjusted to make the error less. Each value is adjusted a little higher and a little lower, and the new error computed each time. Whichever adjustment makes the error less is kept. After doing this for every feature pixel in every convolutional layer and every weight in every fully connected layer, the new weights give an answer that works slightly better for that image.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;And finally, something that really shows how we&amp;rsquo;re just at the beginning of the deep learning revolution, especially when have hundreds of hidden layers in the network:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+With so many combinations and permutations, only a small fraction of the possible CNN configurations have been tested. CNN designs tend to be driven by accumulated community knowledge, with occasional deviations showing surprising jumps in performance.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;I&amp;rsquo;d highly recommend you take the time out to read the blog post and/or watch the accompanying video.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://brohrer.github.io/how_convolutional_neural_networks_work.html&#34;&gt;Brandon Rohrer&amp;rsquo;s blog&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Welcome to Gradient Ascent</title>
       <link>http://localhost:1313/ga/post/welcome/</link>
       <pubDate>Wed, 28 Sep 2016 00:00:00 UTC</pubDate>
