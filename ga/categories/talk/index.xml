@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
       <title>Talk on Gradient Ascent </title>
-    <link>http://localhost:1313/ga/categories/talk/</link>
+    <link>http://navinpai.github.io/ga/categories/talk/</link>
     <language>en-us</language>
     <author>Alexander Ivanov</author>
     <updated>2016-09-28 00:00:00 &#43;0000 UTC</updated>
     
     <item>
       <title>How Convolutional Neural Networks Work</title>
-      <link>http://localhost:1313/ga/post/how-cnns-work/</link>
+      <link>http://navinpai.github.io/ga/post/how-cnns-work/</link>
       <pubDate>Wed, 28 Sep 2016 00:00:00 UTC</pubDate>
       <author>Alexander Ivanov</author>
-      <guid>http://localhost:1313/ga/post/how-cnns-work/</guid>
+      <guid>http://navinpai.github.io/ga/post/how-cnns-work/</guid>
       <description>
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
   &lt;iframe src=&#34;//www.youtube.com/embed/FmpDIaiMIeA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
