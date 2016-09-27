@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Posts on Gradient Ascent </title>
+    <link>http://localhost:1313/post/</link>
+    <language>en-us</language>
+    <author>Alexander Ivanov</author>
+    <updated>2016-09-28 00:00:00 &#43;0000 UTC</updated>
+    
+    <item>
+      <title>Welcome to Gradient Ascent</title>
+      <link>http://localhost:1313/post/welcome/</link>
+      <pubDate>Wed, 28 Sep 2016 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://localhost:1313/post/welcome/</guid>
+      <description>&lt;p&gt;Welcome to Gradient Ascent. This is a Machine Learning/Deep Learning blog written by me, &lt;a href=&#34;http://lifeofnav.in&#34;&gt;Navin Pai&lt;/a&gt;. I graduated in 2015 from the &lt;a href=&#34;http://www.iiitb.ac.in&#34;&gt;International Institute of Information Technology - Bangalore&lt;/a&gt; and am currently working as Data Engineer at &lt;a href=&#34;http://www.bloomreach.com&#34;&gt;Bloomreach Inc.&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been fascinated by the world of ML/DL for the last few years, and like every other Computer Science researcher, I&amp;rsquo;m trying to stay up to date with the latest in this rapidly changing field.&lt;/p&gt;
+
+&lt;p&gt;This blog is simply an attempt to document that journey. The idea is to document  a good mix of both research papers as well as code, to develop an overall understanding of the directions we&amp;rsquo;re moving in, not just as researchers but as industry experts as well.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://localhost:1313/images/choose-your-pill.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;So what are we waiting for? Choose your pill!&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+  </channel>
+</rss>

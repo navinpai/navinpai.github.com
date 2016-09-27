@@ -1,0 +1,362 @@
+body {
+  font-size: 16px; 
+}
+
+/* Custom container */
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px; }
+
+.container-narrow > hr {
+  margin: 30px 0; }
+
+.navbar .nav {
+  float: right; }
+
+figure.full img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;  
+}
+
+figure.medium
+{
+    width:400px;
+    margin-top:30px;
+    margin-bottom:30px;            
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+figure.large
+{
+    width:500px;
+    margin-top:30px;
+    margin-bottom:30px;            
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+figure.large img {
+    width:500px; 
+    height: auto;
+}
+
+figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figcaption
+{
+    font-family: "Liberation Serif", "Palatino Linotype", Georgia, serif; //Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 90%;        
+    margin-left: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
+    text-align: justify;
+    display: block;
+}
+
+figcaption h4 {
+    font-family: "Liberation Serif", "Palatino Linotype", Georgia, serif; "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+nav, footer {
+ position: relative;
+ z-index: 10; 
+ line-height: normal;
+ margin-top: 10px; 
+ font-size: 0.6em;
+ text-transform: uppercase;
+ font-family: 'Liberation Sans', Helvetica, sans-serif; 
+ padding-top: 2em; 
+ text-align: center;
+}
+
+.content h1 {
+  font-family: Philosopher, serif;
+  color: #3F3F3F;
+  font-size: 1.8em;
+  text-align: center; 
+  margin-bottom: 40px;
+}
+
+#logo {
+  width: 80px;
+  margin: auto;
+}
+
+#logo a {
+  border: none;
+}
+
+#navbar-inner {
+  min-height: 40px;
+  padding-right: 10px;
+  background-color: white;
+  margin: auto;
+  max-width: 980px;
+  border-bottom: 1px solid #989898;
+}
+
+.container {  
+  margin: 0 auto;
+  max-width: 960px;
+  margin-top: 5%;
+}
+
+.row-fluid .span12 ul .posts {
+  margin: 0 0 10px 0;
+}
+
+.posts {
+  text-align: center;
+  padding-top: 5%;
+}
+
+.posts li {  
+  line-height: 90%;
+  list-style: none;
+}
+.posts li p {
+  margin-bottom: 25px;
+}
+
+.posts span {
+  text-transform: uppercase;
+  font-size: 0.80em;
+  color: #777777;
+}
+
+.post {
+  margin: auto;
+  padding-bottom: 20px;
+  background: #fff;
+  border-bottom: 1px solid #d5d5d5;
+  max-width: 700px;
+}
+
+.post h2 {
+  font-size: 25px;
+  line-height: 50px;
+  margin: 25px 0;
+}
+
+p {
+  line-height: 30px;
+  margin: 0 0 20px;
+}
+
+.post .content {
+  text-align: left;
+  margin-top: 3em;
+  font-family: "Liberation Serif", "Palatino Linotype", Georgia, serif;
+  font-size: 18px;
+}
+
+.post .content li {
+  line-height: 150%;
+  list-style: square;
+}
+
+.post .content ol {
+  margin-bottom: 25px;
+}
+
+.post-header {
+  padding: 20px 40px 5px 40px;
+  text-align: center;
+}
+
+.post-header h1 {
+  font-size: 1.8em;
+  color: #444;
+  font-family: Philosopher;
+  margin-bottom: 0px;
+}
+
+.post-header a {
+    color: headings-color;
+    font-size: 1em;
+    color: #444;
+}
+
+.post-header a:hover {
+  text-decoration: none;
+  border:none;
+}
+
+.post-time {
+  margin-top: 3px;
+  font-family: Philosopher;
+}
+
+.post-after {
+  margin-bottom: 12px;
+}
+
+.post-after ul {
+  clearfix()
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.post-after ul li {
+  float: left;
+  margin-right: 20px;
+}
+
+.post-after ul li a {
+  display: block;
+}
+
+.tags a {
+  color: #505050;
+  margin-right: 12px;
+  font-size: 0.6em;
+  padding: 5px 8px 2px 8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 300ms background ease;
+  display: inline-block;
+  margin-bottom: 8px;
+  border-bottom: 3px solid #fa5305;
+  font-family: 'Liberation Sans', Helvetica, 'Helvetica Neue', sans-serif;
+}
+
+.tags a:hover {
+  border-bottom: 3px solid #444444;
+  text-decoration: none;
+}
+
+.one-post a, p a {
+  border-bottom: 1px solid #fa5305;
+  color: #505050;
+  padding-bottom: 2px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  border-bottom: 3px solid #fa5305;
+}
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #fa5305;
+  font-family: Philosopher;
+  font-size: 18px;
+}
+
+.tag-list {
+  font-family: Philosopher;
+  max-width: 700px;
+  margin: auto;
+}
+
+.tag-list h1 {
+  max-width: 300px;
+  margin: auto;
+  padding-bottom: 2em;
+}
+
+.one-post {
+  padding-bottom: 30px;
+}
+
+#pagination {
+  margin-top: 1.5em;
+}
+
+#pagination a {
+  margin-top: 20px;
+  padding: 7px 20px 3px 20px;
+  width: 115px;
+  color: #646464;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: 'Liberation Sans', Helvetica, sans-serif;
+  border-bottom: 4px solid #646464;
+}
+
+#pagination a:hover {
+  color: #fff;
+  background-color: #646464;
+  border-bottom: 4px solid #646464;
+  text-decoration: none;
+}
+
+pre code {
+  display: block;
+  font-size: 14px;
+}
+
+.code {
+  font-family: 'Liberation Mono', Monaco, Consolas;
+  display: block;
+}
+
+code, pre {
+    font-family: 'Liberation Mono', Monaco, Consolas;
+    font-size: 14px;
+}
+
+
+/*** FONTS ***/
+
+@font-face {
+    font-family: 'Mono Social Icons Font';
+    src: url('../fonts/MonoSocialIconsFont-1.10.eot');
+    src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'),
+         url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+         url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+    src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.symbol, a.symbol:before {
+    font-family: 'Mono Social Icons Font';
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    -ms-text-rendering: optimizeLegibility;
+    -o-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+#social {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+a.symbol {
+    cursor: hand;
+    color: #cdd4da;
+    font-size: 2rem;
+    text-decoration: none;
+    margin-right: 0.3rem;
+}
+
+a.symbol:hover {
+    color: #BCD4DA;
+    border-bottom: 0px;
+}
+
+.logo:hover {
+  background-color: #BCD4DA;
+}
