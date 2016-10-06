@@ -1,0 +1,154 @@
+	
+	<!doctype html>
+<html lang="en">
+  <head>    
+    <title>Gradient Descent - Batch Normalization in Neural Networks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+    
+    <link href="../../css/milk.min.css" rel="stylesheet">
+    <link href="../../css/milk-responsive.min.css" rel="stylesheet">     
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/highlight.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="shortcut icon" href="../../images/gradient-ascent.ico">
+    <link rel="apple-touch-icon" href="">
+    <link rel="canonical" href="http://navinpai.github.io/ga/post/batch-normalization/">
+    <link rel="stylesheet" href="http://navinpai.github.io/gacss/monosocialiconsfont.css">
+
+    
+    <link href="../../rss.xml" type="application/atom+xml" rel="alternate" title="Gradient Ascent">    
+
+  </head>
+  <body>    
+    <div class="navbar navbar-fixed-top">        
+  <div id="navbar-inner">
+          <div id="logo">
+            <a href=""><img class= "logo" src="../../images/logo-3.png" width="100px"></img></a>
+          </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="content">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="posts">
+      
+
+	    
+	  <div class="post">
+	    <header class="post-header">
+	        <h1><a href="../../post/batch-normalization/">Batch Normalization in Neural Networks</a></h1>
+	        <div class="post-time">October 7 2016</div>
+	    </header>
+	    <div class="post-after">
+	        <div class="tags">
+	            
+	                <a href="http://navinpai.github.io/ga/tags/paper">paper</a>              
+	            
+	        </div>
+	    </div>
+	    <hr>
+	    <div class="post content">
+	        <p>Read a couple of interesting papers today from 2015 about using Batch Normalization in neural networks. Batch Normalization basically means that we normalize each activation individually. The reason for this, quoting the <a href="https://arxiv.org/abs/1502.03167v3">original paper</a></p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+Training Deep Neural Networks is complicated by the fact that the distribution of each layer's inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>Their paper is a fascinting deep dive into the math of how layers are affected by the input, and how this covariate shift can be reduced by applying batch normalizations. Using batch normalization means we can use higher learning rates (since gradients do not explode or vanish), making the network more resilient. In fact, in their results they showed how they could use the batch normalized network to achieve the same accuracy as the vanilla network with half the training steps, and with higher learning rates upto 14x fewer steps!</p>
+
+
+<figure >
+    
+        <img src="../../images/batch-norm.png" />
+    
+    
+    <figcaption>
+        <h4>The Batch Normalization Transform</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>This paper set up a bunch of other interesting papers which explored the same concept of batch normalization, and I&rsquo;ll talk about two of them below.</p>
+
+<p>The <a href="https://arxiv.org/abs/1510.01378">first one</a> notes that the original paper applies only to feed forward neural networks and attempts to explore batch normalization in Recurrent Neural Networks. They apply batch normalization on the input-to-hidden transition and oberved faster training and greater overfitting as well. The fact that the generalization performance didn&rsquo;t seem to improve with batch normalization was opposite to what was seen for feedforward neural nets.</p>
+
+<p>However, a couple of months ago, <a href="https://arxiv.org/abs/1603.09025v4">another paper</a> visited the same idea albeit in a slightly different manner <em>(in fact one of the authors is on both the papers)</em>. Instead of applying the normalization on the input-to-hidden transition, they apply it horizontally between timesteps, using the consideration that RNNs are deepest in the time direction. Lo and behold, they now have the state of the art results (greater generalizability) with lesser convergence time.</p>
+
+<p>Truly an excellent set of papers exploring what seems, at first read, as a minor modification to an algorithm. Go on, read the papers!</p>
+
+<p><a href="https://arxiv.org/abs/1502.03167v3">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a> <em>Sergey Ioffe, Christian Szegedy</em></p>
+
+<p><a href="https://arxiv.org/abs/1510.01378">Batch Normalized Recurrent Neural Networks</a> <em>César Laurent, Gabriel Pereyra, Philémon Brakel, Ying Zhang, Yoshua Bengio</em></p>
+
+<p><a href="https://arxiv.org/abs/1603.09025v4">Recurrent Batch Normalization</a> <em>Tim Cooijmans, Nicolas Ballas, César Laurent, Çağlar Gülçehre, Aaron Courville</em></p>
+
+	    </div>
+	    
+	<div class="about">
+	<p> 
+     
+    </p>
+</div>
+		<nav id="pagination">
+			
+			<a class="next" href="http://navinpai.github.io/ga/post/how-cnns-work/">Older</a>
+		</nav>
+	
+		        <footer>
+                    Built with <a href="https://github.com/spf13/hugo">Hugo</a> | Original theme: <a href="https://github.com/AlexFinn/simple-a">simple-a</a>
+                    <p>&copy; Navin Pai 2016</p>
+		        </footer>
+		    </div>
+		  </div>    
+		</div>
+      </div>
+    </div>
+    <script src="http://navinpai.github.io/gajs/highlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create',"UA-84823975-1", 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+</html>

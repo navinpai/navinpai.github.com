@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Paper on Gradient Ascent </title>
+    <link>http://navinpai.github.io/ga/tags/paper/</link>
+    <language>en-us</language>
+    <author>Alexander Ivanov</author>
+    <updated>2016-10-07 00:00:00 &#43;0000 UTC</updated>
+    
+    <item>
+      <title>Batch Normalization in Neural Networks</title>
+      <link>http://navinpai.github.io/ga/post/batch-normalization/</link>
+      <pubDate>Fri, 07 Oct 2016 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://navinpai.github.io/ga/post/batch-normalization/</guid>
+      <description>&lt;p&gt;Read a couple of interesting papers today from 2015 about using Batch Normalization in neural networks. Batch Normalization basically means that we normalize each activation individually. The reason for this, quoting the &lt;a href=&#34;https://arxiv.org/abs/1502.03167v3&#34;&gt;original paper&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+Training Deep Neural Networks is complicated by the fact that the distribution of each layer&#39;s inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;Their paper is a fascinting deep dive into the math of how layers are affected by the input, and how this covariate shift can be reduced by applying batch normalizations. Using batch normalization means we can use higher learning rates (since gradients do not explode or vanish), making the network more resilient. In fact, in their results they showed how they could use the batch normalized network to achieve the same accuracy as the vanilla network with half the training steps, and with higher learning rates upto 14x fewer steps!&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;../../images/batch-norm.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;The Batch Normalization Transform&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;This paper set up a bunch of other interesting papers which explored the same concept of batch normalization, and I&amp;rsquo;ll talk about two of them below.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://arxiv.org/abs/1510.01378&#34;&gt;first one&lt;/a&gt; notes that the original paper applies only to feed forward neural networks and attempts to explore batch normalization in Recurrent Neural Networks. They apply batch normalization on the input-to-hidden transition and oberved faster training and greater overfitting as well. The fact that the generalization performance didn&amp;rsquo;t seem to improve with batch normalization was opposite to what was seen for feedforward neural nets.&lt;/p&gt;
+
+&lt;p&gt;However, a couple of months ago, &lt;a href=&#34;https://arxiv.org/abs/1603.09025v4&#34;&gt;another paper&lt;/a&gt; visited the same idea albeit in a slightly different manner &lt;em&gt;(in fact one of the authors is on both the papers)&lt;/em&gt;. Instead of applying the normalization on the input-to-hidden transition, they apply it horizontally between timesteps, using the consideration that RNNs are deepest in the time direction. Lo and behold, they now have the state of the art results (greater generalizability) with lesser convergence time.&lt;/p&gt;
+
+&lt;p&gt;Truly an excellent set of papers exploring what seems, at first read, as a minor modification to an algorithm. Go on, read the papers!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1502.03167v3&#34;&gt;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&lt;/a&gt; &lt;em&gt;Sergey Ioffe, Christian Szegedy&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1510.01378&#34;&gt;Batch Normalized Recurrent Neural Networks&lt;/a&gt; &lt;em&gt;César Laurent, Gabriel Pereyra, Philémon Brakel, Ying Zhang, Yoshua Bengio&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1603.09025v4&#34;&gt;Recurrent Batch Normalization&lt;/a&gt; &lt;em&gt;Tim Cooijmans, Nicolas Ballas, César Laurent, Çağlar Gülçehre, Aaron Courville&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
