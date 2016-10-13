@@ -5,7 +5,58 @@
     <link>http://navinpai.github.io/ga/</link>
     <language>en-us</language>
     <author>Alexander Ivanov</author>
-    <updated>2016-10-07 00:00:00 &#43;0000 UTC</updated>
+    <updated>2016-10-14 00:00:00 &#43;0000 UTC</updated>
+    
+    <item>
+      <title>Deconvolution Layer == Convolution Layer?</title>
+      <link>http://navinpai.github.io/ga/post/deconv-layer-conv-layer/</link>
+      <pubDate>Fri, 14 Oct 2016 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://navinpai.github.io/ga/post/deconv-layer-conv-layer/</guid>
+      <description>&lt;p&gt;I stumbled acrossgg &lt;a href=&#34;1609.07009&#34;&gt;a note&lt;/a&gt; which expands an already brilliant paper: &lt;a href=&#34;1609.05158&#34;&gt;Realtime Image/Video Super Resolution using a Sub-Pixel CNN&lt;/a&gt; (which I really should write about soon). The note basically tries to answer the question: Is the decovolution layer the same as a convolution layer in  Low Resolution (LR) space?&lt;/p&gt;
+
+&lt;p&gt;TL;DR: Yes.&lt;/p&gt;
+
+&lt;p&gt;Their reasoning was what really caught my eye. The crux of it is:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+We notice that the different sets of weights in the kernel (1,1,4,4) are activated independently from each other.So we can easily break them into kernels as shown in the figure on the right.This operation is invertible (4,1,2,2) because each set of the weights are independent from each other during the convolution. In our paper,instead of convolving the kernel with the unpooleded sub-pixel image, we notice that the different sets of weights in the kernel (1,1,4,4) are activated independently from each other. So we can easily break them into kernels as shown in the figure on the right.This operation is invertible (4,1,2,2) because each set of the weights are independent from each other during the convolution.In our paper,instead of convolving the kernel with the unpooled sub­pixel image, we convolve (1,1,4,4) the kernel with the LR input directly as illustrated by the following figure.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;Another interesting part of the note was the realization that the respresentation power of a network in LR is mucn more than that in HR (where you first upscale using, say, Bicubic and then pass this as input to the network).&lt;/p&gt;
+
+&lt;p&gt;Go on, read the note (and the paper it expands)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1609.07009&#34;&gt;Is the deconvolution layer the same as a convolutional layer?&lt;/a&gt; &lt;em&gt;Wenzhe Shi, Jose Caballero, Lucas Theis, Ferenc Huszar, Andrew Aitken,Alykhan Tejani, Johannes Totz, Christian Ledig, Zehan Wang&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1609.05158&#34;&gt;Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network &lt;/a&gt; &lt;em&gt;Wenzhe Shi, Jose Caballero, Lucas Theis, Ferenc Huszar, Andrew Aitken,Alykhan Tejani, Johannes Totz, Christian Ledig, Zehan Wang&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Batch Normalization in Neural Networks</title>
