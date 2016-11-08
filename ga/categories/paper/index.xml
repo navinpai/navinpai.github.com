@@ -50,7 +50,7 @@ We notice that the different sets of weights in the kernel (1,1,4,4) are activat
 
 &lt;p&gt;Another interesting part of the note was the realization that the representation power of a network in LR is mucn more than that in HR (&lt;em&gt;where you first upscale using, say, Bicubic and then pass this as input to the network&lt;/em&gt;).&lt;/p&gt;
 
-&lt;p&gt;Go on, read the note (and the paper it expands) and the fascinating breakdown of the logic.&lt;/p&gt;
+&lt;p&gt;Go on, read the note (&lt;em&gt;and the paper it expands&lt;/em&gt;) and the fascinating breakdown of the logic.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1609.07009&#34;&gt;Is the deconvolution layer the same as a convolutional layer?&lt;/a&gt;: &lt;em&gt;Wenzhe Shi, Jose Caballero, Lucas Theis, Ferenc Huszar, Andrew Aitken,Alykhan Tejani, Johannes Totz, Christian Ledig, Zehan Wang&lt;/em&gt;&lt;/p&gt;
 

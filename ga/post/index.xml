@@ -5,7 +5,128 @@
     <link>http://navinpai.github.io/ga/post/</link>
     <language>en-us</language>
     <author>Alexander Ivanov</author>
-    <updated>2016-10-14 00:00:00 &#43;0000 UTC</updated>
+    <updated>2016-11-09 00:00:00 &#43;0000 UTC</updated>
+    
+    <item>
+      <title>Why Sigmoid Neurons?</title>
+      <link>http://navinpai.github.io/ga/post/why-sigmoid-neurons/</link>
+      <pubDate>Wed, 09 Nov 2016 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://navinpai.github.io/ga/post/why-sigmoid-neurons/</guid>
+      <description>&lt;p&gt;When I just started reading about Deep learning, a common thread I kept noticing was the usage of Sigmoid Neurons. It took quite a bit of intuition to figure this out. In fact, I even played around with a couple of different activation functions before slowly figuring out the simplistic beauty of the sigmoid. Today, I came aross the &lt;a href=&#34;nnadp&#34;&gt;Neural Networks and Deep Learning&lt;/a&gt; online book, and it did an excellent job of explaining the same:&lt;/p&gt;
+
+&lt;p&gt;For learning purposes, we want one key characteristic of our function:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+We&#39;d like the network to learn weights and biases so that the output from the network correctly classifies the digit. To see how learning might work, suppose we make a small change in some weight (or bias) in the network. What we&#39;d like is for this small change in weight to cause only a small corresponding change in the output from the network.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;And as we know, perceptrons don&amp;rsquo;t work that way!&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+The problem is that this isn&#39;t what happens when our network contains perceptrons. In fact, a small change in the weights or bias of any single perceptron in the network can sometimes cause the output of that perceptron to completely flip, say from 0 to 1.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;And which is an almost perfect activation function for the use case we have?&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+What about the algebraic form of What about the algebraic form of σ? How can we understand that? In fact, the exact form of σ isn&#39;t so important - what really matters is the shape of the function when plotted. Here&#39;s the shape:
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;../images/sigmoid-function.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;The Sigmoid Function&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+If σ had in fact been a step function, then the sigmoid neuron would be a perceptron, since the output would be 1 or 0 depending on whether w⋅x+bw⋅x+b was positive or negative. [...] The smoothness σ means that small changes Δwj in the weights and Δb in the bias will produce a small change Δoutput in the output from the neuron.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;Such a beautiful function explained so eloquently. I&amp;rsquo;d suggest reading &lt;a href=&#34;nnadp&#34;&gt;the book&lt;/a&gt; for people just getting their feet wet in the field! It&amp;rsquo;s an amazing resource!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Deconvolution Layer == Convolution Layer?</title>
@@ -50,7 +171,7 @@ We notice that the different sets of weights in the kernel (1,1,4,4) are activat
 
 &lt;p&gt;Another interesting part of the note was the realization that the representation power of a network in LR is mucn more than that in HR (&lt;em&gt;where you first upscale using, say, Bicubic and then pass this as input to the network&lt;/em&gt;).&lt;/p&gt;
 
-&lt;p&gt;Go on, read the note (and the paper it expands) and the fascinating breakdown of the logic.&lt;/p&gt;
+&lt;p&gt;Go on, read the note (&lt;em&gt;and the paper it expands&lt;/em&gt;) and the fascinating breakdown of the logic.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1609.07009&#34;&gt;Is the deconvolution layer the same as a convolutional layer?&lt;/a&gt;: &lt;em&gt;Wenzhe Shi, Jose Caballero, Lucas Theis, Ferenc Huszar, Andrew Aitken,Alykhan Tejani, Johannes Totz, Christian Ledig, Zehan Wang&lt;/em&gt;&lt;/p&gt;
 
