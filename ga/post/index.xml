@@ -13,7 +13,7 @@
       <pubDate>Wed, 09 Nov 2016 00:00:00 UTC</pubDate>
       <author>Alexander Ivanov</author>
       <guid>http://navinpai.github.io/ga/post/why-sigmoid-neurons/</guid>
-      <description>&lt;p&gt;When I just started reading about Deep learning, a common thread I kept noticing was the usage of Sigmoid Neurons. It took quite a bit of intuition to figure this out. In fact, I even played around with a couple of different activation functions before slowly figuring out the simplistic beauty of the sigmoid. Today, I came aross the &lt;a href=&#34;nnadp&#34;&gt;Neural Networks and Deep Learning&lt;/a&gt; online book, and it did an excellent job of explaining the same:&lt;/p&gt;
+      <description>&lt;p&gt;When I just started reading about Deep learning, a common thread I kept noticing was the usage of Sigmoid Neurons. It took quite a bit of intuition to figure this out. In fact, I even played around with a couple of different activation functions before slowly figuring out the simplistic beauty of the sigmoid. Today, I came aross the &lt;a href=&#34;https://neuralnetworksanddeeplearning.com/chap1.html&#34;&gt;Neural Networks and Deep Learning&lt;/a&gt; online book, and it did an excellent job of explaining the same:&lt;/p&gt;
 
 &lt;p&gt;For learning purposes, we want one key characteristic of our function:&lt;/p&gt;
 
@@ -124,7 +124,7 @@ If σ had in fact been a step function, then the sigmoid neuron would be a perce
     
 &lt;/blockquote&gt;
 
-&lt;p&gt;Such a beautiful function explained so eloquently. I&amp;rsquo;d suggest reading &lt;a href=&#34;nnadp&#34;&gt;the book&lt;/a&gt; for people just getting their feet wet in the field! It&amp;rsquo;s an amazing resource!&lt;/p&gt;
+&lt;p&gt;Such a beautiful function explained so eloquently. I&amp;rsquo;d suggest reading &lt;a href=&#34;https://neuralnetworksanddeeplearning.com/chap1.html&#34;&gt;the book&lt;/a&gt; for people just getting their feet wet in the field! It&amp;rsquo;s an amazing resource!&lt;/p&gt;
 </description>
     </item>
     
