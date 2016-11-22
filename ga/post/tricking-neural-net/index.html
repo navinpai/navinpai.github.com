@@ -1,0 +1,185 @@
+	
+	<!doctype html>
+<html lang="en">
+  <head>    
+    <title>Gradient Descent - Tricking your Super-fancy Neural Net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+    
+    <link href="../../css/milk.min.css" rel="stylesheet">
+    <link href="../../css/milk-responsive.min.css" rel="stylesheet">     
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/highlight.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="shortcut icon" href="../../images/gradient-ascent.ico">
+    <link rel="apple-touch-icon" href="">
+    <link rel="canonical" href="http://navinpai.github.io/ga/post/tricking-neural-net/">
+    <link rel="stylesheet" href="http://navinpai.github.io/gacss/monosocialiconsfont.css">
+
+    
+    <link href="../../rss.xml" type="application/atom+xml" rel="alternate" title="Gradient Ascent">    
+
+  </head>
+  <body>    
+    <div class="navbar navbar-fixed-top">        
+  <div id="navbar-inner">
+          <div id="logo">
+            <a href=""><img class= "logo" src="../../images/logo-3.png" width="100px"></img></a>
+          </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="content">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="posts">
+      
+
+	    
+	  <div class="post">
+	    <header class="post-header">
+	        <h1><a href="../../post/tricking-neural-net/">Tricking your Super-fancy Neural Net</a></h1>
+	        <div class="post-time">November 23 2016</div>
+	    </header>
+	    <div class="post-after">
+	        <div class="tags">
+	            
+	                <a href="http://navinpai.github.io/ga/tags/paper">paper</a>              
+	            
+	        </div>
+	    </div>
+	    <hr>
+	    <div class="post content">
+	        <p>While cleaning up my reading list earlier today, I came across this really cool paper from CVPR 2015 with the hard to ignore title: <a href="https://arxiv.org/abs/1412.1897">Deep Neural Networks are Easily Fooled</a>.</p>
+
+<p>I think anyone who has been working with Deep Learning systems (<em>or even Machine learning algorithms to a large extent</em>) has come across multiple examples where you look at the result and wonder &ldquo;*How the f*<em>k did I get that?</em>&rdquo;. I have fond memories of one of my projects at <strong>IIIT-B</strong> which involved sketch classification, where my system was 99% confident that my sketch of an aeroplane was in fact a dog, leading one of my teammates to wonder if the dog was in fact, inside the plane!</p>
+
+<p>The somewhat blackbox nature of Deep Learning systems only adds to the mystery, which is why I feel papers like this help provide some context to &ldquo;how&rdquo; we&rsquo;re solving the problem at hand rather than the &ldquo;what&rdquo;.</p>
+
+
+<figure >
+    
+        <img src="../../images/tricked-sample.png" />
+    
+    
+    <figcaption>
+        <h4>Such Accurate, Much Wow!</h4>
+        
+    </figcaption>
+    
+</figure>
+
+
+<p>For obvious reasons, the question to ask is how do you come up with these trick images?</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+The novel images we test DNNs on are produced by evolutionary algorithms (EAs). EAs are optimization algorithms inspired by Darwinian evolution. They contain a population of "organisms" (here, images) that alternately face selection (keeping the best) and then random perturbation (mutation and/or crossover). Which organisms are selected depends on the fitness function, which in these experiments is the highest prediction value a DNN makes for that image belonging to a class
+[...]
+Here, fitness is determined by showing the image to the DNN; if the image generates a higher prediction score for any class than has been seen before, the newly generated  individual becomes the champion in the archive for that class.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>They use different encodings to generate different types of incorrectly labelled images, including a direct encoding and an indirect encoding.</p>
+
+<p>Another method they use is also pretty cool. They use gradient ascent (<em>blog name FTW!</em>) for this:</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+We calculate the gradient of the posterior probability for a specific class - here, a softmax output unit of the DNN - with respect to the input image using backprop, and then we follow the gradient to increase a chosen unitWe calculate the gradient of the posterior probability for a specific class - here, a softmax output unit of the DNN - with respect to the input image using backprop, and then we follow the gradient to increase a chosen unit’s activation.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>This technique was earlier described in <a href="https://arxiv.org/abs/1312.6034">this paper</a>.</p>
+
+<p>What&rsquo;s interesting is also that these examples use one DNN for generation, but generalize across multiple DNNs, which seems to imply the features recognised are all very similar (<em>which is both good and bad imho</em>). Absolutely beautiful discussion in the supplementary material as well, I thoroughly enjoyed reading this paper, and you should too!</p>
+
+<p><a href="https://arxiv.org/abs/1412.1897">Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images</a> by <em>Anh Nguyen, Jason Yosinski and Jeff Clune</em></p>
+
+	    </div>
+	    
+	<div class="about">
+	<p> 
+     
+    </p>
+</div>
+		<nav id="pagination">
+			
+			<a class="next" href="http://navinpai.github.io/ga/post/why-sigmoid-neurons/">Older</a>
+		</nav>
+	
+		        <footer>
+                    Built with <a href="https://github.com/spf13/hugo">Hugo</a> | Original theme: <a href="https://github.com/AlexFinn/simple-a">simple-a</a>
+                    <p>&copy; Navin Pai 2016</p>
+		        </footer>
+		    </div>
+		  </div>    
+		</div>
+      </div>
+    </div>
+    <script src="http://navinpai.github.io/gajs/highlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create',"UA-84823975-1", 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+</html>

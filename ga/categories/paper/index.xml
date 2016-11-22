@@ -5,7 +5,107 @@
     <link>http://navinpai.github.io/ga/categories/paper/</link>
     <language>en-us</language>
     <author>Alexander Ivanov</author>
-    <updated>2016-10-14 00:00:00 &#43;0000 UTC</updated>
+    <updated>2016-11-23 00:00:00 &#43;0000 UTC</updated>
+    
+    <item>
+      <title>Tricking your Super-fancy Neural Net</title>
+      <link>http://navinpai.github.io/ga/post/tricking-neural-net/</link>
+      <pubDate>Wed, 23 Nov 2016 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://navinpai.github.io/ga/post/tricking-neural-net/</guid>
+      <description>&lt;p&gt;While cleaning up my reading list earlier today, I came across this really cool paper from CVPR 2015 with the hard to ignore title: &lt;a href=&#34;https://arxiv.org/abs/1412.1897&#34;&gt;Deep Neural Networks are Easily Fooled&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I think anyone who has been working with Deep Learning systems (&lt;em&gt;or even Machine learning algorithms to a large extent&lt;/em&gt;) has come across multiple examples where you look at the result and wonder &amp;ldquo;*How the f*&lt;em&gt;k did I get that?&lt;/em&gt;&amp;rdquo;. I have fond memories of one of my projects at &lt;strong&gt;IIIT-B&lt;/strong&gt; which involved sketch classification, where my system was 99% confident that my sketch of an aeroplane was in fact a dog, leading one of my teammates to wonder if the dog was in fact, inside the plane!&lt;/p&gt;
+
+&lt;p&gt;The somewhat blackbox nature of Deep Learning systems only adds to the mystery, which is why I feel papers like this help provide some context to &amp;ldquo;how&amp;rdquo; we&amp;rsquo;re solving the problem at hand rather than the &amp;ldquo;what&amp;rdquo;.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;../../images/tricked-sample.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;Such Accurate, Much Wow!&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;For obvious reasons, the question to ask is how do you come up with these trick images?&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+The novel images we test DNNs on are produced by evolutionary algorithms (EAs). EAs are optimization algorithms inspired by Darwinian evolution. They contain a population of &#34;organisms&#34; (here, images) that alternately face selection (keeping the best) and then random perturbation (mutation and/or crossover). Which organisms are selected depends on the fitness function, which in these experiments is the highest prediction value a DNN makes for that image belonging to a class
+[...]
+Here, fitness is determined by showing the image to the DNN; if the image generates a higher prediction score for any class than has been seen before, the newly generated  individual becomes the champion in the archive for that class.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;They use different encodings to generate different types of incorrectly labelled images, including a direct encoding and an indirect encoding.&lt;/p&gt;
+
+&lt;p&gt;Another method they use is also pretty cool. They use gradient ascent (&lt;em&gt;blog name FTW!&lt;/em&gt;) for this:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+We calculate the gradient of the posterior probability for a specific class - here, a softmax output unit of the DNN - with respect to the input image using backprop, and then we follow the gradient to increase a chosen unitWe calculate the gradient of the posterior probability for a specific class - here, a softmax output unit of the DNN - with respect to the input image using backprop, and then we follow the gradient to increase a chosen unit’s activation.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;This technique was earlier described in &lt;a href=&#34;https://arxiv.org/abs/1312.6034&#34;&gt;this paper&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;What&amp;rsquo;s interesting is also that these examples use one DNN for generation, but generalize across multiple DNNs, which seems to imply the features recognised are all very similar (&lt;em&gt;which is both good and bad imho&lt;/em&gt;). Absolutely beautiful discussion in the supplementary material as well, I thoroughly enjoyed reading this paper, and you should too!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1412.1897&#34;&gt;Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images&lt;/a&gt; by &lt;em&gt;Anh Nguyen, Jason Yosinski and Jeff Clune&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Deconvolution Layer == Convolution Layer?</title>
@@ -13,7 +113,7 @@
       <pubDate>Fri, 14 Oct 2016 00:00:00 UTC</pubDate>
       <author>Alexander Ivanov</author>
       <guid>http://navinpai.github.io/ga/post/deconv-layer-conv-layer/</guid>
-      <description>&lt;p&gt;I stumbled across &lt;a href=&#34;1609.07009&#34;&gt;a note&lt;/a&gt; which expands an already brilliant paper: &lt;a href=&#34;1609.05158&#34;&gt;Realtime Image/Video Super Resolution using a Sub-Pixel CNN&lt;/a&gt; (&lt;em&gt;which I really should write about soon&lt;/em&gt;). The note basically tries to answer the question: Is the decovolution layer the same as a convolution layer in Low Resolution (LR) space?&lt;/p&gt;
+      <description>&lt;p&gt;I stumbled across &lt;a href=&#34;https://arxiv.org/abs/1609.07009&#34;&gt;a note&lt;/a&gt; which expands an already brilliant paper: &lt;a href=&#34;https://arxiv.org/abs/1609.05158&#34;&gt;Realtime Image/Video Super Resolution using a Sub-Pixel CNN&lt;/a&gt; (&lt;em&gt;which I really should write about soon&lt;/em&gt;). The note basically tries to answer the question: Is the decovolution layer the same as a convolution layer in Low Resolution (LR) space?&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;TL;DR: Yes.&lt;/strong&gt;&lt;/p&gt;
 
