@@ -13,9 +13,9 @@
       <pubDate>Wed, 23 Nov 2016 00:00:00 UTC</pubDate>
       <author>Alexander Ivanov</author>
       <guid>http://navinpai.github.io/ga/post/tricking-neural-net/</guid>
-      <description>&lt;p&gt;While cleaning up my reading list earlier today, I came across this really cool paper from CVPR 2015 with the hard to ignore title: &lt;a href=&#34;https://arxiv.org/abs/1412.1897&#34;&gt;Deep Neural Networks are Easily Fooled&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;While cleaning up my reading list earlier today, I came across this really cool paper from &lt;strong&gt;CVPR 2015&lt;/strong&gt; with the hard to ignore title: &lt;a href=&#34;https://arxiv.org/abs/1412.1897&#34;&gt;Deep Neural Networks are Easily Fooled&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;I think anyone who has been working with Deep Learning systems (&lt;em&gt;or even Machine learning algorithms to a large extent&lt;/em&gt;) has come across multiple examples where you look at the result and wonder &amp;ldquo;*How the f*&lt;em&gt;k did I get that?&lt;/em&gt;&amp;rdquo;. I have fond memories of one of my projects at &lt;strong&gt;IIIT-B&lt;/strong&gt; which involved sketch classification, where my system was 99% confident that my sketch of an aeroplane was in fact a dog, leading one of my teammates to wonder if the dog was in fact, inside the plane!&lt;/p&gt;
+&lt;p&gt;I think anyone who has been working with Deep Learning systems (&lt;em&gt;or even Machine learning algorithms to a large extent&lt;/em&gt;) has come across multiple examples where you look at the result and wonder &amp;ldquo;&lt;em&gt;How on earth did I get that?&lt;/em&gt;&amp;rdquo;. I have fond memories of one of my projects at &lt;strong&gt;IIIT-B&lt;/strong&gt; which involved sketch classification, where my system was 99% confident that my sketch of an aeroplane was in fact a dog, leading one of my teammates to wonder if the dog was, in fact, inside the plane!&lt;/p&gt;
 
 &lt;p&gt;The somewhat blackbox nature of Deep Learning systems only adds to the mystery, which is why I feel papers like this help provide some context to &amp;ldquo;how&amp;rdquo; we&amp;rsquo;re solving the problem at hand rather than the &amp;ldquo;what&amp;rdquo;.&lt;/p&gt;
 
