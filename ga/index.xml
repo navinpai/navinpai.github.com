@@ -13,11 +13,11 @@
       <pubDate>Sun, 04 Dec 2016 00:00:00 UTC</pubDate>
       <author>Alexander Ivanov</author>
       <guid>http://navinpai.github.io/ga/post/image-to-image-translation/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Generative Adversarial Networks&lt;/em&gt; really took the field by storm sometime last year when the iconic &lt;a href=&#34;https://arxiv.org/abs/1511.06434&#34;&gt;Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks&lt;/a&gt; was published. Since then, every couple of weeks you&amp;rsquo;re sure to come across some application using the core DCGAN to create something astonishing. A couple of days back, a couple of researchers over at &lt;strong&gt;BAIR&lt;/strong&gt; came up with one such result.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;em&gt;Generative Adversarial Networks&lt;/em&gt; really took the field by storm sometime last year when the iconic &lt;a href=&#34;https://arxiv.org/abs/1511.06434&#34;&gt;Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks&lt;/a&gt; was published. Since then, every couple of weeks you&amp;rsquo;re sure to come across some application using the core DCGAN to create something astonishing. A couple of days back, researchers over at &lt;strong&gt;BAIR&lt;/strong&gt; came up with one such result.&lt;/p&gt;
 
-&lt;p&gt;Their paper, titled &lt;a href=&#34;https://arxiv.org/abs/1611.07004&#34;&gt;Image-to-Image Translation with Conditional Adversarial Networks&lt;/a&gt;, applies the GAN model to translate between different representations of images. What I personally found interesting was that in their paper, they use a single network to do general-purpose translation. Just a couple years ago, even translating between 2 classes of respresentations required a crazy amount of model tuning, but GANs have truly risen up to the challenge.&lt;/p&gt;
+&lt;p&gt;Their paper, titled &lt;a href=&#34;https://arxiv.org/abs/1611.07004&#34;&gt;Image-to-Image Translation with Conditional Adversarial Networks&lt;/a&gt;, applies the GAN model to translate between different representations of images. What I personally found interesting was that in their paper, they use a single network to do general-purpose translation. Just a couple years ago, even translating between 2 classes of representations required a crazy amount of model tuning, but GANs have truly risen up to the challenge.&lt;/p&gt;
 
-&lt;p&gt;What I really liked about this paper is that it feels like this paper was written by an engineer at heart. Not only is there a &lt;a href=&#34;https://phillipi.github.io/pix2pix/&#34;&gt;Github repo&lt;/a&gt; with some really clean code, but the paper itself talks about many of the optimisations in the way an engineer, rather than a researcher, would. Let&amp;rsquo;s get to the interesting bits:&lt;/p&gt;
+&lt;p&gt;This paper really feels like it was written by an engineer at heart. Not only is there a &lt;a href=&#34;https://phillipi.github.io/pix2pix/&#34;&gt;Github repo&lt;/a&gt; with some really clean code, but the paper itself talks about many of the optimisations in the way an engineer, rather than a researcher, would. Let&amp;rsquo;s get to the interesting bits:&lt;/p&gt;
 
 &lt;p&gt;Firstly, they create a U-Net architecture shape, with the basic understanding that the input and output share a lot of low level information.&lt;/p&gt;
 
@@ -42,7 +42,7 @@
 
 &lt;blockquote&gt;
   &lt;p&gt;
-To give the generator a means to circumvent the bot- tleneck for information like this, we add skip connections. Specifically, we add skip connections between each layer i and layer n − i, where n is the total number of layers. Each skip connection simply concatenates all channels at layer i with those at layer n − i.
+To give the generator a means to circumvent the bottleneck for information like this, we add skip connections. Specifically, we add skip connections between each layer i and layer n − i, where n is the total number of layers. Each skip connection simply concatenates all channels at layer i with those at layer n − i.
 &lt;/p&gt;
     &lt;strong&gt;&lt;/strong&gt;
     
@@ -73,7 +73,7 @@ To give the generator a means to circumvent the bot- tleneck for information lik
 
 &lt;blockquote&gt;
   &lt;p&gt;
-In order to model high-frequencies, it is sufficient to restrict our attention to the structure in local image patches. Therefore, we design a discriminator architecture – which we term a PatchGAN – that only penalizes structure at the scale of patches. This discriminator tries to classify if each N × N patch in an image is real or fake. We run this discriminator convoluta- tionally across the image, averaging all responses to provide the ultimate output of D.
+In order to model high-frequencies, it is sufficient to restrict our attention to the structure in local image patches. Therefore, we design a discriminator architecture – which we term a PatchGAN – that only penalizes structure at the scale of patches. This discriminator tries to classify if each N × N patch in an image is real or fake. We run this discriminator convolutationally across the image, averaging all responses to provide the ultimate output of D.
 &lt;/p&gt;
     &lt;strong&gt;&lt;/strong&gt;
     
