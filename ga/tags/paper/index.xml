@@ -5,7 +5,118 @@
     <link>http://navinpai.github.io/ga/tags/paper/</link>
     <language>en-us</language>
     <author>Alexander Ivanov</author>
-    <updated>2016-12-04 00:00:00 &#43;0000 UTC</updated>
+    <updated>2017-01-03 00:00:00 &#43;0000 UTC</updated>
+    
+    <item>
+      <title>Deepmind Lab</title>
+      <link>http://navinpai.github.io/ga/post/deepmind-lab/</link>
+      <pubDate>Tue, 03 Jan 2017 00:00:00 UTC</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>http://navinpai.github.io/ga/post/deepmind-lab/</guid>
+      <description>&lt;p&gt;I think I begin practically every post on this blog talking about the pace with which Deep Learning has been progressing over the last few years. While this is really great for the domain as a whole, the lack of a standardised platform to test how good or bad an algorithm is has been lacking. The researchers over at DeepMind came up with &lt;strong&gt;Deepmind Lab&lt;/strong&gt; as a solution to the problem particularly in the field of First Person Shooter (FPS) gameplay. They published a paper titled &lt;a href=&#34;https://arxiv.org/abs/1612.03801v2&#34;&gt;Deep Mind Lab&lt;/a&gt; and also (&lt;em&gt;obviously&lt;/em&gt;) released the code for the same &lt;a href=&#34;https://github.com/deepmind/lab&#34;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+DeepMind Lab is a first-person 3D game platform designed for research and development of general artificial intelligence and machine learning systems. DeepMind Lab can be used to study how autonomous artificial agents may learn complex tasks in large, partially observed, and visually diverse worlds. DeepMind Lab has a simple and flexible API enabling creative task-designs and novel AI-designs to be explored and quickly iterated upon.
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;Technically, the &amp;ldquo;Lab&amp;rdquo; is built on top of the Quake 3 Arena engine. (&lt;em&gt;#Nostalgia&lt;/em&gt;). Setting up a is a bit of a pain thanks to random bazel related errors, which seems to be a ritual for trying out anything new that comes out from Google/Alphabet (&lt;em&gt;but solutions were all easily google-able&lt;/em&gt;). But once the initial hiccups are done, everything works like a charm.&lt;/p&gt;
+
+&lt;p&gt;You can play the levels as a human as well if you wish to (&lt;em&gt;which is the first thing I tried out&lt;/em&gt;), and I strongly recommend you do because you really get a feel of how useful a playground platform like this can be. You can do this using:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+bazel run :game -- --level_script tests/demo_map
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;You also have a random agent ready to be trained. To play a level using the random agent, simply do:&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+bazel run :random_agent
+&lt;/p&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+    
+&lt;/blockquote&gt;
+
+&lt;p&gt;For a couple of the initial levels, using tried and tested methods seems to work well enough with minimal training (&lt;em&gt;I ran my tests on my personal system, and didn&amp;rsquo;t really do any multi-day GPU learning bruhaha&lt;/em&gt;), and I&amp;rsquo;m pretty sure that people will all be going back to the iconic &lt;a href=&#34;https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf&#34;&gt;Playing Atari with Deep Reinforcement Learning&lt;/a&gt; paper (&lt;em&gt;and it&amp;rsquo;s variants&lt;/em&gt;) to find things to tinker around with.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;rsquo;t really explore the lab as much as I would&amp;rsquo;ve liked to but definitely plan to do so in the near future. Releases like DeepMind Lab, and the &lt;a href=&#34;https://gym.openai.com&#34;&gt;OpenAI Gym&lt;/a&gt; are providing a much needed plug and play task based exploration areas for Reinforcement Learning, and it&amp;rsquo;s high time that others start doing similar stuff (&lt;em&gt;or at least using these as benchmarks and contributing back&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;PS Happy New Year! :)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1612.03801v2&#34;&gt;Deep Mind Lab&lt;/a&gt; by &lt;em&gt;Charles Beattie, Joel Z. Leibo, Denis Teplyashin, Tom Ward, Marcus Wainwright, Heinrich Küttler, Andrew Lefrancq, Simon Green, Víctor Valdés, Amir Sadik, Julian Schrittwieser, Keith Anderson, Sarah York, Max Cant, Adam Cain, Adrian Bolton, Stephen Gaffney, Helen King, Demis Hassabis, Shane Legg, Stig Petersen&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Image to Image Translation</title>

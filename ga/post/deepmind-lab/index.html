@@ -1,0 +1,198 @@
+	
+	<!doctype html>
+<html lang="en">
+  <head>    
+    <title>Gradient Descent - Deepmind Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+    
+    <link href="../../css/milk.min.css" rel="stylesheet">
+    <link href="../../css/milk-responsive.min.css" rel="stylesheet">     
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/highlight.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../../css/fonts.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="shortcut icon" href="../../images/gradient-ascent.ico">
+    <link rel="apple-touch-icon" href="">
+    <link rel="canonical" href="http://navinpai.github.io/ga/post/deepmind-lab/">
+    <link rel="stylesheet" href="http://navinpai.github.io/gacss/monosocialiconsfont.css">
+
+    
+    <link href="../../rss.xml" type="application/atom+xml" rel="alternate" title="Gradient Ascent">    
+
+  </head>
+  <body>    
+    <div class="navbar navbar-fixed-top">        
+  <div id="navbar-inner">
+          <div id="logo">
+            <a href=""><img class= "logo" src="../../images/logo-3.png" width="100px"></img></a>
+          </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="content">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="posts">
+      
+
+	    
+	  <div class="post">
+	    <header class="post-header">
+	        <h1><a href="../../post/deepmind-lab/">Deepmind Lab</a></h1>
+	        <div class="post-time">January 3 2017</div>
+	    </header>
+	    <div class="post-after">
+	        <div class="tags">
+	            
+	                <a href="http://navinpai.github.io/ga/tags/paper">paper</a>              
+	            
+	                <a href="http://navinpai.github.io/ga/tags/code">code</a>              
+	            
+	        </div>
+	    </div>
+	    <hr>
+	    <div class="post content">
+	        <p>I think I begin practically every post on this blog talking about the pace with which Deep Learning has been progressing over the last few years. While this is really great for the domain as a whole, the lack of a standardised platform to test how good or bad an algorithm is has been lacking. The researchers over at DeepMind came up with <strong>Deepmind Lab</strong> as a solution to the problem particularly in the field of First Person Shooter (FPS) gameplay. They published a paper titled <a href="https://arxiv.org/abs/1612.03801v2">Deep Mind Lab</a> and also (<em>obviously</em>) released the code for the same <a href="https://github.com/deepmind/lab">on Github</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+DeepMind Lab is a first-person 3D game platform designed for research and development of general artificial intelligence and machine learning systems. DeepMind Lab can be used to study how autonomous artificial agents may learn complex tasks in large, partially observed, and visually diverse worlds. DeepMind Lab has a simple and flexible API enabling creative task-designs and novel AI-designs to be explored and quickly iterated upon.
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>Technically, the &ldquo;Lab&rdquo; is built on top of the Quake 3 Arena engine. (<em>#Nostalgia</em>). Setting up a is a bit of a pain thanks to random bazel related errors, which seems to be a ritual for trying out anything new that comes out from Google/Alphabet (<em>but solutions were all easily google-able</em>). But once the initial hiccups are done, everything works like a charm.</p>
+
+<p>You can play the levels as a human as well if you wish to (<em>which is the first thing I tried out</em>), and I strongly recommend you do because you really get a feel of how useful a playground platform like this can be. You can do this using:</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+bazel run :game -- --level_script tests/demo_map
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>You also have a random agent ready to be trained. To play a level using the random agent, simply do:</p>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<blockquote>
+  <p>
+bazel run :random_agent
+</p>
+    <strong></strong>
+    
+      
+    
+</blockquote>
+
+<p>For a couple of the initial levels, using tried and tested methods seems to work well enough with minimal training (<em>I ran my tests on my personal system, and didn&rsquo;t really do any multi-day GPU learning bruhaha</em>), and I&rsquo;m pretty sure that people will all be going back to the iconic <a href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">Playing Atari with Deep Reinforcement Learning</a> paper (<em>and it&rsquo;s variants</em>) to find things to tinker around with.</p>
+
+<p>I didn&rsquo;t really explore the lab as much as I would&rsquo;ve liked to but definitely plan to do so in the near future. Releases like DeepMind Lab, and the <a href="https://gym.openai.com">OpenAI Gym</a> are providing a much needed plug and play task based exploration areas for Reinforcement Learning, and it&rsquo;s high time that others start doing similar stuff (<em>or at least using these as benchmarks and contributing back</em>)</p>
+
+<p>PS Happy New Year! :)</p>
+
+<p><a href="https://arxiv.org/abs/1612.03801v2">Deep Mind Lab</a> by <em>Charles Beattie, Joel Z. Leibo, Denis Teplyashin, Tom Ward, Marcus Wainwright, Heinrich Küttler, Andrew Lefrancq, Simon Green, Víctor Valdés, Amir Sadik, Julian Schrittwieser, Keith Anderson, Sarah York, Max Cant, Adam Cain, Adrian Bolton, Stephen Gaffney, Helen King, Demis Hassabis, Shane Legg, Stig Petersen</em></p>
+
+	    </div>
+	    
+	<div class="about">
+	<p> 
+     
+    </p>
+</div>
+		<nav id="pagination">
+			
+			<a class="next" href="http://navinpai.github.io/ga/post/image-to-image-translation/">Older</a>
+		</nav>
+	
+		        <footer>
+                    Built with <a href="https://github.com/spf13/hugo">Hugo</a> | Original theme: <a href="https://github.com/AlexFinn/simple-a">simple-a</a>
+                    <p>&copy; Navin Pai 2016</p>
+		        </footer>
+		    </div>
+		  </div>    
+		</div>
+      </div>
+    </div>
+    <script src="http://navinpai.github.io/gajs/highlight.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create',"UA-84823975-1", 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+
+</html>
