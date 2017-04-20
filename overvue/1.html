@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Vue Intro </title>
+    <script src="https://unpkg.com/vue"></script>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <style>
+      body, html, #wrapper {
+        font-family: 'Exo 2', sans-serif;
+        width: 100%;
+        height: 100%;
+      }
+
+      #wrapper { display: table }
+
+      #main {
+        display: table-cell;
+        vertical-align: middle;
+        text-align:center;
+      }
+
+      .vue-app {
+        font-size: 24px;
+      }
+
+      .comment {
+        color: #cccccc;
+        margin-top: 20px;
+      }
+
+      .comment:before {
+        content: '//';
+      }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+    <div id="main">
+        <div class="vue-app" id="app">
+              {{ message }}
+        </div>
+        <div class="comment">
+          If you have multiple Vues targetting same div then only the first is respected!
+        </div>
+    </div>
+    </div>
+<script type="text/javascript">
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue!'
+      }
+  })
+
+  var app2 = new Vue({
+    el: '#app',
+    data: {
+        message: 'Bye Vue!'
+      }
+  })
+
+</script>
+</body>
+</html>
