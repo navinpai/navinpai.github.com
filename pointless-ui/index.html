@@ -34,6 +34,18 @@
             font-size: 14px;
             color: #ccc;
         }
+        #custom-handle {
+            width: 3em;
+            height: 1.6em;
+            top: 50%;
+            margin-top: -.8em;
+            text-align: center;
+            line-height: 1.6em;
+        }
+        #slider {
+            width: 20%;
+            margin-left: 40%;
+        }
     </style>
 </head>
 <body>
@@ -77,6 +89,138 @@
               <option value="30">thirty</option>
               <option value="31">31</option>
             </select>
+        </div>
+
+        <div class="element">
+            <div class="text">Enter Volume (one-onehundred): <span class="input-text"><input type="text" id="volume-textbox"></input></div>
+            <div id="slider">
+                  <div id="custom-handle" class="ui-slider-handle"></div>
+            </div>
+            <script>
+                  function parseFinal(base, remainder) {
+                      switch(remainder) {
+                         case "one":
+                             volume = base + 1;
+                             break;
+                         case "two":
+                             volume = base + 2;
+                             break;
+                         case "three":
+                             volume = base + 3;
+                             break;
+                         case "four":
+                             volume = base + 4;
+                             break;
+                         case "five":
+                             volume = base + 5;
+                             break;
+                         case "six":
+                             volume = base + 6;
+                             break;
+                         case "seven":
+                             volume = base + 7;
+                             break;
+                         case "eight":
+                             volume = base + 8;
+                             break;
+                         case "nine":
+                             volume = base + 9;
+                             break;
+                         case "ten":
+                             volume = base == 0 ? "10" : "-1";
+                             break;
+                         case "eleven":
+                             volume = base == 0 ? "11" : "-1";
+                             break;
+                         case "twelve":
+                             volume = base == 0 ? "12" : "-1";
+                             break;
+                         case "thirteen":
+                             volume = base == 0 ? "13" : "-1";
+                             break;
+                         case "fourteen":
+                             volume = base == 0 ? "14" : "-1";
+                             break;
+                         case "fifteen":
+                             volume = base == 0 ? "15" : "-1";
+                             break;
+                         case "sixteen":
+                             volume = base == 0 ? "16" : "-1";
+                             break;
+                         case "seventeen":
+                             volume = base == 0 ? "17" : "-1";
+                             break;
+                         case "eighteen":
+                             volume = base == 0 ? "18" : "-1";
+                             break;
+                         case "nineteen":
+                             volume = base == 0 ? "19" : "-1";
+                             break;
+                         case "onehundred":
+                             volume = "100";
+                             break;
+                         case "":
+                             volume = base == 0 ? -1 : base
+                             break;
+                         default:
+                             volume = "-1"
+                      }
+
+                      return parseInt(volume);
+                  
+                  }
+                  $("#volume-textbox").on('change keyup paste', function() {
+                      volume = parseFinal(0, $(this).val());
+                      if(volume == -1) {
+                          if($(this).val().startsWith("twenty")) {
+                            base = 20
+                            volume = parseFinal(base, $(this).val().substring())
+                          }
+                          if($(this).val().startsWith("thirty")) {
+                            base = 30
+                            volume = parseFinal(base, $(this).val().substring(6))
+                          }
+                          if($(this).val().startsWith("forty")) {
+                            base = 40
+                            volume = parseFinal(base, $(this).val().substring(5))
+                          }
+                          if($(this).val().startsWith("fifty")) {
+                            base = 50
+                            volume = parseFinal(base, $(this).val().substring(5))
+                          }
+                          if($(this).val().startsWith("sixty")) {
+                            base = 60
+                            volume = parseFinal(base, $(this).val().substring(5))
+                          }
+                          if($(this).val().startsWith("seventy")) {
+                            base = 70
+                            volume = parseFinal(base, $(this).val().substring(7))
+                          }
+                          if($(this).val().startsWith("eighty")) {
+                            base = 80
+                            volume = parseFinal(base, $(this).val().substring(6))
+                          }
+                          if($(this).val().startsWith("ninety")) {
+                            base = 90
+                            volume = parseFinal(base, $(this).val().substring(6))
+                          }
+                      }
+                      console.log(volume);
+                      $("#slider").slider('value', volume);
+                      $("#slider").slider('text', volume);
+                  });
+                  $( function() {
+                    var handle = $( "#custom-handle" );
+                    $( "#slider" ).slider({
+                        create: function() {
+                            handle.text( $( this ).slider( "value" ) );
+                        },
+                        slide: function( event, ui ) {
+                            handle.text( ui.value );
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 </body>
