@@ -174,7 +174,7 @@
                       if(volume == -1) {
                           if($(this).val().startsWith("twenty")) {
                             base = 20
-                            volume = parseFinal(base, $(this).val().substring())
+                            volume = parseFinal(base, $(this).val().substring(6))
                           }
                           if($(this).val().startsWith("thirty")) {
                             base = 30
@@ -205,9 +205,9 @@
                             volume = parseFinal(base, $(this).val().substring(6))
                           }
                       }
-                      console.log(volume);
+                      volume = volume == -1? 100 : volume;
                       $("#slider").slider('value', volume);
-                      $("#slider").slider('text', volume);
+                      $( "#custom-handle").text(volume);
                   });
                   $( function() {
                     var handle = $( "#custom-handle" );
