@@ -212,6 +212,7 @@
                   $( function() {
                     var handle = $( "#custom-handle" );
                     $( "#slider" ).slider({
+                        disabled : true,
                         create: function() {
                             handle.text( $( this ).slider( "value" ) );
                         },
@@ -219,6 +220,9 @@
                             handle.text( ui.value );
                         }
                     });
+                    
+                    $("#volume-textbox").val("seventyseven");
+                    $("#volume-textbox").change();
                 });
             </script>
         </div>
