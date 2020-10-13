@@ -1,0 +1,1264 @@
+<html style="height: 100%;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>* Rubs Eyes Vigrously * | Mindhack Summit 2020</title>
+
+<meta name="description" content="* Rubs Eyes Vigrously * | A Primer on Deepfakes and other methods | Mindhack Summit 2020">
+<meta name="author" content="Navin Pai">
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+    /*-webkit-transform-origin: 135% 135%;
+    -moz-transform-origin: 135% 135%;
+    transform-origin: 135% 135%;*/
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<link rel="stylesheet" href="rubs-eyes-vigorously_files/default-reset.css">
+<link href="rubs-eyes-vigorously_files/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="rubs-eyes-vigorously_files/default.css" id="theme">
+<link href="rubs-eyes-vigorously_files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="rubs-eyes-vigorously_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="rubs-eyes-vigorously_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" href="http://strut.io/dist/preview_export/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="http://strut.io/dist/preview_export/apple-touch-icon.png" type="image/png">
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script async="" src="rubs-eyes-vigorously_files/analytics.js"></script><script type="text/javascript" src="rubs-eyes-vigorously_files/dataset-shim.js"></script>
+<script type="text/javascript" src="rubs-eyes-vigorously_files/impress.js"></script>
+
+<script src="rubs-eyes-vigorously_files/onready.js"></script>
+<script src="rubs-eyes-vigorously_files/loadPresentation.js"></script>
+<script>
+ready(function() {
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();   
+    }
+
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = 
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42322531-1', 'strut.io');
+    ga('send', 'pageview');
+    </script>
+</head>
+<body class="impress-supported impress-enabled" style="height: 100%; overflow: hidden;">
+<style type="text/css">
+
+</style>
+<style>
+
+</style>
+<style>
+
+
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+</style>
+<!-- This is a work around / hack to get the user's browser to download the fonts 
+ if they decide to save the presentation. -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="rubs-eyes-vigorously_files/Lato-Bold.woff">
+<img src="rubs-eyes-vigorously_files/HammersmithOne.woff">
+<img src="rubs-eyes-vigorously_files/Droid-Sans-Mono.woff">
+<img src="rubs-eyes-vigorously_files/Gorditas-Regular.woff">
+<img src="rubs-eyes-vigorously_files/FredokaOne-Regular.woff">
+<img src="rubs-eyes-vigorously_files/Ubuntu.woff">
+<img src="rubs-eyes-vigorously_files/Ubuntu-Bold.woff">
+<img src="rubs-eyes-vigorously_files/PressStart2P-Regular.woff">
+<img src="rubs-eyes-vigorously_files/Lato-BoldItalic.woff">
+<img src="rubs-eyes-vigorously_files/AbrilFatface-Regular.woff">
+<img src="rubs-eyes-vigorously_files/Lato-Regular.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg bg-surf-grad-sky strut-surface">
+<div class="bg innerBg strut-slide-24 bg-surf-grad-sky">
+<div id="impress" style="position: absolute; transform-origin: left top 0px; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; top: 50%; left: 50%; transform: perspective(3000px) scale(0.333333);"><div style="position: absolute; transform-origin: left top 0px; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(-34461px, -17111px, 0px);">
+	
+		
+			<div class="step future" data-state="strut-slide-0 bg-surf-grad-sky " data-x="5420.373333333333" data-y="5283.84" data-scale="3" id="step-1" style="position: absolute; transform: translate(-50%, -50%) translate3d(5420.37px, 5283.84px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 236px; left: 89px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#df5df1">* Rubs Eyes Vigorously *<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 335px; left: 293px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Hammersmith One', sans-serif" color="#fdaa5b">A primer on DeepFakes <br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 353px; left: 677px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<font face="'Hammersmith One', sans-serif" color="#f5ba68">(and more)</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 400px; left: 431px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#fff9f9">Navin Pai</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 454px; left: 455px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#898aff">@navinpai</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-1 bg-surf-grad-sky " data-x="9407.146666666667" data-y="5299.2" data-scale="3" id="step-2" style="position: absolute; transform: translate(-50%, -50%) translate3d(9407.15px, 5299.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 258px; left: 72px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 29px;" class="antialias">
+<div align="center"><font face="'Fredoka One', cursive" color="#eeeeee">Navin Pai.&nbsp; <font color="#49eee8">M@dMAx.</font>&nbsp; Goa.&nbsp; Full Stack.&nbsp; <font color="#49eee8">Tact.ai.</font>&nbsp; Machine Learning. </font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee">Natural Language Processing.&nbsp;<font color="#49eee8"> Practical Deep Learning.</font></font><br><font face="'Fredoka One', cursive" color="#eeeeee"><font color="#49eee8">IIIT-Bangalore.&nbsp;</font> Game Theory.&nbsp; Man Utd.&nbsp; Firefox. </font><br><font face="'Fredoka One', cursive" color="#eeeeee">High Performance Engineering.&nbsp; <font color="#49eee8">Goa Engg College. </font></font><br><font face="'Fredoka One', cursive" color="#eeeeee">Go Engicos.&nbsp; <font color="#49eee8">Philosophy.&nbsp;</font> Peripatetic.&nbsp; Eternal Hacker.</font><br><font face="'Fredoka One', cursive" color="#eeeeee"><font color="#49eee8">Linux Fanboi.</font>&nbsp; Anime. Pythonista.&nbsp; Open Source Everything.</font><br><font face="'Fredoka One', cursive" color="#49eee8">@navinpai</font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-2 bg-surf-grad-sky " data-x="2184.5333333333333" data-y="8540.16" data-scale="3" id="step-3" style="position: absolute; transform: translate(-50%, -50%) translate3d(2184.53px, 8540.16px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 211px; left: 134px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="'Fredoka One', cursive" color="#eeeeee"><font color="#ebb116">DeepFakes.</font> CGI. Neural Nets. Loss Functions.</font><font color="#eeeeee"><br><font face="'Fredoka One', cursive"><font color="#ebb116">AutoEncoders.</font> OpenCV. <font color="#ebb116">PyTorch.</font> Multi-Task</font><br><font face="'Fredoka One', cursive">Cascading CNN. GANs. <font color="#ebb116">"One clever trick".</font></font><br><font face="'Fredoka One', cursive"><font color="#ebb116">Denoising.</font> Incredibly Light on Math. <br></font></font></div><div align="center"><font color="#eeeeee"><font face="'Fredoka One', cursive">Ethicalities.</font><font face="'Fredoka One', cursive" color="#ebb116"> Show Me the Code.</font></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-3 bg-surf-grad-sky " data-x="5597.866666666667" data-y="11351.04" data-scale="3" id="step-4" style="position: absolute; transform: translate(-50%, -50%) translate3d(5597.87px, 11351px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 267px; left: 190px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#eeeeee"><br><font color="#f85555">(Extremely)</font> Derivative work up ahead !</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-4 bg-surf-grad-sky " data-x="9338.88" data-y="14146.56" data-scale="3" id="step-5" style="position: absolute; transform: translate(-50%, -50%) translate3d(9338.88px, 14146.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 37px; left: 54px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#4ad647">So, What's all the fuss about?</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 109px; left: 134px; width: 756.2335990938725px; height: 551.0706805155554px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<object width="756.2335990938725" height="551.0706805155554"><param name="movie" value="http://www.youtube.com/v/cQ54GDm1eL0&amp;hl=en&amp;fs=1"><param name="allowFullScreen" value="true"><embed src="rubs-eyes-vigorously_files/cQ54GDm1eL0hlenfs1.html" type="application/x-shockwave-flash" allowfullscreen="true" width="756.2335990938725" height="551.0706805155554"></object>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-5 bg-surf-grad-sky " data-x="5488.64" data-y="16773.12" data-scale="3" id="step-6" style="position: absolute; transform: translate(-50%, -50%) translate3d(5488.64px, 16773.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 35px; left: 49px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#f5d13f">Show Me Dem Layers!<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 102px; left: 156px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 732px; height: 359.06px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.93, 0.93);
+-moz-transform: scale(0.93, 0.93);
+transform: scale(0.93, 0.93)">
+<img src="rubs-eyes-vigorously_files/OqbOkhK.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 466px; left: 196px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fff9f9"><br>- What are the layers hiding?<br>- Weights and biases<br>- Propogate forward and back<br>- "Such new, much wow"<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 644px; left: 201px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fff9f9">- A Logical Calculus of Ideas Immanent in Nervous Activity (1943)<br>- Phoneme Recognition using Time-delay Neural Networks (1989)</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-6 bg-surf-grad-sky " data-x="1870.5066666666667" data-y="16773.12" data-scale="3" id="step-7" style="position: absolute; transform: translate(-50%, -50%) translate3d(1870.51px, 16773.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 200px; left: 184px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 656px; height: 369px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.82, 0.82);
+-moz-transform: scale(0.82, 0.82);
+transform: scale(0.82, 0.82)">
+<img src="rubs-eyes-vigorously_files/ZHMj5cU.jpeg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 38px; left: 46px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#eb5858">Approximate Anything!<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-7 bg-surf-grad-sky " data-x="17653.76" data-y="5253.12" data-scale="3" id="step-8" style="position: absolute; transform: translate(-50%, -50%) translate3d(17653.8px, 5253.12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 32px; left: 61px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fb81ff">Modern Neural Nets are GREAT with images <font face="'League Gothic', sans-serif" color="#fff9f9">*</font><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 153px; left: 519px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 478px; height: 478px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.47, 0.47);
+-moz-transform: scale(0.47, 0.47);
+transform: scale(0.47, 0.47)">
+<img src="rubs-eyes-vigorously_files/GJf0e9w.jpeg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 153px; left: 32px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 480px; height: 480px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.47, 0.47);
+-moz-transform: scale(0.47, 0.47);
+transform: scale(0.47, 0.47)">
+<img src="rubs-eyes-vigorously_files/EtLCkaN.jpeg">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-8 bg-surf-grad-sky " data-x="21695.146666666667" data-y="5329.92" data-scale="3" id="step-9" style="position: absolute; transform: translate(-50%, -50%) translate3d(21695.1px, 5329.92px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 32px; left: 61px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fb81ff">Modern Neural Nets are GREAT with images <font face="'League Gothic', sans-serif" color="#fff9f9">*</font><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 135px; left: 41px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 473px; height: 473px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.46, 0.46);
+-moz-transform: scale(0.46, 0.46);
+transform: scale(0.46, 0.46)">
+<img src="rubs-eyes-vigorously_files/ZISvhhG.jpeg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 135px; left: 521px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 471px; height: 471px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.46, 0.46);
+-moz-transform: scale(0.46, 0.46);
+transform: scale(0.46, 0.46)">
+<img src="rubs-eyes-vigorously_files/Dj96gOZ.jpeg">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-9 bg-surf-grad-sky " data-x="14172.16" data-y="8294.4" data-scale="3" id="step-10" style="position: absolute; transform: translate(-50%, -50%) translate3d(14172.2px, 8294.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 131px; left: 520px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 480px; height: 480px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.47, 0.47);
+-moz-transform: scale(0.47, 0.47);
+transform: scale(0.47, 0.47)">
+<img src="rubs-eyes-vigorously_files/N9dMKX8.jpeg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 32px; left: 61px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fb81ff">Modern Neural Nets are GREAT with images <font face="'League Gothic', sans-serif" color="#fff9f9">*</font><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 130px; left: 27px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 482px; height: 482px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.47, 0.47);
+-moz-transform: scale(0.47, 0.47);
+transform: scale(0.47, 0.47)">
+<img src="rubs-eyes-vigorously_files/Y42xOgO.jpeg">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-10 bg-surf-grad-sky " data-x="14213.12" data-y="11197.44" data-scale="3" id="step-11" style="position: absolute; transform: translate(-50%, -50%) translate3d(14213.1px, 11197.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 32px; left: 61px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fb81ff">Modern Neural Nets are GREAT with images <font face="'League Gothic', sans-serif" color="#fff9f9">*</font><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 109px; left: 132px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font face="'Fredoka One', cursive" color="#eeeeee">All images from <a href="http://http//thispersondoesnotexist.com/"><b>https://thispersondoesnotexist.com</b></a></font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee">But the catch is in understanding that at the core, for all the hype</font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee">afforded to Deep Learning methods, the "network" is actually</font></div><div align="center"><font face="'Fredoka One', cursive" color="#eeeeee">pretty naive and depends on data inputs for everything</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 398px; left: 231px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 578px; height: 325.13px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.45, 0.45);
+-moz-transform: scale(0.45, 0.45);
+transform: scale(0.45, 0.45)">
+<img src="rubs-eyes-vigorously_files/dnONFXQ.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 187px; left: 135px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#898aff">Impressive? Yes, but...</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-11 bg-surf-grad-sky " data-x="17858.56" data-y="11289.6" data-scale="3" id="step-12" style="position: absolute; transform: translate(-50%, -50%) translate3d(17858.6px, 11289.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 133px; left: 102px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 829px; height: 466.31px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.43, 0.43);
+-moz-transform: scale(0.43, 0.43);
+transform: scale(0.43, 0.43)">
+<img src="rubs-eyes-vigorously_files/7sDdT1m.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 29px; left: 65px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fredoka One" color="#ff5050">GANs are just <font color="#eeeeee">Ian Goodfellow</font>'s Among Us variant!<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-12 bg-surf-grad-sky " data-x="21667.84" data-y="11304.96" data-scale="3" id="step-13" style="position: absolute; transform: translate(-50%, -50%) translate3d(21667.8px, 11305px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 38px; left: 60px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fcfc5c">Traditional Facial Alignment<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 102px; left: 302px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="rubs-eyes-vigorously_files/Z1W6Cbq.gif">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-13 bg-surf-grad-sky " data-x="14185.813333333334" data-y="14146.56" data-scale="3" id="step-14" style="position: absolute; transform: translate(-50%, -50%) translate3d(14185.8px, 14146.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 29px; left: 48px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#898aff">Let's Break That Down!<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 94px; left: 52px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fredoka One" color="#eeeeee"><br>Create model with markers for every movable muscle<br><br></font><div><font face="Fredoka One" color="#eeeeee">Identify the face in the frame<br></font></div><div><br></div><font face="Fredoka One" color="#eeeeee">Identify the location of each of the markers<br><br>On our model, move each corresponding marker<br></font><div><font face="Fredoka One" color="#eeeeee">to the right location</font></div><div><font face="Fredoka One" color="#eeeeee"><br></font></div><div><font face="Fredoka One" color="#eeeeee">Rinse and Repeat<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-14 bg-surf-grad-sky " data-x="17749.333333333332" data-y="16957.44" data-scale="3" id="step-15" style="position: absolute; transform: translate(-50%, -50%) translate3d(17749.3px, 16957.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 34px; left: 40px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#68feee">Multi-Task Cascaded Convolutional Networks (MTCNN)</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 150px; left: 71px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 545px; height: 361.47px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.7, 0.7);
+-moz-transform: scale(0.7, 0.7);
+transform: scale(0.7, 0.7)">
+<img src="rubs-eyes-vigorously_files/yifdIpW.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 516px; left: 68px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#eeeeee"><a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html">https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html</a></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 182px; left: 645px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<font face="'Droid Sans Mono', monospace" color="#eeeeee"><br>&gt;&gt;&gt; from mtcnn.mtcnn import MTCNN<br>&gt;&gt;&gt; import cv2<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; img = cv2.imread("image.jpg")<br>&gt;&gt;&gt; detector = MTCNN()<br>&gt;&gt;&gt; print(detector.detect_faces(img))<br>[{'box': [277, 90, 48, 63],<br>'keypoints': {'nose': (303, 131),<br>'mouth_right': (313, 141),<br>'right_eye': (314, 114),<br>'left_eye': (291, 117),<br>'mouth_left': (296, 143)},<br>'confidence': 0.99851983785}, .... ]<br><br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-15 bg-surf-grad-sky " data-x="21749.76" data-y="17080.32" data-scale="3" id="step-16" style="position: absolute; transform: translate(-50%, -50%) translate3d(21749.8px, 17080.3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 32px; left: 55px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#7dff47">Autoencoders<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 132px; left: 169px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="rubs-eyes-vigorously_files/RO6agpe.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 386px; left: 120px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#eeeeee">Create an encoding which captures all the crucial details of the input<br><br>Use this encoding to re-construct the image<br><br>Compare reconstructed image with the original<br><br>Adjust Encoder to generate better encoding, and Decoder to decode better<br><br>Repeat.</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 688px; left: 300px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#fdaa5b">Textbook -&gt; Notes -&gt; 10 Mark Question<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-16 bg-surf-grad-sky " data-x="30419.626666666667" data-y="5452.8" data-scale="3" id="step-17" style="position: absolute; transform: translate(-50%, -50%) translate3d(30419.6px, 5452.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 80px; left: 217px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="rubs-eyes-vigorously_files/RD3fh5i.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 449px; left: 59px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 21px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#eeeeee"><br>We use One Encoder and Two Decoders for Training<br><br>For all images of Person A:<br>&nbsp;&nbsp;&nbsp; Warp -&gt; Encode -&gt; Decode with <font color="#fb81ff">Decoder A</font> -&gt; Diff(Original, Output ) -&gt; Update Network<br><br>For all images of Person B:<br>&nbsp;&nbsp;&nbsp; Warp -&gt; Encode -&gt; Decode with <font color="#fb81ff">Decoder B</font> -&gt; Diff(Original, Output ) -&gt; Update Network<br><br>Because of the setup, the decoder is re-constucting the original images as truly as possible<br>including expressions, lighting, accessories etc.</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 19px; left: 44px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#898aff">Training</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 433px; left: 722px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 8px;" class="antialias">
+<font color="#eeeeee">Image from KDNuggets</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-17 bg-surf-grad-sky " data-x="34228.90666666667" data-y="5483.52" data-scale="3" id="step-18" style="position: absolute; transform: translate(-50%, -50%) translate3d(34228.9px, 5483.52px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 114px; left: 237px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="rubs-eyes-vigorously_files/bfTWX2G.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 22px; left: 34px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#70f65e">One "Really" Clever Trick<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 294px; left: 745px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 8px;" class="antialias">
+<font color="#eeeeee">Image from KDNuggets</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 335px; left: 73px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#eeeeee">After we are happy enough with the performance of the encoder and<br>decoder (<i>quantified by the Loss Function</i>), we are ready with our model!<br><br>Give the encoder an <font color="#898aff">image of person A</font>, but use <font color="#fb81ff">Decoder B</font> to reconstruct image<br><br>The Encoder has been trained to create an encoding for both <font color="#898aff">Person A</font> as well<br>as <font color="#898aff">Person B</font> so encoder behaves normally<br><br><font color="#fb81ff">Decoder B</font> has been trained to reconstruct <font color="#898aff">Person B</font> from an encoding, so assumes<br>encoding generated is simply another encoding of a Warped Person B image.<br><br>Thus, we <font color="#898aff">trick our AutoEncoder</font> to perform a facial swap.</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-18 bg-surf-grad-sky " data-x="26746.88" data-y="8371.2" data-scale="3" id="step-19" style="position: absolute; transform: translate(-50%, -50%) translate3d(26746.9px, 8371.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-18" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 38px; left: 59px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#c476ff"><b>Building a Pipeline<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 128px; left: 71px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#eeeeee">Training the AutoEncoder</font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee">Processing the video<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 191px; left: 69px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#eeeeee">Data from <b>Google Images</b><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee">and/or <b>ffmpeg</b><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee">and/or <b>image augmentation</b></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><b><br></b></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><b><br></b></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><b>Train encoder to encode and train decoders <br></b></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><b>to decode Person A and Person B</b> respectively<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 196px; left: 470px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450">The more varied the images the better</font></div><div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450"><br></font></div><div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450"><br></font></div><div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450">eg. ffmpeg -i input.mp4 -vf fps=2 out%d.png</font></div><div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450"><br></font></div><div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450"><br></font></div><div align="left"><font face="'Droid Sans Mono', monospace" color="#f7f450">eg. Image = Image.RandomFlip().RandomZoom()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ .RandomCrop().RandomRotate()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 
+.RandomLighting()<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 553px; left: 77px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 18px;" class="antialias">
+<div><font face="'Droid Sans Mono', monospace" color="#f7f450">for each frame:</font></div><div><font face="'Droid Sans Mono', monospace" color="#f7f450">&nbsp;&nbsp;&nbsp; if (find_face(frame)):</font></div><div><font face="'Droid Sans Mono', monospace" color="#f7f450">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var ip = crop_face(frame)</font></div><div><font face="'Droid Sans Mono', monospace" color="#f7f450">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var encoding = autoencoder.encode(ip)</font></div><div><font face="'Droid Sans Mono', monospace" color="#f7f450">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var op = autoencoder.decode(use_decoder='PersonB') <br></font></div><div><font face="'Droid Sans Mono', monospace" color="#f7f450">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.paste(op, (x_coord, y_coord)) <font color="#eeeeee">//MTCNN helpfully gives us a bounding box</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frame.save()<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-19 bg-surf-grad-sky " data-x="26760.533333333333" data-y="11381.76" data-scale="3" id="step-20" style="position: absolute; transform: translate(-50%, -50%) translate3d(26760.5px, 11381.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-19" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 30px; left: 56px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#ff5050">Putting it all together<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 123px; left: 251px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 523px; height: 523px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.14, 1.14);
+-moz-transform: scale(1.14, 1.14);
+transform: scale(1.14, 1.14)">
+<video controls="controls">
+	<source src="rubs-eyes-vigorously_files/wrkuMqxsAADKzvHD.mp4" type="video/mp4" preload="metadata">
+</video>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 655px; left: 684px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 12px;" class="antialias">
+<a href="https://twitter.com/cloudpreacher/status/1312518582987710464"><font color="#eeeeee">@cloudpreacher<br></font></a>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-20 bg-surf-grad-sky " data-x="30583.466666666667" data-y="11397.12" data-scale="3" id="step-21" style="position: absolute; transform: translate(-50%, -50%) translate3d(30583.5px, 11397.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-20" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 37px; left: 57px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fdaa5b">This can be improved upon further<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 110px; left: 184px; width: 655.7413752281184px; height: 546.1400645136313px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<object width="655.7413752281184" height="546.1400645136313"><param name="movie" value="http://www.youtube.com/v/PCBTZh41Ris&amp;hl=en&amp;fs=1"><param name="allowFullScreen" value="true"><embed src="rubs-eyes-vigorously_files/PCBTZh41Rishlenfs1.html" type="application/x-shockwave-flash" allowfullscreen="true" width="655.7413752281184" height="546.1400645136313"></object>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 664px; left: 552px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 12px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#eeeeee">https://github.com/carolineec/EverybodyDanceNow</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-21 bg-surf-grad-sky " data-x="34447.36" data-y="11381.76" data-scale="3" id="step-22" style="position: absolute; transform: translate(-50%, -50%) translate3d(34447.4px, 11381.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-21" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 30px; left: 56px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#3e57ff">and further...<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 93px; left: 170px; width: 705.534802483683px; height: 574.7208025554679px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<object width="705.534802483683" height="574.7208025554679"><param name="movie" value="http://www.youtube.com/v/aKJpW0yPmO8&amp;hl=en&amp;fs=1"><param name="allowFullScreen" value="true"><embed src="rubs-eyes-vigorously_files/aKJpW0yPmO8hlenfs1.html" type="application/x-shockwave-flash" allowfullscreen="true" width="705.534802483683" height="574.7208025554679"></object>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 677px; left: 533px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 12px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#eeeeee">https://aliaksandrsiarohin.github.io/first-order-model-website/</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 713px; left: 185px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#eeeeee">Try it yourself: <a href="https://cutt.ly/make-your-own-deepfake">https://cutt.ly/make-your-own-deepfake</a> <br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-22 bg-surf-grad-sky " data-x="26760.533333333333" data-y="14361.6" data-scale="3" id="step-23" style="position: absolute; transform: translate(-50%, -50%) translate3d(26760.5px, 14361.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-22" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 30px; left: 54px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#8ff252">Ethical Dilemnas<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 122px; left: 84px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#eeeeee">- The most famous DeepFakes are not part of this talk</font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee">- Visibility is the first step to understanding</font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee">- Pandora's Box<br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee"><br></font></div><div><font face="'Fredoka One', cursive" color="#eeeeee">- Other Applications<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 164px; left: 97px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 22px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#fdaa5b"><b>"deepfakes" </b>was an anonymous Redditor</font></div><div><font face="'Fredoka One', cursive" color="#fdaa5b"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 282px; left: 98px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 22px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#fdaa5b">WSJ, WaPo, WIRED, Guardian&nbsp;&nbsp; <br></font></div><div><font face="'Fredoka One', cursive" color="#fdaa5b">&nbsp;&nbsp;&nbsp;&nbsp; &lt;+&gt;&nbsp; DARPA, Blink Detection Methods, FaceForensics, Mismatch CNNs</font></div><div><font face="'Fredoka One', cursive" color="#fdaa5b"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 580px; left: 90px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 22px;" class="antialias">
+<font face="Fredoka One" color="#fdaa5b">Any problem where dimensionality reduction can give gains<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 399px; left: 92px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 22px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#fdaa5b">AI always moves forward in jerks<br><br>"How many computers to identify a cat? 16,000, Google says" <i>(circa 2012)</i><br>"LOL, Navin says" <i>(circa 2020)</i></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-23 bg-surf-grad-sky " data-x="30569.81333333333" data-y="17095.68" data-scale="3" id="step-24" style="position: absolute; transform: translate(-50%, -50%) translate3d(30569.8px, 17095.7px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-23" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer" style="top: 124px; left: 167px; width: 690.9658538626829px; height: 520.2753197705393px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<object width="690.9658538626829" height="520.2753197705393"><param name="movie" value="http://www.youtube.com/v/NqmMnjJ6GEg&amp;hl=en&amp;fs=1"><param name="allowFullScreen" value="true"><embed src="rubs-eyes-vigorously_files/NqmMnjJ6GEghlenfs1.html" type="application/x-shockwave-flash" allowfullscreen="true" width="690.9658538626829" height="520.2753197705393"></object>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 31px; left: 40px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#f8ea43"><b>Why stream every frame of a video?<br></b></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step active present" data-state="strut-slide-24 bg-surf-grad-sky " data-x="34461.013333333336" data-y="17111.04" data-scale="3" id="step-25" style="position: absolute; transform: translate(-50%, -50%) translate3d(34461px, 17111px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-black slideContainer strut-slide-24" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 173px; left: 343px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 64px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#ff5050"><br>Thank You!<br><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 340px; left: 245px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<a href="https://navinpai.github.com/rubs-eyes-vigorously"><font face="'Ubuntu', sans-serif">https://navinpai.github.com/rubs-eyes-vigorously<br><br><br></font></a>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 381px; left: 458px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#03ca5c">@navinpai</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+	<div id="overview" class="step future" data-x="18165.76" data-y="11182.08" data-scale="25" style="position: absolute; transform: translate(-50%, -50%) translate3d(18165.8px, 11182.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(9); transform-style: preserve-3d;"></div>
+	
+</div></div>
+</div>
+</div>
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div></body></html>
