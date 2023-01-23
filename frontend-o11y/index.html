@@ -1,0 +1,1089 @@
+<html style="height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Effective Frontend Monitoring 101 | OpsVerse</title>
+
+<meta name="description" content="OpsVerse Webinar on Effective Frontend Monitoring 101 using OpenTelemetry and other OSS Tools">
+<meta name="author" content="Navin Pai">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet"> 
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+    /*-webkit-transform-origin: 135% 135%;
+    -moz-transform-origin: 135% 135%;
+    transform-origin: 135% 135%;*/
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<link rel="stylesheet" href="./files/default-reset.css">
+<link href="./files/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="./files/default.css" id="theme">
+<link href="./files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="./files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="./files/surfaceClasses.css" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" href="./files/opsverse-one.ico" type="image/png">
+<link rel="apple-touch-icon" href="./files/opsverse-one.ico" type="image/png">
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script async="" src="./files/analytics.js"></script><script type="text/javascript" src="./files/dataset-shim.js"></script>
+<script type="text/javascript" src="./files/impress.js"></script>
+
+<script src="./files/onready.js"></script>
+<script src="./files/loadPresentation.js"></script>
+<script>
+ready(function() {
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();   
+    }
+
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = 
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+</head>
+<body class="impress-supported impress-enabled" style="height: 100%; overflow: hidden;">
+<style type="text/css">
+
+</style>
+<style>
+
+</style>
+<style>
+
+
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+</style>
+<!-- This is a work around / hack to get the user's browser to download the fonts 
+ if they decide to save the presentation. -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="./files/FredokaOne-Regular.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg  strut-surface">
+<div class="bg innerBg strut-slide-5">
+<div id="impress" style="position: absolute; transform-origin: left top; transition: all 500ms ease-in-out 250ms; transform-style: preserve-3d; top: 50%; left: 50%; transform: perspective(3639.81px) scale(0.27474);"><div style="position: absolute; transform-origin: left top; transition: all 500ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(-21667.8px, -2872.32px, 0px);">
+	
+		
+			<div class="step future" data-state="strut-slide-0" data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1" style="position: absolute; transform: translate(-50%, -50%) translate3d(2457.6px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 233px; left: 200px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div style="text-align: center;"><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">Effective Frontend</span></div><font face="Fira Sans, sans-serif" color="#281e8e"><div style="text-align: center;">Monitoring 101</div></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 421px; left: 440px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 32px;" class="antialias">
+<font face="Fira Sans, sans-serif">Navin Pai</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 474px; left: 346px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Founding Engineer, OpsVerse</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-1" data-x="6280.533333333334" data-y="2764.8" data-scale="3" id="step-2" style="position: absolute; transform: translate(-50%, -50%) translate3d(6280.53px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 163px; left: 8px;width: 100%; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 38px;" class="antialias">
+<div style="text-align: center;"><font style="" face="Fira Sans, sans-serif" color="#281e8e">Navin Pai.  </font><font style="" face="Fira Sans, sans-serif">M@dMAx.</font><font style="" face="Fira Sans, sans-serif" color="#281e8e">  Goa.  Full Stack.  </font><font style="" face="Fira Sans, sans-serif">OpsVerse.&nbsp;</font></div><div style="text-align: center;"><font style="" face="Fira Sans, sans-serif" color="#281e8e">&nbsp;</font><font style="" face="Fira Sans, sans-serif">Machine Learning.</font><font style="" face="Fira Sans, sans-serif" color="#281e8e">&nbsp;</font><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">Natural Language Processing.&nbsp;</span></div><div style="text-align: center;"><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">&nbsp;Practical Deep Learning.&nbsp;</span><font face="Fira Sans, sans-serif">IIIT-Bangalore.</font><font face="Fira Sans, sans-serif" color="#281e8e">  Game Theory.&nbsp;</font></div><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#281e8e"></font><font face="Fira Sans, sans-serif">Man Utd.</font><font face="Fira Sans, sans-serif" color="#281e8e">  Firefox.&nbsp;</font><font face="Fira Sans, sans-serif">High Performance Engineering.</font><font face="Fira Sans, sans-serif" color="#281e8e">&nbsp;</font></div><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#281e8e">&nbsp;</font><font face="Fira Sans, sans-serif">Goa Engg College.</font><font face="Fira Sans, sans-serif" color="#281e8e">&nbsp;</font><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">Go Engicos.  Philosophy.&nbsp;</span></div><div style="text-align: center;"><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">&nbsp;Peripatetic.  </span><span style="font-family: &quot;Fira Sans&quot;, sans-serif;">Eternal Hacker.</span><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">&nbsp;</span><span style="font-family: &quot;Fira Sans&quot;, sans-serif;">Linux Fanboi.</span><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">  Anime.&nbsp;</span></div><div style="text-align: center;"><span style="color: rgb(40, 30, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">Pythonista.  </span><span style="font-family: &quot;Fira Sans&quot;, sans-serif;">Open Source Everything.</span></div><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#281e8e">@navinpai</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-2" data-x="10103.466666666667" data-y="2764.8" data-scale="3" id="step-3" style="position: absolute; transform: translate(-50%, -50%) translate3d(10103.5px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 256px; left: 341.33px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 154px; left: 290px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div style="text-align: center;"><span style="font-family: &quot;Fira Sans&quot;, sans-serif;"><font color="#281e8e">ObserveNow&nbsp;</font></span></div><font face="Fira Sans, sans-serif" color="#281e8e"><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;">OpsVerse ONE</div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;">Managed ArgoCD/Posthog</div></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 204px; left: 85px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div style="text-align: center;"><span style="font-family: &quot;Fira Sans&quot;;">- Turnkey, Managed Observability stack built on battle-tested OSS tools</span></div><font face="Fira Sans"><div style="text-align: center;">- Cross-Geo, Cross-Cloud + Private SaaS</div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;">- Customizable Internal Developer Portal powered by BackStage</div><div style="text-align: center;">- Pre-configured Integrations for SSO, Github, Snyk, FOSSA etc.</div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;"><br></div><div style="text-align: center;">- All the goodness of Argo and PostHog, none of the management hassles</div></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-3" data-x="13844.48" data-y="2780.16" data-scale="3" id="step-4" style="position: absolute; transform: translate(-50%, -50%) translate3d(13844.5px, 2780.16px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 62px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font color="#281e8e" face="Fira Sans">The Next 30 Mins</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 143px; left: 162px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div style="text-align: center;"><span style="color: rgb(1, 5, 1); font-family: &quot;Fira Sans&quot;;">- What's broken in Frontend Monitoring today</span><br></div><font face="Fira Sans" color="#010501"><div style="text-align: center;"><br></div><div style="text-align: center;">- What Frontend O11y* is all about&nbsp;</div><div style="text-align: center;"><br></div><div style="text-align: center;">- OpenTelemetry and why we're fans of it</div><div style="text-align: center;"><br></div><div style="text-align: center;">- Tools and Techniques for Frontend O11y</div><div style="text-align: center;"><br></div><div style="text-align: center;">- Demo&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div><div style="text-align: center;"><br></div><div style="text-align: center;">- Q&amp;A</div></font><div style="text-align: center;"><font color="#010501"><br></font></div><div style="text-align: center;"><br></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 725px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<font face="Fira Sans" color="#010501">* O11y = "Observability"</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 489px; left: 570px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#dfd8d8">(+ plug)</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-4" data-x="17694.72" data-y="2795.52" data-scale="3" id="step-5" style="position: absolute; transform: translate(-50%, -50%) translate3d(17694.7px, 2795.52px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 60px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Let's Break it Down</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 261px; left: 175px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 657px; height: 219.77px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.15, 1.15);
+-moz-transform: scale(1.15, 1.15);
+transform: scale(1.15, 1.15)">
+<img src="./files/Q0PgAaj.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step present active" data-state="strut-slide-5" data-x="21667.84" data-y="2872.32" data-scale="3" id="step-6" style="position: absolute; transform: translate(-50%, -50%) translate3d(21667.8px, 2872.32px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 61px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Monitoring, Monitoring, Everywhere?</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 208px; left: 183px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 649px; height: 444.41px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.14, 1.14);
+-moz-transform: scale(1.14, 1.14);
+transform: scale(1.14, 1.14)">
+<img src="./files/8yndiED.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-6" data-x="25900.373333333333" data-y="2841.6" data-scale="3" id="step-7" style="position: absolute; transform: translate(-50%, -50%) translate3d(25900.4px, 2841.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 180px; left: 172px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 695px; height: 421.14px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.22, 1.22);
+-moz-transform: scale(1.22, 1.22);
+transform: scale(1.22, 1.22)">
+<img src="./files/rHu2zmR.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 61px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Monitoring, Monitoring, Everywhere?</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-7" data-x="25954.986666666668" data-y="6405.12" data-scale="3" id="step-8" style="position: absolute; transform: translate(-50%, -50%) translate3d(25955px, 6405.12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 102px; left: 85px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Server Metrics: </font><font face="Fira Sans" color="#288e1e">"200 OK, Four 9s uptime, P95, P99"<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 170px; left: 131px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Users: </font><font face="Fira Sans" color="#f12e22">"This app is broken/slow/non-functional"</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 284px; left: 471px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Devs:</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 334px; left: 326px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 379px; height: 379px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.19, 0.19);
+-moz-transform: scale(0.19, 0.19);
+transform: scale(0.19, 0.19)">
+<img src="./files/e0BZVwg.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-8" data-x="21681.493333333332" data-y="6359.04" data-scale="3" id="step-9" style="position: absolute; transform: translate(-50%, -50%) translate3d(21681.5px, 6359.04px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 59px; left: 33px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">So What's Frontend O11y All About?</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 155px; left: 80px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 28px;" class="antialias">
+<div style="text-align: center;"><span style="font-family: &quot;Fira Sans&quot;;"><font color="#1e5b8e">"Observability is a measure of how well internal states&nbsp;</font></span><span style="font-family: &quot;Fira Sans&quot;;"><font color="#1e5b8e">of a system</font></span></div><div style="text-align: center;"><span style="font-family: &quot;Fira Sans&quot;;"><font color="#1e5b8e">can be inferred from knowledge of its external outputs</font></span><span style="color: rgb(30, 91, 142); font-family: &quot;Fira Sans&quot;;">"</span></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 238px; left: 195px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div style="text-align: center;"><span style="font-family: &quot;Fira Sans&quot;;">- Control Theory definition of "Observability"</span></div><font face="Fira Sans" color="#868e86"><div style="text-align: center;">(via <span style="font-weight: bold">Charity Majors</span>, Author of <span style="font-weight: bold">Observability Engineering</span>)</div></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 359px; left: 220px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#010501" face="Fira Sans, sans-serif">For Frontend Apps, The answer to this Q can include:</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 461px; left: 325px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 32px;" class="antialias">
+<div style="text-align: center;"><font color="#238e1e"><br></font></div><font face="Fira Sans, sans-serif" color="#238e1e"><div style="text-align: center;">Web Vitals</div></font><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#238e1e">Application Performance</font></div><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#238e1e">Frontend Logs</font></div><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#238e1e">Metrics&nbsp; (RAIL?)</font></div><div style="text-align: center;"><font face="Fira Sans, sans-serif" color="#238e1e">Tracing for App Workflows</font></div><div style="text-align: center;"><br></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 415px; left: 423px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 31px;" class="antialias">
+<div style="text-align: center;"><span style="color: rgb(1, 5, 1); font-family: &quot;Fira Sans&quot;;">Server O11y</span></div><div style="text-align: center;">+</div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-9" data-x="17722.02666666667" data-y="6328.32" data-scale="3" id="step-10" style="position: absolute; transform: translate(-50%, -50%) translate3d(17722px, 6328.32px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 60px; left: 35px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font color="#281e8e" face="Fira Sans">How Do We Fix This?</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 146px; left: 220px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#010501">Standards, Standards, Standards!</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 216px; left: 188px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 254px; height: 132.98px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.13, 0.13);
+-moz-transform: scale(0.13, 0.13);
+transform: scale(0.13, 0.13)">
+<img src="./files/hWZeHUt.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 217px; left: 501px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans, sans-serif" color="#281e8e">- Traces, Metrics, Logs<br>- Open Source<br>- Vendor-Neutral<br>- Cross-Language</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 268px; left: 735px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#868e86">&nbsp;(CNCF Incubating)</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 456px; left: 250px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans" color="#010501">Interoperable Tools built on OTel</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 519px; left: 275px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 95px; height: 102.48px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.44, 0.44);
+-moz-transform: scale(0.44, 0.44);
+transform: scale(0.44, 0.44)">
+<img src="./files/KijN16K.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 613px; left: 352px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 93px; height: 92.19px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.05, 0.05);
+-moz-transform: scale(0.05, 0.05);
+transform: scale(0.05, 0.05)">
+<img src="./files/QWwnEw8.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 492px; left: 393px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 154px; height: 154px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.15, 0.15);
+-moz-transform: scale(0.15, 0.15);
+transform: scale(0.15, 0.15)">
+<img src="./files/6YaPLPs.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 606px; left: 497px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 120px; height: 120px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.06, 0.06);
+-moz-transform: scale(0.06, 0.06);
+transform: scale(0.06, 0.06)">
+<img src="./files/yUXFT8A.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 515px; left: 573px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 111px; height: 111px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.49, 0.49);
+-moz-transform: scale(0.49, 0.49);
+transform: scale(0.49, 0.49)">
+<img src="./files/5BYZsvC.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 517px; left: 690px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 98px; height: 98px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.32, 0.32);
+-moz-transform: scale(0.32, 0.32);
+transform: scale(0.32, 0.32)">
+<img src="./files/5PLVA4B.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 610px; left: 636px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 105px; height: 105px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.1, 0.1);
+-moz-transform: scale(0.1, 0.1);
+transform: scale(0.1, 0.1)">
+<img src="./files/04PLbMj.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 8px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-10" data-x="13817.173333333334" data-y="6282.24" data-scale="3" id="step-11" style="position: absolute; transform: translate(-50%, -50%) translate3d(13817.2px, 6282.24px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 60px; left: 35px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font color="#281e8e" face="Fira Sans">Our O11y Stack</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 173px; left: 64px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fira Sans, sans-serif" color="#000000">Integrations:&nbsp;<br><br>Collectors:<br><br>Logs:<br>Metrics:<br>Traces:</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 183px; left: 262px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans, sans-serif" color="#281e8e">&nbsp; &nbsp; OpenTelemetry Language SDKs, OpsVerse RUM, Grafana Faro</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 242px; left: 260px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans"><br><font color="#281e8e">DevOpsNow Agent</font> <font color="#a59d9d">(Grafana Agent + OTel Collector + PromClient)</font></font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 355px; left: 170px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Distributed Loki</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 440px; left: 204px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Jaeger + ClickHouse</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top:395px; left: 221px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">VictoriaMetrics</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 703px; left: 200px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#a59d9d">+ Other tools like <span style="font-weight: bold">Pyroscope</span> for Continuous Profiling</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 8px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-11" data-x="10144.426666666666" data-y="6251.52" data-scale="3" id="step-12" style="position: absolute; transform: translate(-50%, -50%) translate3d(10144.4px, 6251.52px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 283px; left: 432px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Demo</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 358px; left: 331px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#010501"><a href="https://grafana.com/oss/faro/">Grafana Faro</a> / <a href="https://github.com/OpsVerseIO/real-user-monitoring">OpsVerse RUM</a></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-12" data-x="6362.453333333333" data-y="6312.96" data-scale="3" id="step-13" style="position: absolute; transform: translate(-50%, -50%) translate3d(6362.45px, 6312.96px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 161px; left: 233px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 556px; height: 315.25px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.56, 0.56);
+-moz-transform: scale(0.56, 0.56);
+transform: scale(0.56, 0.56)">
+<img src="./files/5bW40vo.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 61px; left: 35px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font color="#281e8e" face="Fira Sans">Challenges</font><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 529px; left: 142px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div style="text-align: center;"><span style="color: rgb(30, 91, 142); font-family: &quot;Fira Sans&quot;, sans-serif;">Standard "rot" over time as/when we move from MicroServices</span></div><font face="Fira Sans, sans-serif" color="#1e5b8e"><div style="text-align: center;">to some new paradigm, Integrating with MLOps/AIOps, Hybrid Apps</div><div style="text-align: center;">Proprietary Oligopolies building incompatible Proprietary Tools</div></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 7px; left: 853px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 16px; left: 0px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 848px; height: 44.89px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="./files/N3ssTxz.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-13" data-x="2430.2933333333335" data-y="6328.32" data-scale="3" id="step-14" style="position: absolute; transform: translate(-50%, -50%) translate3d(2430.29px, 6328.32px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 216px; left: 385px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="Fira Sans" color="#281e8e">Thank You<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 289px; left: 280px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans"><a href="https://navinpai.github.io/frontend-o11y">https://navinpai.github.io/frontend-o11y</a></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 331px; left: 371px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#333333"><a href="http://twitter.com/OpsVerse">@OpsVerse<a href="http://twitter.com/OpsVerse"></a> | <a href="https://twitter.com/navinpai">@navinpai</a></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 454px; left: 413px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Fira Sans" color="#1e5b8e">#DitchDIYDevOps</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 405px; left: 423px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 174px; height: 58.51px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.04, 0.04);
+-moz-transform: scale(0.04, 0.04);
+transform: scale(0.04, 0.04)">
+<img src="./files/o9vYCxB.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+	<div id="overview" class="step future" data-x="14192.64" data-y="4584.96" data-scale="9" style="position: absolute; transform: translate(-50%, -50%) translate3d(14192.6px, 4584.96px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(9); transform-style: preserve-3d;"></div>
+	
+</div></div>
+</div>
+</div>
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div></body></html>
