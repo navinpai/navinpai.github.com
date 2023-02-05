@@ -85,6 +85,20 @@
       padding-bottom: 10px;
     }
 
+    .status {
+      position: relative;
+      z-index: 120;
+      background: #FD8A8A;
+      color: #fff;
+      padding: 5px;
+      float: right;
+      border-radius: 2px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px #000;
+    }
+
     .tagsspan {
       z-index: 105;
       width: 100%;
@@ -148,7 +162,21 @@ fetch("index.json")
     response.json()
     .then((data) => { 
       let shelf = document.getElementById("papershelf")
-      data["papers"].forEach(paper => {
+      
+      // Add filters
+      filters = []
+      let params = new URLSearchParams(document.location.search);
+      if (params.get("tag") != undefined && params.get("tag") != "" ) {
+        filters.push({"field": "tags", "val": "#" + params.get("tag")})
+      }
+      let papers = data["papers"]
+      if(filters.length > 0) {
+        console.log(filters);
+        for (i = 0; i< filters.length; i++) {
+          papers = papers.filter(x => x[filters[i]["field"]].includes(filters[i]["val"]))
+        }
+      }
+      papers.forEach(paper => {
         let paperDiv = document.createElement("div");
         paperDiv.className = "paper";
         
@@ -162,6 +190,10 @@ fetch("index.json")
         let yearDiv = document.createElement("div");
         yearDiv.className = "year";
         yearDiv.innerHTML = paper["year"];
+
+        let statusDiv = document.createElement("div");
+        statusDiv.className = "status";
+        statusDiv.innerHTML = paper["status"];
         
         let tagSpan = document.createElement("span");
         tagSpan.className = "tagsspan";
@@ -188,6 +220,7 @@ fetch("index.json")
         overlayDiv.appendChild(imgDiv);
         overlayDiv.appendChild(titleDiv);
         overlayDiv.appendChild(yearDiv);
+        overlayDiv.appendChild(statusDiv);
         tagDiv.appendChild(tagSpan);
         overlayDiv.appendChild(paperLink);
         paperDiv.appendChild(overlayDiv)
