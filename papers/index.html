@@ -1,0 +1,188 @@
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&family=Viga&display=swap" rel="stylesheet">
+   <style>
+
+    body {
+      background: url("https://www.toptal.com/designers/subtlepatterns/uploads/triangle-mosaic.png");
+    }
+    #papershelf {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+    .paper {
+      color: #fff;
+      width: 300px;
+      height: 400px;
+      margin-left: 20px;
+      margin-right: 20px;
+      min-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 50px;
+    }
+    .imgDiv {
+      position: absolute;
+    }
+    .title a {
+      z-index: 100;
+      cursor: pointer;
+      text-shadow: 3px 3px 4px black;
+      font-family: 'Viga', sans-serif;
+      position: absolute;
+      width: 200px;
+      text-align: center;
+      display: flex;
+      height: 400px;
+      align-items: center;
+      padding-left: 50px;
+      padding-right: 50px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      
+    }
+
+    .overlay {
+      cursor: pointer;
+    }
+    .overlay:hover > .title {
+      background-color: rgba(0, 0, 0, 0);
+      display: none;
+    }
+
+    .overlay:hover > a > .tags >  .tagsspan {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .year {
+      z-index: 110;
+      color: #fff;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px 5px 10px 5px;
+      border-radius: 2px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+    }
+
+    .tags {
+      text-shadow: 3px 3px 5px #8221ba;
+      font-family: 'Space Grotesk', sans-serif;
+      position: absolute;
+      width: 300px;
+      text-align: center;
+      display: flex;
+      height: 400px;
+      align-items: flex-end;
+      font-size: 14px;
+      color: #fff;
+      padding-bottom: 10px;
+    }
+
+    .tagsspan {
+      z-index: 105;
+      width: 100%;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      text-align: center;
+      border-radius: 5px;
+      user-select: none;
+    }
+    img {
+      width: 300px;
+      height: 400px;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 32px;
+      font-family: 'Viga', sans-serif;
+      margin-bottom: 30px;
+      background-color: #FD8A8A;
+      color: #fff;
+      text-shadow: 2px 2px 2px #f00;
+    }
+
+    .header-text {
+      color: #fff;
+      text-shadow: none;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header"> Navin's Papershelf
+
+    <div class="header-text">( A sampling of academic papers that I recommend )</div>
+  </div>
+<div id="papershelf">
+</div>
+
+<script>
+fetch("index.json")
+.then(function(response) {
+    if (response.status !== 200) {
+      console.log(response.status);
+      return;
+    }
+    response.json()
+    .then((data) => { 
+      let shelf = document.getElementById("papershelf")
+      data["papers"].forEach(paper => {
+        let paperDiv = document.createElement("div");
+        paperDiv.className = "paper";
+        
+        let titleDiv = document.createElement("div");
+        titleDiv.className = "title";
+        titleDiv.innerHTML = "<a href=\"" + paper["link"] + "\">" + paper["name"] + "</a>";
+
+        let tagDiv = document.createElement("div");
+        tagDiv.className = "tags";
+
+        let yearDiv = document.createElement("div");
+        yearDiv.className = "year";
+        yearDiv.innerHTML = paper["year"];
+        
+        let tagSpan = document.createElement("span");
+        tagSpan.className = "tagsspan";
+        tagSpan.innerHTML = paper["tags"];
+        
+        let imgDiv = document.createElement("div");
+        imgDiv.className = "imgDiv";
+        
+        let imgS = document.createElement("img");
+        imgS.src = "imgs/" + paper["img"];
+        imgS.width = "300";
+        imgS.height = "400";
+
+        let overlayDiv = document.createElement("div");
+        overlayDiv.className = "overlay";
+        
+        let paperLink = document.createElement("a");
+        paperLink.href = paper["link"];
+        paperLink.target = "__blank";
+
+        paperLink.appendChild(tagDiv);
+        
+        imgDiv.appendChild(imgS);
+        overlayDiv.appendChild(imgDiv);
+        overlayDiv.appendChild(titleDiv);
+        overlayDiv.appendChild(yearDiv);
+        tagDiv.appendChild(tagSpan);
+        overlayDiv.appendChild(paperLink);
+        paperDiv.appendChild(overlayDiv)
+        shelf.appendChild(paperDiv);
+      });
+
+    });
+});
+
+</script>
+</body>
+</html>
