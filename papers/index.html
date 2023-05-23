@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://unpkg.com/sinon@9.0.2/pkg/sinon.js"></script>
-  <script src="https://unpkg.com/htmx.org"></script>
-  <script src="https://htmx.org/js/demo.js"></script>
-  <script type="text/javascript">
-    init("/modal", function(request){
-    return `
-    <div id="modal" _="on closeModal add .closing wait for animationend then remove me">
-      <div class="modal-underlay" _="on click trigger closeModal"></div>
-      <div class="modal-content">
-        <h1>Modal Dialog</h1>
-        This is the modal content.
-        You can put anything here, like text, or a form, or an image.
-        <br>
-        <br>
-        <button _="on click trigger closeModal">Close</button>
-      </div>
-    </div>
-    `
-      });
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&family=Viga&display=swap" rel="stylesheet">
@@ -256,7 +236,6 @@
   <div class="header"> Navin's Papershelf
 
     <div class="header-text">( A sampling of academic papers that I recommend )</div>
-    <button hx-get="/modal" hx-target="body" hx-swap="beforeend">Open a Modal</button>
   </div>
 <div id="papershelf">
 </div>
