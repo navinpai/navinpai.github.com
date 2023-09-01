@@ -1,0 +1,545 @@
+<html style="height: 100%;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>OSS System Observability with OpenTelemetry | FossUnited BLR Meetup - Sep 2023</title>
+
+<meta name="description" content="TODO">
+<meta name="author" content="TODO">
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+    /*-webkit-transform-origin: 135% 135%;
+    -moz-transform-origin: 135% 135%;
+    transform-origin: 135% 135%;*/
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<link rel="stylesheet" href="index_files/default-reset.css">
+<link href="index_files/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="index_files/default.css" id="theme">
+<link href="index_files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" href="http://strut.io/dist/preview_export/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="http://strut.io/dist/preview_export/apple-touch-icon.png" type="image/png">
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script async="" src="index_files/google-analytics_analytics.js"></script><script type="text/javascript" src="index_files/dataset-shim.js"></script>
+<script type="text/javascript" src="index_files/impress.js"></script>
+
+<script src="index_files/onready.js"></script>
+<script src="index_files/loadPresentation.js"></script>
+<script>
+ready(function() {
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();   
+    }
+
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = 
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42322531-1', 'strut.io');
+    ga('send', 'pageview');
+    </script>
+</head>
+<body class="impress-supported impress-enabled" style="height: 100%; overflow: hidden;">
+<style type="text/css">
+
+</style>
+<style>
+
+</style>
+<style>
+
+
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+</style>
+<!-- This is a work around / hack to get the user's browser to download the fonts 
+ if they decide to save the presentation. -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="index_files/Lato-Bold.woff">
+<img src="index_files/HammersmithOne.woff">
+<img src="index_files/Droid-Sans-Mono.woff">
+<img src="index_files/Gorditas-Regular.woff">
+<img src="index_files/FredokaOne-Regular.woff">
+<img src="index_files/Ubuntu.woff">
+<img src="index_files/Ubuntu-Bold.woff">
+<img src="index_files/PressStart2P-Regular.woff">
+<img src="index_files/Lato-BoldItalic.woff">
+<img src="index_files/AbrilFatface-Regular.woff">
+<img src="index_files/Lato-Regular.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg bg-surf-grad-sky strut-surface">
+<div class="bg innerBg strut-slide-7 bg-surf-grad-sky">
+<div id="impress" style="position: absolute; transform-origin: left top 0px; transition: all 1000ms ease-in-out 500ms; transform-style: preserve-3d; top: 50%; left: 50%; transform: perspective(3023.62px) scale(0.330729);"><div style="position: absolute; transform-origin: left top 0px; transition: all 1000ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(-10062.5px, -6190.08px, 0px);">
+	
+		
+			<div class="step future" data-state="strut-slide-0 bg-surf-grad-sky " data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1" style="position: absolute; transform: translate(-50%, -50%) translate3d(2457.6px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 194px; left: 84px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div align="center"><font face="'Hammersmith One', sans-serif">OSS System Observability<br></font></div><div align="center"><font face="'Hammersmith One', sans-serif">with <font color="#b43232">OpenTelemetry</font></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 394px; left: 414px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div><font face="Hammersmith One" color="#ea3535">Navin Pai</font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-1 bg-surf-grad-sky " data-x="6280.533333333334" data-y="2764.8" data-scale="3" id="step-2" style="position: absolute; transform: translate(-50%, -50%) translate3d(6280.53px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 139px; left: 65px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0"><br></font><div align="center"><font face="Hammersmith One" color="#2a5cf0">Navin Pai. </font><font face="Hammersmith One">M@dMAx.</font><font face="Hammersmith One" color="#2a5cf0"> Goa. Full Stack. </font><font face="Hammersmith One">OpsVerse.</font><font face="Hammersmith One" color="#2a5cf0"> </font><font color="#2a5cf0"><br><font face="Hammersmith One">&nbsp;</font></font><font face="Hammersmith One">Machine Learning.</font><font color="#2a5cf0"><font face="Hammersmith One"> Natural Language Processing. </font><br><font face="Hammersmith One">&nbsp;Practical Deep Learning. </font></font><font face="Hammersmith One">IIIT-Bangalore.</font><font color="#2a5cf0"><font face="Hammersmith One"> Game Theory. </font><br></font><font face="Hammersmith One">Man Utd.</font><font color="#2a5cf0"><font face="Hammersmith One"> Firefox. </font></font><font face="Hammersmith One">High Performance Engineering. </font><font color="#2a5cf0"><br></font><font face="Hammersmith One">&nbsp;Goa Engg College.</font><font color="#2a5cf0"><font face="Hammersmith One"> Go Engicos. Philosophy. </font><br><font face="Hammersmith One">&nbsp;Peripatetic. </font></font><font face="Hammersmith One">Eternal Hacker. Linux Fanboi.</font><font color="#2a5cf0"><font face="Hammersmith One"> Anime. </font><br><font face="Hammersmith One">Pythonista. </font></font><font face="Hammersmith One">Open Source Everything.</font><font color="#2a5cf0"><br><font face="Hammersmith One">@navinpai</font><br><br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-2 bg-surf-grad-sky " data-x="10103.466666666667" data-y="2764.8" data-scale="3" id="step-3" style="position: absolute; transform: translate(-50%, -50%) translate3d(10103.5px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 257px; left: 182px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#b43232">How do you monitor your systems today?<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Why Monitor?</font><font color="#2a5cf0"><br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step past" data-state="strut-slide-3 bg-surf-grad-sky " data-x="13926.4" data-y="2764.8" data-scale="3" id="step-4" style="position: absolute; transform: translate(-50%, -50%) translate3d(13926.4px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 257px; left: 182px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">MicroServices? Frontend + Backend? Mobile? <br></font></div><div><font face="Hammersmith One" color="#b43232">Databases? &lt;insert non-standard tech here&gt;<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Where this breaks down</font><br>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step past" data-state="strut-slide-4 bg-surf-grad-sky " data-x="17749.333333333332" data-y="2764.8" data-scale="3" id="step-5" style="position: absolute; transform: translate(-50%, -50%) translate3d(17749.3px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 262px; left: 47px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">"OpenTelemetry is a collection of APIs, SDKs, and tools.&nbsp;</font></div><div><font face="Hammersmith One" color="#b43232"><br></font></div><div><font face="Hammersmith One" color="#b43232">Use it to instrument, generate, collect, and export&nbsp;</font></div><div><font face="Hammersmith One" color="#b43232">telemetry data (metrics, logs, and traces) to help you&nbsp;</font></div><div><font face="Hammersmith One" color="#b43232">analyze your software’s performance and behavior."</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">What is OpenTelemetry? <br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 508px; left: 379px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Hammersmith One" color="#6eab49">(from opentelemetry.io)</font><font color="#6eab49"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 95px; left: 338px; width: 346.8315379292082px; height: 346.8315379292082px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<img src="index_files/opentelemetry-horizontal-color.svg" style="width: 100%; height: 100%">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step past" data-state="strut-slide-5 bg-surf-grad-sky " data-x="17708.373333333333" data-y="6174.72" data-scale="3" id="step-6" style="position: absolute; transform: translate(-50%, -50%) translate3d(17708.4px, 6174.72px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 260px; left: 303px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#b43232">- Open Source</font></div><div align="center"><font face="Hammersmith One" color="#b43232">- Vendor Neutral</font></div><div align="center"><font face="Hammersmith One" color="#b43232">- Logs, Traces, Metrics</font></div><div align="center"><font face="Hammersmith One" color="#b43232">- Drop In Instrumentation<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">How Does It work?<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 371px; left: 713px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Hammersmith One">(more on this coming up)<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 267px; left: 643px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Hammersmith One">(CNCF)</font><br>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step past" data-state="strut-slide-6 bg-surf-grad-sky " data-x="13830.826666666666" data-y="6205.44" data-scale="3" id="step-7" style="position: absolute; transform: translate(-50%, -50%) translate3d(13830.8px, 6205.44px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 257px; left: 250px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#b43232">Instrumentation as easy as 1,2,3<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Talk is Cheap<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step active present" data-state="strut-slide-7 bg-surf-grad-sky " data-x="10062.506666666666" data-y="6190.08" data-scale="3" id="step-8" style="position: absolute; transform: translate(-50%, -50%) translate3d(10062.5px, 6190.08px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 524px; left: 157px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#b43232">&nbsp;Standard "rot" over time as/when we move from MicroServices&nbsp;</font></div><div align="center"><font face="Hammersmith One" color="#b43232">to some new paradigm, Integrating with MLOps/AIOps, Hybrid Apps</font></div><div align="center"><font face="Hammersmith One" color="#b43232">Proprietary Oligopolies building incompatible Proprietary Tools </font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Challenges<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 128px; left: 247px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 574px; height: 325.46px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.57, 0.57);
+-moz-transform: scale(0.57, 0.57);
+transform: scale(0.57, 0.57)">
+<img src="index_files/5bW40vo.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step past" data-state="strut-slide-8 bg-surf-grad-sky " data-x="6430.72" data-y="6205.44" data-scale="3" id="step-9" style="position: absolute; transform: translate(-50%, -50%) translate3d(6430.72px, 6205.44px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 153px; left: 213px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><a href="https://github.com/open-telemetry"><font face="Hammersmith One" color="#b43232">https://github.com/open-telemetry</font></a></div><div><br></div><br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 20px; left: 26px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Where can I contribute?<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 225px; left: 202px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font face="Hammersmith One">Contrib repos are a great place to get started,&nbsp;</font></div><div align="center"><font face="Hammersmith One">esp. for tools you use<br></font></div><div align="center"><font face="Hammersmith One"><br></font></div><div align="center"><font face="Hammersmith One">specs/oteps eg. profiling if you are into the RFP process</font></div><div align="center"><font face="Hammersmith One">and interested in how standards are developed<br></font></div><div align="center"><font face="Hammersmith One"><br></font></div><div align="center"><font face="Hammersmith One">Android Dev? opentelemetry-android has just sprung up</font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-9 bg-surf-grad-sky " data-x="2430.2933333333335" data-y="6205.44" data-scale="3" id="step-10" style="position: absolute; transform: translate(-50%, -50%) translate3d(2430.29px, 6205.44px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 256px; left: 335px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div><font face="Hammersmith One" color="#2a5cf0">Thank You!</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 396px; left: 212px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#6eab49">Questions/Comments &gt;&gt;@navinpai</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 460px; left: 278px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<a href="https://navinpai.github.io/fossunited-otel"><font face="Hammersmith One">https://navinpai.github.io/fossunited-otel</font></a>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+	<div id="overview" class="step past" data-x="10089.813333333334" data-y="4485.12" data-scale="9" style="position: absolute; transform: translate(-50%, -50%) translate3d(10089.8px, 4485.12px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(9); transform-style: preserve-3d;"></div>
+	
+</div></div>
+</div>
+</div>
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div></body></html>
