@@ -2,7 +2,7 @@ appdirs==1.4.4
 certifi==2023.7.22
 charset-normalizer==3.0.1
 gitdb==4.0.10
-GitPython==3.1.31
+GitPython==3.1.32
 idna==3.4
 importlib-metadata==6.0.0
 pdf2image==1.16.2
