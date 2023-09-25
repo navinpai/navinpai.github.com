@@ -1,0 +1,895 @@
+
+<!-- saved from url=(0014)about:internet -->
+<html style="height: 100%;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Talking to the Linux Kernel with Python and eBPF | PyCon India 2023</title>
+
+<meta name="description" content="Slides presented at PyCon India 2023">
+<meta name="author" content="Navin Pai">
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+    /*-webkit-transform-origin: 135% 135%;
+    -moz-transform-origin: 135% 135%;
+    transform-origin: 135% 135%;*/
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<link rel="stylesheet" href="./index_files/default-reset.css">
+<link href="./index_files/main.css" rel="stylesheet" type="text/css">
+<link href="./index_files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="./index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="./index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+<link href="./index_files/substep.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="https://mohannadnaj.github.io/Strut/preview_export/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="https://mohannadnaj.github.io/Strut/preview_export/apple-touch-icon.png" type="image/png">
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script type="text/javascript" src="./index_files/dataset-shim.js"></script>
+<script type="text/javascript" src="./index_files/impress.js"></script>
+
+<script src="./index_files/onready.js"></script>
+<script src="./index_files/loadPresentation.js"></script>
+<script>
+var keepShownSubsteps = function() {
+    var addShownToPrevSubsteps = function() {
+        var prevSlide = document.querySelector(".prev")
+        if(prevSlide == null)
+            return ;
+
+        prevSlide.querySelectorAll('.substep').forEach(substep => {
+            substep.classList.add('substep-shown');
+        });
+    }
+
+    document.addEventListener( "impress:stepenter", function(e) {
+        addShownToPrevSubsteps();
+    });
+}
+</script>
+<script>
+ready(function() {
+    document.addEventListener("keyup", function(e) {
+        if(e.keyCode == 27)
+            impress().goto( document.getElementById( "overview" ) );
+    });
+
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();   
+        if(document.getElementById('keepShownSubsteps'))
+            keepShownSubsteps()
+    }
+
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = 
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+
+</head>
+<body class="impress-supported impress-enabled impress-on-step-3" style="height: 100%; overflow: hidden;">
+<style type="text/css">
+
+</style>
+<style>
+
+	
+	.bg-custom-bedffc {
+		background: #132c33;
+	}
+
+
+</style>
+<style>
+
+
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+</style>
+<!-- This is a work around / hack to get the user's browser to download the fonts 
+ if they decide to save the presentation. -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="./index_files/Lato-Bold.woff">
+<img src="./index_files/HammersmithOne.woff">
+<img src="./index_files/Droid-Sans-Mono.woff">
+<img src="./index_files/Gorditas-Regular.woff">
+<img src="./index_files/FredokaOne-Regular.woff">
+<img src="./index_files/Ubuntu.woff">
+<img src="./index_files/Ubuntu-Bold.woff">
+<img src="./index_files/PressStart2P-Regular.woff">
+<img src="./index_files/Lato-BoldItalic.woff">
+<img src="./index_files/AbrilFatface-Regular.woff">
+<img src="./index_files/Lato-Regular.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg bg-custom-bedffc strut-surface">
+<div class="bg innerBg">
+<div id="impress" style="position: absolute; transform-origin: left top; transition: all 1000ms ease-in-out 500ms; transform-style: preserve-3d; top: 50%; left: 50%; perspective: 3305.6px; transform: scale(0.302517);"><div style="position: absolute; transform-origin: left top; transition: all 1000ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translate3d(0px, 0px, 0px);">
+	
+		
+			<div class="step past" data-state="strut-slide-0 bg-custom-bedffc" data-x="2457.6" data-y="2764.8" data-scale="3" data-z="0" id="step-1" style="position: absolute; transform: translate(-50%, -50%) translate3d(2457.6px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 260px; left: 76px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 71px;" class="antialias">
+<div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">Talking to the Linux Kernel&nbsp;</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">with <b><font color="#47d1bb">Python</font></b> and <b><font color="#54a9f3">eBPF</font></b></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 443px; left: 406px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#f79898"><b>Navin Pai</b><i><br></i></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 512px; left: 411px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="&#39;League Gothic&#39;, sans-serif">#</font><font face="&#39;Droid Sans Mono&#39;, monospace">PyConIndia2023</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future prev" data-state="strut-slide-1 bg-custom-bedffc" data-x="6280.533333333334" data-y="2764.8" data-scale="3" data-z="0" id="step-2" style="position: absolute; transform: translate(-50%, -50%) translate3d(6280.53px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 196px; left: 19px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 39px;" class="antialias">
+<div align="center"><font face="&#39;Ubuntu&#39;, sans-serif"><b><font color="#47d1bb">Navin Pai.</font></b> M@dMAx. <b><font color="#47d1bb">Goa.</font></b> Full Stack.<b><font color="#47d1bb"> OpsVerse.</font></b></font><br><font face="&#39;Ubuntu&#39;, sans-serif">&nbsp;Machine Learning. <b><font color="#47d1bb">Natural Language Processing.</font></b></font><br><font face="&#39;Ubuntu&#39;, sans-serif">&nbsp;<b><font color="#47d1bb">Practical Deep Learning.</font></b> IIIT-Bangalore. <b><font color="#47d1bb">Game Theory.</font></b></font><br><font face="&#39;Ubuntu&#39;, sans-serif">Man Utd. <b><font color="#47d1bb">Firefox.</font></b> High Performance Engineering.</font><br><font face="&#39;Ubuntu&#39;, sans-serif">&nbsp;Goa Engg College. <b><font color="#47d1bb">Go Engicos. Philosophy.</font></b></font><br><font face="&#39;Ubuntu&#39;, sans-serif">&nbsp;<b><font color="#47d1bb">Peripatetic.</font></b> Eternal Hacker. Linux Fanboi. <b><font color="#47d1bb">Anime.</font></b></font><b><br></b><font face="&#39;Ubuntu&#39;, sans-serif"><font color="#47d1bb"><b>Pythonista.</b></font> Open Source Everything.</font><br><font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>@navinpai</b></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step active present" data-state="strut-slide-2 bg-custom-bedffc" data-x="10103.466666666667" data-y="2764.8" data-scale="3" data-z="0" id="step-3" style="position: absolute; transform: translate(-50%, -50%) translate3d(10103.5px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>The Agenda<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 179px; left: 136px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">- What is <font color="#54a9f3"><b>eBPF</b></font>?<br>- Why is <font color="#54a9f3"><b>eBPF</b></font> awesome?<br>- Tooling for <font color="#54a9f3"><b>eBPF</b></font><br>- <b><font color="#54a9f3">Python + eBPF =</font></b> 🚀 <br>- Making <font color="#54a9f3"><b>eBPF</b></font> part of your arsenal<br>- What next?</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">- QnA<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future next" data-state="strut-slide-3 bg-custom-bedffc" data-x="13926.4" data-y="2764.8" data-scale="3" data-z="0" id="step-4" style="position: absolute; transform: translate(-50%, -50%) translate3d(13926.4px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Talking to the kernel<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 173px; left: 141px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="./index_files/RgIkKwB.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-4 bg-custom-bedffc" data-x="17749.333333333332" data-y="2764.8" data-scale="3" data-z="0" id="step-5" style="position: absolute; transform: translate(-50%, -50%) translate3d(17749.3px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Talking to the kernel<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 107px; left: 152px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="./index_files/xvRUqxT.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 538px; left: 97px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 34px;" class="antialias">
+<div align="center"><font face="&#39;Ubuntu&#39;, sans-serif"><font color="#54a9f3"><b>Kernel Changes</b>:</font> Very slow release and change cycles&nbsp;</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">(<i>with very good reasons we can imagine</i>)</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif"><br></font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif"><font color="#54a9f3"><b>Kernel Modules</b>:</font> Commonly used to bork your system</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">(<i>a la the <b><font color="#f79898">oops/Kernel Panic</font></b> we're familiar with</i>)<i><br></i></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-5 bg-custom-bedffc" data-x="21572.266666666666" data-y="2764.8" data-scale="3" data-z="0" id="step-6" style="position: absolute; transform: translate(-50%, -50%) translate3d(21572.3px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font color="#47d1bb"><i><font face="&#39;Ubuntu&#39;, sans-serif"><b>"Let there be light"<br></b></font></i></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 152px; left: 2px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 1023px; height: 464.44px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.68, 0.68);
+-moz-transform: scale(0.68, 0.68);
+transform: scale(0.68, 0.68)">
+<img src="./index_files/RwXNcjS.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 676px; left: 161px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif">Well, <a href="https://github.com/iovisor/bcc/blob/master/docs/kernel-versions.md" target="_blank">as ongoing additions</a> to the Linux Kernel from v3.15 ( 2014+)<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 256px; left: 341.33px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<br>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-6 bg-custom-bedffc" data-x="25531.733333333334" data-y="2764.8" data-scale="3" data-z="0" id="step-7" style="position: absolute; transform: translate(-50%, -50%) translate3d(25531.7px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>So what is eBPF</b></font><font color="#47d1bb"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 89px; left: 303px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 419px; height: 145.91px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.49, 0.49);
+-moz-transform: scale(0.49, 0.49);
+transform: scale(0.49, 0.49)">
+<img src="./index_files/EBPF_logo.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 301px; left: 270px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="&#39;Fredoka One&#39;, cursive" color="#54a9f3">(1992)</font><font face="Ubuntu"> Berkeley Packet Filters</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 358px; left: 500px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Ubuntu">⇓</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 418px; left: 195px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="&#39;Fredoka One&#39;, cursive" color="#54a9f3">(2014)</font><font color="#54a9f3"> </font><b>extended</b> Berkeley Packet Filters<br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 471px; left: 500px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Ubuntu">⇓</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 540px; left: 357px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="&#39;Fredoka One&#39;, cursive" color="#54a9f3"><b>(today)</b></font>&nbsp; <b>eBPF / BPF</b><br>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-7 bg-custom-bedffc" data-x="29504.853333333333" data-y="2734.08" data-scale="3" data-z="0" id="step-8" style="position: absolute; transform: translate(-50%, -50%) translate3d(29504.9px, 2734.08px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>How eBPF Works<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 107px; left: 8px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 1003px; height: 543.93px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.39, 1.39);
+-moz-transform: scale(1.39, 1.39);
+transform: scale(1.39, 1.39)">
+<img src="./index_files/THeRmsb.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-8 bg-custom-bedffc" data-x="29463.893333333333" data-y="6282.24" data-scale="3" data-z="0" id="step-9" style="position: absolute; transform: translate(-50%, -50%) translate3d(29463.9px, 6282.24px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>So what can I do with eBPF?<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 102px; left: 131px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 35px;" class="antialias">
+<div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">Hook into pretty much anything that uses&nbsp;</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif">linux kernel functionality like:</font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif"><br></font></div><div align="center"><font color="#54a9f3"><b><font face="&#39;Ubuntu&#39;, sans-serif">System Calls, Network Events, cGroup Events,</font></b></font></div><div align="center"><font face="&#39;Ubuntu&#39;, sans-serif"><font color="#54a9f3"><b>Kprobes and Uprobes</b></font><br><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 400px; left: 340px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 350px; height: 350px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.7, 0.7);
+-moz-transform: scale(0.7, 0.7);
+transform: scale(0.7, 0.7)">
+<img src="./index_files/gycp0MP.gif">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-9 bg-custom-bedffc" data-x="25436.16" data-y="6251.52" data-scale="3" data-z="0" id="step-10" style="position: absolute; transform: translate(-50%, -50%) translate3d(25436.2px, 6251.52px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Talk is cheap...<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 182px; left: 1px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 1023px; height: 289.14px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.79, 0.79);
+-moz-transform: scale(0.79, 0.79);
+transform: scale(0.79, 0.79)">
+<img src="./index_files/cfI4zDn.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-10 bg-custom-bedffc" data-x="21544.96" data-y="6297.6" data-scale="3" data-z="0" id="step-11" style="position: absolute; transform: translate(-50%, -50%) translate3d(21545px, 6297.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Talk is cheap...<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 85px; left: 5px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 1017px; height: 598.67px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.74, 0.74);
+-moz-transform: scale(0.74, 0.74);
+transform: scale(0.74, 0.74)">
+<img src="./index_files/ypL3Uxe.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-11 bg-custom-bedffc" data-x="17640.106666666667" data-y="6343.68" data-scale="3" data-z="0" id="step-12" style="position: absolute; transform: translate(-50%, -50%) translate3d(17640.1px, 6343.68px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 297px; left: 431px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 58px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Demo</b></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-12 bg-custom-bedffc" data-x="13926.4" data-y="6374.4" data-scale="3" data-z="0" id="step-13" style="position: absolute; transform: translate(-50%, -50%) translate3d(13926.4px, 6374.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Building with eBPF</b></font><font color="#47d1bb"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 181px; left: 300px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif">System Profiling</font></div><div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif"><br></font></div><div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif">Network Security</font></div><div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif"><br></font></div><div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif">Load Balancing</font></div><div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif"><br></font></div><div align="center"><font color="#54a9f3" face="&#39;Ubuntu&#39;, sans-serif">Policy Enforcement<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-13 bg-custom-bedffc" data-x="10076.16" data-y="6359.04" data-scale="3" data-z="0" id="step-14" style="position: absolute; transform: translate(-50%, -50%) translate3d(10076.2px, 6359.04px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Tools leveraging eBPF<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 145px; left: 104px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 166px; height: 166px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.16, 0.16);
+-moz-transform: scale(0.16, 0.16);
+transform: scale(0.16, 0.16)">
+<img src="./index_files/logo-v3-small.png">
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 100px; left: 615px; width: 399.28249307824245px; height: 273.83225032055145px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<img src="./index_files/icon-98cfbaf2157fbc6a93687e482d63f448.svg" style="width: 100%; height: 100%">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 517px; left: 150px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 173px; height: 177.13px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.59, 0.59);
+-moz-transform: scale(0.59, 0.59);
+transform: scale(0.59, 0.59)">
+<img src="./index_files/the-falco-project-logo-9BD9484D1D-seeklogo.com.png">
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 278px; left: 106px; width: 242.1208884547796px; height: 242.1208884547796px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<img src="./index_files/katran-aca42fb9bd185d7f1cc59aaed88002cc.svg" style="width: 100%; height: 100%">
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 309px; left: 463px; width: 187.1434399424971px; height: 187.1434399424971px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<img src="./index_files/sshlog-c3193118e17ba4fd42560027d41580fc.svg" style="width: 100%; height: 100%">
+</div>
+</div>
+			
+			<div class="componentContainer" style="top: 145px; left: 416px; width: 157.07528501533088px; height: 157.07528501533088px;">
+<div class="transformContainer" style="-webkit-transform: scale(, );
+-moz-transform: scale(, );
+transform: scale(, )">
+<img src="./index_files/calico-99dd29f42f27b8e667f0c1c0864fca36.svg" style="width: 100%; height: 100%">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 478px; left: 690px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 211px; height: 211px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.1, 0.1);
+-moz-transform: scale(0.1, 0.1);
+transform: scale(0.1, 0.1)">
+<img src="./index_files/dae-4af03a4bce5119d405a03d91305079b3.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 464px; left: 394px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 218px; height: 290.74px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.23, 0.23);
+-moz-transform: scale(0.23, 0.23);
+transform: scale(0.23, 0.23)">
+<img src="./index_files/kepler-90470f19f760b2b2d8185e571c4d9785.gif">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-14 bg-custom-bedffc" data-x="6171.306666666666" data-y="6389.76" data-scale="3" data-z="0" id="step-15" style="position: absolute; transform: translate(-50%, -50%) translate3d(6171.31px, 6389.76px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="&#39;Ubuntu&#39;, sans-serif" color="#47d1bb"><b>Further Resources<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 137px; left: 185px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 31px;" class="antialias">
+<div align="center"><a href="https://ebpf.io/" target="_blank">https://ebpf.io/</a></div><div align="center"><a href="https://ebpf.foundation/" target="_blank">https://ebpf.foundation/</a></div><div align="center"><br></div><div align="center"><br></div><div align="center"><a href="https://www.youtube.com/watch?v=sjSpbRFtKjc" target="_blank">https://github.com/iovisor/bcc<br></a></div><div align="center"><a href="https://github.com/iovisor/bpftrace" target="_blank">https://github.com/iovisor/bpftrace</a><br></div><div align="center"><br></div><div align="center"><br></div><div align="center"><a href="https://github.com/zoidbergwill/awesome-ebpf" target="_blank">https://github.com/zoidbergwill/awesome-ebpf</a></div><div align="center"><br></div><div align="center"><br></div><div align="center"><a href="https://www.youtube.com/watch?v=sjSpbRFtKjc">https://www.youtube.com/watch?v=sjSpbRFtKjc<br></a></div><div align="center"><br></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 93px; left: 409px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="&#39;Hammersmith One&#39;, sans-serif">ebPF Project</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 243px; left: 247px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One">Tools for building out eBPF apps<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 397px; left: 381px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One">eBPF Resources<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 507px; left: 125px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One"><font color="#54a9f3">[europython]</font> Instrumenting CPython with eBPF</font><br>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-15 bg-custom-bedffc" data-x="2402.9866666666667" data-y="6435.84" data-scale="3" data-z="0" id="step-16" style="position: absolute; transform: translate(-50%, -50%) translate3d(2402.99px, 6435.84px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 266px; left: 349px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 64px;" class="antialias">
+<div align="center"><font face="&#39;Ubuntu&#39;, sans-serif" color="#54a9f3"><b>Thank You</b></font><font color="#54a9f3"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 350px; left: 380px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#47d1bb"><b><font face="&#39;Ubuntu&#39;, sans-serif">@navinpai</b> | <b>@opsverse</b></font></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 396px; left: 310px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<a href="https://navinpai.github.io/ebpf-pycon"><font face="&#39;Ubuntu&#39;, sans-serif" target="_blank">https://navinpai.github.io/ebpf-pycon</font></a>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+	<div id="overview" class="step future" data-state="strut-slide-overview" data-x="15953.92" data-y="4584.96" data-scale="20" data-z="0" style="position: absolute; transform: translate(-50%, -50%) translate3d(15953.9px, 4584.96px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(9); transform-style: preserve-3d;"></div>
+	
+</div></div>
+
+
+
+</div>
+</div></body></html>
