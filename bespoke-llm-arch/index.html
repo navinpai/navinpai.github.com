@@ -1,0 +1,1535 @@
+<html style="height: 100%;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Bespoke LLM Architectures for a K8s World  | DevOpsDays Bangalore 2023</title>
+
+<meta name="description" content="Slides for talk on LLMs and K8s, presented at DevOpsDays Bangalore 2023 by Navin Pai">
+<meta name="author" content="Navin Pai">
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+    /*-webkit-transform-origin: 135% 135%;
+    -moz-transform-origin: 135% 135%;
+    transform-origin: 135% 135%;*/
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<link rel="stylesheet" href="index_files/default-reset.css">
+<link href="index_files/main.css" rel="stylesheet" type="text/css">
+<link href="index_files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/substep.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="https://mohannadnaj.github.io/Strut/preview_export/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="https://mohannadnaj.github.io/Strut/preview_export/apple-touch-icon.png" type="image/png">
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script type="text/javascript" src="index_files/dataset-shim.js"></script>
+<script type="text/javascript" src="index_files/impress.js"></script>
+
+<script src="index_files/onready.js"></script>
+<script src="index_files/loadPresentation.js"></script>
+<script>
+var keepShownSubsteps = function() {
+    var addShownToPrevSubsteps = function() {
+        var prevSlide = document.querySelector(".prev")
+        if(prevSlide == null)
+            return ;
+
+        prevSlide.querySelectorAll('.substep').forEach(substep => {
+            substep.classList.add('substep-shown');
+        });
+    }
+
+    document.addEventListener( "impress:stepenter", function(e) {
+        addShownToPrevSubsteps();
+    });
+}
+</script>
+<script>
+ready(function() {
+    document.addEventListener("keyup", function(e) {
+        if(e.keyCode == 27)
+            impress().goto( document.getElementById( "overview" ) );
+    });
+
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();   
+        if(document.getElementById('keepShownSubsteps'))
+            keepShownSubsteps()
+    }
+
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = 
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+
+</head>
+<body class="impress-supported impress-enabled impress-on-step-34 impress-mouse-timeout" style="height: 100%; overflow: hidden;">
+<style type="text/css">
+
+</style>
+<style>
+
+	
+	.bg-custom-bedffc {
+		background: #bedffc;
+	}
+
+
+	
+	.bg-custom-25264a {
+		background: #25264a;
+	}
+
+
+</style>
+<style>
+
+
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+</style>
+<!-- This is a work around / hack to get the user's browser to download the fonts 
+ if they decide to save the presentation. -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="index_files/Lato-Bold.woff">
+<img src="index_files/HammersmithOne.woff">
+<img src="index_files/Droid-Sans-Mono.woff">
+<img src="index_files/Gorditas-Regular.woff">
+<img src="index_files/FredokaOne-Regular.woff">
+<img src="index_files/Ubuntu.woff">
+<img src="index_files/Ubuntu-Bold.woff">
+<img src="index_files/PressStart2P-Regular.woff">
+<img src="index_files/Lato-BoldItalic.woff">
+<img src="index_files/AbrilFatface-Regular.woff">
+<img src="index_files/Lato-Regular.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg bg-custom-25264a strut-surface">
+<div class="bg innerBg">
+<div id="impress" style="position: absolute; transform-origin: left top 0px; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; top: 50%; left: 50%; perspective: 3282.05px; transform: scale(0.304688);"><div style="position: absolute; transform-origin: left top 0px; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg)">
+	
+		
+			<div class="step future" data-state="strut-slide-0 bg-custom-25264a" data-x="2457.6" data-y="2764.8" data-scale="3" data-z="0" id="step-1" style="position: absolute; transform: translate(-50%, -50%) translate3d(2457.6px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 259px; left: 45px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 71px;" class="antialias">
+<div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9"><b>Bespoke</b></font><font face="'Ubuntu', sans-serif" color="#a38ef8"><b> LLM Architectures</b></font></div><div align="center"><font face="'Ubuntu', sans-serif" color="#a38ef8"><b>for a </b></font><font face="'Ubuntu', sans-serif" color="#f88ea9"><b>K8s</b></font><font face="'Ubuntu', sans-serif" color="#a38ef8"><b> World<br></b></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 443px; left: 406px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Navin Pai</b><i><br></i></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 564px; left: 422px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 180px; height: 180px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.45, 0.45);
+-moz-transform: scale(0.45, 0.45);
+transform: scale(0.45, 0.45)">
+<img src="index_files/yhdjgaX.jpg">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-1 bg-custom-25264a" data-x="6075.733333333334" data-y="2749.44" data-scale="3" data-z="0" id="step-2" style="position: absolute; transform: translate(-50%, -50%) translate3d(6075.73px, 2749.44px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 260px; left: 45px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9"><b>101 Things</b></font><font face="'Ubuntu', sans-serif" color="#a38ef8"><b> I Learnt</b></font><font face="'Ubuntu', sans-serif" color="#a38ef8"><b>&nbsp; About<br></b></font></div><div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9"><b>LLMs</b></font><font face="'Ubuntu', sans-serif" color="#a38ef8"><b> in </b></font><font face="'Ubuntu', sans-serif" color="#f88ea9"><b>K8s</b></font><font face="'Ubuntu', sans-serif" color="#f88ea9"><b><br></b></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 444px; left: 406px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Navin Pai</b><i><br></i></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 564px; left: 422px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 180px; height: 180px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.45, 0.45);
+-moz-transform: scale(0.45, 0.45);
+transform: scale(0.45, 0.45)">
+<img src="index_files/yhdjgaX.jpg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 207px; left: 466px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#477fd1">aka</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-2 bg-custom-25264a" data-x="9898.666666666666" data-y="2795.52" data-scale="3" data-z="0" id="step-3" style="position: absolute; transform: translate(-50%, -50%) translate3d(9898.67px, 2795.52px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 196px; left: 19px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 39px;" class="antialias">
+<div align="center"><font face="'Ubuntu', sans-serif"><b><font color="#47d1bb">Navin Pai.</font></b> M@dMAx. <b><font color="#47d1bb">Goa.</font></b> Full Stack.<b><font color="#47d1bb"> OpsVerse.</font></b><br>&nbsp;Machine Learning. <b><font color="#47d1bb">Natural Language Processing.</font></b><br>&nbsp;<b><font color="#47d1bb">Practical Deep Learning.</font></b> IIIT-Bangalore. <b><font color="#47d1bb">Game Theory.</font></b><br>Man Utd. <b><font color="#47d1bb">Firefox.</font></b> High Performance Engineering.<br>&nbsp;Goa Engg College. <b><font color="#47d1bb">Go Engicos. Philosophy.</font></b><br>&nbsp;<b><font color="#47d1bb">Peripatetic.</font></b> Eternal Hacker. Linux Fanboi. <b><font color="#47d1bb">Anime.</font></b><b><br></b><font color="#47d1bb"><b>Pythonista.</b></font> Open Source Everything.<br><font color="#47d1bb"><b>@navinpai</b></font></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-3 bg-custom-25264a" data-x="13926.4" data-y="2764.8" data-scale="3" data-z="0" id="step-4" style="position: absolute; transform: translate(-50%, -50%) translate3d(13926.4px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			<div style="text-align: center; width: 100%; margin: auto;"><img src="index_files/logo.png" width="350px" alt="opsverse-logo"></div>
+			
+			<div class="componentContainer " style="top: 140px; left: 41px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 30px;" class="antialias">
+<div align="left"><div><div><font face="'Lato', sans-serif"><b><font color="#47d1bb">ObserveNow </font><font color="#47d1bb"><br><br><br>DeployNow<br></font></b></font></div><div class="__fx-devtools-hide-shortcut__"><font face="'Lato', sans-serif"><b><font color="#47d1bb"><br></font></b></font></div><div class="__fx-devtools-hide-shortcut__"><font face="'Lato', sans-serif"><b><font color="#47d1bb"><br></font></b></font></div><div><font face="'Lato', sans-serif"><b><font color="#47d1bb">Aiden</font></b></font></div><div><font face="'Lato', sans-serif"><b><font color="#47d1bb"><br></font></b></font></div><div><font face="'Lato', sans-serif"><b><font color="#47d1bb"><br></font></b></font></div><div><font face="'Lato', sans-serif"><b><font color="#47d1bb">Managed Backstage<br></font></b></font></div><div><font face="'Lato', sans-serif"><b><font color="#47d1bb">/
+ Managed Posthog&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <br></font></b></font></div><font face="'Lato', sans-serif"><b><font color="#47d1bb"></font></b></font></div><font face="'Lato', sans-serif"><b><font color="#47d1bb"></font></b></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 145px; left: 370px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 19px;" class="antialias">
+<div><font color="#a38ef8" face="'Ubuntu', sans-serif">Turnkey, Managed <b>Observability</b> stack built on battle-tested OSS tools</font></div><font color="#a38ef8" face="'Ubuntu', sans-serif">Cross-Geo, Cross-Cloud + Private SaaS<br><br><br></font><div><font color="#a38ef8" face="'Ubuntu', sans-serif">Fully managed, OSS based Deployment stack for managing the journey&nbsp;</font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif">of code from <b>git push origin main</b> to <b>readiness probe passed<br></b></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif">Cross-Geo, Cross-Cloud + Private SaaS<b><br></b></font></div><font color="#a38ef8" face="'Ubuntu', sans-serif"><br></font><div><font color="#a38ef8" face="'Ubuntu', sans-serif"><br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif"><br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif">DevOps Copilot to assist Ops Teams with <b>Build&nbsp; -&gt; Deploy -&gt; Debug </b><br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif">workflows, internal knowledge-base, learning from <b>your</b> environment<br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif"><br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif"><br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif"><br></font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif">All the goodness of <b>Backstage</b> and <b>PostHog</b>, minus of the&nbsp;</font></div><div><font color="#a38ef8" face="'Ubuntu', sans-serif">management hassles</font></div><font color="#a38ef8" face="'Ubuntu', sans-serif"></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 110px; left: 311px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="index_files/ZhgjTc0.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-4 bg-custom-25264a" data-x="17790.293333333335" data-y="2780.16" data-scale="3" data-z="0" id="step-5" style="position: absolute; transform: translate(-50%, -50%) translate3d(17790.3px, 2780.16px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 11px; left: 22px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font color="#47d1bb" face="'Ubuntu', sans-serif"><b>The Agenda<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 179px; left: 90px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9">- A brief history of </font><font face="'Ubuntu', sans-serif" color="#47d1bb">(</font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>nearly</b></font><font face="'Ubuntu', sans-serif" color="#47d1bb">)</font><font face="'Ubuntu', sans-serif" color="#f88ea9"> everything?<br>- </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Evolution</b></font><font face="'Ubuntu', sans-serif" color="#f88ea9"> of an </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>LLM app</b></font><font face="'Ubuntu', sans-serif" color="#f88ea9"><br>- Why </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>K8s</b></font><font face="'Ubuntu', sans-serif" color="#f88ea9">?</font></div><div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9">- Why </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>not</b></font><font face="'Ubuntu', sans-serif" color="#f88ea9"> K8s?</font></div><div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9">- What </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>next</b></font><font face="'Ubuntu', sans-serif" color="#f88ea9">?</font></div><div align="center"><font face="'Ubuntu', sans-serif" color="#f88ea9">- QnA<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-5 bg-custom-25264a" data-x="17749.333333333332" data-y="6205.44" data-scale="3" data-z="0" id="step-6" style="position: absolute; transform: translate(-50%, -50%) translate3d(17749.3px, 6205.44px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 292px; left: 133px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="'Ubuntu', sans-serif" color="#f79898"><b>Disclaimer</b>:</font><font face="'Ubuntu', sans-serif" color="#47d1bb"> This talk is<b> EXTREMELY </b>opinionated</font></div><div align="center"><font face="'Ubuntu', sans-serif" color="#47d1bb">and only loosely prescriptive<b><br></b></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 388px; left: 314px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 28px;" class="antialias">
+<div align="center"><i><font face="'Ubuntu', sans-serif" color="#a38ef8">("strong opinions, weakly held"</font></i></div><div align="center"><i><font face="'Ubuntu', sans-serif" color="#a38ef8">"ymmv" and all that jazz)<br></font></i></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-6 bg-custom-25264a" data-x="17653.76" data-y="9415.68" data-scale="3" data-z="0" id="step-7" style="position: absolute; transform: translate(-50%, -50%) translate3d(17653.8px, 9415.68px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 652px; left: 416px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 30px;" class="antialias">
+<font face="'Ubuntu', sans-serif" color="#47d1bb"><b>NeurIPS 2017<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 140px; left: 107px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 811px; height: 488.74px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.59, 0.59);
+-moz-transform: scale(0.59, 0.59);
+transform: scale(0.59, 0.59)">
+<img src="index_files/qQsdSvU.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-7 bg-custom-25264a" data-x="17626.453333333335" data-y="12595.2" data-scale="3" data-z="0" id="step-8" style="position: absolute; transform: translate(-50%, -50%) translate3d(17626.5px, 12595.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 130px; left: 24px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 977px; height: 599.4px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.08, 1.08);
+-moz-transform: scale(1.08, 1.08);
+transform: scale(1.08, 1.08)">
+<img src="index_files/wy5yYul.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-8 bg-custom-25264a" data-x="13666.986666666666" data-y="12641.28" data-scale="3" data-z="0" id="step-9" style="position: absolute; transform: translate(-50%, -50%) translate3d(13667px, 12641.3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 157px; left: 257px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div><b><font face="Lato" color="#a38ef8">BERT</font><font face="Lato" color="#47d1bb">*</font><font face="Lato" color="#a38ef8">/ GPT-{1 , 2}<br></font></b></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 301px; left: 382px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font face="Lato" color="#f88ea9">50M - 1B params</font></div><div align="center"><font face="Lato" color="#f88ea9">Quite cool on niche tasks</font></div><div align="center"><font face="Lato" color="#f88ea9">Low attention<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 735px; left: 191px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#47d1bb">* <font face="'Ubuntu', sans-serif">Bidirectional Encoder Representations from Transformers</font></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-9 bg-custom-25264a" data-x="9570.986666666666" data-y="12672" data-scale="3" data-z="0" id="step-10" style="position: absolute; transform: translate(-50%, -50%) translate3d(9570.99px, 12672px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 157px; left: 13px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<b><font color="#a38ef8">GPT-{3 , 3.5}/ Claude / LaMDA</font></b><font color="#47d1bb">*</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 301px; left: 383px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font color="#f88ea9">50B - 200B params<br>Much more multi-purpose<br><br></font><br></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 727px; left: 272px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Ubuntu" color="#47d1bb">* Language Model for Dialogue Applications<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-10 bg-custom-25264a" data-x="5693.44" data-y="12702.72" data-scale="3" data-z="0" id="step-11" style="position: absolute; transform: translate(-50%, -50%) translate3d(5693.44px, 12702.7px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 157px; left: 384px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font color="#a38ef8"><b>GPT-4 +</b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 301px; left: 383px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font color="#f88ea9">1 Trillion+ parameters<br>Multi-modal </font><font color="#47d1bb"><i>Skynet</i></font><font color="#f88ea9"><br><br>Ensemble "Mixture-of-Experts"</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 652px; left: 827px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 197px; height: 116.97px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.21, 0.21);
+-moz-transform: scale(0.21, 0.21);
+transform: scale(0.21, 0.21)">
+<img src="index_files/20902-5-terminator-transparent-background.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-11 bg-custom-25264a" data-x="1802.24" data-y="14469.12" data-scale="3" data-z="0" id="step-12" style="position: absolute; transform: translate(-50%, -50%) translate3d(1802.24px, 14469.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 157px; left: 152px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div align="center"><font color="#a38ef8"><b>LLaMA-{1, 2}</b></font><font color="#47d1bb"><b>*</b></font><font color="#a38ef8"><b>/ Falcon /</b></font></div><div align="center"><font color="#a38ef8"><b>FLAN-T5</b></font><font color="#47d1bb"><b>**</b></font><font color="#a38ef8"><b>/ Mistral</b></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 347px; left: 336px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#f88ea9">"<b><i>Open Source</i></b>", to varying degrees</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 649px; left: 927px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 97px; height: 119.26px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.4, 0.4);
+-moz-transform: scale(0.4, 0.4);
+transform: scale(0.4, 0.4)">
+<img src="index_files/382.jpeg">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 703px; left: 306px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div><font face="Ubuntu" color="#47d1bb">* Large Language Model Meta AI</font></div><div><font face="Ubuntu" color="#47d1bb">** Fine-tuned LAnguage Net<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-12 bg-custom-25264a" data-x="1884.16" data-y="17771.52" data-scale="3" data-z="0" id="step-13" style="position: absolute; transform: translate(-50%, -50%) translate3d(1884.16px, 17771.5px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 160px; left: 17px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 991px; height: 447.57px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.34, 0.34);
+-moz-transform: scale(0.34, 0.34);
+transform: scale(0.34, 0.34)">
+<img src="index_files/v9PgOxO.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 639px; left: 147px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<a href="https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard"><font face="Lato" color="#a38ef8" target="_blank">https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard</font></a>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-13 bg-custom-25264a" data-x="5461.333333333333" data-y="19722.24" data-scale="3" data-z="0" id="step-14" style="position: absolute; transform: translate(-50%, -50%) translate3d(5461.33px, 19722.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 354px; left: 162px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="Ubuntu" color="#f88ea9">So let's <b>build</b> an <b>LLM-based</b> App</font><font face="Ubuntu" color="#47d1bb">*</font><font face="Ubuntu" color="#47d1bb"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 724px; left: 193px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<div align="center"><font face="Ubuntu" color="#47d1bb">*heard at every startup in a 40 KM radius of { <b>Indiranagar , San Francisco </b>} circa 2022-23<b><br></b></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-14 bg-custom-25264a" data-x="9352.533333333333" data-y="19783.68" data-scale="3" data-z="0" id="step-15" style="position: absolute; transform: translate(-50%, -50%) translate3d(9352.53px, 19783.7px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 46px; left: 111px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 759px; height: 673.24px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.43, 1.43);
+-moz-transform: scale(1.43, 1.43);
+transform: scale(1.43, 1.43)">
+<img src="index_files/WAAd8h9.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 30px; left: 31px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#47d1bb" face="'Ubuntu', sans-serif"><b>First things first...<br></b></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-15 bg-custom-25264a" data-x="13475.84" data-y="19799.04" data-scale="3" data-z="0" id="step-16" style="position: absolute; transform: translate(-50%, -50%) translate3d(13475.8px, 19799px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 115px; left: 30px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 965px; height: 613.38px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.3, 1.3);
+-moz-transform: scale(1.3, 1.3);
+transform: scale(1.3, 1.3)">
+<img src="index_files/7gkatZN.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif"><b>The OpenAI Wrappers (75%)<br></b></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-16 bg-custom-25264a" data-x="17503.573333333334" data-y="18846.72" data-scale="3" data-z="0" id="step-17" style="position: absolute; transform: translate(-50%, -50%) translate3d(17503.6px, 18846.7px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<b><font color="#a38ef8" face="'Ubuntu', sans-serif">The RAG-ers (15%)<br></font></b>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 108px; left: 19px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 979px; height: 622.28px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.32, 1.32);
+-moz-transform: scale(1.32, 1.32);
+transform: scale(1.32, 1.32)">
+<img src="index_files/R3W93ON.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-17 bg-custom-25264a" data-x="17585.493333333332" data-y="15744" data-scale="3" data-z="0" id="step-18" style="position: absolute; transform: translate(-50%, -50%) translate3d(17585.5px, 15744px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif"><b>Selling Shovels in the Gold Rush<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 112px; left: 104px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 816px; height: 544px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.18, 1.18);
+-moz-transform: scale(1.18, 1.18);
+transform: scale(1.18, 1.18)">
+<img src="index_files/trUtGo5.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-18 bg-custom-25264a" data-x="21217.28" data-y="18232.32" data-scale="3" data-z="0" id="step-19" style="position: absolute; transform: translate(-50%, -50%) translate3d(21217.3px, 18232.3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-18" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif"><b>We're at a DevOps Conf!<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 124px; left: 89px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Weaviate</b></font><font color="#f79898" face="'Ubuntu', sans-serif">, </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>qdrant</b></font><font color="#f79898" face="'Ubuntu', sans-serif">, </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>milvus</b></font><font color="#f79898" face="'Ubuntu', sans-serif"> are all a helm install away</font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">IMO </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Milvus</b></font><font color="#f79898" face="'Ubuntu', sans-serif"> has the best sane defaults OOTB,&nbsp;</font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">but each offers a lot of customizability.&nbsp;</font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Milvus</b></font><font color="#f79898" face="'Ubuntu', sans-serif"> also provides an <b>K8s Operator</b> for folks</font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">who prefer an Operator-driven workflow.<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-19 bg-custom-25264a" data-x="25067.52" data-y="18862.08" data-scale="3" data-z="0" id="step-20" style="position: absolute; transform: translate(-50%, -50%) translate3d(25067.5px, 18862.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-19" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<b><font face="Lato" color="#a38ef8">Do you need the overhead?<br></font></b>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 105px; left: 152px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Postgres</b></font><font color="#f88ea9" face="'Ubuntu', sans-serif">: The <b>Python</b> of the database world</font></div><div align="center"><font color="#f88ea9" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>postgres</b></font><font color="#f88ea9" face="'Ubuntu', sans-serif"> + </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>pgvector</b></font><font color="#f88ea9" face="'Ubuntu', sans-serif"> + </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>HNSW</b></font><font color="#f88ea9" face="'Ubuntu', sans-serif"> = 🚀<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 269px; left: 222px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div><font color="#f88ea9" face="'Ubuntu', sans-serif">Running Postgres in K8s (</font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Bitnami</b></font><font color="#f88ea9" face="'Ubuntu', sans-serif">/</font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>CloudNativePG</b></font><font color="#f88ea9" face="'Ubuntu', sans-serif">)?</font></div><div><font color="#f88ea9" face="'Ubuntu', sans-serif"><br></font></div><div><font color="#f88ea9" face="'Ubuntu', sans-serif">Literally one sidecar with <b>5 lines of code</b> is all it takes<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 363px; left: 39px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 965px; height: 406.75px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.68, 0.68);
+-moz-transform: scale(0.68, 0.68);
+transform: scale(0.68, 0.68)">
+<img src="index_files/8yLJl5C.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-20 bg-custom-25264a" data-x="28931.413333333334" data-y="18862.08" data-scale="3" data-z="0" id="step-21" style="position: absolute; transform: translate(-50%, -50%) translate3d(28931.4px, 18862.1px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-20" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<b><font color="#a38ef8" face="'Ubuntu', sans-serif">The Agents (8%)<br></font></b>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 92px; left: 53px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 919px; height: 584.14px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.24, 1.24);
+-moz-transform: scale(1.24, 1.24);
+transform: scale(1.24, 1.24)">
+<img src="index_files/GPmVQyc.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 668px; left: 966px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 58px; height: 101.46px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.18, 0.18);
+-moz-transform: scale(0.18, 0.18);
+transform: scale(0.18, 0.18)">
+<img src="index_files/fuXBFHk.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-21 bg-custom-25264a" data-x="32645.12" data-y="18938.88" data-scale="3" data-z="0" id="step-22" style="position: absolute; transform: translate(-50%, -50%) translate3d(32645.1px, 18938.9px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-21" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 30px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Ubuntu', sans-serif"><b><font color="#a38ef8">BabyAGI/AutoGPT (ReAct)</font></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 100px; left: 105px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 815px; height: 569.3px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.2, 1.2);
+-moz-transform: scale(1.2, 1.2);
+transform: scale(1.2, 1.2)">
+<img src="index_files/53nxZ4O.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-22 bg-custom-25264a" data-x="36386.13333333333" data-y="18984.96" data-scale="3" data-z="0" id="step-23" style="position: absolute; transform: translate(-50%, -50%) translate3d(36386.1px, 18985px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-22" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<b><font color="#a38ef8" face="'Ubuntu', sans-serif">When OpenAI is a No-Go (2%)</font><br></b>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 178px; left: 166px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><font color="#f79898"><b><font face="Lato">HealthTech/FinTech Regulations</font></b></font></div><div align="center"><font color="#f79898"><b><font face="Lato"><br></font></b></font></div><div align="center"><font color="#f79898"><b><font face="Lato">Data Residency Restrictions<br></font></b></font></div><div align="center"><font color="#f79898"><b><font face="Lato"><br></font></b></font></div><div align="center"><font color="#f79898"><b><font face="Lato">Finetuned Models<br></font></b></font></div><div align="center"><font color="#f79898"><b><font face="Lato"><br></font></b></font></div><div align="center"><font color="#f79898"><b><font face="Lato">Pricing </font></b></font><font color="#a38ef8"><b><font face="Lato">(?)</font></b><b><font face="Lato"><br></font></b></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-23 bg-custom-25264a" data-x="40154.45333333333" data-y="19000.32" data-scale="3" data-z="0" id="step-24" style="position: absolute; transform: translate(-50%, -50%) translate3d(40154.5px, 19000.3px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-23" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 28px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif"><b>Your requested quota for GPU compute is approved</b></font><font face="'Ubuntu', sans-serif"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 103px; left: 120px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 712px; height: 631.55px;">
+<div class="transformContainer" style="-webkit-transform: scale(1.34, 1.34);
+-moz-transform: scale(1.34, 1.34);
+transform: scale(1.34, 1.34)">
+<img src="index_files/faQCg9f.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-24 bg-custom-25264a" data-x="32699.733333333334" data-y="15697.92" data-scale="3" data-z="0" id="step-25" style="position: absolute; transform: translate(-50%, -50%) translate3d(32699.7px, 15697.9px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-24" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 29px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif"><b>I have data,&nbsp; and I want to finetune&nbsp; an LLM</b></font><font face="'Ubuntu', sans-serif"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 178px; left: 232px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><b><font face="'Ubuntu', sans-serif" color="#477fd1">- </font></b><font face="'Ubuntu', sans-serif" color="#f79898"><b>OpenAI</b></font><b><font face="'Ubuntu', sans-serif" color="#477fd1"> </font><font face="'Ubuntu', sans-serif" color="#477fd1">finetuning</font><font face="'Ubuntu', sans-serif" color="#477fd1"><br>- </font><font face="'Ubuntu', sans-serif" color="#f79898">HuggingFace</font><font face="'Ubuntu', sans-serif" color="#477fd1"> AutoTrain<br>- </font><font face="'Ubuntu', sans-serif" color="#f79898">Google Colab</font><font face="'Ubuntu', sans-serif" color="#477fd1"> Pro<br>- AWS </font><font face="'Ubuntu', sans-serif" color="#f79898">SageMaker</font></b></div><div align="center"><b><font face="'Ubuntu', sans-serif"><font color="#a38ef8"><br></font></font></b></div><div align="center"><b><font face="'Ubuntu', sans-serif" color="#477fd1">- </font><font face="'Ubuntu', sans-serif" color="#f79898">Ray</font><font face="'Ubuntu', sans-serif" color="#477fd1"><br>- </font><font face="'Ubuntu', sans-serif" color="#f79898">LlamaIndex</font></b></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 425px; left: 237px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 18px;" class="antialias">
+<font face="Ubuntu" color="#47d1bb">(also has a <b>SageMaker K8s Operator</b>, but it's not particularly great)</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 525px; left: 734px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 16px;" class="antialias">
+<font face="Ubuntu" color="#47d1bb">Swissknives of ML/LLMOps</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 465px; left: 675px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 96px;" class="antialias">
+<font color="#47d1bb" face="'Gorditas', cursive">}</font><font face="'Gorditas', cursive"><br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-25 bg-custom-25264a" data-x="32836.26666666667" data-y="12533.76" data-scale="3" data-z="0" id="step-26" style="position: absolute; transform: translate(-50%, -50%) translate3d(32836.3px, 12533.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-25" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 50px; left: 63px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="'Ubuntu', sans-serif"><b><font color="#a38ef8">LGTM, Merge Commit, Deploy!</font></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 114px; left: 134px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Ray</b></font><font color="#477fd1" face="'Ubuntu', sans-serif">,&nbsp; </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>KServe</b></font><font color="#477fd1" face="'Ubuntu', sans-serif">, or even DIY with tools like </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Gradio</b></font><font color="#47d1bb" face="'Ubuntu', sans-serif"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 206px; left: 124px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font color="#477fd1" face="'Ubuntu', sans-serif">But I personally like the </font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>OpenLLM</b></font><font color="#477fd1" face="'Ubuntu', sans-serif">/</font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>Bento</b></font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>ML</b></font><font color="#477fd1" face="'Ubuntu', sans-serif"> way</font></div><div align="center"><font color="#477fd1" face="'Ubuntu', sans-serif">of packaging LLMs for Docker/K8s<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 337px; left: 39px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 947px; height: 281.39px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.54, 0.54);
+-moz-transform: scale(0.54, 0.54);
+transform: scale(0.54, 0.54)">
+<img src="index_files/TYKqPub.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 671px; left: 103px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<i><font face="'Ubuntu', sans-serif" color="#47d1bb">(or, you know, just slap on </font><font face="'Ubuntu', sans-serif" color="#f88ea9"><b>FastAPI</b></font><font face="'Ubuntu', sans-serif" color="#47d1bb"> on top of your model and call it a day </font></i><font face="'Ubuntu', sans-serif" color="#47d1bb">😛</font><i><font face="'Ubuntu', sans-serif" color="#47d1bb">)<br></font></i>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-26 bg-custom-25264a" data-x="32945.49333333333" data-y="9231.36" data-scale="3" data-z="0" id="step-27" style="position: absolute; transform: translate(-50%, -50%) translate3d(32945.5px, 9231.36px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-26" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 2px; left: 288px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 447px; height: 761.87px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.43, 0.43);
+-moz-transform: scale(0.43, 0.43);
+transform: scale(0.43, 0.43)">
+<img src="index_files/SGUQqyM.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-27 bg-custom-25264a" data-x="32972.8" data-y="5990.4" data-scale="3" data-z="0" id="step-28" style="position: absolute; transform: translate(-50%, -50%) translate3d(32972.8px, 5990.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-27" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 257px; left: 95px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div><font face="'Ubuntu', sans-serif" color="#477fd1">Want to Scale This? </font><font color="#f79898" face="'Ubuntu', sans-serif"><b>HPA</b></font><font color="#a38ef8" face="'Ubuntu', sans-serif"> </font><font face="'Ubuntu', sans-serif" color="#477fd1">is your friend!</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 326px; left: 218px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif">Alongwith: </font><font color="#f79898" face="'Ubuntu', sans-serif"><b>dcgm-exporter</b></font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>*</b></font><font color="#a38ef8" face="'Ubuntu', sans-serif"> and</font><font color="#f79898" face="'Ubuntu', sans-serif"> <b>prometheus-adapter</b></font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b>**</b></font><font color="#47d1bb" face="'Ubuntu', sans-serif"><b><br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 680px; left: 267px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font face="Ubuntu" color="#47d1bb">* Data Center GPU Manager</font></div><div align="center"><font face="Ubuntu" color="#47d1bb">** Use prometheus metrics within the cluster<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-28 bg-custom-25264a" data-x="25053.866666666665" data-y="2903.04" data-scale="3" data-z="0" id="step-29" style="position: absolute; transform: translate(-50%, -50%) translate3d(25053.9px, 2903.04px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-28" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 79px; left: 56px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 917px; height: 610.95px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.58, 0.58);
+-moz-transform: scale(0.58, 0.58);
+transform: scale(0.58, 0.58)">
+<img src="index_files/LcGaFjo.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 693px; left: 423px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font face="Lato" color="#a38ef8">https://ollama.ai/</font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-29 bg-custom-25264a" data-x="29026.986666666668" data-y="2918.4" data-scale="3" data-z="0" id="step-30" style="position: absolute; transform: translate(-50%, -50%) translate3d(29027px, 2918.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-29" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 24px; left: 31px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<b><font color="#a38ef8" face="'Ubuntu', sans-serif">Observability</font><font color="#a38ef8" face="'Ubuntu', sans-serif">/ LLMOps<br></font></b>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 140px; left: 82px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="'Ubuntu', sans-serif" color="#f79898">- </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Number of Tokens</b></font><font face="'Ubuntu', sans-serif" color="#f79898"> utilized per API request</font><font face="'Ubuntu', sans-serif" color="#f79898"><br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898"><br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898">- </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Latency</b></font><font face="'Ubuntu', sans-serif" color="#f79898"> </font><font face="'Ubuntu', sans-serif" color="#f79898">&amp; other server metrics</font><font face="'Ubuntu', sans-serif" color="#f79898"><br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898"><br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898">- </font><font face="'Ubuntu', sans-serif" color="#f79898">Quality/Hallucinations</font><font face="'Ubuntu', sans-serif" color="#f79898"> </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>(signal:noise)</b></font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b><br></b></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898"><br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898">- Additional "</font><font face="'Ubuntu', sans-serif" color="#47d1bb"><i><b>Product</b></i></font><font face="'Ubuntu', sans-serif" color="#f79898">" analytics like A/B,&nbsp; Canary<br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898"><br></font></div><div><font face="'Ubuntu', sans-serif" color="#f79898">- </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Feedback</b></font><font face="'Ubuntu', sans-serif" color="#f79898"> for retraining </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>(</b></font><font color="#47d1bb"><b><font face="'Ubuntu', sans-serif">RLHF</font><font face="'Ubuntu', sans-serif">)</font></b><b><font face="'Ubuntu', sans-serif"><br></font></b></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-30 bg-custom-25264a" data-x="33013.76" data-y="2933.76" data-scale="3" data-z="0" id="step-31" style="position: absolute; transform: translate(-50%, -50%) translate3d(33013.8px, 2933.76px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-30" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 44px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#a38ef8" face="'Ubuntu', sans-serif"><b>Should you do this?<br></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 85px; left: 310px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 404px; height: 664.18px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.81, 0.81);
+-moz-transform: scale(0.81, 0.81);
+transform: scale(0.81, 0.81)">
+<img src="index_files/F194rKqXsAQUdTZ.jpg">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-31 bg-custom-25264a" data-x="36877.653333333335" data-y="2979.84" data-scale="3" data-z="0" id="step-32" style="position: absolute; transform: translate(-50%, -50%) translate3d(36877.7px, 2979.84px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-31" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 54px; left: 13px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 1001px; height: 222.17px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.62, 0.62);
+-moz-transform: scale(0.62, 0.62);
+transform: scale(0.62, 0.62)">
+<img src="index_files/0fTf5K3.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 319px; left: 35px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 955px; height: 302.74px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.65, 0.65);
+-moz-transform: scale(0.65, 0.65);
+transform: scale(0.65, 0.65)">
+<img src="index_files/mgDXNTD.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 653px; left: 114px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<a href="https://generatingconversation.substack.com/p/openai-is-too-cheap-to-beat"><font face="Lato" color="#a38ef8" target="_blank">https://generatingconversation.substack.com/p/openai-is-too-cheap-to-beat</font></a>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future prev" data-state="strut-slide-32 bg-custom-25264a" data-x="40645.973333333335" data-y="3025.92" data-scale="3" data-z="0" id="step-33" style="position: absolute; transform: translate(-50%, -50%) translate3d(40646px, 3025.92px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-32" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 40px; left: 37px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<b><font color="#a38ef8" face="'Ubuntu', sans-serif">What's Next?<br></font></b>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 109px; left: 105px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">Play with more <b>foundational models</b>.&nbsp;</font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">The most exciting one IMO is </font></div><div align="center"><br></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><b>Finetune</b> models on more specific tasks&nbsp;</font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">and workflows </font><i><font face="'Ubuntu', sans-serif" color="#47d1bb">(in progress)</font><font face="'Ubuntu', sans-serif" color="#47d1bb"><br></font></i></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><b>Agents</b> and <b>Ensembles</b> are too constrained today<br></font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><b>Evaluation Frameworks</b> for LLM Apps </font><font face="'Ubuntu', sans-serif" color="#47d1bb"><i>(in progress)</i></font><i><font face="'Ubuntu', sans-serif" color="#47d1bb"><br></font></i></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif"><br></font></div><div align="center"><font color="#f79898" face="'Ubuntu', sans-serif">Make <b>more $$$</b> than we spend on GenAI <br></font><font face="'Ubuntu', sans-serif" color="#47d1bb">(my CFO has asked me to mark this as in progress)</font><font face="'Ubuntu', sans-serif" color="#47d1bb"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 148px; left: 769px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 152px; height: 58.19px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.15, 0.15);
+-moz-transform: scale(0.15, 0.15);
+transform: scale(0.15, 0.15)">
+<img src="index_files/bd25b6fb-9adc-4ff5-8305-860f94209570-1695913935060.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step active present" data-state="strut-slide-33 bg-custom-25264a" data-x="45998.08" data-y="18984.96" data-scale="3" data-z="0" id="step-34" style="position: absolute; transform: translate(-50%, -50%) translate3d(45998.1px, 18985px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-33" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 267px; left: 349px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 64px;" class="antialias">
+<div align="center"><font face="'Ubuntu', sans-serif" color="#47d1bb"><b>Thank You</b></font><font color="#47d1bb"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 350px; left: 427px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<font color="#f79898"><b><font face="'Ubuntu', sans-serif">@navinpai</font></b></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 398px; left: 276px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<div><font color="#f79898"><a href="https://navinpai.github.io/bespoke-llm-arch"><font face="'Ubuntu', sans-serif" target="_blank">https://navinpai.github.io/bespoke-llm-arch</font></a></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+	<div id="overview" class="step future next" data-state="strut-slide-overview" data-x="23900.16" data-y="11274.24" data-scale="2" data-z="0" style="position: absolute; transform: translate(-50%, -50%) translate3d(23900.2px, 11274.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(9); transform-style: preserve-3d;"></div>
+	
+</div></div>
+
+
+<style>
+.impress-enabled .step {
+    opacity: 0;
+}
+
+.impress-on-overview .step, .impress-enabled .step.active {
+    opacity: 1;
+}
+</style>
+
+
+</div>
+</div></body></html>
