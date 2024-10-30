@@ -1,0 +1,1033 @@
+<html style="height: 100%;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Securing the Kubernetes Empire with OpenPolicyAgent and Rego | KubeDay India 2023</title>
+
+<meta name="description" content="Securing the Kubernetes Empire with OpenPolicyAgent and Rego">
+<meta name="author" content="Navin Pai">
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+    /*-webkit-transform-origin: 135% 135%;
+    -moz-transform-origin: 135% 135%;
+    transform-origin: 135% 135%;*/
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<link rel="stylesheet" href="index_files/default-reset.css">
+<link href="index_files/main.css" rel="stylesheet" type="text/css">
+<link href="index_files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/substep.css" rel="stylesheet" type="text/css">
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script type="text/javascript" src="index_files/dataset-shim.js"></script>
+<script type="text/javascript" src="index_files/impress.js"></script>
+
+<script src="index_files/onready.js"></script>
+<script src="index_files/loadPresentation.js"></script>
+<script>
+var keepShownSubsteps = function() {
+    var addShownToPrevSubsteps = function() {
+        var prevSlide = document.querySelector(".prev")
+        if(prevSlide == null)
+            return ;
+
+        prevSlide.querySelectorAll('.substep').forEach(substep => {
+            substep.classList.add('substep-shown');
+        });
+    }
+
+    document.addEventListener( "impress:stepenter", function(e) {
+        addShownToPrevSubsteps();
+    });
+}
+</script>
+<script>
+ready(function() {
+    document.addEventListener("keyup", function(e) {
+        if(e.keyCode == 27)
+            impress().goto( document.getElementById( "overview" ) );
+    });
+
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();   
+        if(document.getElementById('keepShownSubsteps'))
+            keepShownSubsteps()
+    }
+
+    if ("ontouchstart" in document.documentElement) { 
+        document.querySelector(".hint").innerHTML = 
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+
+</head>
+<body class="impress-supported impress-enabled impress-on-step-6 impress-mouse-timeout" style="height: 100%; overflow: hidden;">
+<style type="text/css">
+
+</style>
+<style>
+
+	
+	.bg-custom-7ed741 {
+		background: #F6F1EE;
+	}
+
+
+</style>
+<style>
+
+
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+	
+		
+		
+	
+
+</style>
+<!-- This is a work around / hack to get the user's browser to download the fonts 
+ if they decide to save the presentation. -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="index_files/Lato-Bold.woff">
+<img src="index_files/HammersmithOne.woff">
+<img src="index_files/Droid-Sans-Mono.woff">
+<img src="index_files/Gorditas-Regular.woff">
+<img src="index_files/FredokaOne-Regular.woff">
+<img src="index_files/Ubuntu.woff">
+<img src="index_files/Ubuntu-Bold.woff">
+<img src="index_files/PressStart2P-Regular.woff">
+<img src="index_files/Lato-BoldItalic.woff">
+<img src="index_files/AbrilFatface-Regular.woff">
+<img src="index_files/Lato-Regular.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg bg-custom-7ed741 strut-surface">
+<div class="bg innerBg">
+<div id="impress" style="position: absolute; transform-origin: left top 0px; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; top: 50%; left: 50%; perspective: 3277.38px; transform: scale(0.305122);"><div style="position: absolute; transform-origin: left top 0px; transition: all 0ms ease-in-out 0ms; transform-style: preserve-3d; transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg)">
+	
+		
+			<div class="step future" data-state="strut-slide-0 bg-custom-7ed741" data-x="2457.6" data-y="2764.8" data-scale="3" data-z="0" id="step-1" style="position: absolute; transform: translate(-50%, -50%) translate3d(2457.6px, 2764.8px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 178px; left: 54px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 61px;" class="antialias">
+<div align="center"><font face="'Fredoka One', cursive" color="#ED7D31"><br></font></div><div align="center"><font face="'Fredoka One', cursive" color="#ED7D31">Securing your K8s Empire <br></font></div><div align="center"><font face="'Fredoka One', cursive" color="#ED7D31">with </font><font face="'Fredoka One', cursive" color="#6C5F5B">OpenPolicyAgent</font><font face="'Fredoka One', cursive" color="#ED7D31"> and </font><font face="'Fredoka One', cursive" color="#6C5F5B">Rego</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 443px; left: 406px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#4D4C7D"><b>Navin Pai</b><i><br></i></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-1 bg-custom-7ed741" data-x="6362.453333333333" data-y="2780.16" data-scale="3" data-z="0" id="step-2" style="position: absolute; transform: translate(-50%, -50%) translate3d(6362.45px, 2780.16px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 206px; left: 24px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="'Fredoka One', cursive"><b><font color="#4D4C7D">Navin Pai.</font></b> M@dMAx. <b><font color="#4D4C7D">Goa.</font></b> Full Stack.<b><font color="#4D4C7D"> OpsVerse.</font></b><br>&nbsp;Machine Learning. <b><font color="#4D4C7D">Natural Language Processing.</font></b><br>&nbsp;<b><font color="#4D4C7D">Practical Deep Learning.</font></b> IIIT-Bangalore. <b><font color="#4D4C7D">Game Theory.</font></b><br>Man Utd. <b><font color="#4D4C7D">Firefox.</font></b> High Performance Engineering.<br>&nbsp;Goa Engg College. <b><font color="#4D4C7D">Go Engicos. Philosophy.</font></b><br>&nbsp;<b><font color="#4D4C7D">Peripatetic.</font></b> Eternal Hacker. Linux Fanboi. <b><font color="#4D4C7D">Anime.</font></b><b><br></b><font color="#4D4C7D"><b>Pythonista.</b></font> Open Source Everything.<br><font color="#4D4C7D"><b>@navinpai</b></font></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-2 bg-custom-7ed741" data-x="10199.04" data-y="2826.24" data-scale="3" data-z="0" id="step-3" style="position: absolute; transform: translate(-50%, -50%) translate3d(10199px, 2826.24px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			<div style="width: 100%;text-align: center;margin: auto;margin-top: 20px;"><img src="index_files/opsverse-logo-icon.png" width="350px"></div>
+			<div class="componentContainer " style="top: 140px; left: 41px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 27px;" class="antialias">
+<div align="left"><div><div><font face="'Fredoka One', cursive" color="#ED7D31"><b>ObserveNow <br><br><br>DeployNow<br></b></font></div><div class="__fx-devtools-hide-shortcut__"><font face="'Fredoka One', cursive" color="#ED7D31"><b><br></b></font></div><div class="__fx-devtools-hide-shortcut__"><font face="'Fredoka One', cursive" color="#ED7D31"><b><br></b></font></div><div class="__fx-devtools-hide-shortcut__"><font face="'Fredoka One', cursive" color="#ED7D31"><b><br></b></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31"><b>Aiden</b></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31"><b><br></b></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31"><b><br></b></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31"><b>Managed Backstage<br></b></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31"><b>/
+ Managed Posthog&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <br></b></font></div></div></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 146px; left: 363px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 19px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#6C5F5B">Turnkey, Managed <b>Observability</b> stack built on battle-tested OSS tools</font></div><font face="'Fredoka One', cursive" color="#6C5F5B">Cross-Geo, Cross-Cloud + Private SaaS<br><br><br></font><div><font face="'Fredoka One', cursive" color="#6C5F5B">Fully managed, OSS based Deployment stack for managing the journey&nbsp;</font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B">of code from <b>git push origin main</b> to <b>readiness probe passed<br></b></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B">Cross-Geo, Cross-Cloud + Private SaaS<b><br></b></font></div><font face="'Fredoka One', cursive" color="#6C5F5B"><br></font><div><font face="'Fredoka One', cursive" color="#6C5F5B"><br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B"><br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B">DevOps Copilot to assist Ops Teams with <b>Build&nbsp; -&gt; Deploy -&gt; Debug </b><br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B">workflows, internal knowledge-base, learning from <b>your</b> environment<br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B"><br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B"><br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B"><br></font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B">All the goodness of <b>Backstage</b> and <b>PostHog</b>, minus of the&nbsp;</font></div><div><font face="'Fredoka One', cursive" color="#6C5F5B">management hassles</font></div><font face="'Fredoka One', cursive" color="#6C5F5B"></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 110px; left: 311px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<img src="index_files/ZhgjTc0.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-3 bg-custom-7ed741" data-x="14199.466666666667" data-y="2810.88" data-scale="3" data-z="0" id="step-4" style="position: absolute; transform: translate(-50%, -50%) translate3d(14199.5px, 2810.88px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 108px; left: 222px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div><font face="'Fredoka One', cursive" color="#ED7D31">- Policy as Code 101</font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- OpenPolicyAgent (OPA)<br></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- Rego Policy Language</font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- How to use OPA<br></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- OPA Gateway + K8s<br></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- Usecases</font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- Best Practices for PaC<br></font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- Demo</font></div><div><font face="'Fredoka One', cursive" color="#ED7D31">- Q/A<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 37px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">The Agenda<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future prev" data-state="strut-slide-4 bg-custom-7ed741" data-x="17940.48" data-y="2795.52" data-scale="3" data-z="0" id="step-5" style="position: absolute; transform: translate(-50%, -50%) translate3d(17940.5px, 2795.52px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Policy as Code<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 325px; left: 51px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#ED7D31">How do you ensure security/compliance</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">requirements are managed today?<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step active present" data-state="strut-slide-5 bg-custom-7ed741" data-x="21585.92" data-y="2826.24" data-scale="3" data-z="0" id="step-6" style="position: absolute; transform: translate(-50%, -50%) translate3d(21585.9px, 2826.24px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Policy as Code<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 237px; left: 129px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#ED7D31">- Centralized Policy Management<br></font></div><div align="center"><font face="Fredoka One" color="#ED7D31">- Shift Left Compliance<br></font></div><div align="center"><font face="Fredoka One" color="#ED7D31">- Enhanced Visibility</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">- Integrate with CI/CD</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">- Version Control with GitOps <br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future next" data-state="strut-slide-6 bg-custom-7ed741" data-x="25395.2" data-y="7065.6" data-scale="3" data-z="0" id="step-7" style="position: absolute; transform: translate(-50%, -50%) translate3d(25395.2px, 7065.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Introducing OpenPolicyAgent<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 377px; left: 125px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 48px;" class="antialias">
+<div align="left"><font face="Fredoka One" color="#ED7D31">- Open Source </font><font face="Fredoka One" color="#4D4C7D"><i>(duh!)</i></font><font face="Fredoka One" color="#4D4C7D"><i><br></i></font></div><div align="left"><font face="Fredoka One" color="#ED7D31">- CNCF Graduated </font><font face="Fredoka One" color="#4D4C7D"><i>(2021)</i></font></div><div align="left"><font face="Fredoka One" color="#ED7D31"><i>- </i>Abstracts Policy Decisions<i><br></i></font></div><div align="left"><font face="Fredoka One" color="#ED7D31">- Run </font><font face="Fredoka One" color="#4D4C7D"><i>(pretty much)</i> </font><font face="Fredoka One" color="#ED7D31">anywhere</font></div><div align="left"><font face="Fredoka One" color="#ED7D31">- Can be run as Service or Library<br></font></div><div align="left"><font face="Fredoka One" color="#ED7D31"><br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 101px; left: 147px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 707px; height: 234.29px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.13, 0.13);
+-moz-transform: scale(0.13, 0.13);
+transform: scale(0.13, 0.13)">
+<img src="index_files/opa-horizontal-color.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-7 bg-custom-7ed741" data-x="29218.133333333335" data-y="7065.6" data-scale="3" data-z="0" id="step-8" style="position: absolute; transform: translate(-50%, -50%) translate3d(29218.1px, 7065.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 109px; left: 149px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 727px; height: 550.76px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.46, 0.46);
+-moz-transform: scale(0.46, 0.46);
+transform: scale(0.46, 0.46)">
+<img src="index_files/07y83rO.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">OPA Modes of Operation<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-8 bg-custom-7ed741" data-x="33041.066666666666" data-y="7065.6" data-scale="3" data-z="0" id="step-9" style="position: absolute; transform: translate(-50%, -50%) translate3d(33041.1px, 7065.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">The Language of OPA<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 124px; left: 427px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#4D4C7D">Rego</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 257px; left: 223px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="Fredoka One" color="#ED7D31">- Declarative, Inspired by <b>Datalog</b>...</font></div><div><font face="Fredoka One" color="#ED7D31">&nbsp;&nbsp; ... but understands stuff like JSON<br></font></div><div><font face="Fredoka One" color="#ED7D31"><br></font></div><div><font face="Fredoka One" color="#ED7D31">- Rego is made up of assertions that&nbsp;</font></div><div><font face="Fredoka One" color="#ED7D31">determine policy decisions<br></font></div><div><font face="Fredoka One" color="#ED7D31"><br></font></div><div><font face="Fredoka One" color="#ED7D31">- Quite straightforward to reason with<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-9 bg-custom-7ed741" data-x="36864" data-y="7065.6" data-scale="3" data-z="0" id="step-10" style="position: absolute; transform: translate(-50%, -50%) translate3d(36864px, 7065.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 290px; left: 321px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="Fredoka One" color="#ED7D31">Rego Demo</font><font color="#ED7D31"><br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-10 bg-custom-7ed741" data-x="40686.933333333334" data-y="7065.6" data-scale="3" data-z="0" id="step-11" style="position: absolute; transform: translate(-50%, -50%) translate3d(40686.9px, 7065.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 287px; left: 169px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="Fredoka One" color="#ED7D31">...but this is KubeDay!</font><font color="#ED7D31"><br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-11 bg-custom-7ed741" data-x="44509.86666666667" data-y="7065.6" data-scale="3" data-z="0" id="step-12" style="position: absolute; transform: translate(-50%, -50%) translate3d(44509.9px, 7065.6px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 278px; left: 267px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#ED7D31">OPA + K8s = 🎉<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-12 bg-custom-7ed741" data-x="48332.8" data-y="11366.4" data-scale="3" data-z="0" id="step-13" style="position: absolute; transform: translate(-50%, -50%) translate3d(48332.8px, 11366.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 468px; left: 167px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#4D4C7D">- Kubernetes Native<br></font></div><div align="center"><font face="Fredoka One" color="#4D4C7D"><i>- </i>Backed by OpenPolicyAgent</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">- Prebuilt Library of Common Policies<br></font></div><div align="center"><font face="Fredoka One" color="#4D4C7D"><i><br></i></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 256px; left: 341.33px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<br>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 242px; left: 227px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="Fredoka One" color="#ED7D31">OPA Gatekeeper<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-13 bg-custom-7ed741" data-x="52155.73333333333" data-y="11366.4" data-scale="3" data-z="0" id="step-14" style="position: absolute; transform: translate(-50%, -50%) translate3d(52155.7px, 11366.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 130px; left: 29px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#4D4C7D">kubectl apply -f&nbsp;</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">https://raw.githubusercontent.com/open-policy-agent/</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">gatekeeper/v3.14.0/deploy/gatekeeper.yaml</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 361px; left: 200px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fredoka One" color="#ED7D31">or Helm if you like your Chart.yamls<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Installation as easy as<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 461px; left: 32px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#4D4C7D">helm repo add gatekeeper&nbsp;</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">https://open-policy-agent.github.io/gatekeeper/charts</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D"><br></font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">helm install gatekeeper/gatekeeper&nbsp;</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">--name-template=gatekeeper --namespace&nbsp;</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">gatekeeper-system --create-namespace</font></div><div align="left"><div align="center"><font color="#4D4C7D"><br></font></div><font color="#4D4C7D"><br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-14 bg-custom-7ed741" data-x="55978.666666666664" data-y="11366.4" data-scale="3" data-z="0" id="step-15" style="position: absolute; transform: translate(-50%, -50%) translate3d(55978.7px, 11366.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 37px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">But what does it do?<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 192px; left: 175px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 64px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#ED7D31">Validating Webhook</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">+ Mutating Webhook</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">+ OpenPolicyAgent</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">+ Policy CRDs<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 589px; left: 76px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#4D4C7D">So basically, anytime the K8s API is called, you can&nbsp;</font></div><div align="center"><font face="Fredoka One" color="#4D4C7D">create policy gates and enforce policy decisions<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-15 bg-custom-7ed741" data-x="59801.6" data-y="11366.4" data-scale="3" data-z="0" id="step-16" style="position: absolute; transform: translate(-50%, -50%) translate3d(59801.6px, 11366.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 296px; left: 185px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#ED7D31">Talk is Cheap...</font></div><div align="center"><font face="Fredoka One" color="#ED7D31">Show me the Code!<br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-16 bg-custom-7ed741" data-x="63624.53333333333" data-y="11366.4" data-scale="3" data-z="0" id="step-17" style="position: absolute; transform: translate(-50%, -50%) translate3d(63624.5px, 11366.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 37px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Let's build some policies<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 283px; left: 72px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 38px;" class="antialias">
+<div><font face="Fredoka One" color="#4D4C7D">- Only use internal registry for images</font></div><div><font face="Fredoka One" color="#4D4C7D">- Every K8s Resource should have a "team" label</font></div><div><font face="Fredoka One" color="#4D4C7D">- Every pod should have explicit resource limits</font></div><div><font face="Fredoka One" color="#4D4C7D">- No Container should run as root<br></font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 160px; left: 207px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 72px;" class="antialias">
+<font face="Fredoka One" color="#ED7D31">SudoCorp Policies</font><font color="#ED7D31"><br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-17 bg-custom-7ed741" data-x="67447.46666666666" data-y="11366.4" data-scale="3" data-z="0" id="step-18" style="position: absolute; transform: translate(-50%, -50%) translate3d(67447.5px, 11366.4px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 43px; left: 135px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 735px; height: 698.39px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.36, 0.36);
+-moz-transform: scale(0.36, 0.36);
+transform: scale(0.36, 0.36)">
+<img src="index_files/IdfloHs.png">
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 30px; left: 25px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">What a simple policy looks like<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 702px; left: 334px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fredoka One" color="#4D4C7D">Constraint Template<br></font>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-18 bg-custom-7ed741" data-x="71270.4" data-y="15667.2" data-scale="3" data-z="0" id="step-19" style="position: absolute; transform: translate(-50%, -50%) translate3d(71270.4px, 15667.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-18" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 117px; left: 17px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 1001px; height: 473.13px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.49, 0.49);
+-moz-transform: scale(0.49, 0.49);
+transform: scale(0.49, 0.49)">
+<img src="index_files/Lqqz30Q.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-19 bg-custom-7ed741" data-x="75093.33333333333" data-y="15667.2" data-scale="3" data-z="0" id="step-20" style="position: absolute; transform: translate(-50%, -50%) translate3d(75093.3px, 15667.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-19" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 37px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">What a simple policy looks like<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 78px; left: 194px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 610px; height: 548.77px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.57, 0.57);
+-moz-transform: scale(0.57, 0.57);
+transform: scale(0.57, 0.57)">
+<img src="index_files/DX85CVq.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-20 bg-custom-7ed741" data-x="78916.26666666666" data-y="15667.2" data-scale="3" data-z="0" id="step-21" style="position: absolute; transform: translate(-50%, -50%) translate3d(78916.3px, 15667.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-20" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 559px; left: 117px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 29px;" class="antialias">
+<div align="center"><font face="Fredoka One" color="#4D4C7D">https://open-policy-agent.github.io/gatekeeper-library/</font></div>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 37px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Library of standard OPA Policies</font><font color="#6C5F5B"><br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 623px; left: 329px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 24px;" class="antialias">
+<i><font face="Fredoka One" color="#ED7D31">(always open for contributors)<br></font></i>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 92px; left: 345px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: 334px; height: 421.72px;">
+<div class="transformContainer" style="-webkit-transform: scale(0.56, 0.56);
+-moz-transform: scale(0.56, 0.56);
+transform: scale(0.56, 0.56)">
+<img src="index_files/nOkoP6d.png">
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-21 bg-custom-7ed741" data-x="82739.2" data-y="15667.2" data-scale="3" data-z="0" id="step-22" style="position: absolute; transform: translate(-50%, -50%) translate3d(82739.2px, 15667.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-21" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 26px; left: 36px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#6C5F5B">Best Practices<br></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 124px; left: 73px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<div><font face="Fredoka One" color="#ED7D31">- KISS Principle always works</font></div><div><font face="Fredoka One" color="#ED7D31"><br></font></div><div><font face="Fredoka One" color="#ED7D31">- Deny-by-default is your friend</font></div><div><font face="Fredoka One" color="#ED7D31"><br></font></div><div><font face="Fredoka One" color="#ED7D31">- Logging Policy Decisions allows for Policy Replay</font></div><div><font face="Fredoka One" color="#ED7D31">&nbsp;</font><font face="Fredoka One" color="#4D4C7D">.... Unless you Mutate requests heavily</font></div><div><font face="Fredoka One" color="#ED7D31"><br></font></div><div><font face="Fredoka One" color="#ED7D31">- Everything as Code : Git is your Bus Factor<br></font></div><div><font face="Fredoka One" color="#ED7D31"><br></font></div><div><font face="Fredoka One" color="#ED7D31">- Dev, Ops, Compliance, Security are all facets</font></div><div><font face="Fredoka One" color="#4D4C7D">.... Visibility is key</font><font face="Fredoka One" color="#4D4C7D"><br></font></div>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+		
+			<div class="step future" data-state="strut-slide-22 bg-custom-7ed741" data-x="86562.13333333333" data-y="15667.2" data-scale="3" data-z="0" id="step-23" style="position: absolute; transform: translate(-50%, -50%) translate3d(86562.1px, 15667.2px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3); transform-style: preserve-3d;">
+			<div class="bg-solid-light slideContainer strut-slide-22" style="width: 1024px; height: 768px;">
+			<div class="themedArea">
+			
+			</div>
+			
+			<div class="componentContainer " style="top: 256px; left: 341px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 64px;" class="antialias">
+<font face="'Fredoka One', cursive" color="#ED7D31">Thank You!</font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 335px; left: 315px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<font face="Fredoka One" color="#4D4C7D"><a href="https://twitter.com/navinpai" target="_blank">@navinpai</a> | <a href="https://twitter.com/Opsverse" target="_blank">@opsverse<br></a></font>
+</div>
+</div>
+</div>
+			
+			<div class="componentContainer " style="top: 398px; left: 213px; -webkit-transform:   ; -moz-transform:   ; transform:   ; width: px; height: px;">
+<div class="transformContainer" style="-webkit-transform: scale(1, 1);
+-moz-transform: scale(1, 1);
+transform: scale(1, 1)">
+<div style="font-size: 36px;" class="antialias">
+<a href="https://navinpai.github.io/k8s-opa"><font face="Fredoka One" target="_blank">https://navinpai.github.io/k8s-opa</font></a>
+</div>
+</div>
+</div>
+			
+			</div>
+		
+		</div>
+	
+	<div id="overview" class="step future" data-state="strut-slide-overview" data-x="44509.86666666667" data-y="9216" data-scale="9" data-z="0" style="position: absolute; transform: translate(-50%, -50%) translate3d(44509.9px, 9216px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(9); transform-style: preserve-3d;"></div>
+	
+</div></div>
+
+
+<style>
+.impress-enabled .step {
+    opacity: 0;
+}
+
+.impress-on-overview .step, .impress-enabled .step.active {
+    opacity: 1;
+}
+</style>
+
+
+</div>
+</div></body></html>
