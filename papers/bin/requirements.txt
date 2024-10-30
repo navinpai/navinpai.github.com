@@ -12,6 +12,6 @@ pyppeteer==1.0.2
 requests==2.31.0
 smmap==5.0.0
 tqdm==4.64.1
-urllib3==1.26.14
+urllib3==1.26.18
 websockets==10.4
 zipp==3.14.0
