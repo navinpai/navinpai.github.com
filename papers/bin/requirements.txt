@@ -9,7 +9,7 @@ pdf2image==1.16.2
 Pillow==10.0.1
 pyee==8.2.2
 pyppeteer==1.0.2
-requests==2.31.0
+requests==2.32.2
 smmap==5.0.0
 tqdm==4.64.1
 urllib3==1.26.18
