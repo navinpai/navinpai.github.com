@@ -1,0 +1,646 @@
+<html style="height: 100%;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>From Shadow MCP to Sanctioned MCP | MCP Dev Summit Mumbai - June 2026</title>
+
+<meta name="description" content="From Shadow MCP to Sanctioned MCP: Building an Enterprise Agent Governance Program">
+<meta name="author" content="Navin Pai">
+
+<style>
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+
+.img-placeholder {
+    border: 4px dashed #aaaaaa;
+    color: #999999;
+    font-family: 'Hammersmith One', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+</style>
+
+<link rel="stylesheet" href="index_files/default-reset.css">
+<link href="index_files/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="index_files/default.css" id="theme">
+<link href="index_files/web-fonts.css" rel="stylesheet" type="text/css">
+<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script type="text/javascript" src="index_files/dataset-shim.js"></script>
+<script type="text/javascript" src="index_files/impress.js"></script>
+
+<script src="index_files/onready.js"></script>
+<script src="index_files/loadPresentation.js"></script>
+<script>
+ready(function() {
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();
+    }
+
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML =
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+</head>
+<body class="impress-supported impress-enabled" style="height: 100%; overflow: hidden;">
+
+<!-- Font preload hack (same as other Strut exports) -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="index_files/HammersmithOne.woff">
+<img src="index_files/Lato-Regular.woff">
+<img src="index_files/Lato-Bold.woff">
+<img src="index_files/Droid-Sans-Mono.woff">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg bg-surf-grad-sky strut-surface">
+<div class="bg innerBg strut-slide-0 bg-surf-grad-sky">
+<div id="impress">
+<div>
+
+<!-- ============ Slide 1: Title ============ -->
+<div class="step" data-state="strut-slide-0 bg-surf-grad-sky" data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1">
+<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 130px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 58px;" class="antialias">
+<div align="center"><font face="'Hammersmith One', sans-serif" color="#2a5cf0">From <font color="#b43232">Shadow MCP</font><br>to <font color="#589b1f">Sanctioned MCP</font></font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 320px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 30px;" class="antialias">
+<div align="center"><font face="Hammersmith One">Building an Enterprise Agent Governance Program</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 420px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 28px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#589b1f">Navin Pai · StackGen</font></div>
+<div align="center"><font face="Hammersmith One" color="#b43232">Archana Rajkumar · SentinelOne</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 540px; left: 312px; width: 400px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 400px; height: 110px;">[ image: StackGen + SentinelOne logos ]</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 690px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#888888">MCP Dev Summit Mumbai · June 15, 2026</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 2: You already have an MCP problem ============ -->
+<div class="step" data-state="strut-slide-1 bg-surf-grad-sky" data-x="6297.6" data-y="2764.8" data-scale="3" id="step-2">
+<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">You Already Have an MCP Problem</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 27px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">~2,000 MCP servers</font><font face="Hammersmith One"> found on the public internet —</font></div>
+<div><font face="Hammersmith One">every one sampled answered </font><font face="'Droid Sans Mono', monospace" color="#b43232">tools/list</font><font face="Hammersmith One"> with </font><font face="Hammersmith One" color="#b43232">zero auth</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">79%</font><font face="Hammersmith One"> of IT leaders have found agents deployed outside IT</font></div>
+<div><br></div>
+<div><font face="Hammersmith One">Only </font><font face="Hammersmith One" color="#b43232">~24%</font><font face="Hammersmith One"> of orgs know which agents talk to each other</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 420px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#589b1f">lean startup — velocity is existential</font></div>
+<div align="center"><font face="Hammersmith One" color="#b43232">public security company — scrutiny is existential</font></div>
+<div align="center"><font face="Hammersmith One">same question, very different bosses:</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 580px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 34px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#2a5cf0">"What are our agents allowed to do —<br>and how do we know?"</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 3: Incident reel ============ -->
+<div class="step" data-state="strut-slide-2 bg-surf-grad-sky" data-x="10137.6" data-y="2764.8" data-scale="3" id="step-3">
+<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">2025–26: Not Hypothetical Anymore</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One" color="#f6a11a">Jun '25</font><font face="Hammersmith One"> — Asana MCP leaks data across ~1,000 customer orgs</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#f6a11a">Jul '25</font><font face="Hammersmith One"> — mcp-remote RCE (CVE-2025-6514) · 437k downloads</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#f6a11a">Sep '25</font><font face="Hammersmith One"> — postmark-mcp: first malicious MCP server in the wild.</font></div>
+<div><font face="Hammersmith One">One line of code BCC'd every email</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#f6a11a">Jan '26</font><font face="Hammersmith One"> — OpenClaw: 21,000+ agent instances exposed online</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#f6a11a">May '26</font><font face="Hammersmith One"> — the </font><font face="Hammersmith One" color="#b43232">NSA</font><font face="Hammersmith One"> publishes an MCP security advisory</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 620px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#b43232">Every single one of these passed auth.</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 4: Necessary, not sufficient ============ -->
+<div class="step" data-state="strut-slide-3 bg-surf-grad-sky" data-x="13977.6" data-y="2764.8" data-scale="3" id="step-4">
+<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Auth + Policy Checks: Necessary, Not Sufficient</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 27px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">Rug pulls</font><font face="Hammersmith One"> — tool definitions mutate <i>after</i> approval</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Confused deputy</font><font face="Hammersmith One"> — valid token, wrong authority</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Prompt injection</font><font face="Hammersmith One"> — LLMs can't tell instructions from data</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Multi-agent chains</font><font face="Hammersmith One"> — nobody sees the whole graph</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 440px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 28px;" class="antialias">
+<div align="center"><font face="Hammersmith One">stop asking </font><font face="Hammersmith One" color="#b43232">"Is this tool call allowed?"</font></div>
+<div align="center"><font face="Hammersmith One">start asking </font><font face="Hammersmith One" color="#589b1f">"Do we know what's running,<br>what it can do, and what it did?"</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 630px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 34px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#2a5cf0">Governance is a program, not a checkpoint.</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 5: Seen this movie before ============ -->
+<div class="step" data-state="strut-slide-4 bg-surf-grad-sky" data-x="17817.6" data-y="2764.8" data-scale="3" id="step-5">
+<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">We've Seen This Movie Before</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One">Shadow MCP = </font><font face="Hammersmith One" color="#b43232">Shadow IT, replayed</font></div>
+<div><font face="Hammersmith One">The playbook is known: </font><font face="Hammersmith One" color="#589b1f">discover → catalog → broker → monitor</font></div>
+<div><font face="Hammersmith One">API sprawl → gateways + catalogs. Same arc.</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 250px; left: 62px; width: 500px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One" color="#2a5cf0">What's genuinely new:</font></div>
+<div><font face="Hammersmith One">· callers are non-deterministic</font></div>
+<div><font face="Hammersmith One">· capabilities mutate at runtime</font></div>
+<div><font face="Hammersmith One">· identity: neither user nor service</font></div>
+<div><font face="Hammersmith One">· the input is natural language —<br>&nbsp;&nbsp;so is the attack</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 260px; left: 600px; width: 360px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 360px; height: 240px;">[ image: shadow IT → CASB / API sprawl → gateway timeline analogy ]</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 620px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 30px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#589b1f">You don't need a new religion —<br>adapt one you already practice.</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 6: Maturity model ============ -->
+<div class="step" data-state="strut-slide-5 bg-surf-grad-sky" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
+<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">A Maturity Model for MCP Governance</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">0 · Shadow</font><font face="Hammersmith One"> — "We have no idea what's running."</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#f6a11a">1 · Visibility</font><font face="Hammersmith One"> — "We know every agent, server &amp; connection."</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#f6a11a">2 · Identity</font><font face="Hammersmith One"> — "Every tool call is attributable."</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">3 · Policy</font><font face="Hammersmith One"> — "Every tool call passes a deterministic check."</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">4 · Audit</font><font face="Hammersmith One"> — "We can prove what any agent did —<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and why it was allowed."</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 480px; left: 562px; width: 400px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 400px; height: 200px;">[ image: 5-step staircase diagram, Shadow → Audit ]</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 690px; left: 62px; width: 480px;">
+<div class="transformContainer">
+<div style="font-size: 22px;" class="antialias">
+<font face="Hammersmith One" color="#888888">stages overlap — you never "finish" Stage 1</font>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 7: View from the startup ============ -->
+<div class="step" data-state="strut-slide-6 bg-surf-grad-sky" data-x="21657.6" data-y="6144" data-scale="3" id="step-7">
+<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#589b1f">View From the Startup</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One">Constraint: </font><font face="Hammersmith One" color="#b43232">zero security headcount · governance can't cost velocity</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 30px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#2a5cf0">"Sanctioned in 5 minutes —<br>or developers route around it."</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 310px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 27px;" class="antialias">
+<div><font face="Hammersmith One" color="#589b1f">Defaults over gates</font><font face="Hammersmith One"> — curated registry as the <i>easy</i> path</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">Policy defined once</font><font face="Hammersmith One"> — in config, enforced wherever agents run</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">Audit logs from day one</font><font face="Hammersmith One"> — retrofitting is the expensive part</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 540px; left: 262px; width: 500px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 500px; height: 180px;">[ war story: what StackGen's first scan found — numbers / screenshot ]</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 8: View from the enterprise ============ -->
+<div class="step" data-state="strut-slide-7 bg-surf-grad-sky" data-x="17817.6" data-y="6144" data-scale="3" id="step-8">
+<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#b43232">View From the Enterprise</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One">Constraint: </font><font face="Hammersmith One" color="#b43232">customers, auditors, regulators — defender AND target</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 30px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#2a5cf0">Forrester '26: a major breach<br>will be attributed to an AI agent.</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 310px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 27px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">Tier agents by blast radius</font><font face="Hammersmith One"> — one-size-fits-all backfires</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Breakglass paths</font><font face="Hammersmith One"> — governance must survive incidents</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Map to frameworks</font><font face="Hammersmith One"> — OWASP Agentic Top 10, NIST AI RMF →<br>compliance comes for free</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 560px; left: 262px; width: 500px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 500px; height: 160px;">[ Archana: SentinelOne-side specifics / war story ]</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 9: We converged ============ -->
+<div class="step" data-state="strut-slide-8 bg-surf-grad-sky" data-x="13977.6" data-y="6144" data-scale="3" id="step-9">
+<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Spoiler: We Converged ⚡</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div><font face="Hammersmith One" color="#589b1f">1 · One control plane</font><font face="Hammersmith One"> — centralized policy, distributed enforcement</font></div>
+<div><font face="Hammersmith One" color="#589b1f">2 · Deterministic checks</font><font face="Hammersmith One"> at the tool-call boundary — config, not prompts</font></div>
+<div><font face="Hammersmith One" color="#589b1f">3 · First-class agent identity</font><font face="Hammersmith One"> — short-lived, scoped, attributable</font></div>
+<div><font face="Hammersmith One" color="#589b1f">4 · Append-only audit</font><font face="Hammersmith One"> — tied to identity + decision</font></div>
+<div><font face="Hammersmith One" color="#589b1f">5 · Curated registry</font><font face="Hammersmith One"> — the paved road</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 330px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 30px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#b43232">"Centralize policy, not traffic.<br>We've all seen the ESB movie."</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 450px; left: 312px; width: 400px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 400px; height: 130px;">[ image: logos — PolicyLayer, Microsoft, Cloudflare, Kong, IBM... ]</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 610px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias">
+<div align="center"><font face="Hammersmith One">A startup, a public security co, Microsoft &amp; a dozen vendors<br>built the same thing. Not coincidence — </font><font face="Hammersmith One" color="#2a5cf0">the shape of the problem.</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 10: Still unsolved ============ -->
+<div class="step" data-state="strut-slide-9 bg-surf-grad-sky" data-x="10137.6" data-y="6144" data-scale="3" id="step-10">
+<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Still Unsolved</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 130px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 27px;" class="antialias">
+<div><font face="Hammersmith One" color="#b43232">No signing in the MCP spec</font><font face="Hammersmith One"> — allowlists are name-based.</font></div>
+<div><font face="Hammersmith One">Registry attestation is the next frontier</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Agent→agent chains</font><font face="Hammersmith One"> &amp; sampling-based injection</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#b43232">Standards still catching up</font><font face="Hammersmith One"> — NIST agent profile (Q4 '26),</font></div>
+<div><font face="Hammersmith One">India AI Governance Guidelines, EU AI Act</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 540px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 34px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#589b1f">Buy or build — your <i>model</i><br>has to outlive your tools.</font></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 11: Start Monday ============ -->
+<div class="step" data-state="strut-slide-10 bg-surf-grad-sky" data-x="6297.6" data-y="6144" data-scale="3" id="step-11">
+<div class="bg-solid-light slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="transformContainer">
+<div style="font-size: 36px;" class="antialias">
+<font face="Hammersmith One" color="#2a5cf0">Start Monday</font>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 130px; left: 62px; width: 620px;">
+<div class="transformContainer">
+<div style="font-size: 28px;" class="antialias">
+<div><font face="Hammersmith One" color="#589b1f">This week</font><font face="Hammersmith One"> — inventory. Scan configs.<br>You'll find surprises</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">This month</font><font face="Hammersmith One"> — registry + allowlist<br>as the paved road</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">This quarter</font><font face="Hammersmith One"> — control plane +<br>agent identity</font></div>
+<div><br></div>
+<div><font face="Hammersmith One" color="#589b1f">This year</font><font face="Hammersmith One"> — audit you'd show<br>a regulator</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 220px; left: 712px; width: 250px;">
+<div class="transformContainer">
+<div class="img-placeholder" style="width: 250px; height: 250px;">[ QR code → maturity model one-pager ]</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 12: Thank you ============ -->
+<div class="step" data-state="strut-slide-11 bg-surf-grad-sky" data-x="2457.6" data-y="6144" data-scale="3" id="step-12">
+<div class="bg-solid-light slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 220px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 72px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#2a5cf0">Thank You!</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 370px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 32px;" class="antialias">
+<div align="center"><font face="Hammersmith One" color="#589b1f">In the same boat? Come find us. 😊</font></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 500px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 24px;" class="antialias">
+<div align="center"><a href="https://navinpai.github.io/mcp-governance"><font face="Hammersmith One">https://navinpai.github.io/mcp-governance</font></a></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="overview" class="step" data-x="12057.6" data-y="4454.4" data-scale="9"></div>
+
+</div></div>
+</div>
+</div>
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div></body></html>
