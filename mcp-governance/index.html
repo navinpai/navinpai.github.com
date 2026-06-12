@@ -8,7 +8,33 @@
 <meta name="description" content="From Shadow MCP to Sanctioned MCP: Building an Enterprise Agent Governance Program">
 <meta name="author" content="Navin Pai">
 
+<link rel="stylesheet" href="index_files/default-reset.css">
+<link href="index_files/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="index_files/default.css" id="theme">
+<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+
 <style>
+/* ===== Fonts (bundled locally: works offline) ===== */
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('index_files/SpaceGrotesk.woff2') format('woff2');
+    font-weight: 300 700;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('index_files/Inter.woff2') format('woff2');
+    font-weight: 100 900;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('index_files/JetBrainsMono.woff2') format('woff2');
+    font-weight: 100 800;
+}
+
+/* ===== Theme: bold gradient modern ===== */
+/* navy → purple gradient, cyan = startup, coral = enterprise */
+
 .componentContainer {
     position: absolute;
     line-height: normal;
@@ -25,26 +51,95 @@
     height: 100%;
 }
 
+body, .strut-surface, .innerBg {
+    background: linear-gradient(135deg, #1a1040 0%, #2a1657 55%, #3b1d6e 100%) !important;
+}
+
+.slideContainer {
+    background: transparent !important;
+}
+
+.slide-h {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.slide-h::after {
+    content: '';
+    display: block;
+    width: 130px;
+    height: 6px;
+    margin-top: 12px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #22d3ee, #fb7185);
+}
+
+.body-t {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #eae6f8;
+    line-height: 1.45;
+}
+
+.quote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+.cyan  { color: #22d3ee; }
+.coral { color: #fb7185; }
+.lav   { color: #b8a8ff; }
+.white { color: #ffffff; }
+.muted { color: #8d83b0; }
+.b     { font-weight: 600; }
+
+.grad-text {
+    background: linear-gradient(90deg, #22d3ee, #fb7185);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gap  { margin-bottom: 20px; }
+.gap-s { margin-bottom: 10px; }
+
 .img-placeholder {
-    border: 4px dashed #aaaaaa;
-    color: #999999;
-    font-family: 'Hammersmith One', sans-serif;
+    border: 3px dashed rgba(255, 255, 255, 0.35);
+    border-radius: 12px;
+    color: #b8a8ff;
+    font-family: 'Inter', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 22px;
-    padding: 10px;
+    font-size: 21px;
+    padding: 12px;
     box-sizing: border-box;
 }
-</style>
 
-<link rel="stylesheet" href="index_files/default-reset.css">
-<link href="index_files/main.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="index_files/default.css" id="theme">
-<link href="index_files/web-fonts.css" rel="stylesheet" type="text/css">
-<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
-<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+a, a:visited { color: #22d3ee; text-decoration: none; }
+
+.hint { color: #b8a8ff; }
+
+/* PDF export mode (?export): hide neighboring slides + flatten gradient text,
+   since print rendering shows adjacent steps and breaks background-clip: text */
+body.export .step:not(.active) { visibility: hidden; }
+body.export .step { transition: none !important; opacity: 1 !important; }
+body.export .hint { display: none; }
+body.export .grad-text {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: #22d3ee !important;
+    color: #22d3ee !important;
+}
+</style>
 
 <style>
 .reveal.themedArea {
@@ -65,6 +160,9 @@
 <script src="index_files/loadPresentation.js"></script>
 <script>
 ready(function() {
+    if (new URLSearchParams(location.search).has('export'))
+        document.body.classList.add('export');
+
     if (document.getElementById('launched-placeholder'))
         loadPresentation();
 
@@ -84,10 +182,9 @@ ready(function() {
 
 <!-- Font preload hack (same as other Strut exports) -->
 <div style="visibility: hidden; width: 0px; height: 0px">
-<img src="index_files/HammersmithOne.woff">
-<img src="index_files/Lato-Regular.woff">
-<img src="index_files/Lato-Bold.woff">
-<img src="index_files/Droid-Sans-Mono.woff">
+<img src="index_files/SpaceGrotesk.woff2">
+<img src="index_files/Inter.woff2">
+<img src="index_files/JetBrainsMono.woff2">
 </div>
 
 <div class="fallback-message">
@@ -95,51 +192,59 @@ ready(function() {
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
 </div>
 
-<div class="bg bg-surf-grad-sky strut-surface">
-<div class="bg innerBg strut-slide-0 bg-surf-grad-sky">
+<div class="bg strut-surface">
+<div class="bg innerBg strut-slide-0">
 <div id="impress">
 <div>
 
 <!-- ============ Slide 1: Title ============ -->
-<div class="step" data-state="strut-slide-0 bg-surf-grad-sky" data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1">
-<div class="bg-solid-light slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-0" data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1">
+<div class="slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 130px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 140px; left: 62px; width: 900px;">
 <div class="transformContainer">
-<div style="font-size: 58px;" class="antialias">
-<div align="center"><font face="'Hammersmith One', sans-serif" color="#2a5cf0">From <font color="#b43232">Shadow MCP</font><br>to <font color="#589b1f">Sanctioned MCP</font></font></div>
+<div style="font-size: 62px; text-align: center;" class="antialias quote white">
+<div>From <span class="coral b">Shadow MCP</span></div>
+<div>to <span class="cyan b">Sanctioned MCP</span></div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 320px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 330px; left: 62px; width: 900px;">
 <div class="transformContainer">
-<div style="font-size: 30px;" class="antialias">
-<div align="center"><font face="Hammersmith One">Building an Enterprise Agent Governance Program</font></div>
+<div style="font-size: 34px; text-align: center;" class="antialias quote lav">
+Building an Enterprise Agent Governance Program
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 420px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 435px; left: 62px; width: 900px;">
 <div class="transformContainer">
-<div style="font-size: 28px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#589b1f">Navin Pai · StackGen</font></div>
-<div align="center"><font face="Hammersmith One" color="#b43232">Archana Rajkumar · SentinelOne</font></div>
+<div style="font-size: 28px; display: flex; align-items: baseline;" class="antialias body-t">
+<span class="cyan b" style="flex: 1; text-align: right;">Navin Pai</span>
+<span class="muted" style="width: 60px; text-align: center;">|</span>
+<span class="coral b" style="flex: 1; text-align: left;">Archana Rajkumar</span>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 540px; left: 312px; width: 400px;">
+<div class="componentContainer" style="top: 495px; left: 357px; width: 120px;">
 <div class="transformContainer">
-<div class="img-placeholder" style="width: 400px; height: 110px;">[ image: StackGen + SentinelOne logos ]</div>
+<img src="index_files/stackgen-logo.svg" style="width: 120px; height: auto;" alt="StackGen">
 </div>
 </div>
 
-<div class="componentContainer" style="top: 690px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 495px; left: 579px; width: 156px;">
 <div class="transformContainer">
-<div style="font-size: 24px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#888888">MCP Dev Summit Mumbai · June 15, 2026</font></div>
+<img src="index_files/sentinelone-logo.svg" style="width: 156px; height: auto;" alt="SentinelOne">
+</div>
+</div>
+
+<div class="componentContainer" style="top: 695px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 20px; text-align: center;" class="antialias mono muted">
+MCP Dev Summit Mumbai · June 15, 2026
 </div>
 </div>
 </div>
@@ -148,45 +253,41 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 2: You already have an MCP problem ============ -->
-<div class="step" data-state="strut-slide-1 bg-surf-grad-sky" data-x="6297.6" data-y="2764.8" data-scale="3" id="step-2">
-<div class="bg-solid-light slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-1" data-x="6297.6" data-y="2764.8" data-scale="3" id="step-2">
+<div class="slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">You Already Have an MCP Problem</font>
+<div class="antialias slide-h">You Already Have<br>an MCP Problem</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias body-t">
+<div class="gap"><span class="coral b">~2,000 MCP servers</span> found on the public internet,<br>
+every one sampled answered <span class="mono cyan">tools/list</span> with <span class="coral b">zero auth</span></div>
+<div class="gap"><span class="coral b">79%</span> of IT leaders have found agents deployed outside IT</div>
+<div>Only <span class="coral b">~24%</span> of orgs know which agents talk to each other</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 470px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 27px;" class="antialias">
-<div><font face="Hammersmith One" color="#b43232">~2,000 MCP servers</font><font face="Hammersmith One"> found on the public internet —</font></div>
-<div><font face="Hammersmith One">every one sampled answered </font><font face="'Droid Sans Mono', monospace" color="#b43232">tools/list</font><font face="Hammersmith One"> with </font><font face="Hammersmith One" color="#b43232">zero auth</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">79%</font><font face="Hammersmith One"> of IT leaders have found agents deployed outside IT</font></div>
-<div><br></div>
-<div><font face="Hammersmith One">Only </font><font face="Hammersmith One" color="#b43232">~24%</font><font face="Hammersmith One"> of orgs know which agents talk to each other</font></div>
+<div style="font-size: 24px; text-align: center;" class="antialias body-t">
+<div><span class="cyan">lean startup → velocity is existential</span></div>
+<div><span class="coral">public security company → scrutiny is existential</span></div>
+<div class="lav">same question, very different bosses:</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 420px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 600px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#589b1f">lean startup — velocity is existential</font></div>
-<div align="center"><font face="Hammersmith One" color="#b43232">public security company — scrutiny is existential</font></div>
-<div align="center"><font face="Hammersmith One">same question, very different bosses:</font></div>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 580px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 34px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#2a5cf0">"What are our agents allowed to do —<br>and how do we know?"</font></div>
+<div style="font-size: 34px; text-align: center;" class="antialias quote white">
+"What are our agents allowed to do…<br>and how do we know?"
 </div>
 </div>
 </div>
@@ -195,39 +296,32 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 3: Incident reel ============ -->
-<div class="step" data-state="strut-slide-2 bg-surf-grad-sky" data-x="10137.6" data-y="2764.8" data-scale="3" id="step-3">
-<div class="bg-solid-light slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-2" data-x="10137.6" data-y="2764.8" data-scale="3" id="step-3">
+<div class="slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">2025–26: Not Hypothetical Anymore</font>
+<div class="antialias slide-h">2025–26: Not<br>Hypothetical Anymore</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 25px;" class="antialias body-t">
+<div class="gap-s"><span class="mono cyan">Jun '25</span> · Asana MCP leaks data across ~1,000 customer orgs</div>
+<div class="gap-s"><span class="mono cyan">Jul '25</span> · mcp-remote RCE <span class="mono lav">(CVE-2025-6514)</span> · 437k downloads</div>
+<div class="gap-s"><span class="mono cyan">Sep '25</span> · <span class="mono lav">postmark-mcp</span>: first malicious MCP server in the wild. One line of code BCC'd every email</div>
+<div class="gap-s"><span class="mono cyan">Jan '26</span> · OpenClaw: 21,000+ agent instances exposed online</div>
+<div><span class="mono cyan">May '26</span> · the <span class="coral b">NSA</span> publishes an MCP security advisory</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 600px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One" color="#f6a11a">Jun '25</font><font face="Hammersmith One"> — Asana MCP leaks data across ~1,000 customer orgs</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#f6a11a">Jul '25</font><font face="Hammersmith One"> — mcp-remote RCE (CVE-2025-6514) · 437k downloads</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#f6a11a">Sep '25</font><font face="Hammersmith One"> — postmark-mcp: first malicious MCP server in the wild.</font></div>
-<div><font face="Hammersmith One">One line of code BCC'd every email</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#f6a11a">Jan '26</font><font face="Hammersmith One"> — OpenClaw: 21,000+ agent instances exposed online</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#f6a11a">May '26</font><font face="Hammersmith One"> — the </font><font face="Hammersmith One" color="#b43232">NSA</font><font face="Hammersmith One"> publishes an MCP security advisory</font></div>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 620px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#b43232">Every single one of these passed auth.</font></div>
+<div style="font-size: 38px; text-align: center;" class="antialias quote coral">
+Every single one of these passed auth.
 </div>
 </div>
 </div>
@@ -236,45 +330,40 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 4: Necessary, not sufficient ============ -->
-<div class="step" data-state="strut-slide-3 bg-surf-grad-sky" data-x="13977.6" data-y="2764.8" data-scale="3" id="step-4">
-<div class="bg-solid-light slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-3" data-x="13977.6" data-y="2764.8" data-scale="3" id="step-4">
+<div class="slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">Auth + Policy Checks: Necessary, Not Sufficient</font>
+<div class="antialias slide-h">Auth + Policy Checks:<br>Necessary, Not Sufficient</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 26px;" class="antialias body-t">
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Rug pulls</span>: tool definitions mutate <i>after</i> approval</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Confused deputy</span>: valid token, wrong authority</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Prompt injection</span>: LLMs can't tell instructions from data</div>
+<div><span class="coral">◆</span> <span class="coral b">Multi-agent chains</span>: nobody sees the whole graph</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 460px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 27px;" class="antialias">
-<div><font face="Hammersmith One" color="#b43232">Rug pulls</font><font face="Hammersmith One"> — tool definitions mutate <i>after</i> approval</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Confused deputy</font><font face="Hammersmith One"> — valid token, wrong authority</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Prompt injection</font><font face="Hammersmith One"> — LLMs can't tell instructions from data</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Multi-agent chains</font><font face="Hammersmith One"> — nobody sees the whole graph</font></div>
+<div style="font-size: 27px; text-align: center;" class="antialias body-t">
+<div>stop asking <span class="coral">"Is this tool call allowed?"</span></div>
+<div>start asking <span class="cyan">"Do we know what's running,<br>what it can do, and what it did?"</span></div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 440px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 630px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 28px;" class="antialias">
-<div align="center"><font face="Hammersmith One">stop asking </font><font face="Hammersmith One" color="#b43232">"Is this tool call allowed?"</font></div>
-<div align="center"><font face="Hammersmith One">start asking </font><font face="Hammersmith One" color="#589b1f">"Do we know what's running,<br>what it can do, and what it did?"</font></div>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 630px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 34px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#2a5cf0">Governance is a program, not a checkpoint.</font></div>
+<div style="font-size: 34px; text-align: center;" class="antialias quote white">
+Governance is a <span class="grad-text b">program</span>, not a checkpoint.
 </div>
 </div>
 </div>
@@ -283,50 +372,78 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 5: Seen this movie before ============ -->
-<div class="step" data-state="strut-slide-4 bg-surf-grad-sky" data-x="17817.6" data-y="2764.8" data-scale="3" id="step-5">
-<div class="bg-solid-light slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-4" data-x="17817.6" data-y="2764.8" data-scale="3" id="step-5">
+<div class="slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">We've Seen This Movie Before</font>
+<div class="antialias slide-h">We've Seen This<br>Movie Before</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 25px;" class="antialias body-t">
+<div>Shadow MCP = <span class="coral b">Shadow IT, replayed</span></div>
+<div>The playbook is known: <span class="cyan">discover → catalog → broker → monitor</span></div>
+<div>API sprawl → gateways + catalogs. Same arc.</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 390px; left: 60px; width: 480px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One">Shadow MCP = </font><font face="Hammersmith One" color="#b43232">Shadow IT, replayed</font></div>
-<div><font face="Hammersmith One">The playbook is known: </font><font face="Hammersmith One" color="#589b1f">discover → catalog → broker → monitor</font></div>
-<div><font face="Hammersmith One">API sprawl → gateways + catalogs. Same arc.</font></div>
+<div style="font-size: 25px;" class="antialias body-t">
+<div class="white b gap-s">What's genuinely new:</div>
+<div><span class="cyan">◆</span> callers are non-deterministic</div>
+<div><span class="cyan">◆</span> capabilities mutate at runtime</div>
+<div><span class="cyan">◆</span> identity: neither user nor service</div>
+<div><span class="cyan">◆</span> the input is natural language…<br>&nbsp;&nbsp;&nbsp;so is the attack</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 250px; left: 62px; width: 500px;">
+<div class="componentContainer" style="top: 390px; left: 600px; width: 364px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One" color="#2a5cf0">What's genuinely new:</font></div>
-<div><font face="Hammersmith One">· callers are non-deterministic</font></div>
-<div><font face="Hammersmith One">· capabilities mutate at runtime</font></div>
-<div><font face="Hammersmith One">· identity: neither user nor service</font></div>
-<div><font face="Hammersmith One">· the input is natural language —<br>&nbsp;&nbsp;so is the attack</font></div>
-</div>
+<svg width="364" height="236" viewBox="0 0 364 236" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 Z" fill="#8d83b0"/>
+</marker>
+</defs>
+<text x="78" y="18" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#fb7185">UNGOVERNED</text>
+<text x="286" y="18" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#22d3ee">GOVERNED</text>
+
+<rect x="4" y="36" width="148" height="34" rx="8" fill="rgba(251,113,133,0.12)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="78" y="57" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#eae6f8">Shadow SaaS · 2010s</text>
+<line x1="160" y1="53" x2="202" y2="53" stroke="#8d83b0" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<rect x="212" y="36" width="148" height="34" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="286" y="57" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#eae6f8">CASB + SSO</text>
+
+<rect x="4" y="88" width="148" height="34" rx="8" fill="rgba(251,113,133,0.12)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="78" y="109" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#eae6f8">API sprawl · 2015s</text>
+<line x1="160" y1="105" x2="202" y2="105" stroke="#8d83b0" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<rect x="212" y="88" width="148" height="34" rx="8" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="286" y="109" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#eae6f8">Gateways + catalogs</text>
+
+<rect x="4" y="140" width="148" height="34" rx="8" fill="rgba(251,113,133,0.22)" stroke="#fb7185" stroke-width="2.5"/>
+<text x="78" y="161" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff">Shadow MCP · now</text>
+<line x1="160" y1="157" x2="202" y2="157" stroke="#8d83b0" stroke-width="2" marker-end="url(#arrowhead)"/>
+<rect x="212" y="140" width="148" height="34" rx="8" fill="rgba(34,211,238,0.22)" stroke="#22d3ee" stroke-width="2.5"/>
+<text x="286" y="161" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#ffffff">Control plane</text>
+<text x="78" y="192" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-style="italic" fill="#fb7185">▲ you are here</text>
+<text x="286" y="192" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-style="italic" fill="#22d3ee">▲ you want to be here</text>
+
+<text x="182" y="230" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-style="italic" fill="#b8a8ff">same playbook, new protocol</text>
+</svg>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 260px; left: 600px; width: 360px;">
+<div class="componentContainer" style="top: 660px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="img-placeholder" style="width: 360px; height: 240px;">[ image: shadow IT → CASB / API sprawl → gateway timeline analogy ]</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 620px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 30px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#589b1f">You don't need a new religion —<br>adapt one you already practice.</font></div>
+<div style="font-size: 30px; text-align: center;" class="antialias quote cyan">
+You don't need a new religion: adapt one you already practice.
 </div>
 </div>
 </div>
@@ -335,44 +452,66 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 6: Maturity model ============ -->
-<div class="step" data-state="strut-slide-5 bg-surf-grad-sky" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
-<div class="bg-solid-light slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-5" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
+<div class="slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">A Maturity Model for MCP Governance</font>
+<div class="antialias slide-h">A Maturity Model<br>for MCP Governance</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 25px;" class="antialias body-t">
+<div class="gap-s"><span class="mono coral b">0 · Shadow</span>: "We have no idea what's running."</div>
+<div class="gap-s"><span class="mono lav b">1 · Visibility</span>: "We know every agent, server &amp; connection."</div>
+<div class="gap-s"><span class="mono lav b">2 · Identity</span>: "Every tool call is attributable."</div>
+<div class="gap-s"><span class="mono cyan b">3 · Policy</span>: "Every tool call passes a deterministic check."</div>
+<div><span class="mono cyan b">4 · Audit</span>: "We can prove what any agent did…<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and why it was allowed."</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 110px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 510px; left: 562px; width: 402px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One" color="#b43232">0 · Shadow</font><font face="Hammersmith One"> — "We have no idea what's running."</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#f6a11a">1 · Visibility</font><font face="Hammersmith One"> — "We know every agent, server &amp; connection."</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#f6a11a">2 · Identity</font><font face="Hammersmith One"> — "Every tool call is attributable."</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">3 · Policy</font><font face="Hammersmith One"> — "Every tool call passes a deterministic check."</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">4 · Audit</font><font face="Hammersmith One"> — "We can prove what any agent did —<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and why it was allowed."</font></div>
-</div>
+<svg width="402" height="190" viewBox="0 0 402 190" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrowhead2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 Z" fill="#8d83b0"/>
+</marker>
+</defs>
+
+<line x1="24" y1="138" x2="368" y2="22" stroke="#8d83b0" stroke-width="1.5" stroke-dasharray="5,5" marker-end="url(#arrowhead2)"/>
+
+<rect x="2" y="146" width="76" height="36" rx="6" fill="rgba(251,113,133,0.22)" stroke="#fb7185" stroke-width="2"/>
+<text x="40" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#fb7185">SHADOW</text>
+<text x="40" y="169" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" fill="#fb7185">0</text>
+
+<rect x="80" y="118" width="76" height="64" rx="6" fill="rgba(184,168,255,0.15)" stroke="#b8a8ff" stroke-width="1.5"/>
+<text x="118" y="112" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#b8a8ff">VISIBILITY</text>
+<text x="118" y="141" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" fill="#b8a8ff">1</text>
+
+<rect x="158" y="90" width="76" height="92" rx="6" fill="rgba(184,168,255,0.15)" stroke="#b8a8ff" stroke-width="1.5"/>
+<text x="196" y="84" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#b8a8ff">IDENTITY</text>
+<text x="196" y="113" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" fill="#b8a8ff">2</text>
+
+<rect x="236" y="62" width="76" height="120" rx="6" fill="rgba(34,211,238,0.15)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="274" y="56" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#22d3ee">POLICY</text>
+<text x="274" y="85" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" fill="#22d3ee">3</text>
+
+<rect x="314" y="34" width="76" height="148" rx="6" fill="rgba(34,211,238,0.22)" stroke="#22d3ee" stroke-width="2"/>
+<text x="352" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#22d3ee">AUDIT</text>
+<text x="352" y="57" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" fill="#22d3ee">4</text>
+</svg>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 480px; left: 562px; width: 400px;">
+<div class="componentContainer" style="top: 690px; left: 60px; width: 480px;">
 <div class="transformContainer">
-<div class="img-placeholder" style="width: 400px; height: 200px;">[ image: 5-step staircase diagram, Shadow → Audit ]</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 690px; left: 62px; width: 480px;">
-<div class="transformContainer">
-<div style="font-size: 22px;" class="antialias">
-<font face="Hammersmith One" color="#888888">stages overlap — you never "finish" Stage 1</font>
+<div style="font-size: 21px;" class="antialias body-t muted">
+stages overlap: you never "finish" Stage 1
 </div>
 </div>
 </div>
@@ -381,49 +520,40 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 7: View from the startup ============ -->
-<div class="step" data-state="strut-slide-6 bg-surf-grad-sky" data-x="21657.6" data-y="6144" data-scale="3" id="step-7">
-<div class="bg-solid-light slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-6" data-x="21657.6" data-y="6144" data-scale="3" id="step-7">
+<div class="slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#589b1f">View From the Startup</font>
+<div class="antialias slide-h cyan" style="color: #22d3ee;">View From<br>the Startup</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 220px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 25px;" class="antialias body-t">
+<div class="gap-s">Constraint: <span class="coral b">zero security headcount · governance can't cost velocity</span></div>
+<div>Reality: <span class="cyan b">our customers are enterprises → governance IS the product</span></div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 330px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One">Constraint: </font><font face="Hammersmith One" color="#b43232">zero security headcount · governance can't cost velocity</font></div>
+<div style="font-size: 30px; text-align: center;" class="antialias quote white">
+"Sanctioned in 5 minutes,<br>or developers route around it."
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 445px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 30px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#2a5cf0">"Sanctioned in 5 minutes —<br>or developers route around it."</font></div>
+<div style="font-size: 26px;" class="antialias body-t">
+<div class="gap-s"><span class="cyan">◆</span> <span class="cyan b">Defaults over gates</span>: curated registry as the <i>easy</i> path</div>
+<div class="gap-s"><span class="cyan">◆</span> <span class="cyan b">Policy defined once</span>: in config, enforced wherever agents run</div>
+<div><span class="cyan">◆</span> <span class="cyan b">Audit logs from day one</span>: retrofitting is the expensive part</div>
 </div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 310px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 27px;" class="antialias">
-<div><font face="Hammersmith One" color="#589b1f">Defaults over gates</font><font face="Hammersmith One"> — curated registry as the <i>easy</i> path</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">Policy defined once</font><font face="Hammersmith One"> — in config, enforced wherever agents run</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">Audit logs from day one</font><font face="Hammersmith One"> — retrofitting is the expensive part</font></div>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 540px; left: 262px; width: 500px;">
-<div class="transformContainer">
-<div class="img-placeholder" style="width: 500px; height: 180px;">[ war story: what StackGen's first scan found — numbers / screenshot ]</div>
 </div>
 </div>
 
@@ -431,49 +561,40 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 8: View from the enterprise ============ -->
-<div class="step" data-state="strut-slide-7 bg-surf-grad-sky" data-x="17817.6" data-y="6144" data-scale="3" id="step-8">
-<div class="bg-solid-light slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-7" data-x="17817.6" data-y="6144" data-scale="3" id="step-8">
+<div class="slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#b43232">View From the Enterprise</font>
+<div class="antialias slide-h" style="color: #fb7185;">View From<br>the Enterprise</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 25px;" class="antialias body-t">
+Constraint: <span class="coral b">customers, auditors, regulators: defender AND target</span>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 300px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One">Constraint: </font><font face="Hammersmith One" color="#b43232">customers, auditors, regulators — defender AND target</font></div>
+<div style="font-size: 30px; text-align: center;" class="antialias quote white">
+Forrester '26: a major breach<br>will be attributed to an AI agent.
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 430px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 30px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#2a5cf0">Forrester '26: a major breach<br>will be attributed to an AI agent.</font></div>
+<div style="font-size: 26px;" class="antialias body-t">
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Tier agents by blast radius</span>: one-size-fits-all backfires</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Breakglass paths</span>: governance must survive incidents</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Watch the endpoint too</span>: agents are processes…<br>&nbsp;&nbsp;&nbsp;EDR-style behavior detection backs the protocol boundary</div>
+<div><span class="coral">◆</span> <span class="coral b">Map to frameworks</span>: OWASP Agentic Top 10, NIST AI RMF →<br>&nbsp;&nbsp;&nbsp;compliance comes for free</div>
 </div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 310px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 27px;" class="antialias">
-<div><font face="Hammersmith One" color="#b43232">Tier agents by blast radius</font><font face="Hammersmith One"> — one-size-fits-all backfires</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Breakglass paths</font><font face="Hammersmith One"> — governance must survive incidents</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Map to frameworks</font><font face="Hammersmith One"> — OWASP Agentic Top 10, NIST AI RMF →<br>compliance comes for free</font></div>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 560px; left: 262px; width: 500px;">
-<div class="transformContainer">
-<div class="img-placeholder" style="width: 500px; height: 160px;">[ Archana: SentinelOne-side specifics / war story ]</div>
 </div>
 </div>
 
@@ -481,48 +602,32 @@ ready(function() {
 </div>
 
 <!-- ============ Slide 9: We converged ============ -->
-<div class="step" data-state="strut-slide-8 bg-surf-grad-sky" data-x="13977.6" data-y="6144" data-scale="3" id="step-9">
-<div class="bg-solid-light slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-8" data-x="13977.6" data-y="6144" data-scale="3" id="step-9">
+<div class="slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">Spoiler: We Converged ⚡</font>
-</div>
+<div class="antialias slide-h">Spoiler:<br>We Converged ⚡</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 100px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div><font face="Hammersmith One" color="#589b1f">1 · One control plane</font><font face="Hammersmith One"> — centralized policy, distributed enforcement</font></div>
-<div><font face="Hammersmith One" color="#589b1f">2 · Deterministic checks</font><font face="Hammersmith One"> at the tool-call boundary — config, not prompts</font></div>
-<div><font face="Hammersmith One" color="#589b1f">3 · First-class agent identity</font><font face="Hammersmith One"> — short-lived, scoped, attributable</font></div>
-<div><font face="Hammersmith One" color="#589b1f">4 · Append-only audit</font><font face="Hammersmith One"> — tied to identity + decision</font></div>
-<div><font face="Hammersmith One" color="#589b1f">5 · Curated registry</font><font face="Hammersmith One"> — the paved road</font></div>
+<div style="font-size: 27px;" class="antialias quote lav">
+Two wildly different orgs. The same five primitives.
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 330px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 320px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 30px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#b43232">"Centralize policy, not traffic.<br>We've all seen the ESB movie."</font></div>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 450px; left: 312px; width: 400px;">
-<div class="transformContainer">
-<div class="img-placeholder" style="width: 400px; height: 130px;">[ image: logos — PolicyLayer, Microsoft, Cloudflare, Kong, IBM... ]</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 610px; left: 62px; width: 900px;">
-<div class="transformContainer">
-<div style="font-size: 26px;" class="antialias">
-<div align="center"><font face="Hammersmith One">A startup, a public security co, Microsoft &amp; a dozen vendors<br>built the same thing. Not coincidence — </font><font face="Hammersmith One" color="#2a5cf0">the shape of the problem.</font></div>
+<div style="font-size: 27px;" class="antialias body-t">
+<div class="gap"><span class="mono cyan b">1</span> <span class="cyan b">One control plane</span>: centralized policy, distributed enforcement</div>
+<div class="gap"><span class="mono cyan b">2</span> <span class="cyan b">Deterministic checks</span> at the tool-call boundary: config, not prompts</div>
+<div class="gap"><span class="mono cyan b">3</span> <span class="cyan b">First-class agent identity</span>: short-lived, scoped, attributable</div>
+<div class="gap"><span class="mono cyan b">4</span> <span class="cyan b">Append-only audit</span>: tied to identity + decision</div>
+<div><span class="mono cyan b">5</span> <span class="cyan b">Curated registry</span>: the paved road</div>
 </div>
 </div>
 </div>
@@ -530,37 +635,55 @@ ready(function() {
 </div>
 </div>
 
-<!-- ============ Slide 10: Still unsolved ============ -->
-<div class="step" data-state="strut-slide-9 bg-surf-grad-sky" data-x="10137.6" data-y="6144" data-scale="3" id="step-10">
-<div class="bg-solid-light slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 10: Centralize policy, not traffic ============ -->
+<div class="step" data-state="strut-slide-9" data-x="10137.6" data-y="6144" data-scale="3" id="step-10">
+<div class="slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">Still Unsolved</font>
-</div>
+<div class="antialias slide-h">Centralize Policy,<br>Not Traffic</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 130px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 225px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 27px;" class="antialias">
-<div><font face="Hammersmith One" color="#b43232">No signing in the MCP spec</font><font face="Hammersmith One"> — allowlists are name-based.</font></div>
-<div><font face="Hammersmith One">Registry attestation is the next frontier</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Agent→agent chains</font><font face="Hammersmith One"> &amp; sampling-based injection</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#b43232">Standards still catching up</font><font face="Hammersmith One"> — NIST agent profile (Q4 '26),</font></div>
-<div><font face="Hammersmith One">India AI Governance Guidelines, EU AI Act</font></div>
+<div style="font-size: 25px;" class="antialias body-t">
+One policy source of truth, <span class="white b">enforced at every boundary</span>:
+<div class="gap-s" style="margin-top: 14px;"><span class="cyan">◆</span> <span class="cyan b">Network gateway</span>: remote MCP servers</div>
+<div class="gap-s"><span class="cyan">◆</span> <span class="cyan b">Managed client config</span>: IDE &amp; desktop agents</div>
+<div class="gap-s"><span class="cyan">◆</span> <span class="cyan b">Sandbox wrappers</span>: local stdio servers… no gateway will ever see them</div>
+<div><span class="cyan">◆</span> <span class="cyan b">Even the OS</span>: Windows 11 MCP → signed registry + trusted proxy</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 540px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 480px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 34px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#589b1f">Buy or build — your <i>model</i><br>has to outlive your tools.</font></div>
+<div style="font-size: 29px; text-align: center;" class="antialias quote coral">
+"We've all seen the ESB movie. The gateway that<br>sees everything is the gateway that breaks everything."
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 600px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; align-items: center; justify-content: center; gap: 38px; width: 904px; opacity: 0.85;">
+<img src="index_files/microsoft-logo.svg" style="height: 24px;" alt="Microsoft">
+<span style="display: flex; align-items: center; gap: 8px;"><img src="index_files/cloudflare-logo.svg" style="height: 28px;" alt=""><span class="antialias body-t white b" style="font-size: 21px;">Cloudflare</span></span>
+<span style="display: flex; align-items: center; gap: 8px;"><img src="index_files/kong-logo.svg" style="height: 26px;" alt=""><span class="antialias body-t white b" style="font-size: 21px;">Kong</span></span>
+<img src="index_files/ibm-logo.svg" style="height: 26px;" alt="IBM">
+<span class="antialias body-t white b" style="font-size: 21px;">PolicyLayer</span>
+<span class="antialias body-t white b" style="font-size: 21px;">LiteLLM</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 658px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 23px; text-align: center;" class="antialias body-t">
+A startup, a public security co, Microsoft &amp; a dozen vendors built the same thing.<br>
+Not coincidence: <span class="white b">the shape of the problem.</span>
 </div>
 </div>
 </div>
@@ -568,67 +691,85 @@ ready(function() {
 </div>
 </div>
 
-<!-- ============ Slide 11: Start Monday ============ -->
-<div class="step" data-state="strut-slide-10 bg-surf-grad-sky" data-x="6297.6" data-y="6144" data-scale="3" id="step-11">
-<div class="bg-solid-light slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 11: Still unsolved ============ -->
+<div class="step" data-state="strut-slide-10" data-x="6297.6" data-y="6144" data-scale="3" id="step-11">
+<div class="slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 20px; left: 26px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 36px;" class="antialias">
-<font face="Hammersmith One" color="#2a5cf0">Start Monday</font>
-</div>
+<div class="antialias slide-h">Still Unsolved</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 130px; left: 62px; width: 620px;">
+<div class="componentContainer" style="top: 180px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 28px;" class="antialias">
-<div><font face="Hammersmith One" color="#589b1f">This week</font><font face="Hammersmith One"> — inventory. Scan configs.<br>You'll find surprises</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">This month</font><font face="Hammersmith One"> — registry + allowlist<br>as the paved road</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">This quarter</font><font face="Hammersmith One"> — control plane +<br>agent identity</font></div>
-<div><br></div>
-<div><font face="Hammersmith One" color="#589b1f">This year</font><font face="Hammersmith One"> — audit you'd show<br>a regulator</font></div>
+<div style="font-size: 23px;" class="antialias body-t">
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">No signing in the MCP spec</span>: registry verifies namespaces now,<br>&nbsp;&nbsp;&nbsp;but artifact signing &amp; attestation are still the frontier</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">No identity propagation</span>: "on whose behalf?" is lost one hop in.<br>&nbsp;&nbsp;&nbsp;The '26 roadmap: enterprise auth via extensions, not core</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">No audit standard</span>: OTel traces ≠ regulator-grade, tamper-evident audit</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Tool shadowing</span>: no namespacing, a rogue server hijacks a trusted one</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Agent→agent chains</span> &amp; sampling injection: sampling can now call tools</div>
+<div class="gap-s"><span class="coral">◆</span> <span class="coral b">Policy can't judge semantics</span>: LLM judges, eBPF, honeypots</div>
+<div><span class="coral">◆</span> <span class="coral b">Standards catching up</span>: NIST agent overlays, India AI Guidelines,<br>&nbsp;&nbsp;&nbsp;EU AI Act (high-risk slipping to Dec '27, provisionally agreed)</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 220px; left: 712px; width: 250px;">
+<div class="componentContainer" style="top: 580px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="img-placeholder" style="width: 250px; height: 250px;">[ QR code → maturity model one-pager ]</div>
+<div style="font-size: 36px; text-align: center;" class="antialias quote">
+<span class="white">Buy or build: your <span class="grad-text b">model</span><br>has to outlive your tools.</span>
+</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 12: Thank you ============ -->
-<div class="step" data-state="strut-slide-11 bg-surf-grad-sky" data-x="2457.6" data-y="6144" data-scale="3" id="step-12">
-<div class="bg-solid-light slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 12: Start Monday (CTA) ============ -->
+<div class="step" data-state="strut-slide-11" data-x="2457.6" data-y="6144" data-scale="3" id="step-12">
+<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 220px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 40px; left: 60px;">
 <div class="transformContainer">
-<div style="font-size: 72px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#2a5cf0">Thank You!</font></div>
-</div>
+<div class="antialias slide-h">Start Monday</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 370px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 220px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 32px;" class="antialias">
-<div align="center"><font face="Hammersmith One" color="#589b1f">In the same boat? Come find us. 😊</font></div>
+<div style="display: flex; gap: 18px; width: 904px;">
+<div style="flex: 1; border: 1px solid rgba(255,255,255,0.18); border-top: 4px solid #22d3ee; border-radius: 12px; padding: 18px 16px; background: rgba(255,255,255,0.04);">
+<div class="antialias mono b" style="font-size: 15px; color: #22d3ee; letter-spacing: 2px;">THIS WEEK</div>
+<div class="antialias body-t white b" style="font-size: 24px; margin-top: 10px;">Inventory</div>
+<div class="antialias body-t" style="font-size: 17px; color: #b8a8ff; margin-top: 8px;">scan configs, count the surprises</div>
+</div>
+<div style="flex: 1; border: 1px solid rgba(255,255,255,0.18); border-top: 4px solid #6ab8f4; border-radius: 12px; padding: 18px 16px; background: rgba(255,255,255,0.04);">
+<div class="antialias mono b" style="font-size: 15px; color: #6ab8f4; letter-spacing: 2px;">THIS MONTH</div>
+<div class="antialias body-t white b" style="font-size: 24px; margin-top: 10px;">Registry</div>
+<div class="antialias body-t" style="font-size: 17px; color: #b8a8ff; margin-top: 8px;">make sanctioned the easy path</div>
+</div>
+<div style="flex: 1; border: 1px solid rgba(255,255,255,0.18); border-top: 4px solid #b58cef; border-radius: 12px; padding: 18px 16px; background: rgba(255,255,255,0.04);">
+<div class="antialias mono b" style="font-size: 15px; color: #b58cef; letter-spacing: 2px;">THIS QUARTER</div>
+<div class="antialias body-t white b" style="font-size: 24px; margin-top: 10px;">Control plane</div>
+<div class="antialias body-t" style="font-size: 17px; color: #b8a8ff; margin-top: 8px;">one policy, every boundary, agent identity</div>
+</div>
+<div style="flex: 1; border: 1px solid rgba(255,255,255,0.18); border-top: 4px solid #fb7185; border-radius: 12px; padding: 18px 16px; background: rgba(255,255,255,0.04);">
+<div class="antialias mono b" style="font-size: 15px; color: #fb7185; letter-spacing: 2px;">THIS YEAR</div>
+<div class="antialias body-t white b" style="font-size: 24px; margin-top: 10px;">Provable audit</div>
+<div class="antialias body-t" style="font-size: 17px; color: #b8a8ff; margin-top: 8px;">what any agent did, and why it was allowed</div>
+</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 500px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 530px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 24px;" class="antialias">
-<div align="center"><a href="https://navinpai.github.io/mcp-governance"><font face="Hammersmith One">https://navinpai.github.io/mcp-governance</font></a></div>
+<div style="font-size: 40px; text-align: center;" class="antialias quote">
+<span class="white">Shadow MCP is already in your org.</span><br>
+<span class="grad-text b">Go look.</span>
 </div>
 </div>
 </div>
@@ -636,7 +777,55 @@ ready(function() {
 </div>
 </div>
 
-<div id="overview" class="step" data-x="12057.6" data-y="4454.4" data-scale="9"></div>
+<!-- ============ Slide 13: Thank you ============ -->
+<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
+<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 70px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 72px; text-align: center;" class="antialias quote b grad-text">
+Thank You!
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 195px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: center;">
+<img src="index_files/feedback-qr.png" style="width: 280px; background: #ffffff; border-radius: 14px; padding: 10px;" alt="Feedback QR code">
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 530px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px; text-align: center;" class="antialias body-t cyan b">
+Scan to share feedback
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 590px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 30px; text-align: center;" class="antialias quote white">
+In the same boat? Come find us. 😊
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 665px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 22px; text-align: center;" class="antialias mono">
+<a href="https://navinpai.github.io/mcp-governance">navinpai.github.io/mcp-governance</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="overview" class="step" data-x="12057.6" data-y="6144" data-scale="12"></div>
 
 </div></div>
 </div>
