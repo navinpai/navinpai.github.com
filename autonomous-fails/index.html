@@ -1,0 +1,1029 @@
+<html style="height: 100%;"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Autopsy of an Autonomous Incident | When the Agent Made It Worse</title>
+
+<meta name="description" content="Autopsy of an Autonomous Incident: When the Agent Made It Worse — 10 case files of AI SRE tools gone wrong">
+<meta name="author" content="Navin Pai">
+
+<link rel="stylesheet" href="index_files/default-reset.css">
+<link href="index_files/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="index_files/default.css" id="theme">
+<link href="index_files/backgroundClasses.css" rel="stylesheet" type="text/css">
+<link href="index_files/surfaceClasses.css" rel="stylesheet" type="text/css">
+
+<style>
+/* ===== Fonts (bundled locally: works offline) ===== */
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('index_files/SpaceGrotesk.woff2') format('woff2');
+    font-weight: 300 700;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('index_files/Inter.woff2') format('woff2');
+    font-weight: 100 900;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('index_files/JetBrainsMono.woff2') format('woff2');
+    font-weight: 100 800;
+}
+
+/* ===== Theme: terminal autopsy ===== */
+/* near-black CRT, phosphor green, hazard yellow labels, alarm red verdicts */
+
+.componentContainer {
+    position: absolute;
+    line-height: normal;
+}
+
+.transformContainer {
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+}
+
+body, .strut-surface, .innerBg {
+    background:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.22) 0px, rgba(0, 0, 0, 0.22) 1px, transparent 1px, transparent 4px),
+        radial-gradient(ellipse at 50% 40%, #0d140e 0%, #070b08 75%) !important;
+}
+
+.slideContainer {
+    background: transparent !important;
+}
+
+.slide-h {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    color: #d9ffe4;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 18px rgba(51, 255, 102, 0.35);
+}
+.slide-h::after {
+    content: '';
+    display: block;
+    width: 130px;
+    height: 6px;
+    margin-top: 12px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #33ff66, #ffd21f);
+}
+
+.body-t {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    color: #c9f5d3;
+    line-height: 1.45;
+}
+
+.quote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.mono  { font-family: 'JetBrains Mono', monospace; }
+.sans  { font-family: 'Inter', sans-serif; }
+
+.green  { color: #33ff66; }
+.yellow { color: #ffd21f; }
+.red    { color: #ff4545; }
+.white  { color: #e8f5ea; }
+.dim    { color: #5f8266; }
+.b      { font-weight: 700; }
+.glow   { text-shadow: 0 0 16px rgba(51, 255, 102, 0.45); }
+.glow-r { text-shadow: 0 0 16px rgba(255, 69, 69, 0.45); }
+
+.gap   { margin-bottom: 20px; }
+.gap-s { margin-bottom: 10px; }
+
+/* ===== Case file card ===== */
+.case-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffd21f;
+    letter-spacing: 3px;
+}
+.case-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    color: #d9ffe4;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 18px rgba(51, 255, 102, 0.35);
+}
+.tag-real {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #0a0e0a;
+    background: #ffd21f;
+    padding: 5px 14px;
+    border-radius: 3px;
+}
+.tag-reen {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #ffd21f;
+    border: 2px dashed rgba(255, 210, 31, 0.65);
+    padding: 4px 13px;
+    border-radius: 3px;
+}
+.case-card {
+    border: 2px solid rgba(51, 255, 102, 0.45);
+    border-radius: 8px;
+    background: rgba(51, 255, 102, 0.045);
+    padding: 30px 36px 26px 36px;
+    box-shadow: 0 0 30px rgba(51, 255, 102, 0.08) inset;
+}
+.crow {
+    display: flex;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 25px;
+    line-height: 1.4;
+    margin-bottom: 18px;
+}
+.clbl {
+    width: 122px;
+    flex-shrink: 0;
+    color: #ffd21f;
+    font-weight: 700;
+}
+.cval { color: #c9f5d3; }
+.cdivider {
+    border: none;
+    border-top: 1px dashed rgba(51, 255, 102, 0.35);
+    margin: 8px 0 24px 0;
+}
+.stamp {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff4545;
+    border: 4px solid #ff4545;
+    border-radius: 6px;
+    padding: 8px 22px;
+    background: rgba(255, 69, 69, 0.07);
+    transform: rotate(-2deg);
+    text-shadow: 0 0 14px rgba(255, 69, 69, 0.4);
+}
+.stamp-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ff4545;
+    display: block;
+    margin-bottom: 2px;
+}
+.beat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-style: italic;
+    color: #5f8266;
+}
+
+.pitch-card {
+    border: 1px solid rgba(232, 245, 234, 0.25);
+    border-radius: 10px;
+    background: rgba(232, 245, 234, 0.05);
+    padding: 22px 24px;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 26px;
+    color: #e8f5ea;
+    text-align: center;
+}
+
+.cursor { animation: blink 1.1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+a, a:visited { color: #33ff66; text-decoration: none; }
+
+.hint { color: #5f8266; }
+
+/* PDF export mode (?export): hide neighboring slides, freeze animations */
+body.export .step:not(.active) { visibility: hidden; }
+body.export .step { transition: none !important; opacity: 1 !important; }
+body.export .hint { display: none; }
+body.export .cursor { animation: none; }
+</style>
+
+<style>
+.reveal.themedArea {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<script type="text/javascript" src="index_files/dataset-shim.js"></script>
+<script type="text/javascript" src="index_files/impress.js"></script>
+
+<script src="index_files/onready.js"></script>
+<script src="index_files/loadPresentation.js"></script>
+<script>
+ready(function() {
+    if (new URLSearchParams(location.search).has('export'))
+        document.body.classList.add('export');
+
+    if (document.getElementById('launched-placeholder'))
+        loadPresentation();
+
+    if (!window.presStarted) {
+        startPres(document, window);
+        impress().init();
+    }
+
+    if ("ontouchstart" in document.documentElement) {
+        document.querySelector(".hint").innerHTML =
+            "<p>Tap on the left or right to navigate</p>";
+    }
+});
+</script>
+</head>
+<body class="impress-supported impress-enabled" style="height: 100%; overflow: hidden;">
+
+<!-- Font preload hack (same as other Strut exports) -->
+<div style="visibility: hidden; width: 0px; height: 0px">
+<img src="index_files/SpaceGrotesk.woff2">
+<img src="index_files/Inter.woff2">
+<img src="index_files/JetBrainsMono.woff2">
+</div>
+
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div class="bg strut-surface">
+<div class="bg innerBg strut-slide-0">
+<div id="impress">
+<div>
+
+<!-- ============ Slide 1: Title ============ -->
+<div class="step" data-state="strut-slide-0" data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1">
+<div class="slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 70px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 21px;" class="antialias mono dim">
+$ cat /var/log/postmortems/2026/agent_*.md
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 160px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 62px; text-align: center; letter-spacing: 2px;" class="antialias quote b green glow" >
+AUTOPSY OF AN<br>AUTONOMOUS INCIDENT
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 370px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="text-align: center;">
+<span class="stamp" style="font-size: 32px;">When the Agent Made It Worse</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 530px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 27px; text-align: center;" class="antialias mono white">
+Navin Pai <span class="dim">·</span> <span class="yellow">StackGen</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 690px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 20px; text-align: center;" class="antialias mono dim">
+2026 <span class="cursor green">▊</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 2: The pitch we were sold ============ -->
+<div class="step" data-state="strut-slide-1" data-x="6297.6" data-y="2764.8" data-scale="3" id="step-2">
+<div class="slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 40px; left: 60px;">
+<div class="transformContainer">
+<div class="antialias slide-h">The Pitch<br>We Were Sold</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 240px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; width: 904px;">
+<div class="pitch-card antialias" style="flex: 1 1 42%;">"Your AI SRE never sleeps. ✨"</div>
+<div class="pitch-card antialias" style="flex: 1 1 42%;">"Cut MTTR by 80%."</div>
+<div class="pitch-card antialias" style="flex: 1 1 42%;">"Auto-remediation, out of the box."</div>
+<div class="pitch-card antialias" style="flex: 1 1 42%;">"Finally sleep through the night."</div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 545px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 30px; text-align: center;" class="antialias mono">
+<div class="red glow-r b gap-s">It didn't sleep.</div>
+<div class="green">This talk is about what it did instead.</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 3: The morgue intake form ============ -->
+<div class="step" data-state="strut-slide-2" data-x="10137.6" data-y="2764.8" data-scale="3" id="step-3">
+<div class="slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 40px; left: 60px;">
+<div class="transformContainer">
+<div class="antialias slide-h">The Morgue<br>Intake Form</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval dim">— the telemetry it read</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval dim">— the action it took</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval dim">— the blast radius</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">VERDICT</span>
+<span class="stamp" style="font-size: 26px;">Cause of Death: what actually killed prod</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 565px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 21px; display: flex; gap: 30px; align-items: center;" class="antialias mono">
+<span class="tag-real">EXHIBIT</span><span class="dim">documented, public, citable — named where the source names them</span>
+</div>
+<div style="font-size: 21px; display: flex; gap: 30px; align-items: center; margin-top: 14px;" class="antialias mono">
+<span class="tag-reen">JOHN DOE</span><span class="dim">composite case — identity withheld to protect the guilty</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 700px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 24px; text-align: center;" class="antialias mono green">
+ten bodies. let's begin.
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 4: Case 001 — DNS janitor ============ -->
+<div class="step" data-state="strut-slide-3" data-x="13977.6" data-y="2764.8" data-scale="3" id="step-4">
+<div class="slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #001</span>
+<span class="tag-real antialias">EXHIBIT A · AWS US-EAST-1 · OCT 2025</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Tireless DNS Janitor</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">"stale" DNS records on the DynamoDB endpoints</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">deleted the records still serving traffic — then the automation meant to fix it choked on the state it had just created</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">~15 hours × half the internet. humans fixed DNS <span class="white b">by hand</span>.</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Automation trusted automation</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// no LLM anywhere in this incident. remember this baseline.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 5: Case 002 — Runbook literalist ============ -->
+<div class="step" data-state="strut-slide-4" data-x="17817.6" data-y="2764.8" data-scale="3" id="step-5">
+<div class="slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #002</span>
+<span class="tag-reen antialias">JOHN DOE</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Runbook Literalist</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">db_latency_high · runbook step 3: <span class="white">"restart the service"</span></span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">restarted the primary. at peak. cache stampede → latency alert → step 3 → <span class="white b">restart</span>.</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">one slow query → a four-hour rolling outage</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Followed the runbook. Every time.</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// the runbook was written in 2019. the agent believed it in 2026.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 6: Case 003 — Log crusher ============ -->
+<div class="step" data-state="strut-slide-5" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
+<div class="slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #003</span>
+<span class="tag-reen antialias">JOHN DOE</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Log Crusher</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">disk_usage: 98% — database host</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">freed space by deleting the biggest files: the WAL… and the audit logs. <span class="white b">mid-incident.</span></span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">the recovery data and the evidence. one <span class="white">rm</span>.</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Space reclaimed: 312 GB ✓</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// it also deleted the record of it deleting the record.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 7: Case 004 — Healthcheck surgeon ============ -->
+<div class="step" data-state="strut-slide-6" data-x="2457.6" data-y="6144" data-scale="3" id="step-7">
+<div class="slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #004</span>
+<span class="tag-reen antialias">JOHN DOE</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Healthcheck Surgeon</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">/healthz failing · root cause: unknown</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">patched /healthz to <span class="white b">return 200 OK</span></span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">three days of invisible outage. customers became the monitoring.</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Patient declared healthy</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// commit message: "fix: healthcheck now passes"</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 8: Case 005 — Error-rate optimizer ============ -->
+<div class="step" data-state="strut-slide-7" data-x="6297.6" data-y="6144" data-scale="3" id="step-8">
+<div class="slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #005</span>
+<span class="tag-reen antialias">JOHN DOE</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Error-Rate Optimizer</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">error_rate: 12% · objective: <span class="white">reduce error rate</span></span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval white b">kubectl scale --replicas=0</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">zero requests. zero errors. <span class="red b">one hundred percent outage.</span></span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Metric achieved</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// the dashboard has never looked better.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 9: Case 006 — Alert-fatigue therapist ============ -->
+<div class="step" data-state="strut-slide-8" data-x="10137.6" data-y="6144" data-scale="3" id="step-9">
+<div class="slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #006</span>
+<span class="tag-reen antialias">JOHN DOE</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Alert-Fatigue Therapist</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">400 alerts in 20 minutes — cascading failure</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">root cause identified: <span class="white">"alert fatigue."</span> muted the pager. <span class="white b">org-wide.</span></span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">MTTA → ∞. customers became the paging system.</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Silence, self-prescribed</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// technically, on-call load dropped to zero.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 10: Case 007 — Backup completionist ============ -->
+<div class="step" data-state="strut-slide-9" data-x="13977.6" data-y="6144" data-scale="3" id="step-10">
+<div class="slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #007</span>
+<span class="tag-real antialias">EXHIBIT B · REPORTED 2025</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Backup Completionist</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">a disk-space task — and a token that could do <span class="white b">anything</span></span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">volume delete: the production database <span class="white b">and its backups</span></span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">both copies of the truth</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Least privilege, treated as a suggestion</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// the agent didn't exceed its permissions. that's the problem.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 11: Case 008 — The un-patcher ============ -->
+<div class="step" data-state="strut-slide-10" data-x="17817.6" data-y="6144" data-scale="3" id="step-11">
+<div class="slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #008</span>
+<span class="tag-real antialias">EXHIBIT C · REPORTED JAN 2026</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Un-Patcher</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">configuration drift: infra ≠ desired state</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">reverted the drift — <span class="white b">last night's emergency security patch</span></span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">the vulnerability, reopened. report: <span class="green">"drift remediated ✓"</span></span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Consistency achieved</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// the most dangerous incidents don't page anyone.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 12: Case 009 — Incident commander who lied ============ -->
+<div class="step" data-state="strut-slide-11" data-x="21657.6" data-y="6144" data-scale="3" id="step-12">
+<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #009</span>
+<span class="tag-real antialias">EXHIBIT D · REPLIT · JUL 2025</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias" style="font-size: 40px;">The Incident Commander Who Lied</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 195px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">a production code freeze. it was told <span class="white b">eleven times</span>.</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">deleted the prod database · fabricated 4,000 fake users · reported rollback <span class="white">"impossible"</span> (it wasn't)</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">1,200+ executives' records — and the concept of a status update</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Self-graded 95/100</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 680px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// "on the data catastrophe scale." its words.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 13: Case 010 — Confident coroner ============ -->
+<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
+<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #010</span>
+<span class="tag-reen antialias">JOHN DOE · FROM DOCUMENTED PARTS</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Confident Coroner</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">an incident that needed closing</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">hallucinated a service name → wrong topology → remediated <span class="white b">the wrong system</span> → published the RCA → closed the incident</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">two incidents. one fictional. <span class="white b">both public.</span></span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Certainty</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">// the scariest failure isn't the wrong action. it's the confident report.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 14: Pattern recognition ============ -->
+<div class="step" data-state="strut-slide-13" data-x="6297.6" data-y="9523.2" data-scale="3" id="step-14">
+<div class="slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 40px; left: 60px;">
+<div class="transformContainer">
+<div class="antialias slide-h">Pattern Recognition</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 190px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 24px; color: #c9f5d3;" class="antialias mono">
+<div class="gap-s"><span class="yellow b">OBEDIENCE</span> <span class="dim">·······</span> did exactly what it was told <span class="dim" style="float: right;">#001 #002</span></div>
+<div class="gap-s"><span class="yellow b">GOODHART</span> <span class="dim">········</span> optimized the number, not the world <span class="dim" style="float: right;">#004 #005</span></div>
+<div class="gap-s"><span class="yellow b">OVER-PRIVILEGE</span> <span class="dim">··</span> could do anything. so it did. <span class="dim" style="float: right;">#003 #007</span></div>
+<div class="gap-s"><span class="yellow b">SILENCE</span> <span class="dim">·········</span> killed the signals humans needed <span class="dim" style="float: right;">#006 #008</span></div>
+<div><span class="yellow b">CONFABULATION</span> <span class="dim">···</span> reported a world that didn't exist <span class="dim" style="float: right;">#009 #010</span></div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 500px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 36px; text-align: center;" class="antialias quote">
+<div class="red glow-r b gap-s">None of these are model bugs.</div>
+<div class="green glow b">All of these are system design.</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 15: Why ============ -->
+<div class="step" data-state="strut-slide-14" data-x="10137.6" data-y="9523.2" data-scale="3" id="step-15">
+<div class="slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 40px; left: 60px;">
+<div class="transformContainer">
+<div class="antialias slide-h">The Coroner's Finding</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 26px; color: #c9f5d3;" class="antialias mono">
+<div class="gap"><span class="yellow">◆</span> the agent never saw prod. it saw <span class="white b">telemetry about prod</span>.</div>
+<div class="gap"><span class="yellow">◆</span> its reward is a green dashboard — not a healthy system</div>
+<div class="gap"><span class="yellow">◆</span> kill the signal, and the world is <span class="green">"fixed"</span></div>
+<div><span class="yellow">◆</span> and it has no skin in the game: it doesn't attend the postmortem</div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 530px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 40px; text-align: center;" class="antialias quote">
+<div class="white gap-s">The agent optimizes the signal.</div>
+<div class="red glow-r b">You live in the world.</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 16: What survives contact ============ -->
+<div class="step" data-state="strut-slide-15" data-x="13977.6" data-y="9523.2" data-scale="3" id="step-16">
+<div class="slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 40px; left: 60px;">
+<div class="transformContainer">
+<div class="antialias slide-h">What Survives Contact</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 195px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 25px; color: #c9f5d3;" class="antialias mono">
+<div class="gap-s"><span class="green">◆</span> <span class="white b">blast-radius tiers</span>: read → suggest → approve → act — each level <span class="yellow">earned</span></div>
+<div class="gap-s"><span class="green">◆</span> <span class="white b">tokens scoped to the remediation</span>, not the cloud</div>
+<div class="gap-s"><span class="green">◆</span> <span class="white b">approval gates on destructive verbs</span>: delete · scale-to-zero · mute</div>
+<div class="gap-s"><span class="green">◆</span> <span class="white b">glass box</span>: append-only log of saw / thought / did</div>
+<div><span class="green">◆</span> <span class="white b">game days for the responder</span>: chaos-test the agent too</div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 555px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="font-size: 34px; text-align: center;" class="antialias quote">
+<div class="white">Autonomy is not a feature you enable.</div>
+<div class="green glow b">It's a privilege the system earns.</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 17: Closing ============ -->
+<div class="step" data-state="strut-slide-16" data-x="17817.6" data-y="9523.2" data-scale="3" id="step-17">
+<div class="slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 32px; text-align: center;" class="antialias mono dim">
+the postmortem of the future has a new section:
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 300px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 54px; text-align: center; letter-spacing: 2px;" class="antialias quote b green glow">
+"WHAT THE RESPONDER<br>BELIEVED"
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 530px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="text-align: center;">
+<span class="stamp" style="font-size: 26px;">Case status: OPEN</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 680px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 23px; text-align: center;" class="antialias mono yellow">
+automate the toil. autopsy the autonomy.
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 18: Thank you ============ -->
+<div class="step" data-state="strut-slide-17" data-x="21657.6" data-y="9523.2" data-scale="3" id="step-18">
+<div class="slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 70px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 62px; text-align: center;" class="antialias quote b green glow">
+Thank You!
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 220px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: center;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+<img src="index_files/navin-follow.png" style="width: 200px; background: #ffffff; border-radius: 12px; padding: 8px;" alt="Follow Navin">
+<div style="font-size: 20px; text-align: center;" class="antialias mono yellow b">Navin Pai</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 560px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 26px; text-align: center;" class="antialias mono white">
+got a body for the morgue? <span class="green">let's swap war stories.</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 690px; left: 62px; width: 900px;">
+<div class="transformContainer">
+<div style="font-size: 20px; text-align: center;" class="antialias mono">
+<a href="https://navinpai.github.io/autonomous-fails">navinpai.github.io/autonomous-fails</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="overview" class="step" data-x="12057.6" data-y="6144" data-scale="12"></div>
+
+</div></div>
+</div>
+</div>
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div></body></html>
