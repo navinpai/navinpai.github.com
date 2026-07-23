@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Autopsy of an Autonomous Incident | When the Agent Made It Worse</title>
 
-<meta name="description" content="Autopsy of an Autonomous Incident: When the Agent Made It Worse — 11 case files of AI SRE tools gone wrong">
+<meta name="description" content="Autopsy of an Autonomous Incident: When the Agent Made It Worse: 11 case files of AI SRE tools gone wrong">
 <meta name="author" content="Navin Pai">
 
 <link rel="stylesheet" href="index_files/default-reset.css">
@@ -422,9 +422,9 @@ Navin Pai
 <div class="componentContainer" style="top: 230px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval dim">— the telemetry it read</span></div>
-<div class="crow"><span class="clbl">DID</span><span class="cval dim">— the action it took</span></div>
-<div class="crow"><span class="clbl">COST</span><span class="cval dim">— the blast radius</span></div>
+<div class="crow"><span class="clbl">SAW</span><span class="cval dim">the telemetry it read</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval dim">the action it took</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval dim">the blast radius</span></div>
 <hr class="cdivider">
 <span class="stamp-lbl">VERDICT</span>
 <span class="stamp" style="font-size: 26px;">Cause of Death: what actually killed prod</span>
@@ -432,13 +432,13 @@ Navin Pai
 </div>
 </div>
 
-<div class="componentContainer" style="top: 565px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 590px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="font-size: 19px; display: flex; gap: 30px; align-items: center;" class="antialias mono">
-<span class="tag-real">EXHIBIT</span><span class="dim">documented, public, citable — named where the source names them</span>
+<span class="tag-real" style="width: 150px; text-align: center; box-sizing: border-box; flex-shrink: 0;">EXHIBIT</span><span class="dim">documented, public, citable. named where the source names them</span>
 </div>
 <div style="font-size: 19px; display: flex; gap: 30px; align-items: center; margin-top: 14px;" class="antialias mono">
-<span class="tag-reen">JOHN DOE</span><span class="dim">composite case — identity withheld to protect the guilty</span>
+<span class="tag-reen" style="width: 150px; text-align: center; box-sizing: border-box; flex-shrink: 0;">JOHN DOE</span><span class="dim">composite case. identity withheld to protect the guilty</span>
 </div>
 </div>
 </div>
@@ -478,7 +478,7 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="crow"><span class="clbl">SAW</span><span class="cval">"stale" DNS records on the DynamoDB endpoints</span></div>
-<div class="crow"><span class="clbl">DID</span><span class="cval">deleted the records still serving traffic — then the automation meant to fix it choked on the state it had just created</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">deleted the records still serving traffic. then the automation meant to fix it choked on the state it had just created</span></div>
 <div class="crow"><span class="clbl">COST</span><span class="cval">~15 hours × half the internet. humans fixed DNS <span class="white b">by hand</span>.</span></div>
 <hr class="cdivider">
 <span class="stamp-lbl">CAUSE OF DEATH</span>
@@ -519,7 +519,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> every automation ships with a <span class="white b">kill switch</span> — and a human who knows where it is</div>
+<div class="lrow"><span class="yellow">◆</span> every automation ships with a <span class="white b">kill switch</span>, and a human who knows where it is</div>
 <div class="lrow"><span class="yellow">◆</span> destructive actions <span class="white b">verify liveness first</span>: "stale" must be proven, not assumed</div>
 <div class="lrow"><span class="yellow">◆</span> two automations touching one resource → <span class="white b">locking, not hope</span></div>
 <hr class="cdivider">
@@ -597,7 +597,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> runbooks get <span class="white b">owners and expiry dates</span> — stale docs are latent incidents</div>
+<div class="lrow"><span class="yellow">◆</span> runbooks get <span class="white b">owners and expiry dates</span>: stale docs are latent incidents</div>
 <div class="lrow"><span class="yellow">◆</span> <span class="white b">loop detection</span>: the same fix twice in one incident stops the agent and pages a human</div>
 <div class="lrow"><span class="yellow">◆</span> verify <span class="white b">outcomes, not alert states</span>: did latency actually improve after the restart?</div>
 <hr class="cdivider">
@@ -676,7 +676,7 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="lrow"><span class="yellow">◆</span> responders get <span class="white b">read-only docs</span>: no incident toolset needs delete_runbook</div>
-<div class="lrow"><span class="yellow">◆</span> "the steps didn't work" <span class="white b">escalates to a human</span> — the agent flags stale docs, never removes them</div>
+<div class="lrow"><span class="yellow">◆</span> "the steps didn't work" <span class="white b">escalates to a human</span>. the agent flags stale docs, never removes them</div>
 <div class="lrow"><span class="yellow">◆</span> runbooks live in <span class="white b">version control</span>: deletion is a reviewed PR, not a tool call</div>
 <hr class="cdivider">
 <span class="stamp-lbl-g">VERDICT</span>
@@ -711,7 +711,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval">disk_usage: 98% — database host</span></div>
+<div class="crow"><span class="clbl">SAW</span><span class="cval">disk_usage: 98% on the database host</span></div>
 <div class="crow"><span class="clbl">DID</span><span class="cval">freed space by deleting the biggest files: the WAL… and the audit logs. <span class="white b">mid-incident.</span></span></div>
 <div class="crow"><span class="clbl">COST</span><span class="cval">the recovery data and the evidence. one <span class="white">rm</span>.</span></div>
 <hr class="cdivider">
@@ -753,7 +753,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> WAL + audit paths protected at the <span class="white b">IAM / filesystem level</span> — not by prompt</div>
+<div class="lrow"><span class="yellow">◆</span> WAL + audit paths protected at the <span class="white b">IAM / filesystem level</span>, not by prompt</div>
 <div class="lrow"><span class="yellow">◆</span> "free disk space" allows: <span class="white b">expand, rotate, compress</span>. delete needs approval</div>
 <div class="lrow"><span class="yellow">◆</span> audit logs shipped <span class="white b">off-host, append-only</span>: evidence must outlive the machine</div>
 <hr class="cdivider">
@@ -831,8 +831,8 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> checks are <span class="white b">contracts</span>: editing one requires human review — CODEOWNERS on /healthz</div>
-<div class="lrow"><span class="yellow">◆</span> agents <span class="white b">read checks, never write them</span> — the exam is not the homework</div>
+<div class="lrow"><span class="yellow">◆</span> checks are <span class="white b">contracts</span>: editing one requires human review: CODEOWNERS on /healthz</div>
+<div class="lrow"><span class="yellow">◆</span> agents <span class="white b">read checks, never write them</span>. the exam is not the homework</div>
 <div class="lrow"><span class="yellow">◆</span> <span class="white b">synthetic probes outside the agent's reach</span> confirm "healthy" independently</div>
 <hr class="cdivider">
 <span class="stamp-lbl-g">VERDICT</span>
@@ -945,7 +945,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval">400 alerts in 20 minutes — cascading failure</span></div>
+<div class="crow"><span class="clbl">SAW</span><span class="cval">400 alerts in 20 minutes: cascading failure</span></div>
 <div class="crow"><span class="clbl">DID</span><span class="cval">root cause identified: <span class="white">"alert fatigue."</span> muted the pager. <span class="white b">org-wide.</span></span></div>
 <div class="crow"><span class="clbl">COST</span><span class="cval">MTTA → ∞. customers became the paging system.</span></div>
 <hr class="cdivider">
@@ -987,9 +987,9 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> mutes are <span class="white b">scoped and TTL'd</span>: one service, one hour — never org-wide</div>
+<div class="lrow"><span class="yellow">◆</span> mutes are <span class="white b">scoped and TTL'd</span>: one service, one hour, never org-wide</div>
 <div class="lrow"><span class="yellow">◆</span> changes to paging config <span class="white b">page the people they affect</span></div>
-<div class="lrow"><span class="yellow">◆</span> alert hygiene is <span class="white b">peacetime work</span> — never a mid-incident remediation</div>
+<div class="lrow"><span class="yellow">◆</span> alert hygiene is <span class="white b">peacetime work</span>, never a mid-incident remediation</div>
 <hr class="cdivider">
 <span class="stamp-lbl-g">VERDICT</span>
 <span class="stamp-g">Preventable</span>
@@ -1023,7 +1023,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval">a disk-space task — and a token that could do <span class="white b">anything</span></span></div>
+<div class="crow"><span class="clbl">SAW</span><span class="cval">a disk-space task, and a token that could do <span class="white b">anything</span></span></div>
 <div class="crow"><span class="clbl">DID</span><span class="cval">volume delete: the production database <span class="white b">and its backups</span></span></div>
 <div class="crow"><span class="clbl">COST</span><span class="cval">both copies of the truth</span></div>
 <hr class="cdivider">
@@ -1102,7 +1102,7 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="crow"><span class="clbl">SAW</span><span class="cval">configuration drift: infra ≠ desired state</span></div>
-<div class="crow"><span class="clbl">DID</span><span class="cval">reverted the drift — <span class="white b">last night's emergency security patch</span></span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">reverted the drift: <span class="white b">last night's emergency security patch</span></span></div>
 <div class="crow"><span class="clbl">COST</span><span class="cval">the vulnerability, reopened. report: <span class="green">"drift remediated ✓"</span></span></div>
 <hr class="cdivider">
 <span class="stamp-lbl">CAUSE OF DEATH</span>
@@ -1145,7 +1145,7 @@ eleven bodies. let's begin.
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="lrow"><span class="yellow">◆</span> emergency fixes update <span class="white b">desired state immediately</span>: patch the repo, not just the box</div>
 <div class="lrow"><span class="yellow">◆</span> drift remediation on <span class="white b">security-tagged resources</span> requires a human ack</div>
-<div class="lrow"><span class="yellow">◆</span> every change carries <span class="white b">"who and why"</span> — and agents must read it before reverting</div>
+<div class="lrow"><span class="yellow">◆</span> every change carries <span class="white b">"who and why"</span>. agents must read it before reverting</div>
 <hr class="cdivider">
 <span class="stamp-lbl-g">VERDICT</span>
 <span class="stamp-g">Preventable</span>
@@ -1181,7 +1181,7 @@ eleven bodies. let's begin.
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="crow"><span class="clbl">SAW</span><span class="cval">a production code freeze. it was told <span class="white b">eleven times</span>.</span></div>
 <div class="crow"><span class="clbl">DID</span><span class="cval">deleted the prod database · fabricated 4,000 fake users · reported rollback <span class="white">"impossible"</span> (it wasn't)</span></div>
-<div class="crow"><span class="clbl">COST</span><span class="cval">1,200+ executives' records — and the concept of a status update</span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">1,200+ executives' records, and the concept of a status update</span></div>
 <hr class="cdivider">
 <span class="stamp-lbl">CAUSE OF DEATH</span>
 <span class="stamp">Self-graded 95/100</span>
@@ -1222,7 +1222,7 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="lrow"><span class="yellow">◆</span> never grade the agent on its own homework: <span class="white b">verify actions from the audit log</span></div>
-<div class="lrow"><span class="yellow">◆</span> environment separation is <span class="white b">infrastructure, not instructions</span> — "told 11 times" is not a control</div>
+<div class="lrow"><span class="yellow">◆</span> environment separation is <span class="white b">infrastructure, not instructions</span>. "told 11 times" is not a control</div>
 <div class="lrow"><span class="yellow">◆</span> status updates come from <span class="white b">telemetry</span>, not the agent's self-assessment</div>
 <hr class="cdivider">
 <span class="stamp-lbl-g">VERDICT</span>
@@ -1300,7 +1300,7 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
 <div class="lrow"><span class="yellow">◆</span> every RCA claim links to <span class="white b">evidence</span>: a log line, a trace, a diff</div>
-<div class="lrow"><span class="yellow">◆</span> incidents close on <span class="white b">human sign-off or a verified green synthetic</span> — not vibes</div>
+<div class="lrow"><span class="yellow">◆</span> incidents close on <span class="white b">human sign-off or a verified green synthetic</span>, not vibes</div>
 <div class="lrow"><span class="yellow">◆</span> topology comes from the <span class="white b">service catalog</span>, not the model's memory</div>
 <hr class="cdivider">
 <span class="stamp-lbl-g">VERDICT</span>
@@ -1362,7 +1362,7 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div style="font-size: 26px; color: #c9f5d3;" class="antialias mono">
 <div class="gap"><span class="yellow">◆</span> the agent never saw prod. it saw <span class="white b">telemetry about prod</span>.</div>
-<div class="gap"><span class="yellow">◆</span> its reward is a green dashboard — not a healthy system</div>
+<div class="gap"><span class="yellow">◆</span> its reward is a green dashboard, not a healthy system</div>
 <div class="gap"><span class="yellow">◆</span> kill the signal, and the world is <span class="green">"fixed"</span></div>
 <div><span class="yellow">◆</span> and it has no skin in the game: it doesn't attend the postmortem</div>
 </div>
@@ -1395,7 +1395,7 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 195px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="font-size: 25px; color: #c9f5d3;" class="antialias mono">
-<div class="gap-s"><span class="green">◆</span> <span class="white b">blast-radius tiers</span>: read → suggest → approve → act — each level <span class="yellow">earned</span></div>
+<div class="gap-s"><span class="green">◆</span> <span class="white b">blast-radius tiers</span>: read → suggest → approve → act. each level <span class="yellow">earned</span></div>
 <div class="gap-s"><span class="green">◆</span> <span class="white b">tokens scoped to the remediation</span>, not the cloud</div>
 <div class="gap-s"><span class="green">◆</span> <span class="white b">approval gates on destructive verbs</span>: delete · scale-to-zero · mute</div>
 <div class="gap-s"><span class="green">◆</span> <span class="white b">glass box</span>: append-only log of saw / thought / did</div>
