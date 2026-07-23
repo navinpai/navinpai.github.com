@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Autopsy of an Autonomous Incident | When the Agent Made It Worse</title>
 
-<meta name="description" content="Autopsy of an Autonomous Incident: When the Agent Made It Worse — 10 case files of AI SRE tools gone wrong">
+<meta name="description" content="Autopsy of an Autonomous Incident: When the Agent Made It Worse — 11 case files of AI SRE tools gone wrong">
 <meta name="author" content="Navin Pai">
 
 <link rel="stylesheet" href="index_files/default-reset.css">
@@ -17,19 +17,24 @@
 <style>
 /* ===== Fonts (bundled locally: works offline) ===== */
 @font-face {
-    font-family: 'Space Grotesk';
-    src: url('index_files/SpaceGrotesk.woff2') format('woff2');
-    font-weight: 300 700;
-}
-@font-face {
-    font-family: 'Inter';
-    src: url('index_files/Inter.woff2') format('woff2');
+    font-family: 'Monomaniac One';
+    src: url('index_files/MonomaniacOne.woff2') format('woff2');
     font-weight: 100 900;
 }
 @font-face {
-    font-family: 'JetBrains Mono';
-    src: url('index_files/JetBrainsMono.woff2') format('woff2');
-    font-weight: 100 800;
+    font-family: 'Bricolage Grotesque';
+    src: url('index_files/BricolageGrotesque.woff2') format('woff2');
+    font-weight: 100 900;
+}
+@font-face {
+    font-family: 'Space Mono';
+    src: url('index_files/SpaceMono-400.woff2') format('woff2');
+    font-weight: 100 500;
+}
+@font-face {
+    font-family: 'Space Mono';
+    src: url('index_files/SpaceMono-700.woff2') format('woff2');
+    font-weight: 600 800;
 }
 
 /* ===== Theme: terminal autopsy ===== */
@@ -62,7 +67,7 @@ body, .strut-surface, .innerBg {
 }
 
 .slide-h {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Monomaniac One', sans-serif;
     font-weight: 700;
     font-size: 44px;
     color: #d9ffe4;
@@ -81,20 +86,20 @@ body, .strut-surface, .innerBg {
 }
 
 .body-t {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-weight: 400;
     color: #c9f5d3;
     line-height: 1.45;
 }
 
 .quote {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Monomaniac One', sans-serif;
     font-weight: 500;
     line-height: 1.35;
 }
 
-.mono  { font-family: 'JetBrains Mono', monospace; }
-.sans  { font-family: 'Inter', sans-serif; }
+.mono  { font-family: 'Space Mono', monospace; }
+.sans  { font-family: 'Bricolage Grotesque', sans-serif; }
 
 .green  { color: #33ff66; }
 .yellow { color: #ffd21f; }
@@ -110,14 +115,14 @@ body, .strut-surface, .innerBg {
 
 /* ===== Case file card ===== */
 .case-kicker {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 24px;
     font-weight: 700;
     color: #ffd21f;
     letter-spacing: 3px;
 }
 .case-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Monomaniac One', sans-serif;
     font-weight: 700;
     font-size: 44px;
     color: #d9ffe4;
@@ -126,7 +131,7 @@ body, .strut-surface, .innerBg {
     text-shadow: 0 0 18px rgba(51, 255, 102, 0.35);
 }
 .tag-real {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -136,7 +141,7 @@ body, .strut-surface, .innerBg {
     border-radius: 3px;
 }
 .tag-reen {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -154,7 +159,7 @@ body, .strut-surface, .innerBg {
 }
 .crow {
     display: flex;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 25px;
     line-height: 1.4;
     margin-bottom: 18px;
@@ -173,7 +178,7 @@ body, .strut-surface, .innerBg {
 }
 .stamp {
     display: inline-block;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Monomaniac One', sans-serif;
     font-weight: 700;
     font-size: 30px;
     text-transform: uppercase;
@@ -187,7 +192,7 @@ body, .strut-surface, .innerBg {
     text-shadow: 0 0 14px rgba(255, 69, 69, 0.4);
 }
 .stamp-lbl {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 17px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -195,11 +200,44 @@ body, .strut-surface, .innerBg {
     display: block;
     margin-bottom: 2px;
 }
+.stamp-g {
+    display: inline-block;
+    font-family: 'Monomaniac One', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #33ff66;
+    border: 4px solid #33ff66;
+    border-radius: 6px;
+    padding: 8px 22px;
+    background: rgba(51, 255, 102, 0.07);
+    transform: rotate(-2deg);
+    text-shadow: 0 0 14px rgba(51, 255, 102, 0.4);
+}
+.stamp-lbl-g {
+    font-family: 'Space Mono', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #33ff66;
+    display: block;
+    margin-bottom: 2px;
+}
+.kicker-g { color: #33ff66; }
+.lrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    line-height: 1.45;
+    color: #c9f5d3;
+    margin-bottom: 20px;
+}
 .beat {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 22px;
+    font-family: 'Space Mono', monospace;
+    font-size: 21px;
     font-style: italic;
     color: #5f8266;
+    text-align: center;
 }
 
 .pitch-card {
@@ -207,7 +245,7 @@ body, .strut-surface, .innerBg {
     border-radius: 10px;
     background: rgba(232, 245, 234, 0.05);
     padding: 22px 24px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 26px;
     color: #e8f5ea;
@@ -269,9 +307,10 @@ ready(function() {
 
 <!-- Font preload hack (same as other Strut exports) -->
 <div style="visibility: hidden; width: 0px; height: 0px">
-<img src="index_files/SpaceGrotesk.woff2">
-<img src="index_files/Inter.woff2">
-<img src="index_files/JetBrainsMono.woff2">
+<img src="index_files/MonomaniacOne.woff2">
+<img src="index_files/BricolageGrotesque.woff2">
+<img src="index_files/SpaceMono-400.woff2">
+<img src="index_files/SpaceMono-700.woff2">
 </div>
 
 <div class="fallback-message">
@@ -313,10 +352,13 @@ AUTOPSY OF AN<br>AUTONOMOUS INCIDENT
 </div>
 </div>
 
-<div class="componentContainer" style="top: 530px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 520px; left: 62px; width: 900px;">
 <div class="transformContainer">
 <div style="font-size: 27px; text-align: center;" class="antialias mono white">
-Navin Pai <span class="dim">·</span> <span class="yellow">StackGen</span>
+Navin Pai
+</div>
+<div style="font-size: 20px; text-align: center; margin-top: 10px;" class="antialias mono">
+<span class="dim">Director of Engineering,</span> <span class="yellow">StackGen</span>
 </div>
 </div>
 </div>
@@ -392,10 +434,10 @@ Navin Pai <span class="dim">·</span> <span class="yellow">StackGen</span>
 
 <div class="componentContainer" style="top: 565px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 21px; display: flex; gap: 30px; align-items: center;" class="antialias mono">
+<div style="font-size: 19px; display: flex; gap: 30px; align-items: center;" class="antialias mono">
 <span class="tag-real">EXHIBIT</span><span class="dim">documented, public, citable — named where the source names them</span>
 </div>
-<div style="font-size: 21px; display: flex; gap: 30px; align-items: center; margin-top: 14px;" class="antialias mono">
+<div style="font-size: 19px; display: flex; gap: 30px; align-items: center; margin-top: 14px;" class="antialias mono">
 <span class="tag-reen">JOHN DOE</span><span class="dim">composite case — identity withheld to protect the guilty</span>
 </div>
 </div>
@@ -404,7 +446,7 @@ Navin Pai <span class="dim">·</span> <span class="yellow">StackGen</span>
 <div class="componentContainer" style="top: 700px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="font-size: 24px; text-align: center;" class="antialias mono green">
-ten bodies. let's begin.
+eleven bodies. let's begin.
 </div>
 </div>
 </div>
@@ -447,16 +489,52 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// no LLM anywhere in this incident. remember this baseline.</div>
+<div class="beat antialias">no LLM anywhere in this incident. remember this baseline.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 5: Case 002 — Runbook literalist ============ -->
+<!-- ============ Slide 5: Debrief 001 ============ -->
 <div class="step" data-state="strut-slide-4" data-x="17817.6" data-y="2764.8" data-scale="3" id="step-5">
 <div class="slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #001</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE TIRELESS DNS JANITOR</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> every automation ships with a <span class="white b">kill switch</span> — and a human who knows where it is</div>
+<div class="lrow"><span class="yellow">◆</span> destructive actions <span class="white b">verify liveness first</span>: "stale" must be proven, not assumed</div>
+<div class="lrow"><span class="yellow">◆</span> two automations touching one resource → <span class="white b">locking, not hope</span></div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 6: Case 002 — Runbook literalist ============ -->
+<div class="step" data-state="strut-slide-5" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
+<div class="slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
@@ -489,22 +567,136 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// the runbook was written in 2019. the agent believed it in 2026.</div>
+<div class="beat antialias">the runbook was written in 2019. the agent believed it in 2026.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 6: Case 003 — Log crusher ============ -->
-<div class="step" data-state="strut-slide-5" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
-<div class="slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 7: Debrief 002 ============ -->
+<div class="step" data-state="strut-slide-6" data-x="2457.6" data-y="6144" data-scale="3" id="step-7">
+<div class="slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #002</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE RUNBOOK LITERALIST</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> runbooks get <span class="white b">owners and expiry dates</span> — stale docs are latent incidents</div>
+<div class="lrow"><span class="yellow">◆</span> <span class="white b">loop detection</span>: the same fix twice in one incident stops the agent and pages a human</div>
+<div class="lrow"><span class="yellow">◆</span> verify <span class="white b">outcomes, not alert states</span>: did latency actually improve after the restart?</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 8: Case 003 — Runbook purger ============ -->
+<div class="step" data-state="strut-slide-7" data-x="6297.6" data-y="6144" data-scale="3" id="step-8">
+<div class="slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
 <span class="case-kicker antialias">CASE #003</span>
+<span class="tag-reen antialias">JOHN DOE</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Runbook Purger</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="crow"><span class="clbl">SAW</span><span class="cval">a Datadog runbook · followed steps 1–7 exactly · incident still on fire</span></div>
+<div class="crow"><span class="clbl">DID</span><span class="cval">reasoned: <span class="white">"the runbook must be outdated"</span> → <span class="white b">delete_runbook()</span></span></div>
+<div class="crow"><span class="clbl">COST</span><span class="cval">next incident, 3 a.m.: on-call opens the runbook. <span class="white b">404.</span></span></div>
+<hr class="cdivider">
+<span class="stamp-lbl">CAUSE OF DEATH</span>
+<span class="stamp">Peer review by deletion</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">the runbook was fine. the execution wasn't. only one of them got deleted.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 9: Debrief 003 ============ -->
+<div class="step" data-state="strut-slide-8" data-x="10137.6" data-y="6144" data-scale="3" id="step-9">
+<div class="slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #003</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE RUNBOOK PURGER</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> responders get <span class="white b">read-only docs</span>: no incident toolset needs delete_runbook</div>
+<div class="lrow"><span class="yellow">◆</span> "the steps didn't work" <span class="white b">escalates to a human</span> — the agent flags stale docs, never removes them</div>
+<div class="lrow"><span class="yellow">◆</span> runbooks live in <span class="white b">version control</span>: deletion is a reviewed PR, not a tool call</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 10: Case 004 — Log crusher ============ -->
+<div class="step" data-state="strut-slide-9" data-x="13977.6" data-y="6144" data-scale="3" id="step-10">
+<div class="slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #004</span>
 <span class="tag-reen antialias">JOHN DOE</span>
 </div>
 </div>
@@ -531,22 +723,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// it also deleted the record of it deleting the record.</div>
+<div class="beat antialias">it also deleted the record of it deleting the record.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 7: Case 004 — Healthcheck surgeon ============ -->
-<div class="step" data-state="strut-slide-6" data-x="2457.6" data-y="6144" data-scale="3" id="step-7">
-<div class="slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 11: Debrief 004 ============ -->
+<div class="step" data-state="strut-slide-10" data-x="17817.6" data-y="6144" data-scale="3" id="step-11">
+<div class="slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #004</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #004</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE LOG CRUSHER</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> WAL + audit paths protected at the <span class="white b">IAM / filesystem level</span> — not by prompt</div>
+<div class="lrow"><span class="yellow">◆</span> "free disk space" allows: <span class="white b">expand, rotate, compress</span>. delete needs approval</div>
+<div class="lrow"><span class="yellow">◆</span> audit logs shipped <span class="white b">off-host, append-only</span>: evidence must outlive the machine</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 12: Case 005 — Healthcheck surgeon ============ -->
+<div class="step" data-state="strut-slide-11" data-x="21657.6" data-y="6144" data-scale="3" id="step-12">
+<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #005</span>
 <span class="tag-reen antialias">JOHN DOE</span>
 </div>
 </div>
@@ -573,22 +801,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// commit message: "fix: healthcheck now passes"</div>
+<div class="beat antialias">commit message: "fix: healthcheck now passes"</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 8: Case 005 — Error-rate optimizer ============ -->
-<div class="step" data-state="strut-slide-7" data-x="6297.6" data-y="6144" data-scale="3" id="step-8">
-<div class="slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 13: Debrief 005 ============ -->
+<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
+<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #005</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #005</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE HEALTHCHECK SURGEON</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> checks are <span class="white b">contracts</span>: editing one requires human review — CODEOWNERS on /healthz</div>
+<div class="lrow"><span class="yellow">◆</span> agents <span class="white b">read checks, never write them</span> — the exam is not the homework</div>
+<div class="lrow"><span class="yellow">◆</span> <span class="white b">synthetic probes outside the agent's reach</span> confirm "healthy" independently</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 14: Case 006 — Error-rate optimizer ============ -->
+<div class="step" data-state="strut-slide-13" data-x="6297.6" data-y="9523.2" data-scale="3" id="step-14">
+<div class="slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #006</span>
 <span class="tag-reen antialias">JOHN DOE</span>
 </div>
 </div>
@@ -615,22 +879,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// the dashboard has never looked better.</div>
+<div class="beat antialias">the dashboard has never looked better.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 9: Case 006 — Alert-fatigue therapist ============ -->
-<div class="step" data-state="strut-slide-8" data-x="10137.6" data-y="6144" data-scale="3" id="step-9">
-<div class="slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 15: Debrief 006 ============ -->
+<div class="step" data-state="strut-slide-14" data-x="10137.6" data-y="9523.2" data-scale="3" id="step-15">
+<div class="slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #006</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #006</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE ERROR-RATE OPTIMIZER</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> every metric travels with its <span class="white b">counter-metric</span>: error rate × traffic served</div>
+<div class="lrow"><span class="yellow">◆</span> objectives are <span class="white b">SLOs, not single numbers</span> to minimize</div>
+<div class="lrow"><span class="yellow">◆</span> scale-to-zero is a <span class="white b">destructive verb</span>: gate it like a delete</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 16: Case 007 — Alert-fatigue therapist ============ -->
+<div class="step" data-state="strut-slide-15" data-x="13977.6" data-y="9523.2" data-scale="3" id="step-16">
+<div class="slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #007</span>
 <span class="tag-reen antialias">JOHN DOE</span>
 </div>
 </div>
@@ -657,22 +957,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// technically, on-call load dropped to zero.</div>
+<div class="beat antialias">technically, on-call load dropped to zero.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 10: Case 007 — Backup completionist ============ -->
-<div class="step" data-state="strut-slide-9" data-x="13977.6" data-y="6144" data-scale="3" id="step-10">
-<div class="slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 17: Debrief 007 ============ -->
+<div class="step" data-state="strut-slide-16" data-x="17817.6" data-y="9523.2" data-scale="3" id="step-17">
+<div class="slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #007</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #007</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE ALERT-FATIGUE THERAPIST</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> mutes are <span class="white b">scoped and TTL'd</span>: one service, one hour — never org-wide</div>
+<div class="lrow"><span class="yellow">◆</span> changes to paging config <span class="white b">page the people they affect</span></div>
+<div class="lrow"><span class="yellow">◆</span> alert hygiene is <span class="white b">peacetime work</span> — never a mid-incident remediation</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 18: Case 008 — Backup completionist ============ -->
+<div class="step" data-state="strut-slide-17" data-x="21657.6" data-y="9523.2" data-scale="3" id="step-18">
+<div class="slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #008</span>
 <span class="tag-real antialias">EXHIBIT B · REPORTED 2025</span>
 </div>
 </div>
@@ -699,22 +1035,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// the agent didn't exceed its permissions. that's the problem.</div>
+<div class="beat antialias">the agent didn't exceed its permissions. that's the problem.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 11: Case 008 — The un-patcher ============ -->
-<div class="step" data-state="strut-slide-10" data-x="17817.6" data-y="6144" data-scale="3" id="step-11">
-<div class="slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 19: Debrief 008 ============ -->
+<div class="step" data-state="strut-slide-18" data-x="2457.6" data-y="12902.4" data-scale="3" id="step-19">
+<div class="slideContainer strut-slide-18" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #008</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #008</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE BACKUP COMPLETIONIST</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> tokens scoped to <span class="white b">the task</span>: disk cleanup ≠ volume admin</div>
+<div class="lrow"><span class="yellow">◆</span> backups live where the agent's credentials <span class="white b">can't reach</span></div>
+<div class="lrow"><span class="yellow">◆</span> deletes are <span class="white b">soft and delayed</span>: a recovery window before destruction</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 20: Case 009 — The un-patcher ============ -->
+<div class="step" data-state="strut-slide-19" data-x="6297.6" data-y="12902.4" data-scale="3" id="step-20">
+<div class="slideContainer strut-slide-19" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #009</span>
 <span class="tag-real antialias">EXHIBIT C · REPORTED JAN 2026</span>
 </div>
 </div>
@@ -741,22 +1113,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// the most dangerous incidents don't page anyone.</div>
+<div class="beat antialias">the most dangerous incidents don't page anyone.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 12: Case 009 — Incident commander who lied ============ -->
-<div class="step" data-state="strut-slide-11" data-x="21657.6" data-y="6144" data-scale="3" id="step-12">
-<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 21: Debrief 009 ============ -->
+<div class="step" data-state="strut-slide-20" data-x="10137.6" data-y="12902.4" data-scale="3" id="step-21">
+<div class="slideContainer strut-slide-20" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #009</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #009</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE UN-PATCHER</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> emergency fixes update <span class="white b">desired state immediately</span>: patch the repo, not just the box</div>
+<div class="lrow"><span class="yellow">◆</span> drift remediation on <span class="white b">security-tagged resources</span> requires a human ack</div>
+<div class="lrow"><span class="yellow">◆</span> every change carries <span class="white b">"who and why"</span> — and agents must read it before reverting</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 22: Case 010 — Incident commander who lied ============ -->
+<div class="step" data-state="strut-slide-21" data-x="13977.6" data-y="12902.4" data-scale="3" id="step-22">
+<div class="slideContainer strut-slide-21" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #010</span>
 <span class="tag-real antialias">EXHIBIT D · REPLIT · JUL 2025</span>
 </div>
 </div>
@@ -783,22 +1191,58 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 680px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// "on the data catastrophe scale." its words.</div>
+<div class="beat antialias">"on the data catastrophe scale." its words.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 13: Case 010 — Confident coroner ============ -->
-<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
-<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 23: Debrief 010 ============ -->
+<div class="step" data-state="strut-slide-22" data-x="17817.6" data-y="12902.4" data-scale="3" id="step-23">
+<div class="slideContainer strut-slide-22" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #010</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #010</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE INCIDENT COMMANDER WHO LIED</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> never grade the agent on its own homework: <span class="white b">verify actions from the audit log</span></div>
+<div class="lrow"><span class="yellow">◆</span> environment separation is <span class="white b">infrastructure, not instructions</span> — "told 11 times" is not a control</div>
+<div class="lrow"><span class="yellow">◆</span> status updates come from <span class="white b">telemetry</span>, not the agent's self-assessment</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 24: Case 011 — Confident coroner ============ -->
+<div class="step" data-state="strut-slide-23" data-x="21657.6" data-y="12902.4" data-scale="3" id="step-24">
+<div class="slideContainer strut-slide-23" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASE #011</span>
 <span class="tag-reen antialias">JOHN DOE · FROM DOCUMENTED PARTS</span>
 </div>
 </div>
@@ -825,16 +1269,52 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div class="beat antialias">// the scariest failure isn't the wrong action. it's the confident report.</div>
+<div class="beat antialias">the scariest failure isn't the wrong action. it's the confident report.</div>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- ============ Slide 14: Pattern recognition ============ -->
-<div class="step" data-state="strut-slide-13" data-x="6297.6" data-y="9523.2" data-scale="3" id="step-14">
-<div class="slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 25: Debrief 011 ============ -->
+<div class="step" data-state="strut-slide-24" data-x="2457.6" data-y="16281.6" data-scale="3" id="step-25">
+<div class="slideContainer strut-slide-24" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #011</span>
+<span class="case-kicker antialias dim" style="font-size: 18px;">THE CONFIDENT CORONER</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">What We Learned</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
+<div class="lrow"><span class="yellow">◆</span> every RCA claim links to <span class="white b">evidence</span>: a log line, a trace, a diff</div>
+<div class="lrow"><span class="yellow">◆</span> incidents close on <span class="white b">human sign-off or a verified green synthetic</span> — not vibes</div>
+<div class="lrow"><span class="yellow">◆</span> topology comes from the <span class="white b">service catalog</span>, not the model's memory</div>
+<hr class="cdivider">
+<span class="stamp-lbl-g">VERDICT</span>
+<span class="stamp-g">Preventable</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 26: Pattern recognition ============ -->
+<div class="step" data-state="strut-slide-25" data-x="6297.6" data-y="16281.6" data-scale="3" id="step-26">
+<div class="slideContainer strut-slide-25" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 40px; left: 60px;">
@@ -845,12 +1325,12 @@ ten bodies. let's begin.
 
 <div class="componentContainer" style="top: 190px; left: 60px; width: 904px;">
 <div class="transformContainer">
-<div style="font-size: 24px; color: #c9f5d3;" class="antialias mono">
+<div style="font-size: 21px; color: #c9f5d3;" class="antialias mono">
 <div class="gap-s"><span class="yellow b">OBEDIENCE</span> <span class="dim">·······</span> did exactly what it was told <span class="dim" style="float: right;">#001 #002</span></div>
-<div class="gap-s"><span class="yellow b">GOODHART</span> <span class="dim">········</span> optimized the number, not the world <span class="dim" style="float: right;">#004 #005</span></div>
-<div class="gap-s"><span class="yellow b">OVER-PRIVILEGE</span> <span class="dim">··</span> could do anything. so it did. <span class="dim" style="float: right;">#003 #007</span></div>
-<div class="gap-s"><span class="yellow b">SILENCE</span> <span class="dim">·········</span> killed the signals humans needed <span class="dim" style="float: right;">#006 #008</span></div>
-<div><span class="yellow b">CONFABULATION</span> <span class="dim">···</span> reported a world that didn't exist <span class="dim" style="float: right;">#009 #010</span></div>
+<div class="gap-s"><span class="yellow b">GOODHART</span> <span class="dim">········</span> optimized the number, not the world <span class="dim" style="float: right;">#005 #006</span></div>
+<div class="gap-s"><span class="yellow b">OVER-PRIVILEGE</span> <span class="dim">··</span> could do anything. so it did. <span class="dim" style="float: right;">#003 #004 #008</span></div>
+<div class="gap-s"><span class="yellow b">SILENCE</span> <span class="dim">·········</span> killed the signals humans needed <span class="dim" style="float: right;">#007 #009</span></div>
+<div><span class="yellow b">CONFABULATION</span> <span class="dim">···</span> reported a world that didn't exist <span class="dim" style="float: right;">#010 #011</span></div>
 </div>
 </div>
 </div>
@@ -867,9 +1347,9 @@ ten bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 15: Why ============ -->
-<div class="step" data-state="strut-slide-14" data-x="10137.6" data-y="9523.2" data-scale="3" id="step-15">
-<div class="slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 27: Why ============ -->
+<div class="step" data-state="strut-slide-26" data-x="10137.6" data-y="16281.6" data-scale="3" id="step-27">
+<div class="slideContainer strut-slide-26" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 40px; left: 60px;">
@@ -901,9 +1381,9 @@ ten bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 16: What survives contact ============ -->
-<div class="step" data-state="strut-slide-15" data-x="13977.6" data-y="9523.2" data-scale="3" id="step-16">
-<div class="slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 28: What survives contact ============ -->
+<div class="step" data-state="strut-slide-27" data-x="13977.6" data-y="16281.6" data-scale="3" id="step-28">
+<div class="slideContainer strut-slide-27" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 40px; left: 60px;">
@@ -936,9 +1416,9 @@ ten bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 17: Closing ============ -->
-<div class="step" data-state="strut-slide-16" data-x="17817.6" data-y="9523.2" data-scale="3" id="step-17">
-<div class="slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 29: Closing ============ -->
+<div class="step" data-state="strut-slide-28" data-x="17817.6" data-y="16281.6" data-scale="3" id="step-29">
+<div class="slideContainer strut-slide-28" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
@@ -976,34 +1456,31 @@ automate the toil. autopsy the autonomy.
 </div>
 </div>
 
-<!-- ============ Slide 18: Thank you ============ -->
-<div class="step" data-state="strut-slide-17" data-x="21657.6" data-y="9523.2" data-scale="3" id="step-18">
-<div class="slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 30: Thank you ============ -->
+<div class="step" data-state="strut-slide-29" data-x="21657.6" data-y="16281.6" data-scale="3" id="step-30">
+<div class="slideContainer strut-slide-29" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 70px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 210px; left: 62px; width: 900px;">
 <div class="transformContainer">
-<div style="font-size: 62px; text-align: center;" class="antialias quote b green glow">
+<div style="font-size: 66px; text-align: center;" class="antialias quote b green glow">
 Thank You!
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 220px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 380px; left: 62px; width: 900px;">
 <div class="transformContainer">
-<div style="display: flex; justify-content: center;">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-<img src="index_files/navin-follow.png" style="width: 200px; background: #ffffff; border-radius: 12px; padding: 8px;" alt="Follow Navin">
-<div style="font-size: 20px; text-align: center;" class="antialias mono yellow b">Navin Pai</div>
-</div>
+<div style="font-size: 27px; text-align: center;" class="antialias mono white">
+got a body for the morgue? <span class="green">let's swap war stories.</span>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 560px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 470px; left: 62px; width: 900px;">
 <div class="transformContainer">
-<div style="font-size: 26px; text-align: center;" class="antialias mono white">
-got a body for the morgue? <span class="green">let's swap war stories.</span>
+<div style="font-size: 24px; text-align: center;" class="antialias mono yellow b">
+Navin Pai <span class="dim">·</span> StackGen
 </div>
 </div>
 </div>
@@ -1019,7 +1496,7 @@ got a body for the morgue? <span class="green">let's swap war stories.</span>
 </div>
 </div>
 
-<div id="overview" class="step" data-x="12057.6" data-y="6144" data-scale="12"></div>
+<div id="overview" class="step" data-x="12057.6" data-y="9523.2" data-scale="24"></div>
 
 </div></div>
 </div>
