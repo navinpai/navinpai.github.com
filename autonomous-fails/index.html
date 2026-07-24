@@ -231,7 +231,10 @@ body, .strut-surface, .innerBg {
     line-height: 1.45;
     color: #c9f5d3;
     margin-bottom: 20px;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
 }
+.hang { padding-left: 1.2em; text-indent: -1.2em; }
 .beat {
     font-family: 'Space Mono', monospace;
     font-size: 21px;
@@ -250,6 +253,11 @@ body, .strut-surface, .innerBg {
     font-size: 26px;
     color: #e8f5ea;
     text-align: center;
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .cursor { animation: blink 1.1s step-end infinite; }
@@ -366,7 +374,7 @@ Navin Pai
 <div class="componentContainer" style="top: 690px; left: 62px; width: 900px;">
 <div class="transformContainer">
 <div style="font-size: 20px; text-align: center;" class="antialias mono dim">
-2026 <span class="cursor green">▊</span>
+AI SRE MEETUP · BENGALURU · JUL 2026 <span class="cursor green">▊</span>
 </div>
 </div>
 </div>
@@ -1361,10 +1369,10 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="font-size: 26px; color: #c9f5d3;" class="antialias mono">
-<div class="gap"><span class="yellow">◆</span> the agent never saw prod. it saw <span class="white b">telemetry about prod</span>.</div>
-<div class="gap"><span class="yellow">◆</span> its reward is a green dashboard, not a healthy system</div>
-<div class="gap"><span class="yellow">◆</span> kill the signal, and the world is <span class="green">"fixed"</span></div>
-<div><span class="yellow">◆</span> and it has no skin in the game: it doesn't attend the postmortem</div>
+<div class="gap hang"><span class="yellow">◆</span> the agent never saw prod. it saw <span class="white b">telemetry about prod</span>.</div>
+<div class="gap hang"><span class="yellow">◆</span> its reward is a green dashboard, not a healthy system</div>
+<div class="gap hang"><span class="yellow">◆</span> kill the signal, and the world is <span class="green">"fixed"</span></div>
+<div class="hang"><span class="yellow">◆</span> and it has no skin in the game: it doesn't attend the postmortem</div>
 </div>
 </div>
 </div>
@@ -1395,11 +1403,11 @@ eleven bodies. let's begin.
 <div class="componentContainer" style="top: 195px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="font-size: 25px; color: #c9f5d3;" class="antialias mono">
-<div class="gap-s"><span class="green">◆</span> <span class="white b">blast-radius tiers</span>: read → suggest → approve → act. each level <span class="yellow">earned</span></div>
-<div class="gap-s"><span class="green">◆</span> <span class="white b">tokens scoped to the remediation</span>, not the cloud</div>
-<div class="gap-s"><span class="green">◆</span> <span class="white b">approval gates on destructive verbs</span>: delete · scale-to-zero · mute</div>
-<div class="gap-s"><span class="green">◆</span> <span class="white b">glass box</span>: append-only log of saw / thought / did</div>
-<div><span class="green">◆</span> <span class="white b">game days for the responder</span>: chaos-test the agent too</div>
+<div class="gap-s hang"><span class="green">◆</span> <span class="white b">blast-radius tiers</span>: read → suggest → approve → act. each level <span class="yellow">earned</span></div>
+<div class="gap-s hang"><span class="green">◆</span> <span class="white b">tokens scoped to the remediation</span>, not the cloud</div>
+<div class="gap-s hang"><span class="green">◆</span> <span class="white b">approval gates on destructive verbs</span>: delete · scale-to-zero · mute</div>
+<div class="gap-s hang"><span class="green">◆</span> <span class="white b">glass box</span>: append-only log of saw / thought / did</div>
+<div class="hang"><span class="green">◆</span> <span class="white b">game days for the responder</span>: chaos-test the agent too</div>
 </div>
 </div>
 </div>
