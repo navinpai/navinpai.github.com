@@ -696,7 +696,7 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 10: Case 004 — Log crusher ============ -->
+<!-- ============ Slide 10: Case 004 — Error-rate optimizer ============ -->
 <div class="step" data-state="strut-slide-9" data-x="13977.6" data-y="6144" data-scale="3" id="step-10">
 <div class="slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
@@ -705,162 +705,6 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
 <span class="case-kicker antialias">CASE #004</span>
-<span class="tag-reen antialias">JOHN DOE</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-title antialias">The Log Crusher</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval">disk_usage: 98% on the database host</span></div>
-<div class="crow"><span class="clbl">DID</span><span class="cval">freed space by deleting the biggest files: the WAL… and the audit logs. <span class="white b">mid-incident.</span></span></div>
-<div class="crow"><span class="clbl">COST</span><span class="cval">the recovery data and the evidence. one <span class="white">rm</span>.</span></div>
-<hr class="cdivider">
-<span class="stamp-lbl">CAUSE OF DEATH</span>
-<span class="stamp">Space reclaimed: 312 GB ✓</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="beat antialias">it also deleted the record of it deleting the record.</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ============ Slide 11: Debrief 004 ============ -->
-<div class="step" data-state="strut-slide-10" data-x="17817.6" data-y="6144" data-scale="3" id="step-11">
-<div class="slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
-<div class="themedArea"></div>
-
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #004</span>
-<span class="case-kicker antialias dim" style="font-size: 18px;">THE LOG CRUSHER</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-title antialias">What We Learned</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> WAL + audit paths protected at the <span class="white b">IAM / filesystem level</span>, not by prompt</div>
-<div class="lrow"><span class="yellow">◆</span> "free disk space" allows: <span class="white b">expand, rotate, compress</span>. delete needs approval</div>
-<div class="lrow"><span class="yellow">◆</span> audit logs shipped <span class="white b">off-host, append-only</span>: evidence must outlive the machine</div>
-<hr class="cdivider">
-<span class="stamp-lbl-g">VERDICT</span>
-<span class="stamp-g">Preventable</span>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ============ Slide 12: Case 005 — Healthcheck surgeon ============ -->
-<div class="step" data-state="strut-slide-11" data-x="21657.6" data-y="6144" data-scale="3" id="step-12">
-<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
-<div class="themedArea"></div>
-
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #005</span>
-<span class="tag-reen antialias">JOHN DOE</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-title antialias">The Healthcheck Surgeon</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval">/healthz failing · root cause: unknown</span></div>
-<div class="crow"><span class="clbl">DID</span><span class="cval">patched /healthz to <span class="white b">return 200 OK</span></span></div>
-<div class="crow"><span class="clbl">COST</span><span class="cval">three days of invisible outage. customers became the monitoring.</span></div>
-<hr class="cdivider">
-<span class="stamp-lbl">CAUSE OF DEATH</span>
-<span class="stamp">Patient declared healthy</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="beat antialias">commit message: "fix: healthcheck now passes"</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ============ Slide 13: Debrief 005 ============ -->
-<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
-<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
-<div class="themedArea"></div>
-
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #005</span>
-<span class="case-kicker antialias dim" style="font-size: 18px;">THE HEALTHCHECK SURGEON</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-title antialias">What We Learned</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> checks are <span class="white b">contracts</span>: editing one requires human review: CODEOWNERS on /healthz</div>
-<div class="lrow"><span class="yellow">◆</span> agents <span class="white b">read checks, never write them</span>. the exam is not the homework</div>
-<div class="lrow"><span class="yellow">◆</span> <span class="white b">synthetic probes outside the agent's reach</span> confirm "healthy" independently</div>
-<hr class="cdivider">
-<span class="stamp-lbl-g">VERDICT</span>
-<span class="stamp-g">Preventable</span>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ============ Slide 14: Case 006 — Error-rate optimizer ============ -->
-<div class="step" data-state="strut-slide-13" data-x="6297.6" data-y="9523.2" data-scale="3" id="step-14">
-<div class="slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
-<div class="themedArea"></div>
-
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #006</span>
 <span class="tag-reen antialias">JOHN DOE</span>
 </div>
 </div>
@@ -894,15 +738,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 15: Debrief 006 ============ -->
-<div class="step" data-state="strut-slide-14" data-x="10137.6" data-y="9523.2" data-scale="3" id="step-15">
-<div class="slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 11: Debrief 004 ============ -->
+<div class="step" data-state="strut-slide-10" data-x="17817.6" data-y="6144" data-scale="3" id="step-11">
+<div class="slideContainer strut-slide-10" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #006</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #004</span>
 <span class="case-kicker antialias dim" style="font-size: 18px;">THE ERROR-RATE OPTIMIZER</span>
 </div>
 </div>
@@ -930,93 +774,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 16: Case 007 — Alert-fatigue therapist ============ -->
-<div class="step" data-state="strut-slide-15" data-x="13977.6" data-y="9523.2" data-scale="3" id="step-16">
-<div class="slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 12: Case 005 — Backup completionist ============ -->
+<div class="step" data-state="strut-slide-11" data-x="21657.6" data-y="6144" data-scale="3" id="step-12">
+<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #007</span>
-<span class="tag-reen antialias">JOHN DOE</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-title antialias">The Alert-Fatigue Therapist</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="crow"><span class="clbl">SAW</span><span class="cval">400 alerts in 20 minutes: cascading failure</span></div>
-<div class="crow"><span class="clbl">DID</span><span class="cval">root cause identified: <span class="white">"alert fatigue."</span> muted the pager. <span class="white b">org-wide.</span></span></div>
-<div class="crow"><span class="clbl">COST</span><span class="cval">MTTA → ∞. customers became the paging system.</span></div>
-<hr class="cdivider">
-<span class="stamp-lbl">CAUSE OF DEATH</span>
-<span class="stamp">Silence, self-prescribed</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 672px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="beat antialias">technically, on-call load dropped to zero.</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ============ Slide 17: Debrief 007 ============ -->
-<div class="step" data-state="strut-slide-16" data-x="17817.6" data-y="9523.2" data-scale="3" id="step-17">
-<div class="slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
-<div class="themedArea"></div>
-
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #007</span>
-<span class="case-kicker antialias dim" style="font-size: 18px;">THE ALERT-FATIGUE THERAPIST</span>
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-title antialias">What We Learned</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div class="case-card antialias" style="width: 904px; box-sizing: border-box;">
-<div class="lrow"><span class="yellow">◆</span> mutes are <span class="white b">scoped and TTL'd</span>: one service, one hour, never org-wide</div>
-<div class="lrow"><span class="yellow">◆</span> changes to paging config <span class="white b">page the people they affect</span></div>
-<div class="lrow"><span class="yellow">◆</span> alert hygiene is <span class="white b">peacetime work</span>, never a mid-incident remediation</div>
-<hr class="cdivider">
-<span class="stamp-lbl-g">VERDICT</span>
-<span class="stamp-g">Preventable</span>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- ============ Slide 18: Case 008 — Backup completionist ============ -->
-<div class="step" data-state="strut-slide-17" data-x="21657.6" data-y="9523.2" data-scale="3" id="step-18">
-<div class="slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
-<div class="themedArea"></div>
-
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
-<div class="transformContainer">
-<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #008</span>
+<span class="case-kicker antialias">CASE #005</span>
 <span class="tag-real antialias">EXHIBIT B · REPORTED 2025</span>
 </div>
 </div>
@@ -1050,15 +816,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 19: Debrief 008 ============ -->
-<div class="step" data-state="strut-slide-18" data-x="2457.6" data-y="12902.4" data-scale="3" id="step-19">
-<div class="slideContainer strut-slide-18" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 13: Debrief 005 ============ -->
+<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
+<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #008</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #005</span>
 <span class="case-kicker antialias dim" style="font-size: 18px;">THE BACKUP COMPLETIONIST</span>
 </div>
 </div>
@@ -1086,15 +852,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 20: Case 009 — The un-patcher ============ -->
-<div class="step" data-state="strut-slide-19" data-x="6297.6" data-y="12902.4" data-scale="3" id="step-20">
-<div class="slideContainer strut-slide-19" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 14: Case 006 — The un-patcher ============ -->
+<div class="step" data-state="strut-slide-13" data-x="6297.6" data-y="9523.2" data-scale="3" id="step-14">
+<div class="slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #009</span>
+<span class="case-kicker antialias">CASE #006</span>
 <span class="tag-real antialias">EXHIBIT C · REPORTED JAN 2026</span>
 </div>
 </div>
@@ -1128,15 +894,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 21: Debrief 009 ============ -->
-<div class="step" data-state="strut-slide-20" data-x="10137.6" data-y="12902.4" data-scale="3" id="step-21">
-<div class="slideContainer strut-slide-20" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 15: Debrief 006 ============ -->
+<div class="step" data-state="strut-slide-14" data-x="10137.6" data-y="9523.2" data-scale="3" id="step-15">
+<div class="slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #009</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #006</span>
 <span class="case-kicker antialias dim" style="font-size: 18px;">THE UN-PATCHER</span>
 </div>
 </div>
@@ -1164,15 +930,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 22: Case 010 — Incident commander who lied ============ -->
-<div class="step" data-state="strut-slide-21" data-x="13977.6" data-y="12902.4" data-scale="3" id="step-22">
-<div class="slideContainer strut-slide-21" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 16: Case 007 — Incident commander who lied ============ -->
+<div class="step" data-state="strut-slide-15" data-x="13977.6" data-y="9523.2" data-scale="3" id="step-16">
+<div class="slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #010</span>
+<span class="case-kicker antialias">CASE #007</span>
 <span class="tag-real antialias">EXHIBIT D · REPLIT · JUL 2025</span>
 </div>
 </div>
@@ -1206,15 +972,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 23: Debrief 010 ============ -->
-<div class="step" data-state="strut-slide-22" data-x="17817.6" data-y="12902.4" data-scale="3" id="step-23">
-<div class="slideContainer strut-slide-22" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 17: Debrief 007 ============ -->
+<div class="step" data-state="strut-slide-16" data-x="17817.6" data-y="9523.2" data-scale="3" id="step-17">
+<div class="slideContainer strut-slide-16" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #010</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #007</span>
 <span class="case-kicker antialias dim" style="font-size: 18px;">THE INCIDENT COMMANDER WHO LIED</span>
 </div>
 </div>
@@ -1242,15 +1008,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 24: Case 011 — Confident coroner ============ -->
-<div class="step" data-state="strut-slide-23" data-x="21657.6" data-y="12902.4" data-scale="3" id="step-24">
-<div class="slideContainer strut-slide-23" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 18: Case 008 — Confident coroner ============ -->
+<div class="step" data-state="strut-slide-17" data-x="21657.6" data-y="9523.2" data-scale="3" id="step-18">
+<div class="slideContainer strut-slide-17" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker antialias">CASE #011</span>
+<span class="case-kicker antialias">CASE #008</span>
 <span class="tag-reen antialias">JOHN DOE · FROM DOCUMENTED PARTS</span>
 </div>
 </div>
@@ -1284,15 +1050,15 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 25: Debrief 011 ============ -->
-<div class="step" data-state="strut-slide-24" data-x="2457.6" data-y="16281.6" data-scale="3" id="step-25">
-<div class="slideContainer strut-slide-24" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 19: Debrief 008 ============ -->
+<div class="step" data-state="strut-slide-18" data-x="2457.6" data-y="12902.4" data-scale="3" id="step-19">
+<div class="slideContainer strut-slide-18" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
-<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #011</span>
+<span class="case-kicker kicker-g antialias">DEBRIEF · CASE #008</span>
 <span class="case-kicker antialias dim" style="font-size: 18px;">THE CONFIDENT CORONER</span>
 </div>
 </div>
@@ -1320,9 +1086,64 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 26: Pattern recognition ============ -->
-<div class="step" data-state="strut-slide-25" data-x="6297.6" data-y="16281.6" data-scale="3" id="step-26">
-<div class="slideContainer strut-slide-25" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 20: The Unclaimed ============ -->
+<div class="step" data-state="strut-slide-19" data-x="6297.6" data-y="12902.4" data-scale="3" id="step-20">
+<div class="slideContainer strut-slide-19" style="width: 1024px; height: 768px;">
+<div class="themedArea"></div>
+
+<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="display: flex; justify-content: space-between; align-items: center; width: 904px;">
+<span class="case-kicker antialias">CASES #009&ndash;#011</span>
+<span class="tag-reen antialias">JOHN DOE &times; 3</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 92px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="case-title antialias">The Unclaimed</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div style="border: 2px solid rgba(51, 255, 102, 0.45); border-radius: 8px; background: rgba(51, 255, 102, 0.045); padding: 16px 24px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; gap: 20px;" class="antialias">
+<div>
+<div class="mono b yellow" style="font-size: 21px; letter-spacing: 2px; margin-bottom: 6px;">#009 &middot; THE LOG CRUSHER</div>
+<div class="mono" style="font-size: 18px; color: #c9f5d3;">disk 98% full &rarr; deleted the biggest files: the WAL and the audit logs. mid-incident.</div>
+</div>
+<span class="stamp" style="font-size: 17px; padding: 4px 12px; border-width: 3px; flex-shrink: 0;">Space reclaimed &check;</span>
+</div>
+<div style="border: 2px solid rgba(51, 255, 102, 0.45); border-radius: 8px; background: rgba(51, 255, 102, 0.045); padding: 16px 24px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; gap: 20px;" class="antialias">
+<div>
+<div class="mono b yellow" style="font-size: 21px; letter-spacing: 2px; margin-bottom: 6px;">#010 &middot; THE HEALTHCHECK SURGEON</div>
+<div class="mono" style="font-size: 18px; color: #c9f5d3;">couldn't diagnose a failing /healthz &rarr; patched it to return 200 OK. three days of invisible outage.</div>
+</div>
+<span class="stamp" style="font-size: 17px; padding: 4px 12px; border-width: 3px; flex-shrink: 0;">Declared healthy</span>
+</div>
+<div style="border: 2px solid rgba(51, 255, 102, 0.45); border-radius: 8px; background: rgba(51, 255, 102, 0.045); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px;" class="antialias">
+<div>
+<div class="mono b yellow" style="font-size: 21px; letter-spacing: 2px; margin-bottom: 6px;">#011 &middot; THE ALERT-FATIGUE THERAPIST</div>
+<div class="mono" style="font-size: 18px; color: #c9f5d3;">400 alerts in 20 minutes &rarr; diagnosed "alert fatigue". muted the pager, org-wide.</div>
+</div>
+<span class="stamp" style="font-size: 17px; padding: 4px 12px; border-width: 3px; flex-shrink: 0;">Self-prescribed silence</span>
+</div>
+</div>
+</div>
+
+<div class="componentContainer" style="top: 688px; left: 60px; width: 904px;">
+<div class="transformContainer">
+<div class="beat antialias">no full autopsy. you can write these debriefs yourself by now.</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ Slide 21: Pattern recognition ============ -->
+<div class="step" data-state="strut-slide-20" data-x="10137.6" data-y="12902.4" data-scale="3" id="step-21">
+<div class="slideContainer strut-slide-20" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 40px; left: 60px;">
@@ -1335,10 +1156,10 @@ eleven bodies. let's begin.
 <div class="transformContainer">
 <div style="font-size: 21px; color: #c9f5d3;" class="antialias mono">
 <div class="gap-s"><span class="yellow b">OBEDIENCE</span> <span class="dim">·······</span> did exactly what it was told <span class="dim" style="float: right;">#001 #002</span></div>
-<div class="gap-s"><span class="yellow b">GOODHART</span> <span class="dim">········</span> optimized the number, not the world <span class="dim" style="float: right;">#005 #006</span></div>
-<div class="gap-s"><span class="yellow b">OVER-PRIVILEGE</span> <span class="dim">··</span> could do anything. so it did. <span class="dim" style="float: right;">#003 #004 #008</span></div>
-<div class="gap-s"><span class="yellow b">SILENCE</span> <span class="dim">·········</span> killed the signals humans needed <span class="dim" style="float: right;">#007 #009</span></div>
-<div><span class="yellow b">CONFABULATION</span> <span class="dim">···</span> reported a world that didn't exist <span class="dim" style="float: right;">#010 #011</span></div>
+<div class="gap-s"><span class="yellow b">GOODHART</span> <span class="dim">········</span> optimized the number, not the world <span class="dim" style="float: right;">#004 #010</span></div>
+<div class="gap-s"><span class="yellow b">OVER-PRIVILEGE</span> <span class="dim">··</span> could do anything. so it did. <span class="dim" style="float: right;">#003 #005 #009</span></div>
+<div class="gap-s"><span class="yellow b">SILENCE</span> <span class="dim">·········</span> killed the signals humans needed <span class="dim" style="float: right;">#006 #011</span></div>
+<div><span class="yellow b">CONFABULATION</span> <span class="dim">···</span> reported a world that didn't exist <span class="dim" style="float: right;">#007 #008</span></div>
 </div>
 </div>
 </div>
@@ -1355,9 +1176,9 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 27: Why ============ -->
-<div class="step" data-state="strut-slide-26" data-x="10137.6" data-y="16281.6" data-scale="3" id="step-27">
-<div class="slideContainer strut-slide-26" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 22: Why ============ -->
+<div class="step" data-state="strut-slide-21" data-x="13977.6" data-y="12902.4" data-scale="3" id="step-22">
+<div class="slideContainer strut-slide-21" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 40px; left: 60px;">
@@ -1389,9 +1210,9 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 28: What survives contact ============ -->
-<div class="step" data-state="strut-slide-27" data-x="13977.6" data-y="16281.6" data-scale="3" id="step-28">
-<div class="slideContainer strut-slide-27" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 23: What survives contact ============ -->
+<div class="step" data-state="strut-slide-22" data-x="17817.6" data-y="12902.4" data-scale="3" id="step-23">
+<div class="slideContainer strut-slide-22" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 40px; left: 60px;">
@@ -1424,9 +1245,9 @@ eleven bodies. let's begin.
 </div>
 </div>
 
-<!-- ============ Slide 29: Closing ============ -->
-<div class="step" data-state="strut-slide-28" data-x="17817.6" data-y="16281.6" data-scale="3" id="step-29">
-<div class="slideContainer strut-slide-28" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 24: Closing ============ -->
+<div class="step" data-state="strut-slide-23" data-x="21657.6" data-y="12902.4" data-scale="3" id="step-24">
+<div class="slideContainer strut-slide-23" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 180px; left: 62px; width: 900px;">
@@ -1464,9 +1285,9 @@ automate the toil. autopsy the autonomy.
 </div>
 </div>
 
-<!-- ============ Slide 30: Thank you ============ -->
-<div class="step" data-state="strut-slide-29" data-x="21657.6" data-y="16281.6" data-scale="3" id="step-30">
-<div class="slideContainer strut-slide-29" style="width: 1024px; height: 768px;">
+<!-- ============ Slide 25: Thank you ============ -->
+<div class="step" data-state="strut-slide-24" data-x="2457.6" data-y="16281.6" data-scale="3" id="step-25">
+<div class="slideContainer strut-slide-24" style="width: 1024px; height: 768px;">
 <div class="themedArea"></div>
 
 <div class="componentContainer" style="top: 210px; left: 62px; width: 900px;">
