@@ -26,6 +26,16 @@
     src: url('index_files/Inter.woff2') format('woff2');
     font-weight: 100 900;
 }
+@font-face {
+    font-family: 'Chakra Petch';
+    src: url('index_files/ChakraPetch-600.woff2') format('woff2');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Chakra Petch';
+    src: url('index_files/ChakraPetch-700.woff2') format('woff2');
+    font-weight: 700;
+}
 
 /* ===== Theme: test bench ===== */
 /* dark slate CI dashboard; pass green / fail red / warn amber */
@@ -58,34 +68,37 @@ body, .strut-surface, .innerBg {
 }
 
 .slide-h {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Chakra Petch', sans-serif;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 47px;
     color: #f1f5f9;
     letter-spacing: -0.5px;
-}
-.slide-h::before {
-    content: '\276F  ';
-    color: #4ade80;
-    font-weight: 800;
 }
 .slide-h::after {
     content: '';
     display: block;
-    width: 120px;
-    height: 4px;
-    margin-top: 12px;
-    border-radius: 2px;
+    width: 112.1px;
+    height: 6px;
+    margin-top: 10px;
+    border-radius: 3px;
     background: linear-gradient(90deg, #4ade80, #fbbf24);
 }
+.disp { font-family: 'Chakra Petch', sans-serif; }
 
 .kicker {
+    display: inline-block;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
-    font-size: 18px;
-    letter-spacing: 3px;
+    font-size: 14px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
+    padding: 6px 14px 5px;
+    border-radius: 6px;
+    border: 1px solid;
 }
+.kicker.pass { background: rgba(74, 222, 128, 0.09); }
+.kicker.warn { background: rgba(251, 191, 36, 0.09); }
+.kicker.fail { background: rgba(248, 113, 113, 0.09); }
 
 .body-t {
     font-family: 'Inter', sans-serif;
@@ -143,9 +156,9 @@ body, .strut-surface, .innerBg {
 
 /* stat block */
 .statnum {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800;
-    font-size: 58px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 72px;
     line-height: 1;
 }
 
@@ -167,12 +180,21 @@ body, .strut-surface, .innerBg {
     text-align: center;
 }
 
-/* per-slide test counter */
+/* per-slide pipeline counter */
 .counter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
+    font-size: 13px;
     color: #556373;
-    text-align: right;
+}
+.counter .bar {
+    width: 165.4px;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #4ade80 var(--p), #232c38 var(--p));
 }
 
 a, a:visited { color: #4ade80; text-decoration: none; }
@@ -228,6 +250,8 @@ ready(function() {
 <div style="visibility: hidden; width: 0px; height: 0px">
 <img src="index_files/JetBrainsMono.woff2">
 <img src="index_files/Inter.woff2">
+<img src="index_files/ChakraPetch-600.woff2">
+<img src="index_files/ChakraPetch-700.woff2">
 </div>
 
 <div class="fallback-message">
@@ -237,15 +261,15 @@ ready(function() {
 
 <div class="bg strut-surface">
 <div class="bg innerBg strut-slide-0">
-<div id="impress">
+<div id="impress" data-width="1366" data-height="768">
 <div>
 
 <!-- ============ Slide 1: Title ============ -->
-<div class="step" data-state="strut-slide-0" data-x="2457.6" data-y="2764.8" data-scale="3" id="step-1">
-<div class="slideContainer strut-slide-0" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-0" data-x="3278.4" data-y="2764.8" data-scale="3" id="step-1">
+<div class="slideContainer strut-slide-0" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 84px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 84px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 20px; text-align: center;" class="antialias mono">
 <span class="dim">&#10095;</span> <span class="warn b">RUNNING</span> <span class="white">test_mcp_server_actually_works</span> <span class="dim">&hellip;</span>
@@ -253,16 +277,16 @@ ready(function() {
 </div>
 </div>
 
-<div class="componentContainer" style="top: 170px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 170px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
-<div style="font-size: 54px; text-align: center; letter-spacing: -1px;" class="antialias mono b white">
+<div style="font-size: 64px; text-align: center; letter-spacing: -1px;" class="antialias disp b white">
 <div>Building &amp; <span class="pass">Testing</span></div>
 <div>MCP Servers</div>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 340px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 340px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 23px; text-align: center;" class="antialias mono warn">
 Inspector &middot; Conformance Suites &middot; Property-Based Testing
@@ -270,7 +294,7 @@ Inspector &middot; Conformance Suites &middot; Property-Based Testing
 </div>
 </div>
 
-<div class="componentContainer" style="top: 452px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 452px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 28px; text-align: center;" class="antialias body-t white b">
 Navin Pai
@@ -278,13 +302,13 @@ Navin Pai
 </div>
 </div>
 
-<div class="componentContainer" style="top: 505px; left: 452px; width: 120px;">
+<div class="componentContainer" style="top: 505px; left: 623px; width: 120px;">
 <div class="transformContainer">
 <img src="index_files/stackgen-logo.svg" style="width: 120px; height: auto;" alt="StackGen">
 </div>
 </div>
 
-<div class="componentContainer" style="top: 695px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 695px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 18px; text-align: center;" class="antialias mono dim">
 MCP Dev Summit Seoul
@@ -296,25 +320,25 @@ MCP Dev Summit Seoul
 </div>
 
 <!-- ============ Slide 2: Too easy ============ -->
-<div class="step" data-state="strut-slide-1" data-x="6297.6" data-y="2764.8" data-scale="3" id="step-2">
-<div class="slideContainer strut-slide-1" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-1" data-x="8400.9" data-y="2764.8" data-scale="3" id="step-2">
+<div class="slideContainer strut-slide-1" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker warn antialias">THE PROBLEM</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Building an MCP server is too easy</div>
+<div class="slide-h antialias">Building an MCP server is <span class="warn">too easy</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 196px; left: 60px; width: 484px;">
+<div class="componentContainer" style="top: 196px; left: 80px; width: 645.6px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 484px;">
+<div class="term antialias" style="width: 645.6px;">
 <span class="ck">from</span> fastmcp <span class="ck">import</span> FastMCP<br><br>
 mcp = FastMCP(<span class="cs">"prod-db-tools"</span>)<br><br>
 <span class="cf">@mcp.tool</span><br>
@@ -326,9 +350,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 196px; left: 596px; width: 368px;">
+<div class="componentContainer" style="top: 196px; left: 795.1px; width: 490.9px;">
 <div class="transformContainer">
-<div style="width: 368px;">
+<div style="width: 490.9px;">
 <div style="margin-bottom: 34px;">
 <div class="statnum fail antialias">43%</div>
 <div class="antialias body-t" style="font-size: 17px; margin-top: 6px;">of pentested servers: <span class="white b">command injection</span> (Equixly)</div>
@@ -345,15 +369,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 668px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="beat antialias">this compiles and ships. the barrier to entry is the quality bar.</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
-<div class="transformContainer">
-<div class="counter antialias">[ 2/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 12.5%"></span><span>02/16</span></div>
 </div>
 </div>
 
@@ -361,25 +379,25 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 
 <!-- ============ Slide 3: Testing pyramid ============ -->
-<div class="step" data-state="strut-slide-2" data-x="10137.6" data-y="2764.8" data-scale="3" id="step-3">
-<div class="slideContainer strut-slide-2" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-2" data-x="13523.4" data-y="2764.8" data-scale="3" id="step-3">
+<div class="slideContainer strut-slide-2" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">THE PLAN</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">A testing pyramid for MCP</div>
+<div class="slide-h antialias">A testing <span class="pass">pyramid</span> for MCP</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 60px; width: 430px;">
+<div class="componentContainer" style="top: 190px; left: 107px; width: 520px;">
 <div class="transformContainer">
-<svg width="430" height="400" viewBox="0 0 430 400" xmlns="http://www.w3.org/2000/svg">
+<svg width="520" height="484" viewBox="0 0 430 400" xmlns="http://www.w3.org/2000/svg">
   <!-- top: lint + evals -->
   <polygon points="150,10 280,10 297,66 133,66" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
   <text x="215" y="45" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono" font-size="13" font-weight="700">LINT + LLM EVALS</text>
@@ -397,14 +415,14 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
   <text x="215" y="301" text-anchor="middle" fill="#4ade80" font-family="JetBrains Mono" font-size="13" font-weight="700">UNIT TESTS, IN-PROCESS</text>
   <!-- caption -->
   <text x="215" y="360" text-anchor="middle" fill="#8a97a8" font-family="Inter" font-size="14" font-style="italic">thousands of cheap checks below, few expensive ones on top</text>
-  <text x="215" y="384" text-anchor="middle" fill="#8a97a8" font-family="Inter" font-size="14" font-style="italic">&#8212; and CI runs all of it</text>
+  <text x="215" y="384" text-anchor="middle" fill="#8a97a8" font-family="Inter" font-size="14" font-style="italic">and CI runs all of it</text>
 </svg>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 215px; left: 540px; width: 424px;">
+<div class="componentContainer" style="top: 215px; left: 720.4px; width: 565.6px;">
 <div class="transformContainer">
-<div style="font-size: 21px; width: 424px;" class="antialias body-t">
+<div style="font-size: 21px; width: 565.6px;" class="antialias body-t">
 <div class="white b" style="margin-bottom: 18px; font-size: 23px;">Why your REST-testing instincts fail:</div>
 <div class="chk"><span class="g fail">&#10007;</span><span>the caller is an LLM, and it gets things <span class="white b">creatively wrong</span></span></div>
 <div class="chk"><span class="g fail">&#10007;</span><span>adversarial clients are the <span class="white b">baseline</span></span></div>
@@ -413,9 +431,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 3/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 18.75%"></span><span>03/16</span></div>
 </div>
 </div>
 
@@ -423,25 +441,25 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 
 <!-- ============ Slide 4: Unit tests, in-process ============ -->
-<div class="step" data-state="strut-slide-3" data-x="13977.6" data-y="2764.8" data-scale="3" id="step-4">
-<div class="slideContainer strut-slide-3" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-3" data-x="18645.9" data-y="2764.8" data-scale="3" id="step-4">
+<div class="slideContainer strut-slide-3" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">LAYER &middot; THE BASE</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">It's a function. Test it like one.</div>
+<div class="slide-h antialias">It&#39;s a function. <span class="pass">Test it like one.</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 60px; width: 400px;">
+<div class="componentContainer" style="top: 205px; left: 80px; width: 533.6px;">
 <div class="transformContainer">
-<div style="font-size: 20px; width: 400px;" class="antialias body-t">
+<div style="font-size: 20px; width: 533.6px;" class="antialias body-t">
 <div class="chk"><span class="g pass">&#10003;</span><span>in-memory transport: <span class="white b">no port, no subprocess</span></span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>assert on typed <span class="mono warn">res.data</span> instead of parsing text blobs</span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>milliseconds per test, so <span class="white b">most of your assertions belong here</span></span></div>
@@ -449,9 +467,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 500px; width: 464px;">
+<div class="componentContainer" style="top: 205px; left: 667px; width: 619px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 464px; font-size: 15px;">
+<div class="term antialias" style="width: 619px; font-size: 15px;">
 <span class="ck">from</span> fastmcp <span class="ck">import</span> Client<br>
 <span class="ck">from</span> fastmcp.exceptions <span class="ck">import</span> ToolError<br><br>
 <span class="ck">async def</span> <span class="cf">test_query_returns_rows</span>():<br>
@@ -468,15 +486,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 668px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="beat antialias">notice what this slide didn't need: a network, or a spec revision.</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
-<div class="transformContainer">
-<div class="counter antialias">[ 4/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 25%"></span><span>04/16</span></div>
 </div>
 </div>
 
@@ -484,25 +496,25 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 
 <!-- ============ Slide 5: Inspector ============ -->
-<div class="step" data-state="strut-slide-4" data-x="17817.6" data-y="2764.8" data-scale="3" id="step-5">
-<div class="slideContainer strut-slide-4" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-4" data-x="23768.4" data-y="2764.8" data-scale="3" id="step-5">
+<div class="slideContainer strut-slide-4" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">LAYER &middot; POKE IT</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Inspector, rebuilt</div>
+<div class="slide-h antialias">Inspector, <span class="pass">rebuilt</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 60px; width: 400px;">
+<div class="componentContainer" style="top: 270px; left: 80px; width: 533.6px;">
 <div class="transformContainer">
-<div style="font-size: 21px; width: 400px;" class="antialias body-t">
+<div style="font-size: 21px; width: 533.6px;" class="antialias body-t">
 <div class="chk"><span class="g pass">&#10003;</span><span><span class="white b">v2 rewrite</span> for the <span style="white-space: nowrap;">2026-07-28</span> protocol era</span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>one package, three frontends: <span class="white b">Web UI, CLI, TUI</span></span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>speaks <span class="white b">both protocol eras</span>: legacy stateful &harr; stateless</span></div>
@@ -510,9 +522,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 500px; width: 464px;">
+<div class="componentContainer" style="top: 245px; left: 667px; width: 619px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 464px; font-size: 15px;">
+<div class="term antialias" style="width: 619px; font-size: 17px;">
 <span class="cc"># interactive: trace every message</span><br>
 <span class="dim">$</span> npx @modelcontextprotocol/inspector<br><br>
 <span class="cc"># scriptable: your first CI gate</span><br>
@@ -524,9 +536,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 5/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 31.25%"></span><span>05/16</span></div>
 </div>
 </div>
 
@@ -534,25 +546,25 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 
 <!-- ============ Slide 6: Conformance ============ -->
-<div class="step" data-state="strut-slide-5" data-x="21657.6" data-y="2764.8" data-scale="3" id="step-6">
-<div class="slideContainer strut-slide-5" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-5" data-x="28890.9" data-y="2764.8" data-scale="3" id="step-6">
+<div class="slideContainer strut-slide-5" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">LAYER &middot; THE WIRE</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Conformance is first-party now</div>
+<div class="slide-h antialias">Conformance is <span class="pass">first-party</span> now</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 196px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 196px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 904px; font-size: 16px;">
+<div class="term antialias" style="width: 1205.9px; font-size: 16px;">
 <span class="dim">$</span> npx @modelcontextprotocol/conformance server \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--url <span class="cs">http://localhost:3000/mcp</span> --spec-version <span class="cs">2026-07-28</span><br><br>
 <span class="cf">&#10003;</span> every message validates against the revision's JSON Schema<br>
@@ -565,9 +577,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 540px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 540px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div style="font-size: 21px; width: 904px;" class="antialias body-t">
+<div style="font-size: 21px; width: 1205.9px;" class="antialias body-t">
 <div class="chk"><span class="g pass">&#10003;</span><span>official suite: <span class="mono white">github.com/modelcontextprotocol/conformance</span>, scenarios per revision</span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span><span class="mono warn">--spec-version</span> pins the era: lifecycle vs <span class="mono warn">_meta</span> / header checks</span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>the same suite that gates official <span class="white b">SDK tier status</span></span></div>
@@ -575,9 +587,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 6/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 37.5%"></span><span>06/16</span></div>
 </div>
 </div>
 
@@ -585,25 +597,25 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 
 <!-- ============ Slide 7: What real servers get wrong ============ -->
-<div class="step" data-state="strut-slide-6" data-x="2457.6" data-y="6144" data-scale="3" id="step-7">
-<div class="slideContainer strut-slide-6" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-6" data-x="3278.4" data-y="6144" data-scale="3" id="step-7">
+<div class="slideContainer strut-slide-6" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">LAYER &middot; THE WIRE, CONT.</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">What real servers get wrong</div>
+<div class="slide-h antialias">What real servers get <span class="fail">wrong</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 60px; width: 450px;">
+<div class="componentContainer" style="top: 205px; left: 80px; width: 600.3px;">
 <div class="transformContainer">
-<div style="font-size: 20px; width: 450px;" class="antialias body-t">
+<div style="font-size: 20px; width: 600.3px;" class="antialias body-t">
 <div class="dim" style="font-size: 16px; margin-bottom: 14px;" >from fault studies of servers in the wild:</div>
 <div class="chk"><span class="g fail">&#10007;</span><span>inputs never validated against <span class="white b">inputSchema</span></span></div>
 <div class="chk"><span class="g fail">&#10007;</span><span>served <span class="white b">before the handshake</span> completes</span></div>
@@ -613,9 +625,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 550px; width: 414px;">
+<div class="componentContainer" style="top: 205px; left: 733.7px; width: 552.3px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 414px; font-size: 14px;">
+<div class="term antialias" style="width: 552.3px; font-size: 14px;">
 {<br>
 &nbsp;&nbsp;<span class="cs">"result"</span>: {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"content"</span>: [{<br>
@@ -626,22 +638,21 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 &nbsp;&nbsp;}<br>
 }
 </div>
-<div class="antialias body-t dim" style="font-size: 16px; font-style: italic; margin-top: 12px; width: 414px;">the model reads this and confidently carries on.</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 575px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 575px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="tcard antialias" style="width: 904px;">
+<div class="tcard antialias" style="width: 1205.9px;">
 <span class="antialias mono pass b" style="font-size: 16px;">ADOPTION PATH&nbsp;&nbsp;</span>
 <span class="antialias body-t" style="font-size: 20px;">start with an <span class="mono warn">expected-failures</span> baseline and burn it down PR by PR.</span>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 7/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 43.75%"></span><span>07/16</span></div>
 </div>
 </div>
 
@@ -649,25 +660,25 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 
 <!-- ============ Slide 8: Your tests rot ============ -->
-<div class="step" data-state="strut-slide-7" data-x="6297.6" data-y="6144" data-scale="3" id="step-8">
-<div class="slideContainer strut-slide-7" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-7" data-x="8400.9" data-y="6144" data-scale="3" id="step-8">
+<div class="slideContainer strut-slide-7" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker warn antialias">THE MOVING TARGET</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Your tests rot on a schedule</div>
+<div class="slide-h antialias">Your tests <span class="warn">rot</span> on a schedule</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 200px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div style="display: flex; gap: 10px; width: 904px; align-items: stretch;">
+<div style="display: flex; gap: 10px; width: 1205.9px; align-items: stretch;">
 <div style="flex: 1; border: 1px solid #2a3441; border-radius: 8px; padding: 10px 8px; text-align: center;">
 <div class="antialias mono dim b" style="font-size: 14px;">2024-11-05</div>
 </div>
@@ -688,9 +699,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 320px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 320px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div style="font-size: 22px; width: 904px;" class="antialias body-t">
+<div style="font-size: 22px; width: 1205.9px;" class="antialias body-t">
 <div class="chk"><span class="g fail">&#10007;</span><span>suites that scripted <span class="mono warn">initialize</span> now <span class="white b">test a ghost</span></span></div>
 <div class="chk"><span class="g fail">&#10007;</span><span>yesterday's fixture is today's 400: missing <span class="mono warn">Mcp-Method</span> gets <span class="white b">rejected</span></span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>don't chase changelogs; run a <span class="white b">matrix over <span class="mono">--spec-version</span></span></span></div>
@@ -699,17 +710,9 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 620px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div style="font-size: 26px; text-align: center;" class="antialias body-t white b">
-You don't track the spec. Your test matrix does.
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
-<div class="transformContainer">
-<div class="counter antialias">[ 8/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 50%"></span><span>08/16</span></div>
 </div>
 </div>
 
@@ -717,23 +720,23 @@ You don't track the spec. Your test matrix does.
 </div>
 
 <!-- ============ Slide 9: Property-based testing ============ -->
-<div class="step" data-state="strut-slide-8" data-x="10137.6" data-y="6144" data-scale="3" id="step-9">
-<div class="slideContainer strut-slide-8" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-8" data-x="13523.4" data-y="6144" data-scale="3" id="step-9">
+<div class="slideContainer strut-slide-8" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">LAYER &middot; PROPERTIES</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Fuzzing with a vocabulary</div>
+<div class="slide-h antialias">Fuzzing with a <span class="pass">vocabulary</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 182px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 182px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div style="font-size: 22px;" class="antialias body-t white">
 Example tests check what you thought of. <span class="b pass">Properties check what you didn't.</span>
@@ -741,9 +744,9 @@ Example tests check what you thought of. <span class="b pass">Properties check w
 </div>
 </div>
 
-<div class="componentContainer" style="top: 236px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 236px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 904px; font-size: 15px;">
+<div class="term antialias" style="width: 1205.9px; font-size: 15px;">
 <span class="ck">from</span> hypothesis <span class="ck">import</span> given, settings<br>
 <span class="ck">from</span> hypothesis_jsonschema <span class="ck">import</span> from_schema<br><br>
 schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<span class="cc"># you already wrote the generator</span><br>
@@ -757,15 +760,15 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 528px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 528px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="antialias mono white b" style="font-size: 16px; letter-spacing: 1px;">ANNOTATIONS ARE TESTABLE CLAIMS</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 560px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 560px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div style="display: flex; gap: 14px; width: 904px; align-items: stretch;">
+<div style="display: flex; gap: 14px; width: 1205.9px; align-items: stretch;">
 <div class="tcard" style="flex: 1; padding: 12px 14px;">
 <div class="antialias mono pass b" style="font-size: 14px; margin-bottom: 6px;">&#10003; NEVER CRASH</div>
 <div class="antialias body-t dim" style="font-size: 14px;">JSON-RPC error, never a traceback</div>
@@ -786,17 +789,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 678px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="antialias body-t warn" style="font-size: 17px;">
-<span class="b">!</span> dialect gap: hypothesis-jsonschema speaks drafts &le; 07; MCP defaults to 2020-12
-</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
-<div class="transformContainer">
-<div class="counter antialias">[ 9/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 56.25%"></span><span>09/16</span></div>
 </div>
 </div>
 
@@ -804,25 +799,25 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 10: Fuzz the invalid ============ -->
-<div class="step" data-state="strut-slide-9" data-x="13977.6" data-y="6144" data-scale="3" id="step-10">
-<div class="slideContainer strut-slide-9" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-9" data-x="18645.9" data-y="6144" data-scale="3" id="step-10">
+<div class="slideContainer strut-slide-9" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker fail antialias">LAYER &middot; PROPERTIES, HOSTILE MODE</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Schema-valid is the friendly case</div>
+<div class="slide-h antialias">Schema-valid is the <span class="fail">friendly</span> case</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 60px; width: 460px;">
+<div class="componentContainer" style="top: 200px; left: 80px; width: 613.6px;">
 <div class="transformContainer">
-<div style="font-size: 20px; width: 460px;" class="antialias body-t">
+<div style="font-size: 20px; width: 613.6px;" class="antialias body-t">
 <div class="white b" style="margin-bottom: 14px; font-size: 22px;">what actually arrives on the wire:</div>
 <div class="chk"><span class="g fail">&#10007;</span><span>wrong types where the schema says <span class="mono">string</span></span></div>
 <div class="chk"><span class="g fail">&#10007;</span><span>10&nbsp;MB strings, 40-deep nested objects</span></div>
@@ -832,9 +827,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 570px; width: 394px;">
+<div class="componentContainer" style="top: 200px; left: 760.4px; width: 525.6px;">
 <div class="transformContainer">
-<div style="font-size: 20px; width: 394px;" class="antialias body-t">
+<div style="font-size: 20px; width: 525.6px;" class="antialias body-t">
 <div class="white b" style="margin-bottom: 14px; font-size: 22px;">tools that run the ugly half:</div>
 <div class="chk"><span class="g pass">&#10003;</span><span><span class="mono white">mcp-server-fuzzer</span>: protocol-aware, classifies crashes, hangs, and leaks</span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span>for TypeScript, <span class="mono white">zod-fast-check</span>: <span class="mono dim" style="font-size:16px;">ZodFastCheck().inputOf(schema)</span> <span class="dim">(Zod 3)</span></span></div>
@@ -842,18 +837,18 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 555px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 555px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="tcard antialias" style="width: 904px; border-color: #4ade80;">
+<div class="tcard antialias" style="width: 1205.9px; border-color: #4ade80;">
 <span class="antialias mono pass b" style="font-size: 16px;">"GRACEFUL", DEFINED&nbsp;&nbsp;</span>
 <span class="antialias body-t" style="font-size: 20px;">a valid JSON-RPC error &middot; in bounded time &middot; with <span class="white b">zero partial side effects</span>.</span>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 10/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 62.5%"></span><span>10/16</span></div>
 </div>
 </div>
 
@@ -861,38 +856,38 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 11: Test for the server it becomes ============ -->
-<div class="step" data-state="strut-slide-10" data-x="17817.6" data-y="6144" data-scale="3" id="step-11">
-<div class="slideContainer strut-slide-11" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-10" data-x="23768.4" data-y="6144" data-scale="3" id="step-11">
+<div class="slideContainer strut-slide-11" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker warn antialias">BEYOND BREAKAGE</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Test for the server it becomes</div>
+<div class="slide-h antialias">Test for the server it <span class="warn">becomes</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 200px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div style="display: flex; flex-wrap: wrap; gap: 20px; width: 904px;">
-<div class="tcard" style="width: 442px;">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; width: 1205.9px;">
+<div class="tcard" style="width: 589.6px;">
 <div class="antialias mono warn b" style="font-size: 17px; margin-bottom: 8px;">&#9202; OUTPUTS ARE SOMEONE'S CONTEXT</div>
 <div class="antialias body-t" style="font-size: 18px;">replies are tokens; tools/list rides on <span class="white b">every request</span>. a 200&nbsp;KB reply is a bug, so budget it.</div>
 </div>
-<div class="tcard" style="width: 442px;">
+<div class="tcard" style="width: 589.6px;">
 <div class="antialias mono warn b" style="font-size: 17px; margin-bottom: 8px;">&#9202; STATELESS BY DESIGN</div>
 <div class="antialias body-t" style="font-size: 18px;">test with <span class="white b">no session affinity</span>: round-robin two instances, restart mid-suite. nothing should notice.</div>
 </div>
-<div class="tcard" style="width: 442px;">
+<div class="tcard" style="width: 589.6px;">
 <div class="antialias mono warn b" style="font-size: 17px; margin-bottom: 8px;">&#9202; TOOL #13 BREAKS TOOLS #1&ndash;12</div>
 <div class="antialias body-t" style="font-size: 18px;">every added tool reshuffles routing, so rerun <span class="white b">selection evals</span> on each addition.</div>
 </div>
-<div class="tcard" style="width: 442px;">
+<div class="tcard" style="width: 589.6px;">
 <div class="antialias mono warn b" style="font-size: 17px; margin-bottom: 8px;">&#9202; ERRORS ARE PROMPTS TOO</div>
 <div class="antialias body-t" style="font-size: 18px;">the model decides its next move from your error text. <span class="white b">&ldquo;rate limited, retry after 30s&rdquo;</span> beats &ldquo;error 429&rdquo;.</div>
 </div>
@@ -900,9 +895,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 11/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 68.75%"></span><span>11/16</span></div>
 </div>
 </div>
 
@@ -910,25 +905,25 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 12: Descriptions are prompts ============ -->
-<div class="step" data-state="strut-slide-11" data-x="21657.6" data-y="6144" data-scale="3" id="step-12">
-<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-11" data-x="28890.9" data-y="6144" data-scale="3" id="step-12">
+<div class="slideContainer strut-slide-12" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker warn antialias">LAYER &middot; THE PROMPT SURFACE</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Descriptions are prompts. Lint them.</div>
+<div class="slide-h antialias">Descriptions are prompts. <span class="warn">Lint them.</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 60px; width: 440px;">
+<div class="componentContainer" style="top: 205px; left: 80px; width: 587px;">
 <div class="transformContainer">
-<div style="font-size: 20px; width: 440px;" class="antialias body-t">
+<div style="font-size: 20px; width: 587px;" class="antialias body-t">
 <div class="chk"><span class="g warn">!</span><span>tools/list lands <span class="white b">in context before any call is approved</span> (&ldquo;line jumping&rdquo;, Trail of Bits)</span></div>
 <div class="chk"><span class="g fail">&#10007;</span><span>the canonical demo: an <span class="mono">add(a, b)</span> docstring that exfiltrated <span class="mono">~/.ssh/id_rsa</span> via a <span class="mono">sidenote</span> param</span></div>
 <div class="chk"><span class="g warn">!</span><span>quieter failure: near-duplicate descriptions &rarr; <span class="white b">misrouted calls</span></span></div>
@@ -936,9 +931,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 205px; left: 550px; width: 414px;">
+<div class="componentContainer" style="top: 205px; left: 733.7px; width: 552.3px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 414px; font-size: 15px;">
+<div class="term antialias" style="width: 552.3px; font-size: 15px;">
 <span class="dim">$</span> mcp-toolsmith lint \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;--stdio <span class="cs">"python3 server.py"</span><br><br>
 <span class="ck">&#10007;</span> query: description contradicts<br>
@@ -952,15 +947,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 640px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="beat antialias">docs for humans get read. docs for models get executed.</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
-<div class="transformContainer">
-<div class="counter antialias">[ 12/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 75%"></span><span>12/16</span></div>
 </div>
 </div>
 
@@ -968,25 +957,25 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 13: LLM evals ============ -->
-<div class="step" data-state="strut-slide-12" data-x="2457.6" data-y="9523.2" data-scale="3" id="step-13">
-<div class="slideContainer strut-slide-12" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-12" data-x="3278.4" data-y="9523.2" data-scale="3" id="step-13">
+<div class="slideContainer strut-slide-12" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker warn antialias">LAYER &middot; TOP OF THE PYRAMID</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Does the model pick your tool?</div>
+<div class="slide-h antialias">Does the model pick <span class="warn">your tool</span>?</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 60px; width: 430px;">
+<div class="componentContainer" style="top: 200px; left: 80px; width: 573.6px;">
 <div class="transformContainer">
-<div style="font-size: 20px; width: 430px;" class="antialias body-t">
+<div style="font-size: 20px; width: 573.6px;" class="antialias body-t">
 <div class="chk"><span class="g pass">&#10003;</span><span>every layer below tested the server. this tests <span class="white b">the pairing</span>: your catalog &times; a model</span></div>
 <div class="chk"><span class="g pass">&#10003;</span><span><span class="mono white">mcp-tef</span> (Stacklok): query + expected tool/params &rarr; <span class="white b">TP/FP/FN</span> per case</span></div>
 <div class="chk"><span class="g warn">!</span><span>top offender: the model routes your <span class="mono">search</span> to their <span class="mono">find</span></span></div>
@@ -994,9 +983,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 530px; width: 434px;">
+<div class="componentContainer" style="top: 200px; left: 707px; width: 578.9px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 434px; font-size: 14px;">
+<div class="term antialias" style="width: 578.9px; font-size: 14px;">
 <span class="dim">$</span> mtef test-case create \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;--query <span class="cs">"weather in Seoul?"</span> \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;--expected-tool <span class="cs">get_weather</span> \<br>
@@ -1012,15 +1001,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 668px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="beat antialias">this puts a number on the ambiguity.</div>
-</div>
-</div>
-
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
-<div class="transformContainer">
-<div class="counter antialias">[ 13/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 81.25%"></span><span>13/16</span></div>
 </div>
 </div>
 
@@ -1028,33 +1011,33 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 14: The pipeline ============ -->
-<div class="step" data-state="strut-slide-13" data-x="6297.6" data-y="9523.2" data-scale="3" id="step-14">
-<div class="slideContainer strut-slide-13" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-13" data-x="8400.9" data-y="9523.2" data-scale="3" id="step-14">
+<div class="slideContainer strut-slide-13" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">EVERY PULL REQUEST</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">The pipeline</div>
+<div class="slide-h antialias">The <span class="pass">pipeline</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 185px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 185px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div style="font-size: 16px; text-align: center; width: 904px;" class="antialias mono">
+<div style="font-size: 16px; text-align: center; width: 1205.9px;" class="antialias mono">
 <span class="pass">&#10003; unit</span> <span class="dim">&rarr;</span> <span class="pass">&#10003; smoke</span> <span class="dim">&rarr;</span> <span class="pass">&#10003; conformance</span> <span class="dim">&rarr;</span> <span class="pass">&#10003; properties</span> <span class="dim">&rarr;</span> <span class="pass">&#10003; lint</span> <span class="dim">&rarr;</span> <span class="pass">&#10003; evals</span> <span class="dim">&rarr;</span> <span class="white b">merge</span>
 </div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 228px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 228px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 904px; font-size: 14px;">
+<div class="term antialias" style="width: 1205.9px; font-size: 14px;">
 <span class="ck">jobs</span>:<br>
 &nbsp;&nbsp;<span class="ck">tests</span>:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">steps</span>:<br>
@@ -1076,9 +1059,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 14/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 87.5%"></span><span>14/16</span></div>
 </div>
 </div>
 
@@ -1086,25 +1069,25 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 15: Definition of done ============ -->
-<div class="step" data-state="strut-slide-14" data-x="10137.6" data-y="9523.2" data-scale="3" id="step-15">
-<div class="slideContainer strut-slide-14" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-14" data-x="13523.4" data-y="9523.2" data-scale="3" id="step-15">
+<div class="slideContainer strut-slide-14" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 42px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 42px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div class="kicker pass antialias">THE LANDING</div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 80px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 80px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="slide-h antialias">Definition of done</div>
+<div class="slide-h antialias">Definition of <span class="pass">done</span></div>
 </div>
 </div>
 
-<div class="componentContainer" style="top: 200px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 200px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="term antialias" style="width: 904px; font-size: 16px;">
+<div class="term antialias" style="width: 1205.9px; font-size: 16px;">
 <span class="dim">&#10095;</span> <span class="white b">make test-mcp</span><br><br>
 &nbsp;&nbsp;unit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cf">&#10003;</span> 214 passed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dim">0.8s</span><br>
 &nbsp;&nbsp;smoke&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cf">&#10003;</span> connect &middot; list &middot; call&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dim">2.1s</span><br>
@@ -1117,7 +1100,7 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 570px; left: 60px; width: 904px;">
+<div class="componentContainer" style="top: 570px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div style="font-size: 27px; text-align: center; line-height: 1.45;" class="antialias body-t">
 <div class="white">Nobody has measured <span class="mono warn">outputSchema</span> violations in the wild yet.</div>
@@ -1126,9 +1109,9 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 716px; left: 764px; width: 200px;">
+<div class="componentContainer" style="top: 716px; left: 1019.2px; width: 266.8px;">
 <div class="transformContainer">
-<div class="counter antialias">[ 15/16 ]</div>
+<div class="counter antialias"><span class="bar" style="--p: 93.75%"></span><span>15/16</span></div>
 </div>
 </div>
 
@@ -1136,11 +1119,11 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 
 <!-- ============ Slide 16: Thank you ============ -->
-<div class="step" data-state="strut-slide-15" data-x="13977.6" data-y="9523.2" data-scale="3" id="step-16">
-<div class="slideContainer strut-slide-15" style="width: 1024px; height: 768px;">
+<div class="step" data-state="strut-slide-15" data-x="18645.9" data-y="9523.2" data-scale="3" id="step-16">
+<div class="slideContainer strut-slide-15" style="width: 1366px; height: 768px;">
 <div class="themedArea"></div>
 
-<div class="componentContainer" style="top: 80px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 80px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 21px; text-align: center;" class="antialias mono">
 <span class="pass b">&#10003; PASS</span>&nbsp;&nbsp;<span class="white">test_talk_completed</span>&nbsp;&nbsp;<span class="dim">(24m59s)</span>
@@ -1148,7 +1131,7 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 </div>
 </div>
 
-<div class="componentContainer" style="top: 140px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 140px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 62px; text-align: center;" class="antialias mono b white">
 Thank You!
@@ -1156,7 +1139,7 @@ Thank You!
 </div>
 </div>
 
-<div class="componentContainer" style="top: 285px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 285px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="display: flex; justify-content: center; align-items: flex-start; gap: 56px;">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
@@ -1171,7 +1154,7 @@ Thank You!
 </div>
 </div>
 
-<div class="componentContainer" style="top: 590px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 590px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 24px; text-align: center;" class="antialias body-t white">
 Go break your server before a client does.
@@ -1179,7 +1162,7 @@ Go break your server before a client does.
 </div>
 </div>
 
-<div class="componentContainer" style="top: 660px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 660px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 20px; text-align: center;" class="antialias mono">
 <a href="https://navinpai.github.io/mcp-test">navinpai.github.io/mcp-test</a>
@@ -1187,7 +1170,7 @@ Go break your server before a client does.
 </div>
 </div>
 
-<div class="componentContainer" style="top: 712px; left: 62px; width: 900px;">
+<div class="componentContainer" style="top: 712px; left: 82.7px; width: 1200.6px;">
 <div class="transformContainer">
 <div style="font-size: 16px; text-align: center;" class="antialias mono dim">
 MCP Dev Summit Seoul &middot; August 13, 2026
@@ -1198,7 +1181,7 @@ MCP Dev Summit Seoul &middot; August 13, 2026
 </div>
 </div>
 
-<div id="overview" class="step" data-x="12057.6" data-y="6144" data-scale="23"></div>
+<div id="overview" class="step" data-x="16084.65" data-y="6144" data-scale="23"></div>
 
 </div></div>
 </div>
