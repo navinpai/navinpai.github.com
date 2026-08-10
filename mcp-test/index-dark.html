@@ -37,8 +37,8 @@
     font-weight: 700;
 }
 
-/* ===== Theme: test bench (light) ===== */
-/* paper CI dashboard; dark terminals; pass green / fail red / warn amber */
+/* ===== Theme: test bench ===== */
+/* dark slate CI dashboard; pass green / fail red / warn amber */
 
 .componentContainer {
     position: absolute;
@@ -58,8 +58,8 @@
 
 body, .strut-surface, .innerBg {
     background:
-        radial-gradient(circle, rgba(15, 23, 42, 0.08) 1px, transparent 1.4px),
-        radial-gradient(ellipse at 50% 38%, #ffffff 0%, #eef0f3 78%) !important;
+        radial-gradient(circle, rgba(241, 245, 249, 0.05) 1px, transparent 1.4px),
+        radial-gradient(ellipse at 50% 38%, #10141a 0%, #0a0d11 78%) !important;
     background-size: 26px 26px, 100% 100% !important;
 }
 
@@ -71,7 +71,7 @@ body, .strut-surface, .innerBg {
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 700;
     font-size: 47px;
-    color: #14181f;
+    color: #f1f5f9;
     letter-spacing: -0.5px;
 }
 .slide-h::after {
@@ -81,7 +81,7 @@ body, .strut-surface, .innerBg {
     height: 6px;
     margin-top: 10px;
     border-radius: 3px;
-    background: linear-gradient(90deg, #0b6e63, #c93d1a);
+    background: linear-gradient(90deg, #4ade80, #fbbf24);
 }
 .disp { font-family: 'Chakra Petch', sans-serif; }
 
@@ -96,51 +96,44 @@ body, .strut-surface, .innerBg {
     border-radius: 6px;
     border: 1px solid;
 }
-.kicker.pass { background: rgba(11, 110, 99, 0.08); }
-.kicker.warn { background: rgba(146, 105, 10, 0.09); }
-.kicker.fail { background: rgba(201, 61, 26, 0.08); }
+.kicker.pass { background: rgba(74, 222, 128, 0.09); }
+.kicker.warn { background: rgba(251, 191, 36, 0.09); }
+.kicker.fail { background: rgba(248, 113, 113, 0.09); }
 
 .body-t {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    color: #2e3440;
+    color: #dbe4ee;
     line-height: 1.5;
 }
 
 .mono { font-family: 'JetBrains Mono', monospace; }
 
-.pass  { color: #0b6e63; }
-.fail  { color: #c93d1a; }
-.warn  { color: #92690a; }
-.white { color: #10151c; }
-.dim   { color: #667080; }
+.pass  { color: #4ade80; }
+.fail  { color: #f87171; }
+.warn  { color: #fbbf24; }
+.white { color: #f1f5f9; }
+.dim   { color: #8a97a8; }
 .b     { font-weight: 700; }
 
 /* test-runner output panel */
 .term {
-    background: #191510;
-    border: 1px solid #40382a;
+    background: #0d1117;
+    border: 1px solid #2a3441;
     border-radius: 10px;
     padding: 20px 24px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 16px;
     line-height: 1.62;
-    color: #e9e2d2;
+    color: #dbe4ee;
     text-align: left;
     box-sizing: border-box;
-    box-shadow: 0 14px 34px rgba(20, 25, 35, 0.20);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.4), 0 10px 30px rgba(0,0,0,0.35);
 }
-.term .cc { color: #8a8070; }              /* comment */
-.term .ck { color: #ff8a5c; }              /* keyword */
-.term .cs { color: #e6b53a; }              /* string */
-.term .cf { color: #3ecfae; }              /* function / good */
-
-/* semantic classes flip to bright variants inside dark terminals */
-.term .pass  { color: #3ecfae; }
-.term .fail  { color: #ff8a5c; }
-.term .warn  { color: #e6b53a; }
-.term .white { color: #f2ecdc; }
-.term .dim   { color: #8a8070; }
+.term .cc { color: #64748b; }              /* comment */
+.term .ck { color: #f87171; }              /* keyword */
+.term .cs { color: #fbbf24; }              /* string */
+.term .cf { color: #4ade80; }              /* function / good */
 
 /* pass/fail pills */
 .pill {
@@ -153,9 +146,9 @@ body, .strut-surface, .innerBg {
     border-radius: 5px;
     vertical-align: middle;
 }
-.pill-pass { background: #e5f5ea; color: #15803d; border: 1px solid #15803d; }
-.pill-fail { background: #fceaea; color: #dc2626; border: 1px solid #dc2626; }
-.pill-warn { background: #fdf1e3; color: #b45309; border: 1px solid #b45309; }
+.pill-pass { background: #14351f; color: #4ade80; border: 1px solid #4ade80; }
+.pill-fail { background: #3a1414; color: #f87171; border: 1px solid #f87171; }
+.pill-warn { background: #37290a; color: #fbbf24; border: 1px solid #fbbf24; }
 
 /* check rows */
 .chk { display: flex; gap: 14px; align-items: baseline; margin-bottom: 14px; }
@@ -171,9 +164,8 @@ body, .strut-surface, .innerBg {
 
 /* cards (start monday, contracts) */
 .tcard {
-    background: #ffffff;
-    border: 1px solid #e0e3e8;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    background: rgba(13, 17, 23, 0.75);
+    border: 1px solid #2a3441;
     border-radius: 10px;
     padding: 18px 20px;
     box-sizing: border-box;
@@ -184,7 +176,7 @@ body, .strut-surface, .innerBg {
     font-family: 'Inter', sans-serif;
     font-style: italic;
     font-size: 19px;
-    color: #667080;
+    color: #8a97a8;
     text-align: center;
 }
 
@@ -196,18 +188,18 @@ body, .strut-surface, .innerBg {
     gap: 10px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
-    color: #8b94a3;
+    color: #556373;
 }
 .counter .bar {
     width: 165.4px;
     height: 6px;
     border-radius: 3px;
-    background: linear-gradient(90deg, #0b6e63 var(--p), #e0e3e8 var(--p));
+    background: linear-gradient(90deg, #4ade80 var(--p), #232c38 var(--p));
 }
 
-a, a:visited { color: #0b6e63; text-decoration: none; }
+a, a:visited { color: #4ade80; text-decoration: none; }
 
-.hint { color: #667080; }
+.hint { color: #8a97a8; }
 
 /* PDF export mode (?export): hide neighboring slides, freeze animations */
 body.export .step:not(.active) { visibility: hidden; }
@@ -312,7 +304,7 @@ Navin Pai
 
 <div class="componentContainer" style="top: 505px; left: 623px; width: 120px;">
 <div class="transformContainer">
-<img src="index_files/stackgen-logo.svg" style="width: 120px; height: auto; background: #10141a; border-radius: 10px; padding: 10px 18px;" alt="StackGen">
+<img src="index_files/stackgen-logo.svg" style="width: 120px; height: auto;" alt="StackGen">
 </div>
 </div>
 
@@ -407,23 +399,23 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 <div class="transformContainer">
 <svg width="520" height="484" viewBox="0 0 430 400" xmlns="http://www.w3.org/2000/svg">
   <!-- top: lint + evals -->
-  <polygon points="150,10 280,10 297,66 133,66" fill="rgba(146,105,10,0.10)" stroke="#92690a" stroke-width="1.5"/>
-  <text x="215" y="45" text-anchor="middle" fill="#92690a" font-family="JetBrains Mono" font-size="13" font-weight="700">LINT + LLM EVALS</text>
+  <polygon points="150,10 280,10 297,66 133,66" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="215" y="45" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono" font-size="13" font-weight="700">LINT + LLM EVALS</text>
   <!-- inspector / integration -->
-  <polygon points="130,74 300,74 316,130 114,130" fill="rgba(138,117,23,0.10)" stroke="#8a7517" stroke-width="1.5"/>
-  <text x="215" y="109" text-anchor="middle" fill="#8a7517" font-family="JetBrains Mono" font-size="13" font-weight="700">INSPECTOR</text>
+  <polygon points="130,74 300,74 316,130 114,130" fill="rgba(207,199,59,0.10)" stroke="#cfc73b" stroke-width="1.5"/>
+  <text x="215" y="109" text-anchor="middle" fill="#cfc73b" font-family="JetBrains Mono" font-size="13" font-weight="700">INSPECTOR</text>
   <!-- conformance -->
-  <polygon points="111,138 319,138 336,194 94,194" fill="rgba(109,122,43,0.10)" stroke="#6d7a2b" stroke-width="1.5"/>
-  <text x="215" y="173" text-anchor="middle" fill="#6d7a2b" font-family="JetBrains Mono" font-size="13" font-weight="700">PROTOCOL CONFORMANCE</text>
+  <polygon points="111,138 319,138 336,194 94,194" fill="rgba(163,207,82,0.10)" stroke="#a3cf52" stroke-width="1.5"/>
+  <text x="215" y="173" text-anchor="middle" fill="#a3cf52" font-family="JetBrains Mono" font-size="13" font-weight="700">PROTOCOL CONFORMANCE</text>
   <!-- property fuzzing -->
-  <polygon points="92,202 338,202 356,258 74,258" fill="rgba(60,122,79,0.11)" stroke="#3c7a4f" stroke-width="1.5"/>
-  <text x="215" y="237" text-anchor="middle" fill="#3c7a4f" font-family="JetBrains Mono" font-size="13" font-weight="700">PROPERTY-BASED FUZZING</text>
+  <polygon points="92,202 338,202 356,258 74,258" fill="rgba(118,214,105,0.13)" stroke="#76d669" stroke-width="1.5"/>
+  <text x="215" y="237" text-anchor="middle" fill="#76d669" font-family="JetBrains Mono" font-size="13" font-weight="700">PROPERTY-BASED FUZZING</text>
   <!-- base: unit tests -->
-  <polygon points="72,266 358,266 375,322 55,322" fill="rgba(11,110,99,0.12)" stroke="#0b6e63" stroke-width="2"/>
-  <text x="215" y="301" text-anchor="middle" fill="#0b6e63" font-family="JetBrains Mono" font-size="13" font-weight="700">UNIT TESTS, IN-PROCESS</text>
+  <polygon points="72,266 358,266 375,322 55,322" fill="rgba(74,222,128,0.16)" stroke="#4ade80" stroke-width="2"/>
+  <text x="215" y="301" text-anchor="middle" fill="#4ade80" font-family="JetBrains Mono" font-size="13" font-weight="700">UNIT TESTS, IN-PROCESS</text>
   <!-- caption -->
-  <text x="215" y="360" text-anchor="middle" fill="#667080" font-family="Inter" font-size="14" font-style="italic">thousands of cheap checks below, few expensive ones on top</text>
-  <text x="215" y="384" text-anchor="middle" fill="#667080" font-family="Inter" font-size="14" font-style="italic">and CI runs all of it</text>
+  <text x="215" y="360" text-anchor="middle" fill="#8a97a8" font-family="Inter" font-size="14" font-style="italic">thousands of cheap checks below, few expensive ones on top</text>
+  <text x="215" y="384" text-anchor="middle" fill="#8a97a8" font-family="Inter" font-size="14" font-style="italic">and CI runs all of it</text>
 </svg>
 </div>
 </div>
@@ -687,19 +679,19 @@ mcp.run()&nbsp;&nbsp;<span class="cc"># ship it</span>
 <div class="componentContainer" style="top: 200px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
 <div style="display: flex; gap: 10px; width: 1205.9px; align-items: stretch;">
-<div style="flex: 1; border: 1px solid #dfe3e8; border-radius: 8px; padding: 10px 8px; text-align: center;">
+<div style="flex: 1; border: 1px solid #2a3441; border-radius: 8px; padding: 10px 8px; text-align: center;">
 <div class="antialias mono dim b" style="font-size: 14px;">2024-11-05</div>
 </div>
-<div style="flex: 1; border: 1px solid #dfe3e8; border-radius: 8px; padding: 10px 8px; text-align: center;">
+<div style="flex: 1; border: 1px solid #2a3441; border-radius: 8px; padding: 10px 8px; text-align: center;">
 <div class="antialias mono dim b" style="font-size: 14px;">2025-03-26</div>
 </div>
-<div style="flex: 1; border: 1px solid #dfe3e8; border-radius: 8px; padding: 10px 8px; text-align: center;">
+<div style="flex: 1; border: 1px solid #2a3441; border-radius: 8px; padding: 10px 8px; text-align: center;">
 <div class="antialias mono dim b" style="font-size: 14px;">2025-06-18</div>
 </div>
-<div style="flex: 1; border: 1px solid #dfe3e8; border-radius: 8px; padding: 10px 8px; text-align: center;">
+<div style="flex: 1; border: 1px solid #2a3441; border-radius: 8px; padding: 10px 8px; text-align: center;">
 <div class="antialias mono dim b" style="font-size: 14px;">2025-11-25</div>
 </div>
-<div style="flex: 1; border: 2px solid #92690a; border-radius: 8px; padding: 10px 8px; text-align: center; background: rgba(146, 105, 10, 0.12);">
+<div style="flex: 1; border: 2px solid #fbbf24; border-radius: 8px; padding: 10px 8px; text-align: center; background: rgba(55, 41, 10, 0.45);">
 <div class="antialias mono warn b" style="font-size: 14px;">2026-07-28</div>
 </div>
 </div>
@@ -847,7 +839,7 @@ schema = tool(<span class="cs">"search_docs"</span>).inputSchema&nbsp;&nbsp;<spa
 
 <div class="componentContainer" style="top: 555px; left: 80px; width: 1205.9px;">
 <div class="transformContainer">
-<div class="tcard antialias" style="width: 1205.9px; border-color: #0b6e63;">
+<div class="tcard antialias" style="width: 1205.9px; border-color: #4ade80;">
 <span class="antialias mono pass b" style="font-size: 16px;">"GRACEFUL", DEFINED&nbsp;&nbsp;</span>
 <span class="antialias body-t" style="font-size: 20px;">a valid JSON-RPC error &middot; in bounded time &middot; with <span class="white b">zero partial side effects</span>.</span>
 </div>
