@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101012" />
+    <meta name="description" content="Hate Me — an audiovisual love letter to the end. An interactive lyric film for Ellie Goulding & Juice WRLD." />
+    <link rel="icon" type="image/svg+xml" href="/hate-me/favicon.svg" />
+    <title>HATE ME — A lyric film</title>
+
+    <link rel="preload" href="/hate-me/fonts/BebasNeue.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/hate-me/fonts/SpaceGrotesk.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/hate-me/fonts/CormorantGaramond-Italic.ttf" as="font" type="font/ttf" crossorigin>
+    <style id="loading-styles">
+      html,body{margin:0;background:#101012}
+      .film-loading .app{visibility:hidden}
+      #film-loader{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:radial-gradient(ellipse at 52% 46%,#29212c 0%,#151419 42%,#101012 75%);color:#eee9df;opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s .4s}
+      #film-loader[hidden]{display:none}
+      .loader-inner{text-align:center;padding:32px;width:min(380px,85vw)}
+      .loader-title{display:flex;align-items:baseline;justify-content:center;gap:15px;font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1;white-space:nowrap}
+      .loader-title span{font-size:clamp(48px,10vw,76px);letter-spacing:-3px}
+      .loader-title em{font-size:clamp(48px,10vw,76px);font-weight:400;color:#c3cd9d;letter-spacing:-4px}
+      .loader-track{height:1px;background:#eee9df20;margin:35px auto 22px;max-width:216px;overflow:hidden}
+      .loader-track span{display:block;height:100%;width:40%;background:#c3cd9d;animation:load-drift 1.8s cubic-bezier(.45,0,.3,1) infinite}
+      #loader-message{font:10px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;text-transform:uppercase;color:#b1aab5;margin:0}
+      .loader-credit{position:absolute;bottom:32px;left:20px;right:20px;text-align:center;font:9px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:2px;color:#77717e}
+      #load-retry{margin:20px auto 0;padding:10px 20px;font:11px ui-monospace,monospace;letter-spacing:1px;color:#eee9df;background:transparent;border:1px solid #eee9df50;cursor:pointer}
+      #load-retry[hidden]{display:none}
+      .load-failed .loader-track span{animation:none;width:100%;background:#b58799}
+      body:not(.film-loading) #film-loader{opacity:0;visibility:hidden;pointer-events:none}
+      @keyframes load-drift{from{transform:translateX(-110%)}to{transform:translateX(355%)}}
+      @media(prefers-reduced-motion:reduce){#film-loader{transition:none}.loader-track span{animation:none;width:100%;opacity:.6}}
+    </style>
+    <script type="module" crossorigin src="/hate-me/assets/index-B5GEeqX2.js"></script>
+    <link rel="modulepreload" crossorigin href="/hate-me/assets/three-Dv6zdEDT.js">
+    <link rel="stylesheet" crossorigin href="/hate-me/assets/index-DyUzJIq3.css">
+  </head>
+  <body class="film-loading">
+    <div id="film-loader" role="status" aria-live="polite" aria-label="Loading lyric film">
+      <div class="loader-inner">
+        <div class="loader-title" aria-hidden="true"><span>HATE</span><em>me.</em></div>
+        <div class="loader-track" aria-hidden="true"><span></span></div>
+        <p id="loader-message">Setting the scene</p>
+        <button id="load-retry" type="button" hidden>Try again</button>
+      </div>
+      <span class="loader-credit" aria-hidden="true">ELLIE GOULDING × JUICE WRLD</span>
+    </div>
+    <div class="app" inert aria-hidden="true">
+      <header class="masthead">
+        <a class="identity" href="./" aria-label="Hate Me home"><span class="monogram">H<span>↯</span>M</span><span class="identity-copy">A LOVE LETTER<br>TO THE END.</span></a>
+        <div class="edition"><span class="status-light"></span> THE LYRIC FILM <span class="edition-number">VOL. 001 / 2019</span></div>
+        <button class="text-button" id="export-open"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 15v5h14v-5"/></svg><span>Export film</span></button>
+      </header>
+      <main>
+        <div class="film-heading"><div><span class="small-label">ELLIE GOULDING <span class="cross">×</span> JUICE WRLD</span><h1>Hate Me<span class="title-period">.</span><em>Love is a beautiful disaster.</em></h1></div><div class="film-spec"><span>AN INTERACTIVE LYRIC FILM</span><span>75 BPM <i>/</i> Fm · B♭m · E♭ · A♭</span></div></div>
+        <section class="theater" id="theater" aria-label="Lyric film player" aria-busy="true">
+          <div class="stage" id="stage">
+            <canvas id="film" aria-label="Animated lyric film"></canvas>
+            <button id="stage-play" class="stage-play" aria-label="Play lyric film"><span class="play-orbit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z"/></svg></span><span>ENTER THE FEELING <small>SOUND ON. WORLD OFF.</small></span></button>
+            <button id="exit-cinema" class="exit-cinema" aria-label="Exit cinema mode">↙ <span>EXIT CINEMA</span></button>
+            <div id="live-lyrics" class="sr-only" aria-live="off"></div>
+          </div>
+          <div class="transport">
+            <button id="play" class="icon-button main-play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></svg></button>
+            <button id="restart" class="icon-button restart" aria-label="Restart film" title="Restart"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg></button>
+            <div class="time" id="elapsed">00:00</div>
+            <div class="scrubber"><canvas id="waveform" aria-hidden="true"></canvas><input id="seek" aria-label="Seek through film" type="range" min="0" max="185" step="0.01" value="0"><div id="seek-marker"></div></div>
+            <div class="time duration" id="duration">03:05</div>
+            <div class="volume-control"><button id="mute" class="icon-button" aria-label="Mute audio"><svg viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button><input type="range" id="volume" aria-label="Volume" min="0" max="1" step="0.01" value="0.85"></div>
+            <button id="fullscreen" class="icon-button" aria-label="Enter cinema mode" title="Cinema mode · F"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+          </div>
+        </section>
+        <nav class="chapters" aria-label="Film chapters" id="chapters"></nav>
+        <div class="under-film"><div class="now-playing"><span class="equalizer"><i></i><i></i><i></i><i></i></span><span id="chapter-name">THE FEELING BEFORE THE FALL</span></div><div class="view-options"><div class="segmented" aria-label="Video aspect ratio"><button data-aspect="wide" class="selected" aria-pressed="true">16:9</button><button data-aspect="portrait" aria-pressed="false">9:16</button></div><button id="footage" class="setting-button active" aria-pressed="true"><span class="toggle-dot"></span>Original footage</button><button id="motion" class="setting-button active" aria-pressed="true"><span class="toggle-dot"></span>Full motion</button></div></div>
+      </main>
+      <footer><span>SOME FEELINGS DON’T FADE.<br><span class="muted">THEY JUST FIND A DIFFERENT FREQUENCY.</span></span><span class="keyboard-hint"><kbd>SPACE</kbd> PLAY / PAUSE <span>·</span> <kbd>F</kbd> CINEMA <span>·</span> <kbd>←</kbd><kbd>→</kbd> SEEK</span><span class="footer-mark">MADE OF LOVE & OTHER DAMAGE <span>↗</span></span></footer>
+    </div>
+    <dialog id="export-dialog">
+      <form method="dialog"><button class="dialog-close" aria-label="Close export dialog">×</button></form>
+      <span class="small-label">TAKE THE FEELING WITH YOU</span><h2>Make it<br><em>yours to keep.</em></h2>
+      <p>Record the film with its original audio. Keep this tab visible while it plays; your video downloads when the recording ends.</p>
+      <label class="export-label" for="export-format">FRAME</label><select id="export-format"><option value="wide">Cinematic — 1600 × 900</option><option value="portrait">Portrait — 900 × 1600</option></select>
+      <label class="export-label" for="export-range">DURATION</label><select id="export-range"><option value="full">The complete film</option><option value="clip">30 seconds from the current position</option></select>
+      <button id="export-start" class="primary-button">RECORD & DOWNLOAD <span>↗</span></button>
+      <p class="export-note" id="export-note">WebM video · 30 fps · includes audio</p>
+    </dialog>
+    <div class="recording-bar" id="recording-bar" hidden><span class="record-light"></span><span id="recording-status">Recording film…</span><button id="export-stop">Finish & save</button></div>
+    <div id="toast" class="toast" role="status"></div>
+    <video id="source" preload="auto" playsinline hidden></video>
+    <script>
+      // This small fallback works even when the main module cannot be downloaded.
+      window.__filmLoadError = function () {
+        if (!document.body.classList.contains('film-loading')) return;
+        document.getElementById('film-loader').classList.add('load-failed');
+        document.getElementById('loader-message').textContent = "The film couldn't load. Please try again.";
+        document.getElementById('load-retry').hidden = false;
+      };
+      document.getElementById('load-retry').addEventListener('click', function () { location.reload(); });
+      window.addEventListener('error', function (event) {
+        if (event.target.tagName === 'SCRIPT' || event.error) window.__filmLoadError();
+      }, true);
+      window.addEventListener('unhandledrejection', function () { window.__filmLoadError(); });
+    </script>
+  </body>
+</html>
