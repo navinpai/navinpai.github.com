@@ -3,6 +3,7 @@
   const slides = [...document.querySelectorAll('.slide')];
   const walkthroughIndex = slides.findIndex(slide => slide.classList.contains('walkthrough-slide'));
   const mainCount = slides.filter(slide => !slide.dataset.appendix).length;
+  const appendixCount = slides.length - mainCount;
   const params = new URLSearchParams(location.search);
   const notes = document.querySelector('#notes-panel');
   const overview = document.querySelector('#overview-panel');
@@ -44,7 +45,7 @@
       slide.setAttribute('aria-roledescription', 'slide');
       slide.setAttribute('aria-label', `${i + 1}. ${slide.dataset.title}`);
     });
-    const label = current < mainCount ? `${current + 1} / ${mainCount}` : `${String.fromCharCode(65 + current - mainCount)} / C`;
+    const label = current < mainCount ? `${current + 1} / ${mainCount}` : `${String.fromCharCode(65 + current - mainCount)} / ${String.fromCharCode(64 + appendixCount)}`;
     document.querySelector('#slide-counter').textContent = label;
     document.querySelector('#progress i').style.width = `${Math.min(current + 1, mainCount) / mainCount * 100}%`;
     document.querySelector('#announcer').textContent = `Slide ${label}: ${slides[current].dataset.title}`;
