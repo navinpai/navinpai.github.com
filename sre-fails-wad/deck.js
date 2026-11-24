@@ -21,7 +21,12 @@
 
   function fit() {
     const bounds = viewport.getBoundingClientRect();
-    document.documentElement.style.setProperty('--scale', Math.min(bounds.width / 1440, bounds.height / 810));
+    if (!bounds.width || !bounds.height) return;
+    const scale = Math.min(bounds.width / 1440, bounds.height / 810);
+    const style = document.documentElement.style;
+    style.setProperty('--scale', scale);
+    style.setProperty('--deck-width', `${bounds.width / scale}px`);
+    style.setProperty('--deck-height', `${bounds.height / scale}px`);
   }
   function fromHash() {
     const match = location.hash.match(/^#slide-(\d+)$/);

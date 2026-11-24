@@ -62,9 +62,9 @@ Then open `http://localhost:3046/`. Keep the slide window on the projector and p
 | Click on the slide | Reveal / advance (links and interactive controls are excluded) |
 | PDF button in the ? menu | Print 19 pages with solutions visible |
 
-Each case starts on the problem with the solution hidden, including after a reload, an overview jump, or returning from another slide. The first advance reveals the control; the second moves to the next slide. Reveal state synchronizes between the audience and presenter windows. The slide view has no footer, navigation bar, or progress strip. Press **?** to open navigation and presentation actions; this menu includes the current slide and reveal state.
+Each case starts on the problem with the solution hidden, including after a reload, an overview jump, or returning from another slide. The first advance reveals the control; the second moves to the next slide. Reveal state synchronizes between the audience and presenter windows. The slide canvas fills the browser viewport at any aspect ratio, with uniform text and image scaling and no letterbox strip. The slide view has no footer, navigation bar, or progress strip. Press **?** to open navigation and presentation actions; this menu includes the current slide and reveal state.
 
-The autonomy diagram on slide 16 is interactive. All four buttons describe the permitted action and its required boundary; selection synchronizes with the presenter window. Hash links such as `#slide-17` open a particular slide. `?export` remains available for screenshots. Browser printing uses 16:9 pages and displays every solution, replacing the case diagram with its control panel. Enable background graphics and disable browser headers/footers.
+The autonomy diagram on slide 16 is interactive. All four buttons describe the permitted action and its required boundary; selection synchronizes with the presenter window. Hash links such as `#slide-17` open a particular slide. `?export` remains available for screenshots. PDF output keeps fixed 16:9 pages; browser printing uses those pages and displays every solution, replacing the case diagram with its control panel. Enable background graphics and disable browser headers/footers.
 
 ## Evidence decisions
 
