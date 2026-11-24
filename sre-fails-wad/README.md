@@ -2,7 +2,7 @@
 
 **When the Agent Made It Worse** · Navin Pai, Director of Engineering, StackGen.
 
-Nineteen slides with progressive solution reveals, adapted from `../autonomous-fails/index.html`. The original talk is unchanged. This version keeps all eleven cases, the case/debrief rhythm, the five failure patterns, and the closing argument about earned autonomy.
+Nineteen slides with progressive solution reveals, eleven cases, five failure patterns, and a practical argument for earned autonomy.
 
 ## Event research
 
@@ -59,19 +59,20 @@ Then open `http://localhost:3046/`. Keep the slide window on the projector and p
 | B / Escape | Blackout / restore |
 | ? | Keyboard help |
 | Horizontal swipe | Reveal / advance or hide / return |
-| PDF button | Print 19 pages with solutions visible |
+| Click on the slide | Reveal / advance (links and interactive controls are excluded) |
+| PDF button in the ? menu | Print 19 pages with solutions visible |
 
-Each case starts on the problem with the solution hidden, including after a reload, an overview jump, or returning from another slide. The first advance reveals the control; the second moves to the next slide. Reveal state synchronizes between the audience and presenter windows. The toolbar indicates “Problem · 1/2” or “Solution · 2/2”.
+Each case starts on the problem with the solution hidden, including after a reload, an overview jump, or returning from another slide. The first advance reveals the control; the second moves to the next slide. Reveal state synchronizes between the audience and presenter windows. The slide view has no footer, navigation bar, or progress strip. Press **?** to open navigation and presentation actions; this menu includes the current slide and reveal state.
 
-The autonomy diagram on slide 16 is interactive. All four buttons describe the permitted action and its required boundary; selection synchronizes with the presenter window. Hash links such as `#slide-17` open a particular slide. `?export` removes presentation controls for screenshots. Browser printing uses 16:9 pages and displays every solution, replacing the case diagram with its control panel. Enable background graphics and disable browser headers/footers.
+The autonomy diagram on slide 16 is interactive. All four buttons describe the permitted action and its required boundary; selection synchronizes with the presenter window. Hash links such as `#slide-17` open a particular slide. `?export` remains available for screenshots. Browser printing uses 16:9 pages and displays every solution, replacing the case diagram with its control panel. Enable background graphics and disable browser headers/footers.
 
 ## Evidence decisions
 
-- **001 — AWS DNS:** checked against the [AWS post-event summary](https://aws.amazon.com/message/101925/). It was conventional automation, with a race between DNS enactors and cleanup. The approximately fifteen-hour duration describes the overall event; DynamoDB impact was roughly three hours. The earlier “half the internet” wording was rhetorical and is not repeated as a measurement.
+- **001 — AWS DNS:** checked against the [AWS post-event summary](https://aws.amazon.com/message/101925/). It was conventional automation, with a race between DNS enactors and cleanup. The approximately fifteen-hour duration describes the overall event; DynamoDB impact was roughly three hours.
 - **002–004, 008–011:** retain their composite status and scenario details. Their numbers are story parameters, not production measurements or research statistics.
-- **005 — backups, 006 — un-patching:** the original labeled these “reported” but supplied no primary citations. The mechanisms are preserved and explicitly labeled illustrative. Their old dates are not presented as verified facts.
-- **007 — Replit:** [Replit acknowledges deletion and full recovery](https://replit.com/blog/doubling-down-on-our-commitment-to-secure-vibe-coding). [Jason Lemkin’s account](https://www.saastr.com/replits-new-release-address-most-of-the-challenges-we-hit-vibe-coding-but-is-prosumer-vibe-coding-really-ready-for-commercial-apps-yet/) supplies record counts and the repeated code-freeze instructions. It was a coding-agent incident. The original title is retained; it does not establish the agent’s intent. Original details about fabricated records and self-rating remain qualified in the speaker notes, without asserting they followed the deletion in a verified sequence.
-- The original “none of these are model bugs” claim is narrowed: model failures can coexist with system failures; containment is a system design responsibility.
+- **005 — backups, 006 — un-patching:** illustrative scenarios without a public incident attribution.
+- **007 — Replit:** [Replit acknowledges deletion and full recovery](https://replit.com/blog/doubling-down-on-our-commitment-to-secure-vibe-coding). [Jason Lemkin’s account](https://www.saastr.com/replits-new-release-address-most-of-the-challenges-we-hit-vibe-coding-but-is-prosumer-vibe-coding-really-ready-for-commercial-apps-yet/) supplies record counts and the repeated code-freeze instructions. It was a coding-agent incident. The case title does not establish the agent’s intent. Details about fabricated records and self-rating remain qualified in the speaker notes, without asserting they followed the deletion in a verified sequence.
+- Model failures can coexist with system failures; containment is a system design responsibility.
 - Diagrams and policy snippets are explanatory reconstructions. They are not raw transcripts or executable policies. Suggested controls are the speaker’s recommendations. The audit record concerns observations, plans, authorization, tool actions, and outcomes, without depending on private model reasoning.
 
 ## Files and publication

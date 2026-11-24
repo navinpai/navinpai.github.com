@@ -51,9 +51,6 @@
     if (location.hash !== fragment) history.replaceState(null, '', fragment);
     document.querySelector('#counter').textContent = `${String(index + 1).padStart(2, '0')} / ${slides.length}`;
     const hasReveal = slide.hasAttribute('data-has-reveal');
-    const totalSteps = slides.reduce((sum, item) => sum + 1 + Number(item.hasAttribute('data-has-reveal')), 0);
-    const priorSteps = slides.slice(0, index).reduce((sum, item) => sum + 1 + Number(item.hasAttribute('data-has-reveal')), 0);
-    document.querySelector('#progress').style.width = `${(priorSteps + 1 + Number(revealed)) / totalSteps * 100}%`;
     document.querySelector('#previous').disabled = index === 0 && !revealed;
     const nextButton = document.querySelector('#next');
     nextButton.disabled = index === slides.length - 1 && (!hasReveal || revealed);
@@ -81,10 +78,12 @@
     for (const dialog of [overview, help]) if (dialog.open) dialog.close();
   }
   function openOverview() {
+    closeDialogs();
     overview.showModal();
     overview.querySelector('[aria-current=true]')?.focus();
   }
   async function fullscreen() {
+    closeDialogs();
     try {
       if (document.fullscreenElement) await document.exitFullscreen();
       else await document.documentElement.requestFullscreen();
@@ -94,6 +93,7 @@
   }
   function openPresenter() {
     if (presenter) return;
+    closeDialogs();
     const url = new URL(location.href);
     url.searchParams.delete('export');
     url.searchParams.set('presenter', '1');
@@ -103,10 +103,9 @@
       help.showModal();
     }
   }
-  document.querySelector('#previous').addEventListener('click', retreat);
-  document.querySelector('#next').addEventListener('click', advance);
+  document.querySelector('#previous').addEventListener('click', () => { closeDialogs(); retreat(); });
+  document.querySelector('#next').addEventListener('click', () => { closeDialogs(); advance(); });
   document.querySelector('#open-overview').addEventListener('click', openOverview);
-  document.querySelector('#open-help').addEventListener('click', () => help.showModal());
   document.querySelector('#open-presenter').addEventListener('click', openPresenter);
   document.querySelector('#open-presenter').hidden = presenter;
   document.querySelector('#fullscreen').addEventListener('click', fullscreen);
@@ -146,6 +145,10 @@
     else if (key === 'f') fullscreen();
     else if (key === 'b') document.body.classList.toggle('blank');
     else if (key === '?') help.showModal();
+  });
+  viewport.addEventListener('click', event => {
+    if (event.detail > 1 || event.target.closest('button,a,input,select,textarea') || window.getSelection()?.toString()) return;
+    advance();
   });
   viewport.addEventListener('touchstart', event => {
     if (event.touches.length !== 1 || event.target.closest('button,a')) { touchStart = null; return; }

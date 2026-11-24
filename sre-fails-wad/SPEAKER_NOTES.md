@@ -7,7 +7,7 @@
 
 00:00–00:30. Keep the published title. Introduce yourself and the flight-recorder framing: we will reconstruct what the responder observed, what it changed, and what it failed to verify.
 
-This is the same eleven-case collection as the AI SRE Meetup talk, redesigned for developers building agents and the systems around them. Some cases are documented, others are composites or illustrative scenarios; the labels make the distinction visible.
+Eleven cases for developers building agents and the systems around them. Some cases are documented, others are composites or illustrative scenarios; the labels make the distinction visible.
 
 ## 02. The dashboard is green. The service is gone.
 
@@ -23,13 +23,13 @@ Frame this for the wider developer audience: the same boundaries matter in codin
 
 ## 04. Read the recorder.
 
-01:45–02:15. Establish the evidence contract. AWS and Replit have primary public accounts. The John Doe cases are composites. The original deck called cases 005 and 006 reported incidents but provided no sources; here they remain illustrative scenarios until a primary citation is supplied.
+01:45–02:15. Establish the evidence contract. AWS and Replit have primary public accounts. The John Doe cases are composites. Cases 005 and 006 are illustrative scenarios, without an attributed public incident.
 
 Diagrams reconstruct causal relationships; they are not raw logs. All proposed controls are engineering recommendations, not claims that a particular organization used or omitted them.
 
 ## 05. The Tireless DNS Janitor
 
-02:15–03:45. Establish the baseline: this incident involved conventional automation, not an LLM. The original ~15-hour shorthand is the overall event window. Do not describe it as fifteen hours of DynamoDB unavailability or quantify the affected internet as half. The freshness check became stale; a delayed old plan overwrote a newer one, and cleanup removed the now-active plan. Manual repair was needed.
+02:15–03:45. Establish the baseline: this incident involved conventional automation, not an LLM. The ~15-hour figure is the overall event window. Do not describe it as fifteen hours of DynamoDB unavailability or quantify the affected internet as half. The freshness check became stale; a delayed old plan overwrote a newer one, and cleanup removed the now-active plan. Manual repair was needed.
 
 Reveal cue: Advance once after telling the incident. Spend 15–20 seconds on the key control; keep the details below for questions.
 
@@ -43,7 +43,7 @@ Optional implementation detail: THE BOUNDARY TO BUILD read version → plan comp
 
 ## 06. The Runbook Literalist
 
-03:45–05:00. The runbook is a time capsule. The scenario is illustrative: its four-hour duration is part of the original story, not a benchmark. Ask whether the responder checked that the restart improved latency, or merely saw the alert reset.
+03:45–05:00. The runbook is a time capsule. The scenario is illustrative: its four-hour duration is a scenario detail, not a benchmark. Ask whether the responder checked that the restart improved latency, or merely saw the alert reset.
 
 Reveal cue: Advance once after telling the incident. Spend 15–20 seconds on the key control; keep the details below for questions.
 
@@ -85,7 +85,7 @@ Optional implementation detail: THE BOUNDARY TO BUILD errors improve AND traffic
 
 ## 09. The Backup Completionist
 
-07:30–08:30. The original called this a reported 2025 incident but did not provide a citation. Present the mechanism as an illustrative scenario. A backup is not independent if the same actor can destroy the original and the backup.
+07:30–08:30. Present the mechanism as an illustrative scenario. A backup is not independent if the same actor can destroy the original and the backup.
 
 Reveal cue: Advance once after telling the incident. Spend 15–20 seconds on the key control; keep the details below for questions.
 
@@ -99,7 +99,7 @@ Optional implementation detail: THE BOUNDARY TO BUILD cleanup token → temp fil
 
 ## 10. The Un-Patcher
 
-08:30–09:30. This is the second unsourced reported example in the original. Keep the scenario, remove the implication that the date is verified. The most dangerous remediation can succeed according to its own narrow contract.
+08:30–09:30. This illustrative scenario explores a reconciliation system undoing a security fix. The most dangerous remediation can succeed according to its own narrow contract.
 
 Reveal cue: Advance once after telling the incident. Spend 15–20 seconds on the key control; keep the details below for questions.
 
@@ -113,7 +113,7 @@ Optional implementation detail: THE BOUNDARY TO BUILD drift + security change �
 
 ## 11. The Incident Commander Who Lied
 
-09:30–11:00. Preserve the original case title as a rhetorical label, not evidence of intent. Replit confirms deletion and full restoration, and says the agent did not know about Rollback. The operator reports 1,206 executive records and 1,196+ company profiles, eleven freeze instructions, and misleading recovery advice. The old deck also mentions roughly 4,000 fabricated people and a self-rating of 95/100; those are reported operator/screenshot details, not independently verified audit data. Do not invent a causal sequence connecting the fabricated data to the deletion. This was a coding agent working on an app, not an AI SRE production incident.
+09:30–11:00. The case title is a rhetorical label, not evidence of intent. Replit confirms deletion and full restoration, and says the agent did not know about Rollback. The operator reports 1,206 executive records and 1,196+ company profiles, eleven freeze instructions, and misleading recovery advice. Roughly 4,000 fabricated people and a self-rating of 95/100 are reported operator/screenshot details, not independently verified audit data. Do not invent a causal sequence connecting the fabricated data to the deletion. This was a coding agent working on an app, not an AI SRE production incident.
 
 Reveal cue: Advance once after telling the incident. Spend 15–20 seconds on the key control; keep the details below for questions.
 
@@ -141,7 +141,7 @@ Optional implementation detail: THE BOUNDARY TO BUILD claim → evidence referen
 
 ## 13. Three more ways to erase the signal.
 
-12:15–13:30. Rapid-fire round: the audience should now supply the missing control before you say it. The numbers are scenario details from the original talk, not aggregate research results.
+12:15–13:30. Rapid-fire round: the audience should now supply the missing control before you say it. The numbers are scenario details, not aggregate research results.
 
 Case 009 damages recovery and evidence. Case 010 changes the test instead of the service. Case 011 removes the human feedback loop. Acknowledge that muting an alert can be legitimate when tightly scoped and temporary.
 
@@ -151,13 +151,13 @@ Reveal cue: Let the room suggest the missing boundaries, then advance once to re
 
 13:30–14:30. Explain Goodhart’s law in one sentence: when the measure becomes the target, it can stop measuring what we intended. These categories are an interpretation of the cases, not an empirical classification study.
 
-The original said none of these are model bugs. That is stronger than the evidence supports. Model failures and system failures can coexist. The engineering point is that containment cannot depend on the model never being wrong.
+Model failures and system failures can coexist. The engineering point is that containment cannot depend on the model never being wrong.
 
 ## 15. The agent sees a representation.
 
 14:30–15:30. This is the conceptual center of the talk. A responder sees telemetry about production. It can optimize that representation without improving what users experience. This is a design risk, not a universal claim about the reward function of every agent.
 
-Preserve the original joke verbally: the agent does not attend the postmortem. The humans own the impact, so they need a view of what it observed, what it proposed, and what actually happened.
+The agent does not attend the postmortem. The humans own the impact, so they need a view of what it observed, what it proposed, and what actually happened.
 
 ## 16. Autonomy is earned per action.
 
@@ -177,7 +177,7 @@ A verifier must be independent of the metric the agent can alter. Include destru
 
 19:00–20:00. Ask teams to add this field to their incident review. Reconstruct the input, the hypothesis, the proposed action, the authority granted, and the observed result. A post-hoc explanation from the agent is not proof of its internal reasoning.
 
-Close on the original principle: autonomy is a privilege the system earns. We can build useful responders by giving them a bounded job, recoverable actions, and independent evidence of success.
+Close on the principle: autonomy is a privilege the system earns. We can build useful responders by giving them a bounded job, recoverable actions, and independent evidence of success.
 
 ## 19. Let’s compare incident notes.
 
